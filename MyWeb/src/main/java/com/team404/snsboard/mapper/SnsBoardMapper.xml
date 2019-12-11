@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 마이바티스 설정관련 xml파일이 됩니다 --> 
+	<mapper namespace="com.team404.snsboard.mapper.SnsBoardMapper">
+		<insert id="insert">
+   		insert into snsboard (bno,writer,uploadpath,fileloca,filename,filerealname,content,regdate)
+     	values(snsboard_seq.nextval,#{writer},#{uploadPath},#{fileLoca},#{fileName},#{fileRealName},#{content},sysdate)
+  		</insert>
+  		<select id="getList" resultType="com.team404.command.SnsBoardDTO">
+  		select * from snsboard order by bno desc
+  		</select>
+  		<select id="snsDetail" resultType="com.team404.command.SnsBoardDTO">
+  		select * from snsboard where bno = #{bno}
+  		</select>
+ 	</mapper>
+ 	

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+	xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+
+	<!--1. 새로운 스프링설정파일 만들기 -->
+	<!--2. servlet-context와 같은 레벨 설정 -->
+	<!--3. web.xml에 경로 추가 -->
+	<beans:bean id="UserIntercepter"
+		class="com.team404.util.intercepter.UserIntercepter"></beans:bean>
+	<beans:bean id="LoginFormIntercepter"
+		class="com.team404.util.intercepter.LoginFormIntercepter"></beans:bean>
+	<beans:bean id="FreeBoardIntercepter"
+		class="com.team404.util.intercepter.FreeBoardIntercepter"></beans:bean>
+		
+	<interceptors>
+		<interceptor>
+			<mapping path="/user/userMypage" />
+			<mapping path="/freeBoard/freeRegist" />
+			<beans:ref bean="UserIntercepter" />
+		</interceptor>
+		<interceptor>
+			<mapping path="/user/loginForm" />
+			<beans:ref bean="LoginFormIntercepter" />
+		</interceptor>
+		<interceptor>
+			<mapping path="/freeBoard/freeModify" />
+			<mapping path="/freeBoard/freeUpdate" />
+			<mapping path="/freeBoard/freeDelete" />
+			<beans:ref bean="FreeBoardIntercepter" />
+		</interceptor>
+	</interceptors>
+
+
+
+
+
+</beans:beans>

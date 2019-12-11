@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 마이바티스 설정관련 xml파일이 됩니다 --> 
+	<mapper namespace="com.team404.freereply.mapper.FreeReplyMapper">
+		<insert id="regist">
+		insert into freereply(rno,bno,reply,replyid,replypw,replydate,updatedate)
+		values(freereply_seq.nextval, #{bno},#{reply},#{replyid},#{replypw},sysdate,sysdate)
+		</insert>
+		<select id="getList" resultType="com.team404.command.ReplyDTO">
+		select * from freereply where bno = #{bno} order by rno desc
+		</select>
+		<select id="pwCheck" resultType="int">
+		select count(*) as result from freereply where rno = #{rno} and replypw = #{replypw}
+		</select>
+		<delete id="delete">
+		delete from freereply where rno = #{rno} and replypw = #{replypw}
+		</delete>
+		<update id="update">
+		update freereply set reply = #{reply} where rno = #{rno} and replypw = #{replypw}
+		</update>
+	</mapper>

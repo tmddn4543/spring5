@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 마이바티스 설정관련 xml파일이 됩니다 --> 
+	<mapper namespace="com.team404.user.mapper.UserMapper">
+		<select id="idConfirm" resultType="int">
+		select count(*) as count from users where userId = #{userId}
+		</select>
+		<insert id="join">
+   		insert into users (userId,userPw,userName,userPhone1,userPhone2,userEmail1,userEmail2,addrZipNum,addrBasic,addrDetail)
+     	values(#{userId},#{userPw},#{userName},#{userPhone1},#{userPhone2},#{userEmail1},#{userEmail2},#{addrZipNum},#{addrBasic},#{addrDetail})
+  		</insert>
+  		<select id="login" resultType="int">
+  		select count(*) as result from users where userId = #{userId} and userPw = #{userPw}
+ 		</select>
+ 		
+ 		<!-- result태그의컬럼은 db의컬럼명이들어갑니다 -->
+ 		<resultMap type="com.team404.command.UserDTO" id="userBoardList">
+ 			<result property="userId" column="userid"/>
+ 			<result property="userName" column="username"/>
+ 			<result property="userPhone1" column="userphone1"/>
+ 			<result property="userPhone2" column="userphone2"/>
+ 			<result property="userEmail1" column="useremail1"/>
+ 			<result property="userEmail2" column="useremail2"/>
+ 			<result property="addrZipNum" column="addrzipnum"/>
+ 			<result property="addrBasic" column="addrbasic"/>
+ 			<result property="addrDetail" column="addrdetail"/>
+ 			<collection property="userBoardList" resultMap="List"/>
+ 		</resultMap>
+ 		<resultMap type="com.team404.command.FreeBoardDTO" id="List">
+ 			<result property="num" column="num"/>
+ 			<result property="title" column="title"/>
+ 			<result property="regdate" column="regdate"/>
+ 		</resultMap>
+ 		<!-- 1:N관계를처리할수있는 리설트맵쓰면댐 -->
+ 		<select id="getInfo" resultMap="userBoardList">
+ 		select 
+			userid,
+			username,
+			userphone1,
+			userphone2,
+			useremail1,
+			useremail2,
+			addrzipnum,
+			addrbasic,
+			addrdetail,
+			f.num,
+			f.title,
+			f.regdate
+		from users u inner join freeboard f on u.userid = f.writer where writer = #{userId} order by num desc
+ 		</select>
+ 		<update id="updateUser">
+ 		update users SET username = #{userName}, userpw = #{userPw}, useremail1 = #{userEmail1}, useremail2 = #{userEmail2}, userphone1 = #{userPhone1},
+		userphone2 = #{userPhone2}, addrbasic = #{addrBasic}, addrdetail = #{addrDetail}, addrzipnum = #{addrZipNum} where userid = #{userId}
+ 		</update>
+ 		
+ 		
+	</mapper>

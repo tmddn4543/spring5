@@ -1,0 +1,65 @@
+create table freeboard(
+    num number(10,0) not null,
+    title VARCHAR2(200) not null,
+    content VARCHAR2(2000) not null,
+    writer VARCHAR2(50) not null,
+    regdate date default sysdate,
+    updatedate date default sysdate
+);
+alter table freeboard add CONSTRAINT freeboard_num_pk PRIMARY key (num);
+create SEQUENCE freeboard_seq;
+
+
+create table freereply(
+    rno number(10,0),
+    bno number(10,0),
+    reply VARCHAR2(1000),
+    replyid VARCHAR2(50),
+    replypw VARCHAR2(50),
+    replydate date default sysdate,
+    updatedate date default sysdate
+);
+alter table freereply add CONSTRAINT freereply_rno_pk PRIMARY key (rno);
+create SEQUENCE freereply_seq;
+
+
+
+create table users(
+    userId VARCHAR2(50),
+    userPw VARCHAR2(50),
+    userName VARCHAR2(50),
+    userPhone1 VARCHAR2(50),
+    userPhone2 VARCHAR2(50),
+    userEmail1 VARCHAR2(50),
+    userEmail2 VARCHAR2(50),
+    addrZipNum VARCHAR2(50),
+    addrBasic VARCHAR2(300),
+    addrDetail VARCHAR2(300),
+    regDate date DEFAULT sysdate
+    );
+alter table users add CONSTRAINT users_userId_pk PRIMARY KEY (userId);
+
+
+
+
+
+
+
+
+
+
+
+
+create table snsboard(
+    bno number(10,0),
+    writer VARCHAR2(50) not null,
+    uploadpath VARCHAR2(100) not null,
+    fileloca VARCHAR2(50) not null,
+    filename VARCHAR2(50) not null,
+    filerealname VARCHAR2(50) not null,
+    content VARCHAR2(2000),
+    regdate date DEFAULT sysdate
+);
+alter TABLE snsboard add CONSTRAINT snsboard_bno_pk PRIMARY key (bno);
+create SEQUENCE snsboard_seq;
+    
