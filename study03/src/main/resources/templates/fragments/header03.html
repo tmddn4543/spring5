@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<meta charset="utf-8">
+<ul class="nav navbar-nav nav-tabs" th:fragment="headerFragment03" >
+  <li th:class="${#strings.startsWith(#httpServletRequest.requestURI, '/admin/admin01')}?'active':''"><a href="/admin/admin01">게시판 관리<span class="sr-only">(current)</span></a></li>
+  <li th:class="${#strings.startsWith(#httpServletRequest.requestURI, '/admin/admin02')}?'active':''"><a href="/admin/admin02">공지사항 관리</a></li>
+  <li th:class="${#strings.startsWith(#httpServletRequest.requestURI, '/admin/admin03')}?'active':''"><a href="/admin/admin03" sec:authorize="hasRole('ROLE_ADMIN')">사용자 관리</a></li>
+</ul>
+</html>

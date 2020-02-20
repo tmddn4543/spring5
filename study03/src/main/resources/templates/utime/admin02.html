@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorate="~{layouts/default}">
+
+<head>
+	<meta charset="utf-8">
+	<!-- index.html 고유 CSS 추가 -->
+    <link rel="stylesheet" type="text/css" href="/resource/assets/css/admin_main.css">
+</head>
+
+
+<div class="container con_wrap" layout:fragment="content">
+	<header th:replace="fragments/header02 :: headerFragment02"></header>
+	<header th:replace="fragments/header03 :: headerFragment03"></header>
+	<div class="container">
+        <h3>공지사항 관리</h3>
+        <div class="ibox-content" style="padding-top: 20px;">
+            <div class="from_wrap">
+         
+                <table class="table table-striped table-bordered table-hover">
+                    <colgroup>
+                        <col width="15%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="10%"> 
+                        <col width="30%">
+                        <col width="25%" sec:authorize="hasRole('ROLE_ADMIN')">                         
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th style="text-align:center;">아이디</th>
+                            <th style="text-align:center;">이름</th>
+                            <th style="text-align:center;">계정유형</th>
+                            <th style="text-align:center;">등급</th>
+                            <th style="text-align:center;">소속 (호스트 귀속)</th>
+                            <th style="text-align:center;" sec:authorize="hasRole('ROLE_ADMIN')">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="text-align:center;">Host01</td>
+                            <td style="text-align:center;">홍길동</td>
+                            <td style="text-align:center;">UTIME</td>
+                            <td style="text-align:center;">호스트</td>
+                            <td style="text-align:center;">Host01</td>
+                            <td style="text-align:center;" sec:authorize="hasRole('ROLE_ADMIN')">
+                                <button type="button">종료</button>
+                                <button type="button">삭제</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="pn">
+                    <ul class="pagination">
+                        <li>
+                            <a href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                       
+                        <li>
+                          <a href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                          </a>
+                        </li>
+                    </ul>
+                </div> 
+                
+               
+            </div>
+        </div>
+    </div>
+</div>
+</html>

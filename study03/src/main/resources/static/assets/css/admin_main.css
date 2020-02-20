@@ -1,0 +1,291 @@
+@charset "utf-8";
+*{
+	outline: none !important;
+}
+body{
+	background-color: #fff;
+	border-top: 15px solid #0384AF;
+	overflow-y: scroll;
+}
+
+#myModal .modal-dialog {
+    width: 450px;
+}
+
+/* pw_change Modal */
+#pw_change .modal-dialog{
+	width: 450px;
+}
+#pw_change .modal-body input{
+width: 66.66666667%;
+float: none;
+}
+.modal-body input:focus{
+	border-color: #01B1EC !important;
+}
+#pw_change .modal-body p{
+
+	float: left;
+	margin: 0;
+	line-height: 34px;
+}
+#pw_change .modal-body{
+	padding: 10px 30px;
+}
+#pw_change .modal-body .form-group:last-child{
+	margin: 0;
+}
+#pw_change .modal-footer{
+	padding: 10px 30px;
+}
+.btn-default {
+    background-color: #c2c2c2;
+    border-color: #c2c2c2;
+    color: #FFFFFF;
+}
+.modal-footer button.btn-primary {
+    background-color: #333;
+    border-color: #333;
+}
+.modal-footer button.btn-primary:focus, .modal-footer button.btn-primary:hover{
+	background-color: #222;
+    border-color: #222;
+}
+
+/* change_modal */
+#change_modal .modal-body{
+	padding: 10px 30px;
+}
+#change_modal .modal-dialog{
+	width: 450px;
+}
+#change_modal .modal-body input{
+width: 66.66666667%;
+float: none;
+}
+
+#change_modal .modal-body p{
+
+	float: left;
+	margin: 0;
+	line-height: 34px;
+}
+#change_modal .modal-body .form-group:last-child{
+	margin: 0;
+}
+/* header */
+
+.header{
+	background-color: #2F4050;
+
+margin-bottom: 20px;
+}
+.header h2{
+margin-top: 0;
+
+margin-bottom: 0;
+
+padding-top: 70px;
+
+padding-bottom: 30px;
+
+font-weight: 700;
+
+color: #fff;
+
+}
+.nav-tabs{
+	width: 100%;
+
+border-color: #01B1EC;
+	float: none;
+	margin: 0;
+}
+.nav-tabs > li > a:hover,
+.nav-tabs > li > a:focus{
+	border-bottom: #01b1ec;
+}
+.nav-tabs li.active a{
+
+background-color: #01b1ec !important;
+border-color: #01b1ec !important;
+color: #fff !important;
+}
+
+.nav-tabs li a{
+	margin: 0;
+	color: #888;
+}
+
+.navbar-default .nav > li > a:hover, .navbar-default .nav > li > a:focus {
+
+  background-color: #01b1ec !important;
+border-color: #01b1ec !important;
+color: #fff !important;
+
+}
+
+body >.con_wrap{
+position: relative;
+}
+body >.con_wrap >.btn-group{
+	float: right;
+
+position: absolute;
+
+margin-top: 3px;
+right: 20px;
+}
+body >.con_wrap >.btn-group .btn-default{
+background: none;
+
+color: #999;
+
+border: none;
+box-shadow: none;
+}
+body >.con_wrap >.btn-group .btn-default:hover{
+color: #777;
+}
+
+body >.con_wrap .container{
+	clear: both;
+	padding-top: 15px;
+	width: 1140px;
+}
+
+button{
+	background-color: #e1e1e1;
+
+box-shadow: none;
+
+border: 1px solid #adadad;
+
+color: #666;
+	height: 20.5667px;
+}
+
+.table > tbody > tr {
+	height: 37.5667px;
+}
+/* 페이지네이션 */
+.pn{
+	text-align: center;
+}
+
+/* 버튼네이션 */
+.btn{
+	float: right;
+}
+.pagination{
+	margin: 0;
+}
+
+
+/* zoom key 관리 */
+.api .col-md-2{
+font-size: 15px;
+margin: 0;
+line-height: 34px;
+border-left: 3px solid #01b1ec;
+box-sizing: border-box;
+text-align: left;
+float: left;
+width: 16%;
+}
+.api .col-md-10{
+	width: 83.33333333%;
+	float: none;
+}
+.api button.btn-primary{
+	display: block;
+margin: 0 auto;
+background-color: #01b1ec;
+height: 34px;
+border-color: #0fa4d7;
+}
+.api .form-control:focus, .single-line:focus {
+
+    border-color: #01B1EC !important;
+
+}
+.meth{
+
+
+width: 80%;
+
+margin: 30px auto;
+}
+.meth h4{
+	margin: 0 auto;
+
+font-size: 15px;
+
+padding-left: 15px;
+
+border-bottom: 1px solid #eee;
+padding-right: 15px;
+line-height: 30px;
+}
+.meth h4 a{
+	color: #01b1ec;
+	    width: 100%;
+    display: block;
+}
+.meth h4 a:hover{
+	color: #0384af;
+}
+.meth h4 a i{
+	text-align: right;
+    float: right;
+    line-height: 30px;
+    transition: all 0.5s;
+}
+.i_ro{
+	transform: rotate(180deg);
+    
+}
+.meth img{
+	margin: 20px auto;
+
+display: block;
+
+border: 1px solid #ddd;
+
+max-width: 100%;
+}
+
+.meth ol{
+	margin: 0 auto;
+
+padding-bottom: 15px;
+
+padding-left: 20px;
+font-size: 13px;
+}
+.meth ol li{
+
+}
+.meth ol li a{
+color: #01b1ec;
+}
+.meth ol li a:hover{
+	color: #0384af;
+}
+.meth ol li strong{
+
+}
+/* 반응형 */
+@media (max-width: 1200px){
+	.header h2{
+		min-width: 970px;
+	}
+	body > .con_wrap .container{
+		width: 940px;
+	}
+
+	body > .con_wrap{
+	min-width: 970px;
+	}
+
+}
