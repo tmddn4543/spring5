@@ -32,6 +32,10 @@ public class Test02Controller {
     public String admin01(Model model) {
 		HashMap<String, Object> param = new HashMap<>();
 		List<Board> result = bService.getList(param);
+		int num = result.size();
+		for(int i=0; i<result.size(); i++) {
+			result.get(i).setSeq(String.valueOf(num--));
+		}
 		model.addAttribute("board", result);
         return "utime/admin01";
     }
