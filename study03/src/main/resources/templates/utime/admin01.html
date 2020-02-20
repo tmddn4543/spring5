@@ -30,7 +30,7 @@
 	                    <tr>
 	                        <th style="text-align:center;">순번</th>
 	                        <th style="text-align:center;">제목</th>
-	                        <th style="text-align:center;">내용</th>
+	                        <th style="text-align:center;">생성일자</th>
 	                        <th style="text-align:center;">Action</th>
 	                       
 	                    </tr>
@@ -39,7 +39,7 @@
 	                    <tr th:each="board : ${board}">
 	                        <td th:text="${board.seq}" style="text-align:center;"></td>
 	                        <td th:text="${board.title}" style="text-align:center;"></td>
-	                        <td th:text="${board.contents}" style="text-align:center;"></td>
+	                        <td th:text="${board.regdate}" style="text-align:center;"></td>
 	                        <td style="text-align:center;">
 	                            <button type="button" data-toggle="modal" data-target="#change_modal">수정</button>
 	                            <button type="button">삭제</button>
