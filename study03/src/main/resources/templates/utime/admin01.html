@@ -10,18 +10,18 @@
 	<script>
 	$(document).ready(function() {
 		let seq;
-		$(".boardTable").on("click", "button", function(event){
-			if(event.target.value=="boardEdit"){
-				seq = event.target.id;
-				$.getJSON(
-					"/admin/boardEdit/"+seq,
-					function(data){
-						console.log(data);
-						$("#boardEditTitle").val(data.title);
-						$("#boardEditContents").val(data.contents);
-					}
-				)
-			}
+		$("#change_modal").on("show.bs.modal", function(event){
+			var button = $(event.relatedTarget);
+			seq = button.data('whatever');
+			$.getJSON(
+				"/admin/boardEdit/"+seq,
+				function(data){
+					console.log(data);
+					$("#boardEditTitle").val(data.title);
+					$("#boardEditContents").val(data.contents);
+				}
+			)
+			
 		})
 		$("#boardUpdate").click(function() {
 			var title = $("#boardEditTitle").val();
@@ -75,7 +75,7 @@
 	                        <td th:text="${board.title}" style="text-align:center;"></td>
 	                        <td th:text="${board.regdate}" style="text-align:center;"></td>
 	                        <td style="text-align:center;">
-	                            <button type="button" data-toggle="modal" data-target="#change_modal" th:id="${board.seq}" value="boardEdit">수정</button>
+	                            <button type="button" data-toggle="modal" data-target="#change_modal" th:data-whatever="${board.seq}" th:id="${board.seq}" value="boardEdit">수정</button>
 	                            <button type="button">삭제</button>
 	                        </td>
 	                    </tr>
