@@ -9,8 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.study03.www.model.Board;
 import com.study03.www.serviceImpl.BoardService;
@@ -28,13 +31,28 @@ public class Test02Controller {
     }
 	
 	@Secured({"ROLE_USER", "ROLE_ADMIN"})
+	@RequestMapping(value = "/admin/boardEdit/{seq}")
+	@ResponseBody
+	public Board boardEdit(@PathVariable("seq") String seq) {
+		HashMap<String, Object> param = new HashMap<>();
+		param.put("seq", seq);
+		return bService.getView(param);
+	}
+	
+	@Secured({"ROLE_USER", "ROLE_ADMIN"})
     @RequestMapping(value = "/admin/admin01", method= {RequestMethod.GET, RequestMethod.POST})
     public String admin01(Model model) {
 		HashMap<String, Object> param = new HashMap<>();
 		List<Board> result = bService.getList(param);
-		int num = result.size();
+		StringBuffer asd;
 		for(int i=0; i<result.size(); i++) {
-			result.get(i).setSeq(String.valueOf(num--));
+			asd = new StringBuffer(result.get(i).getRegdate());
+			asd.insert(4, "-");
+			asd.insert(7, "-");
+			asd.insert(10, " ");
+			asd.insert(13, ":");
+			asd.insert(16, ":");
+			result.get(i).setRegdate(String.valueOf(asd));
 		}
 		model.addAttribute("board", result);
         return "utime/admin01";

@@ -19,4 +19,7 @@
 	insert into board(title, contents, regdate)
 	values(#{title}, #{contents}, date_format(now(), '%Y%m%d%H%i%s'))
 	</insert>
+	<select id="getView" parameterType="hashmap" resultMap="getListMap">
+	select * from board where seq = #{seq}
+	</select>
 </mapper>

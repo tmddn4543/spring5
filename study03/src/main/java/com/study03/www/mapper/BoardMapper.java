@@ -11,4 +11,5 @@ import com.study03.www.model.Board;
 public interface BoardMapper {
 	public List<Board> getList(HashMap<String, Object> param);
 	public void setInsert(HashMap<String, Object> param);
+	public Board getView(HashMap<String, Object> param);
 }

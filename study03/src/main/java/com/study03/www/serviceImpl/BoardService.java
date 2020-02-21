@@ -10,9 +10,10 @@ import com.study03.www.mapper.BoardMapper;
 import com.study03.www.model.Board;
 import com.study03.www.service.IInsert;
 import com.study03.www.service.IList;
+import com.study03.www.service.IView;
 
 @Service
-public class BoardService implements IList<Board>, IInsert {
+public class BoardService implements IList<Board>, IInsert, IView<Board> {
 	
 	@Autowired
 	BoardMapper mapper;
@@ -27,4 +28,10 @@ public class BoardService implements IList<Board>, IInsert {
 		mapper.setInsert(param);
 	}
 
+	@Override
+	public Board getView(HashMap<String, Object> param) {
+		return mapper.getView(param);
+	}
+
+	
 }
