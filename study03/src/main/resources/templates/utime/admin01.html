@@ -9,16 +9,35 @@
     <link rel="stylesheet" type="text/css" href="/resource/assets/css/admin_main.css">
 	<script>
 	$(document).ready(function() {
+		let seq;
 		$(".boardTable").on("click", "button", function(event){
 			if(event.target.value=="boardEdit"){
-				var seq = event.target.id;
+				seq = event.target.id;
 				$.getJSON(
 					"/admin/boardEdit/"+seq,
 					function(data){
 						console.log(data);
+						$("#boardEditTitle").val(data.title);
+						$("#boardEditContents").val(data.contents);
 					}
 				)
 			}
+		})
+		$("#boardUpdate").click(function() {
+			var title = $("#boardEditTitle").val();
+			var contents = $("#boardEditContents").val();
+			$.ajax({
+				type : "POST",
+				url : "/admin/boardUpdate",
+				data : JSON.stringify({"title" : title, "contents" : contents, "seq" : seq}),
+				contentType: "application/json; charset=utf-8",
+				success:function(result){
+					alert("업데이트 성공.");
+				},
+				error:function(status){
+					alert("업데이트 실패.");
+				}
+			})
 		})
 	})
 	</script>
@@ -92,17 +111,17 @@
 	                  <div class="modal-body">
 	                    <div class="form-group">
 	                        <p class="col-md-4">제목</p>
-	                        <input type="text" class="form-control col-md-8" placeholder="" required="">
+	                        <input type="text" class="form-control col-md-8" placeholder="" required="" id="boardEditTitle">
 	                    </div>
 	                    <div class="form-group">
 	                        <p class="col-md-4">내용</p>
-	                        <input type="text" class="form-control col-md-8" placeholder="" required="">
+	                        <input type="text" class="form-control col-md-8" placeholder="" required="" id="boardEditContents">
 	                    </div>
 	                    
 	                  </div>
 	                  <div class="modal-footer">
 	                    
-	                    <button type="button" class="btn btn-primary">저장</button>
+	                    <button type="button" class="btn btn-primary" id="boardUpdate">저장</button>
 	                    <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 	                  </div>
 	                </div>
