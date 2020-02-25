@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nautestech.www.mapper.BoardMapper">	
+	<resultMap type="board" id="getListMap" >
+		<result property="seq" column="seq"/>
+		<result property="title" column="title"/>
+		<result property="contents" column="contents"/>
+		<result property="regdate" column="regdate"/>
+	</resultMap>
+	<select id="getList" resultMap="getListMap" parameterType="hashmap">
+		select seq, title, contents, regdate
+		from board
+	</select>
+	
+	<insert id="setInsert" parameterType="hashmap">
+	insert into board(title, contents, regdate)
+	values(#{title}, #{contents}, date_format(now(), '%Y%m%d%H%i%s'))
+	</insert>
+</mapper>

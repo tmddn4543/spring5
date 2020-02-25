@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<div th:fragment="footerFragment">
+    <!-- pw_change Modal -->
+    <div class="modal fade" id="pw_change" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">비밀번호변경</h4>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+                <p class="col-md-4">현재비밀번호</p>
+                <input type="password" class="form-control col-md-8" placeholder="" required="required">
+            </div>
+            <div class="form-group">
+                <p class="col-md-4">신규비밀번호</p>
+                <input type="password" class="form-control col-md-8" placeholder="" required="required">
+            </div>
+            <div class="form-group">
+                <p class="col-md-4">비밀번호 확인</p>
+                <input type="password" class="form-control col-md-8" placeholder="" required="required">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button"  class="btn btn-primary">저장</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Message</h4>
+          </div>
+          <div class="modal-body">
+            로그아웃하시겠습니까?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+            <button type="button" class="btn btn-primary" onclick="location.href = '/logout';">로그아웃</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+</html>

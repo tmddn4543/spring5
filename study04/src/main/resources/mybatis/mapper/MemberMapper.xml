@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study04.www.mapper.MemberMapper">	
+	<resultMap type="member" id="getViewMap" >
+		<result property="seq" column="seq"/>
+		<result property="id" column="id"/>
+		<result property="pwd" column="pwd"/>
+		<result property="level" column="level"/>
+	</resultMap>
+	<select id="getLogin" resultMap="getViewMap" parameterType="hashmap">
+		select seq, id, pwd
+		from member
+		where id = #{param1}
+	</select>
+
+	<select id="getView" resultMap="getViewMap" parameterType="hashmap">
+		select seq ,id, pwd, level
+		from member
+		<include refid="where" />
+	</select>
+	
+	<resultMap type="member" id="getListMap" >
+		<result property="seq" column="seq"/>
+		<result property="id" column="id"/>
+		<result property="pwd" column="pwd"/>
+		<result property="level" column="level"/>
+	</resultMap>
+
+	
+	<select id="getList" resultMap="getListMap" parameterType="hashmap">
+		select seq, id,pwd,level
+		from member
+		<include refid="where" />
+		order by seq desc
+		limit ${startRow},${pageSize}
+	</select>
+	
+	
+	
+	
+	<select id="getListCount" resultType="int" parameterType="hashmap">
+		select count(*)
+		from member
+		<include refid="where" />
+	</select>
+	
+	
+	<insert id="setInsert" parameterType="hashmap">
+		insert into member(id, pwd, level)
+		values(#{id}, #{pwd}, #{level})
+	</insert>
+	
+	<update id="setUpdate" parameterType="hashmap">
+		update member set
+		id=#{id},
+		pwd=#{pwd},
+		level=#{level}
+		where seq=#{seq}
+	</update>
+	
+	<delete id="setDelete" parameterType="hashmap">
+		delete from member where seq=#{seq}
+	</delete>
+	
+	
+	
+	<delete id="setAllDelete" parameterType="hashmap">
+		delete from member where seq in
+		<foreach collection="seq" item="seq" open="(" close=")" separator="," index="index">
+			#{seq}
+		</foreach>
+	</delete>
+	
+	
+	
+	<sql id="where">
+		<where>
+			<if test='seq !=null and !seq.equals("")'>
+				seq = #{seq}
+			</if>
+			<if test='id !=null and !id.equals("")'>
+				id like concat(concat('%', #{id}), '%')
+			</if>
+			<if test='pwd !=null and !pwd.equals("")'>
+				and pwd like concat(concat('%', #{pwd}), '%')
+			</if>
+			<if test='level !=null and !level.equals("")'>
+				and level = #{level}
+			</if>
+		</where>
+	</sql>
+</mapper>

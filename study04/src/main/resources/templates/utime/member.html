@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorate="~{layouts/default}">
+
+<head>
+	<meta charset="utf-8">
+	<!-- index.html 고유 CSS 추가 -->
+    <link rel="stylesheet" type="text/css" href="/resource/assets/css/admin_main.css">
+	<Script>
+	    $(document).ready(function(){
+	    	var seq="";
+	    	$("#modal_submit").click(function(){
+	    		if($("#myModalLabel").html()=="수정"){
+	    			var id = $('#id').val();
+	    			var pwd = $('#pwd').val();
+	    			var level = $('#level').val();
+	    			$.ajax({
+						type : "POST",
+						url : "/bd/mUpdate",
+						data : { seq: seq , id : id, pwd : pwd, level : level},
+						success : function(data) {
+							$('#id').val("");
+							$('#pwd').val("");
+							$('#level').val("");
+							alert("수정을 하였습니다.");
+							location.href="/bd/member";
+						},
+						error : function() {
+							alert("알수없는 오류가 발생하였습니다.");
+						},
+						complete : function() {
+						}
+					});
+	    		}else if($("#myModalLabel").html()=="등록"){
+	    			var id = $('#id').val();
+	    			var pwd = $('#pwd').val();
+	    			var level = $('#level').val();
+	    			$.ajax({
+						type : "POST",
+						url : "/bd/mInsert",
+						data : {id : id, pwd : pwd,level:level},
+						success : function(data) {
+							$('#id').val("");
+							$('#pwd').val("");
+							alert("가입을 하였습니다.");
+							location.href="/bd/member";
+						},
+						error : function() {
+							alert("알수없는 오류가 발생하였습니다.");
+						},
+						complete : function() {
+						}
+					});
+	    		}
+	    	});
+	    	$("#allCheck").click(function(){
+		        //만약 전체 선택 체크박스가 체크된상태일경우
+		        if($("#allCheck").prop("checked")) {
+		            //해당화면에 전체 checkbox들을 체크해준다
+		            $("#listTable input[type=checkbox]").prop("checked",true);
+		        // 전체선택 체크박스가 해제된 경우
+		        } else {
+		            //해당화면에 모든 checkbox들의 체크를해제시킨다.
+		            $("#listTable input[type=checkbox]").prop("checked",false);
+		        }
+	    	});
+		    $('#change_modal').on('shown.bs.modal', function (event) {
+				$('#id').focus();
+				var button = $(event.relatedTarget);
+				seq = button.data('seq');
+				
+				if(button.context.value=='edit'){
+					$("#myModalLabel").html("수정");
+				}else if(button.context.value=='insert'){
+					$("#myModalLabel").html("등록");
+				}
+				
+				if(seq==undefined) {
+					$('#id').val("");
+					$('#pwd').val("");
+					$('#level').val("");
+				} else {
+					$.ajax({
+						type : "POST",
+						url : "/bd/mView",
+						data : { seq: seq },
+						success : function(data) {
+							$('#id').val(data.id);
+							$('#pwd').val(data.pwd);
+							$('#level').val(data.level);
+						},
+						error : function() {
+							alert("알수없는 오류가 발생하였습니다.");
+						},
+						complete : function() {
+							
+						}
+					});
+				}
+	    	})
+	    });
+    	function searchForm() {
+    		$('#searchFrm').submit();
+    	}
+    	
+    	function doDelete(seq) {
+    		$.ajax({
+				type : "POST",
+				url : "/bd/mDelete",
+				data : { seq: seq },
+				success : function(data) {
+					alert("삭제를 성공 하였습니다.");
+					location.href="/bd/member";
+				},
+				error : function() {
+					alert("알수없는 오류가 발생하였습니다.");
+				},
+				complete : function() {
+					
+				}
+			});
+    	}
+    	function doAllDelete() {
+    		var seq = "";
+    		$('input:checkbox[name="delId"]').each(function(){
+    			if(this.checked){
+    				seq += this.value+"/";
+    			}
+    		});
+    		$.ajax({
+				type : "POST",
+				url : "/bd/mAllDelete",
+				data : { seq: seq },
+				success : function(data) {
+					alert("삭제를 성공 하였습니다.");
+					location.href="/bd/member";
+				},
+				error : function() {
+					alert("알수없는 오류가 발생하였습니다.");
+				},
+				complete : function() {
+				}
+			});
+    	}
+    </Script>
+</head>
+<div class="container con_wrap" layout:fragment="content">
+	<header th:replace="fragments/header02 :: headerFragment02"></header>
+	<header th:replace="fragments/header03 :: headerFragment03"></header>
+	    <div class="container">
+        <h3>사용자 관리</h3>
+        <div class="ibox-content" style="padding-top: 20px;">
+            <div class="from_wrap">
+         		<div class="from_wrap">
+                    <form name="searchFrm" id="searchFrm" method="post" class="form-horizontal">
+                    <input type="hidden" name="currentPage" value="1">
+                        <!-- 호스트 -->
+                        <div class="form-group search">
+                            <input type="text" name="search_id" th:value="${search_id}" placeholder="ID검색">
+                            <input type="text" name="search_pwd" th:value="${search_pwd}" placeholder="Pwd검색">
+                            <input type="text" name="search_level" th:value="${search_level}" placeholder="Level검색">
+                            <button type="button" class="btn btn-primary" onclick="searchForm()">검색</button>
+                        </div>
+                    </form>
+                </div>
+
+                <table class="table table-striped table-bordered table-hover">
+                    <colgroup>
+                        <col width="10%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="20%">
+                        <col width="20%">                        
+                    </colgroup>
+                    <thead>
+                        <tr>
+                        	<th style="text-align:center;"><input type="checkbox" id="allCheck"/></th>
+                            <th style="text-align:center;">순번</th>
+                            <th style="text-align:center;">ID</th>
+                            <th style="text-align:center;">level</th>
+                            <th style="text-align:center;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="list,idx : ${List}">
+	                    	<td style="text-align:center;"><input name="delId" type="checkbox" th:attr="value=${list.seq}"></td>
+	                        <td style="text-align:center;" th:text="${maxnumber - idx.index}"></td>
+	                        <td style="text-align:center;" th:text="${list.id}"></td>
+	                        <td style="text-align:center;" th:text="${list.level}"></td> 
+	                        <td style="text-align:center;">
+	                            <button type="button" data-toggle="modal" data-target="#change_modal" th:attr="data-seq=${list.seq}" value="edit">수정</button>
+	                            <button type="button" th:onclick="doDelete([[${list.seq}]])">삭제</button>
+	                        </td>
+	                    </tr>
+                        
+                    </tbody>
+                </table>
+                <div class="pn" th:utext="${page}"></div>
+                <div class="btn" sec:authorize="hasRole('ROLE_ADMIN')">
+                    <button type="button" onclick="doAllDelete()">선택삭제</button>
+                    <button type="button" data-toggle="modal" data-target="#change_modal" value="insert">등록</button>
+                </div>
+                
+                
+                
+                
+                
+                <!-- 모달 -->
+                
+                <div class="modal fade" id="change_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	              <div class="modal-dialog">
+	                <div class="modal-content">
+	                  <div class="modal-header">
+	                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	                    <h4 class="modal-title" id="myModalLabel"></h4>
+	                  </div>
+	                  <div class="modal-body">
+	                    <div class="form-group">
+	                        <p class="col-md-4">ID</p>
+	                        <input type="text" id="id" name="id" class="form-control col-md-8" placeholder="ID" required="true" autocomplete="off">
+	                    </div>
+	                    <div class="form-group">
+	                        <p class="col-md-4">PWD</p>
+	                        <input type="text" id="pwd" name="pwd" class="form-control col-md-8" placeholder="PWD" required="true" autocomplete="off">
+	                    </div>
+	                    <div class="form-group">
+	                        <p class="col-md-4">LEVEL</p>
+	                        <input type="text" id="level" name="level" class="form-control col-md-8" placeholder="LEVEL" required="true" autocomplete="off">
+	                    </div>
+	                    
+	                  </div>
+	                  <div class="modal-footer">
+	                    
+	                    <button type="button" class="btn btn-primary" id="modal_submit">저장</button>
+	                    <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+	                  </div>
+	                </div>
+	              </div>
+	            </div>
+               
+            </div>
+        </div>
+    </div>
+</div>
+</html>

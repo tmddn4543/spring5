@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study04.www.mapper.NoticeMapper">	
+	<resultMap type="notice" id="getListMap" >
+		<result property="seq" column="seq"/>
+		<result property="title" column="title"/>
+		<result property="contents" column="contents"/>
+		<result property="onoff" column="onoff"/>
+		<result property="regdate" column="regdate"/>
+		<result property="mod_regdate" column="mod_regdate"/>
+	</resultMap>
+	<select id="getList" resultMap="getListMap" parameterType="hashmap">
+		select seq, title, contents, onoff, regdate, mod_regdate
+		from notice
+		<include refid="where" />
+		order by regdate desc
+		limit ${startRow},${pageSize}
+	</select>
+	
+	
+	<select id="getListCount" resultType="int" parameterType="hashmap">
+		select count(*)
+		from notice
+		<include refid="where" />
+	</select>
+	
+	<insert id="setInsert" parameterType="hashmap">
+	insert into notice(title, contents, onoff, regdate)
+	values(#{title}, #{contents}, #{onoff}, date_format(now(), '%Y%m%d%H%i%s'))
+	</insert>
+	
+	<update id="setUpdate" parameterType="hashmap">
+		update notice set
+		title=#{title},
+		contents=#{contents},
+		mod_regdate=date_format(now(), '%Y%m%d%H%i%s'),
+		onoff = #{onoff}
+		where seq=#{seq}
+	</update>
+	<delete id="setDelete" parameterType="hashmap">
+		delete from notice where seq=#{seq}
+	</delete>
+	
+	<delete id="setAllDelete" parameterType="hashmap">
+		delete from notice where seq in
+		<foreach collection="seq" item="seq" open="(" close=")" separator="," index="index">
+			#{seq}
+		</foreach>
+	</delete>
+	
+	<resultMap type="notice" id="getViewMap" >
+		<result property="title" column="title"/>
+		<result property="contents" column="contents"/>
+	</resultMap>
+	<select id="getView" resultMap="getViewMap" parameterType="hashmap">
+		select title, contents
+		from notice
+		<include refid="where" />
+	</select>
+	
+	<sql id="where">
+		<where>
+			<if test='title !=null and !title.equals("")'>
+				title like concat(concat('%', #{title}), '%')
+			</if>
+			<if test='contents !=null and !contents.equals("")'>
+				and contents like concat(concat('%', #{contents}), '%')
+			</if>
+			<if test='seq !=null and !seq.equals("")'>
+				and seq = #{seq}
+			</if>
+		</where>
+	</sql>
+</mapper>
