@@ -1,15 +1,15 @@
 package utils;
 
 public class PagingAction {
-	private int currentPage; // 현재페이지
-	private int totalCount;	 // 전체 게시물 수
-	private int totalPage;	 // 전체 페이지 수
-	private int blockCount;	 // 한 페이지의  게시물의 수
-	private int blockPage;	 // 한 화면에 보여줄 페이지 수
-	private int startCount;	 // 한 페이지에서 보여줄 게시글의 시작 번호
+	private int currentPage; // 현재페이지							1
+	private int totalCount;	 // 전체 게시물 수						100
+	private int totalPage;	 // 전체 페이지 수						10
+	private int blockCount;	 // 한 페이지의  게시물의 수				5
+	private int blockPage;	 // 한 화면에 보여줄 페이지 수				5
+	private int startCount;	 // 한 페이지에서 보여줄 게시글의 시작 번호	
 	private int endCount;	 // 한 페이지에서 보여줄 게시글의 끝 번호
-	private int startPage;	 // 시작 페이지
-	private int endPage;	 // 마지막 페이지
+	private int startPage;	 // 시작 페이지						1
+	private int endPage;	 // 마지막 페이지						5
 	private StringBuffer pagingHtml;
 	// 페이징 생성자
 	public PagingAction(int currentPage, int totalCount, int blockCount, int blockPage, String formName, String callback) {

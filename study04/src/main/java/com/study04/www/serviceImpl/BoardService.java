@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.study04.www.mapper.BoardMapper;
 import com.study04.www.model.Board;
-import com.study04.www.service.IAllDelete;
 import com.study04.www.service.IDelete;
 import com.study04.www.service.IInsert;
 import com.study04.www.service.IList;
@@ -16,7 +15,7 @@ import com.study04.www.service.IUpdate;
 import com.study04.www.service.IView;
 
 @Service
-public class BoardService implements IList<Board>, IInsert, IView<Board>,IDelete ,IAllDelete,IUpdate{
+public class BoardService implements IList<Board>, IInsert, IView<Board>,IDelete ,IUpdate{
 	
 	@Autowired
 	BoardMapper mapper;
@@ -46,10 +45,7 @@ public class BoardService implements IList<Board>, IInsert, IView<Board>,IDelete
 		mapper.setDelete(param);
 	}
 
-	@Override
-	public void setAllDelete(HashMap<String, Object> param) {
-		mapper.setAllDelete(param);
-	}
+	
 
 	@Override
 	public void setUpdate(HashMap<String, Object> param) {

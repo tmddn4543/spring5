@@ -37,22 +37,48 @@
 	    			var id = $('#id').val();
 	    			var pwd = $('#pwd').val();
 	    			var level = $('#level').val();
+	    			
 	    			$.ajax({
-						type : "POST",
-						url : "/bd/mInsert",
-						data : {id : id, pwd : pwd,level:level},
+	    				type : "POST",
+						url : "/bd/mView",
+						data : {id : id},
 						success : function(data) {
-							$('#id').val("");
-							$('#pwd').val("");
-							alert("가입을 하였습니다.");
-							location.href="/bd/member";
+							if(data.id!=null){
+								$('#id').val("");
+								$('#pwd').val("");
+								$('#level').val("");
+								alert("아이디가 중복 되었습니다.");
+								return false;
+							}else{
+								$.ajax({
+									type : "POST",
+									url : "/bd/mInsert",
+									data : {id : id, pwd : pwd,level:level},
+									success : function(data) {
+										$('#id').val("");
+										$('#pwd').val("");
+										$('#level').val("");
+										alert("가입을 하였습니다.");
+										location.href="/bd/member";
+									},
+									error : function() {
+										alert("알수없는 오류가 발생하였습니다.");
+									},
+									complete : function() {
+									}
+								});
+							}
 						},
 						error : function() {
 							alert("알수없는 오류가 발생하였습니다.");
 						},
 						complete : function() {
 						}
-					});
+	    			});
+	    			
+	    			
+	    			
+	    			
 	    		}
 	    	});
 	    	$("#allCheck").click(function(){
@@ -123,12 +149,15 @@
 			});
     	}
     	function doAllDelete() {
-    		var seq = "";
+    		var count = 0;
+    		var seq = [];
     		$('input:checkbox[name="delId"]').each(function(){
     			if(this.checked){
-    				seq += this.value+"/";
+    				seq[count] = this.value;
+    				count++;
     			}
     		});
+    		
     		$.ajax({
 				type : "POST",
 				url : "/bd/mAllDelete",
@@ -159,8 +188,11 @@
                         <!-- 호스트 -->
                         <div class="form-group search">
                             <input type="text" name="search_id" th:value="${search_id}" placeholder="ID검색">
-                            <input type="text" name="search_pwd" th:value="${search_pwd}" placeholder="Pwd검색">
-                            <input type="text" name="search_level" th:value="${search_level}" placeholder="Level검색">
+							<select name="search_level">
+								<option value="0">0 : Admin</option>
+								<option value="1">1 : User</option>
+							</select>
+<!--                        <input type="text" name="search_level" th:value="${search_level}" placeholder="Level검색"> -->
                             <button type="button" class="btn btn-primary" onclick="searchForm()">검색</button>
                         </div>
                     </form>
@@ -179,7 +211,7 @@
                         	<th style="text-align:center;"><input type="checkbox" id="allCheck"/></th>
                             <th style="text-align:center;">순번</th>
                             <th style="text-align:center;">ID</th>
-                            <th style="text-align:center;">level</th>
+                            <th style="text-align:center;">0:ADMIN 1:USER</th>
                             <th style="text-align:center;">Action</th>
                         </tr>
                     </thead>

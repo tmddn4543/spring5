@@ -126,10 +126,12 @@
     	}
     	
     	function doAllDelete() {
-    		var seq = "";
+    		var count = 0;
+    		var seq = [];
     		$('input:checkbox[name="delId"]').each(function(){
     			if(this.checked){
-    				seq += this.value+"/";
+    				seq[count] = this.value;
+    				count++;
     			}
     		});
     		

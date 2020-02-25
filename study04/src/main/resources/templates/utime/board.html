@@ -13,12 +13,10 @@
 	    		if($("#myModalLabel").html()=="수정"){
 	    			var title = $('#title').val();
 	    			var contents = $('#contents').val();
-	    			var written = $("#memberId").val();
-	    			console.log(written);
 	    			$.ajax({
 						type : "POST",
 						url : "/bd/bUpdate",
-						data : { seq: seq , title : title, contents : contents, written : written},
+						data : { seq: seq , title : title, contents : contents},
 						success : function(data) {
 							$('#title').val("");
 							$('#contents').val("");
@@ -34,11 +32,10 @@
 	    		}else if($("#myModalLabel").html()=="등록"){
 	    			var title = $('#title').val();
 	    			var contents = $('#contents').val();
-	    			var written = $("#memberId").val();
 	    			$.ajax({
 						type : "POST",
 						url : "/bd/bInsert",
-						data : {title : title, contents : contents, written : written},
+						data : {title : title, contents : contents},
 						success : function(data) {
 							$('#title').val("");
 							$('#contents').val("");
@@ -132,10 +129,12 @@
     		* mybatis 쿼리 호출은 한번만
     		* 삭제 seq는 배열로 한번에 전송
     		*/
-    		var seq = "";
+    		var count = 0;
+    		var seq = [];
     		$('input:checkbox[name="delId"]').each(function(){
     			if(this.checked){
-    				seq += this.value+"/";
+    				seq[count] = this.value;
+    				count++;
     			}
     		});
     		
@@ -168,7 +167,6 @@
 	<header th:replace="fragments/header03 :: headerFragment03"></header>
 	<div class="container">
 	    <h3>게시판 관리</h3>
-	    <input type="hidden" id="memberId" th:value="${#authentication.principal}">
 	    <div class="ibox-content" style="padding-top: 20px;">
 	        <div class="from_wrap">
 	     		<div class="from_wrap">

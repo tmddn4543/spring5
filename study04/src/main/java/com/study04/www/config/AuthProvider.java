@@ -28,8 +28,8 @@ public class AuthProvider implements AuthenticationProvider {
 		String id = authentication.getName();
         String password = authentication.getCredentials().toString();
         HashMap<String, Object> map = new HashMap<String, Object>();
-        map.put("param1", id);
-        Member user = mService.getLogin(map);
+        map.put("pwd", password);
+        Member user = mService.getView(map);
         
         if (null == user || !user.getPwd().equals(password)) {
         	throw new UsernameNotFoundException("USER NOT FOUND OR NOT MATCH PASSWORD");

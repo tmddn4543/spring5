@@ -8,6 +8,7 @@ import javax.annotation.security.RolesAllowed;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,7 +45,9 @@ public class MemberController {
 	public void bDelete(
 			@RequestParam(value="seq", required=false, defaultValue="")String seq) {
 		HashMap<String, Object> param = new HashMap<>();
-		param.put("seq", seq);
+		List<String> seq_list = new ArrayList<>();
+		seq_list.add(seq);
+		param.put("seq", seq_list);
 		bService.setDelete(param);
 	}
 	
@@ -54,11 +57,11 @@ public class MemberController {
 	public void bInsert(
 			@RequestParam(value="title", required=false, defaultValue="")String title,
 			@RequestParam(value="contents", required=false, defaultValue="")String contents,
-			@RequestParam(value="written", required=false, defaultValue="")String written) {
+			Authentication authentication) {
 		HashMap<String, Object> param = new HashMap<>();
 		param.put("title", title);
 		param.put("contents", contents);
-		param.put("written", written);
+		param.put("written", authentication.getName());
 		bService.setInsert(param);
 	}
 	
@@ -69,12 +72,12 @@ public class MemberController {
 			@RequestParam(value="seq", required=false, defaultValue="")String seq,
 			@RequestParam(value="title", required=false, defaultValue="")String title,
 			@RequestParam(value="contents", required=false, defaultValue="")String contents,
-			@RequestParam(value="written", required=false, defaultValue="")String written) {
+			Authentication authentication) {
 		HashMap<String, Object> param = new HashMap<>();
 		param.put("seq", seq);
 		param.put("title", title);
 		param.put("contents", contents);
-		param.put("written", written);
+		param.put("written", authentication.getName());
 		bService.setUpdate(param);
 	}
 	
@@ -83,17 +86,14 @@ public class MemberController {
 	@RequestMapping(value="/bAllDelete",method= {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
 	public void bAllDelete(
-			@RequestParam(value="seq", required=false, defaultValue="")String seq) {
+			@RequestParam(value="seq[]", required=false, defaultValue="")String[] seq) {
 		HashMap<String, Object> param = new HashMap<>();
-		String[] sp_param = seq.split("/");
 		List<String> seq_list = new ArrayList<>();
-		
-		for(int i=0; i<sp_param.length; i++) {
-			seq_list.add(sp_param[i]);
+		for(int i=0; i<seq.length; i++) {
+			seq_list.add(seq[i]);
 		}
 		param.put("seq", seq_list);
-		System.out.println(param.toString());
-		bService.setAllDelete(param);
+		bService.setDelete(param);
 	}
 	
 	
@@ -209,7 +209,9 @@ public class MemberController {
 	public void nDelete(
 			@RequestParam(value="seq", required=false, defaultValue="")String seq) {
 		HashMap<String, Object> param = new HashMap<>();
-		param.put("seq", seq);
+		List<String> seq_list = new ArrayList<>();
+		seq_list.add(seq);
+		param.put("seq", seq_list);
 		nService.setDelete(param);
 	}
 	
@@ -247,15 +249,14 @@ public class MemberController {
 	@RequestMapping(value="/nAllDelete",method= {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
 	public void nAllDelete(
-			@RequestParam(value="seq", required=false, defaultValue="")String seq) {
+			@RequestParam(value="seq[]", required=false, defaultValue="")String[] seq) {
 		HashMap<String, Object> param = new HashMap<>();
-		String[] sp_param = seq.split("/");
 		List<String> seq_list = new ArrayList<>();
-		for(int i=0; i<sp_param.length; i++) {
-			seq_list.add(sp_param[i]);
+		for(int i=0; i<seq.length; i++) {
+			seq_list.add(seq[i]);
 		}
 		param.put("seq", seq_list);
-		nService.setAllDelete(param);
+		nService.setDelete(param);
 	}
 	//
 	
@@ -268,14 +269,12 @@ public class MemberController {
     public String member(
     		Model model,
     		@RequestParam(value="search_id", required=false, defaultValue="") String search_id,
-    		@RequestParam(value="search_pwd", required=false, defaultValue="") String search_pwd,
     		@RequestParam(value="search_level", required=false, defaultValue="") String search_level,
     		@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage
     		) {
 		HashMap<String, Object> param = new HashMap<String, Object>();
 		param.put("id", search_id);
 		param.put("level", search_level);
-		param.put("pwd", search_pwd);
 		param.put("pageSize", pageSize);
 		param.put("startRow", (currentPage - 1) * pageSize);
 		List<Member> list = new ArrayList<Member>();
@@ -294,7 +293,6 @@ public class MemberController {
 		model.addAttribute("List", list);
 		model.addAttribute("search_id", search_id);
 		model.addAttribute("search_level", search_level);
-		model.addAttribute("search_pwd", search_pwd);
 		model.addAttribute("maxnumber", total - ((currentPage - 1) * pageSize));
 		model.addAttribute("page", page.getPagingHtml());
         return "utime/member";
@@ -305,14 +303,17 @@ public class MemberController {
 	
 	//
 	
-	@Secured({"ROLE_USER", "ROLE_ADMIN"})
+	
+	
+	@Secured({"ROLE_ADMIN"})
     @RequestMapping(value = "/mView", method= {RequestMethod.GET, RequestMethod.POST})
     public @ResponseBody Member mView(
     		Model model,
-    		@RequestParam(value="seq", required=false, defaultValue="") String seq
+    		@RequestParam(value="seq", required=false, defaultValue="") String seq,
+    		@RequestParam(value="id", required=false, defaultValue="") String id
     		) {
 		HashMap<String, Object> param = new HashMap<String, Object>();
-		System.out.println(seq + "ㅁㄴㅇ");
+		param.put("id", id);
 		param.put("seq", seq);
 		Member member = mService.getView(param);
         return member;
@@ -326,7 +327,9 @@ public class MemberController {
 	public void mDelete(
 			@RequestParam(value="seq", required=false, defaultValue="")String seq) {
 		HashMap<String, Object> param = new HashMap<>();
-		param.put("seq", seq);
+		List<String> seq_list = new ArrayList<>();
+		seq_list.add(seq);
+		param.put("seq", seq_list);
 		mService.setDelete(param);
 	}
 	
@@ -366,16 +369,14 @@ public class MemberController {
 	@RequestMapping(value="/mAllDelete",method= {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
 	public void mAllDelete(
-			@RequestParam(value="seq", required=false, defaultValue="")String seq) {
+			@RequestParam(value="seq[]", required=false, defaultValue="")String seq[]) {
 		HashMap<String, Object> param = new HashMap<>();
-		String[] sp_param = seq.split("/");
 		List<String> seq_list = new ArrayList<>();
-		for(int i=0; i<sp_param.length; i++) {
-			seq_list.add(sp_param[i]);
-			System.out.println(sp_param[i]);
+		for(int i=0; i<seq.length; i++) {
+			seq_list.add(seq[i]);
 		}
 		param.put("seq", seq_list);
-		mService.setAllDelete(param);
+		mService.setDelete(param);
 	}
 	//
 	

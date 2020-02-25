@@ -16,5 +16,4 @@ public interface MemberMapper {
 	public void setInsert(HashMap<String, Object> param);
 	public void setUpdate(HashMap<String, Object> param);
 	public void setDelete(HashMap<String, Object> param);
-	public void setAllDelete(HashMap<String, Object> param);
 }

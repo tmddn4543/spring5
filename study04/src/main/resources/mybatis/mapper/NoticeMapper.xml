@@ -40,11 +40,9 @@
 		onoff = #{onoff}
 		where seq=#{seq}
 	</update>
-	<delete id="setDelete" parameterType="hashmap">
-		delete from notice where seq=#{seq}
-	</delete>
 	
-	<delete id="setAllDelete" parameterType="hashmap">
+	
+	<delete id="setDelete" parameterType="hashmap">
 		delete from notice where seq in
 		<foreach collection="seq" item="seq" open="(" close=")" separator="," index="index">
 			#{seq}

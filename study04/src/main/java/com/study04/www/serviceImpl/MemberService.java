@@ -8,16 +8,14 @@ import org.springframework.stereotype.Service;
 
 import com.study04.www.mapper.MemberMapper;
 import com.study04.www.model.Member;
-import com.study04.www.service.IAllDelete;
 import com.study04.www.service.IDelete;
 import com.study04.www.service.IInsert;
 import com.study04.www.service.IList;
-import com.study04.www.service.ILogin;
 import com.study04.www.service.IUpdate;
 import com.study04.www.service.IView;
 
 @Service
-public class MemberService implements ILogin<Member>, IView<Member>,IInsert, IList<Member>,IDelete,IUpdate , IAllDelete{
+public class MemberService implements IView<Member>,IInsert, IList<Member>,IDelete,IUpdate {
 	
 	@Autowired
 	MemberMapper mapper;
@@ -27,10 +25,6 @@ public class MemberService implements ILogin<Member>, IView<Member>,IInsert, ILi
 		return mapper.getView(param);
 	}
 
-	@Override
-	public void setAllDelete(HashMap<String, Object> param) {
-		mapper.setAllDelete(param);
-	}
 
 	@Override
 	public void setUpdate(HashMap<String, Object> param) {
@@ -57,9 +51,5 @@ public class MemberService implements ILogin<Member>, IView<Member>,IInsert, ILi
 		mapper.setInsert(param);
 	}
 
-	@Override
-	public Member getLogin(HashMap<String, Object> param) {
-		return mapper.getLogin(param);
-	}
-
+	
 }
