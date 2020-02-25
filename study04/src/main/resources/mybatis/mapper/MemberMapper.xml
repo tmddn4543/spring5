@@ -74,10 +74,10 @@
 				and level = #{level}
 			</if>
 			<if test='seq !=null and !seq.equals("")'>
-				seq = #{seq}
+				and seq = #{seq}
 			</if>
 			<if test='pwd !=null and !pwd.equals("")'>
-				pwd = #{pwd}
+				and pwd = #{pwd}
 			</if>
 		</where>
 	</sql>

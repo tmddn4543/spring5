@@ -7,19 +7,35 @@ import java.util.Date;
 import org.apache.commons.lang3.time.DateFormatUtils;
 
 public class Utils {
-	public static String format(String dt, String format) {
+	public static String format(String dt) {
+		if(dt!=null) {
 		Date date = null;
-		try {
-			date = new SimpleDateFormat("yyyyMMddHHmmss").parse(dt);
-		} catch(ParseException pe) {
+			try {
+				date = new SimpleDateFormat("yyyyMMddHHmmss").parse(dt);
+			} catch(ParseException pe) {
+				return "";
+			}
+			String dateFormat = DateFormatUtils.format(date, "yyyy-MM-dd HH:mm:ss");
+			return dateFormat;
+		}else {
 			return "";
 		}
-		String dateFormat = DateFormatUtils.format(date, format);
-		return dateFormat;
 	}
 	public static String titleFormat(String dt) {
-		dt = dt.substring(0,10);
-		dt += "...";
+		if(dt==null) {
+			dt = "";
+		}else if(dt.length()>10) {
+			dt = dt.substring(0,10);
+			dt += "...";
+		}
 		return dt;
+	}
+	public static String levelFormat(int dt) {
+		if(dt==0) {
+			return "ADMIN";
+		}else if(dt==1) {
+			return "USER";
+		}
+		return "";
 	}
 }

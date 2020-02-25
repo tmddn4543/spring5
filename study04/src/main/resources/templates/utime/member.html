@@ -99,8 +99,10 @@
 				
 				if(button.context.value=='edit'){
 					$("#myModalLabel").html("수정");
+					$("#id").attr("readonly", true);
 				}else if(button.context.value=='insert'){
 					$("#myModalLabel").html("등록");
+					$("#id").attr("readonly", false);
 				}
 				
 				if(seq==undefined) {
@@ -132,6 +134,11 @@
     	}
     	
     	function doDelete(seq) {
+    		if(seq==1){
+    			alert("최초 관리자 계정은 삭제 불가능합니다.");
+    			return false;
+    		}
+    		
     		$.ajax({
 				type : "POST",
 				url : "/bd/mDelete",
@@ -153,25 +160,32 @@
     		var seq = [];
     		$('input:checkbox[name="delId"]').each(function(){
     			if(this.checked){
+    				if(this.value==1){
+    					alert("최초 관리자 계정은 삭제 불가능합니다.");
+    	    			return false;
+    				}
     				seq[count] = this.value;
     				count++;
     			}
     		});
-    		
-    		$.ajax({
-				type : "POST",
-				url : "/bd/mAllDelete",
-				data : { seq: seq },
-				success : function(data) {
-					alert("삭제를 성공 하였습니다.");
-					location.href="/bd/member";
-				},
-				error : function() {
-					alert("알수없는 오류가 발생하였습니다.");
-				},
-				complete : function() {
-				}
-			});
+    		if(seq[0]!=null){
+	    		$.ajax({
+					type : "POST",
+					url : "/bd/mAllDelete",
+					data : { seq: seq },
+					success : function(data) {
+						alert("삭제를 성공 하였습니다.");
+						location.href="/bd/member";
+					},
+					error : function() {
+						alert("알수없는 오류가 발생하였습니다.");
+					},
+					complete : function() {
+					}
+				});
+    		}else{
+    			alert("삭제할 계정을 선택해주세요");
+    		}
     	}
     </Script>
 </head>
@@ -220,7 +234,7 @@
 	                    	<td style="text-align:center;"><input name="delId" type="checkbox" th:attr="value=${list.seq}"></td>
 	                        <td style="text-align:center;" th:text="${maxnumber - idx.index}"></td>
 	                        <td style="text-align:center;" th:text="${list.id}"></td>
-	                        <td style="text-align:center;" th:text="${list.level}"></td> 
+	                        <td style="text-align:center;" th:text="${T(utils.Utils).levelFormat(list.level)}"></td> 
 	                        <td style="text-align:center;">
 	                            <button type="button" data-toggle="modal" data-target="#change_modal" th:attr="data-seq=${list.seq}" value="edit">수정</button>
 	                            <button type="button" th:onclick="doDelete([[${list.seq}]])">삭제</button>
@@ -234,8 +248,6 @@
                     <button type="button" onclick="doAllDelete()">선택삭제</button>
                     <button type="button" data-toggle="modal" data-target="#change_modal" value="insert">등록</button>
                 </div>
-                
-                
                 
                 
                 
@@ -261,10 +273,8 @@
 	                        <p class="col-md-4">LEVEL</p>
 	                        <input type="text" id="level" name="level" class="form-control col-md-8" placeholder="LEVEL" required="true" autocomplete="off">
 	                    </div>
-	                    
 	                  </div>
 	                  <div class="modal-footer">
-	                    
 	                    <button type="button" class="btn btn-primary" id="modal_submit">저장</button>
 	                    <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 	                  </div>

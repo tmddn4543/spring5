@@ -38,7 +38,11 @@ public class AuthProvider implements AuthenticationProvider {
         List<GrantedAuthority> grantedAuthorityList = new ArrayList<>();
         
         // 로그인한 계정에게 권한 부여 등급이 없으니 ADMIN 권한부여
-        grantedAuthorityList.add(new SimpleGrantedAuthority(Constant.ROLE_TYPE.ROLE_ADMIN.toString()));
+       if(user.getLevel()==0) {
+    	   grantedAuthorityList.add(new SimpleGrantedAuthority(Constant.ROLE_TYPE.ROLE_ADMIN.toString()));
+       }else {
+    	   grantedAuthorityList.add(new SimpleGrantedAuthority(Constant.ROLE_TYPE.ROLE_USER.toString()));
+       }
         
         return new UsernamePasswordAuthenticationToken(authentication.getPrincipal(), password, grantedAuthorityList);
 	}
