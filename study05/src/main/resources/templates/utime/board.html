@@ -103,16 +103,17 @@
     	}
     	
     	function doDelete(seq) {
-    		/*
-    		* 기본 삭제기능 구현
-    		*/
     		$.ajax({
 				type : "POST",
 				url : "/bd/bDelete",
-				data : { seq: seq },
+				data : { delId: seq },
+				beforeSend : function(xhr, opts) {
+			        if (!confirm("정말로 삭제하시겠습니까?")) {
+			            xhr.abort();
+			        }
+			    },
 				success : function(data) {
-					alert("삭제를 성공 하였습니다.");
-					location.href="/bd/board";
+					searchForm();
 				},
 				error : function() {
 					alert("알수없는 오류가 발생하였습니다.");
@@ -124,27 +125,22 @@
     	}
     	
     	function doAllDelete() {
-    		/*
-    		* 삭제기능 구현
-    		* mybatis 쿼리 호출은 한번만
-    		* 삭제 seq는 배열로 한번에 전송
-    		*/
-    		var count = 0;
-    		var seq = [];
-    		$('input:checkbox[name="delId"]').each(function(){
-    			if(this.checked){
-    				seq[count] = this.value;
-    				count++;
-    			}
-    		});
-    		
     		$.ajax({
 				type : "POST",
-				url : "/bd/bAllDelete",
-				data : { seq: seq },
+				url : "/bd/bDelete",
+				data : $('#delFrm').serialize(),
+				beforeSend : function(xhr, opts) {
+					if($('input:checkbox[name=delId]:checked').length == 0) {
+						alert('삭제할 목록을 선택해주세요.');
+						xhr.abort();
+						return;
+					}
+			        if (!confirm("정말로 삭제하시겠습니까?")) {
+			            xhr.abort();
+			        }
+			    },
 				success : function(data) {
-					alert("삭제를 성공 하였습니다.");
-					location.href="/bd/board";
+					searchForm();
 				},
 				error : function() {
 					alert("알수없는 오류가 발생하였습니다.");
@@ -183,6 +179,8 @@
 	     
 	     		<div class="hr-line-dashed"></div>
 	
+	
+				<form id="delFrm">
 	            <table class="table table-striped table-bordered table-hover " id="listTable">
 	                <colgroup>
 	                	<col width="10%">
@@ -204,20 +202,21 @@
 	                </thead>
 	                <tbody>
 	                    <tr th:each="list,idx : ${List}">
-	                    	<td style="text-align:center;"><input name="delId" type="checkbox" th:attr="value=${list.seq}"></td>
+	                    	<td style="text-align:center;"><input name="delId" type="checkbox" th:attr="value=${list.seq}" th:if="${list.written} eq${#authentication.principal} or ${#authentication.details.level} eq'0'"></td>
 	                        <td style="text-align:center;" th:text="${maxnumber - idx.index}"></td>
 	                        <td style="text-align:center;" th:text="${T(utils.Utils).titleFormat(list.title)}"></td>
 	                        <td style="text-align:center;" th:text="${T(utils.Utils).format(list.regdate)}"></td> 
 	                        <td style="text-align:center;" th:text="${T(utils.Utils).format(list.mod_regdate)}"></td>
 	                        <td style="text-align:center;">
-	                            <button type="button" data-toggle="modal" data-target="#change_modal" th:attr="data-seq=${list.seq}" value="edit">수정</button>
-	                            <button type="button" th:onclick="doDelete([[${list.seq}]])">삭제</button>
+	                            <button type="button" data-toggle="modal" data-target="#change_modal" th:attr="data-seq=${list.seq}" value="edit" th:if="${list.written} eq${#authentication.principal} or ${#authentication.details.level} eq'0'">수정</button>
+	                            <button type="button" th:if="${list.written} eq${#authentication.principal} or ${#authentication.details.level} eq'0'" th:onclick="doDelete([[${list.seq}]])">삭제</button>
 	                        </td>
 	                    </tr>
 	                </tbody>
 	            </table>
+	            </form>
                 <div class="pn" th:utext="${page}"></div>
-                <div class="btn" sec:authorize="hasRole('ROLE_ADMIN')">
+                <div class="btn">
                     <button type="button" onclick="doAllDelete()">선택삭제</button>
                     <button type="button" data-toggle="modal" data-target="#change_modal" value="insert">등록</button>
                 </div>

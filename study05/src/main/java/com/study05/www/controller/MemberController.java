@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.study05.www.model.Board;
 import com.study05.www.model.Member;
 import com.study05.www.model.Notice;
+import com.study05.www.model.ResultDto;
 import com.study05.www.model.SelectLevel;
 import com.study05.www.model.SelectOnOff;
 import com.study05.www.serviceImpl.BoardService;
@@ -42,17 +43,20 @@ public class MemberController {
 	
 	
 	@Secured({"ROLE_USER", "ROLE_ADMIN"})
-	@RequestMapping(value="/bDelete",method= {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/bDelete", method= {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
-	public void bDelete(
-			@RequestParam(value="seq", required=false, defaultValue="")String seq) {
-		
-		HashMap<String, Object> param = new HashMap<>();
-		List<String> seq_list = new ArrayList<>();
-		seq_list.add(seq);
-		param.put("seq", seq_list);
+	public ResultDto bDelete(
+    		Model model,
+    		@RequestParam(value="delId", required=false, defaultValue="") List<String> seq
+    		) {
+		ResultDto result = new ResultDto();
+		HashMap<String, Object> param = new HashMap<String, Object>();
+		param.put("seq", seq.toArray(new String[seq.size()]));
 		bService.setDelete(param);
-	}
+		result.setResult(true);
+		
+        return result;
+    }
 	
 	@Secured({"ROLE_USER", "ROLE_ADMIN"})
 	@RequestMapping(value="/bInsert",method= {RequestMethod.GET, RequestMethod.POST})
@@ -85,19 +89,7 @@ public class MemberController {
 	}
 	
 	
-	@Secured({"ROLE_USER", "ROLE_ADMIN"})
-	@RequestMapping(value="/bAllDelete",method= {RequestMethod.GET, RequestMethod.POST})
-	@ResponseBody
-	public void bAllDelete(
-			@RequestParam(value="seq[]", required=false, defaultValue="")String[] seq) {
-		HashMap<String, Object> param = new HashMap<>();
-		List<String> seq_list = new ArrayList<>();
-		for(int i=0; i<seq.length; i++) {
-			seq_list.add(seq[i]);
-		}
-		param.put("seq", seq_list);
-		bService.setDelete(param);
-	}
+
 	
 	
 	
@@ -138,10 +130,12 @@ public class MemberController {
     @RequestMapping(value = "/bView", method= {RequestMethod.GET, RequestMethod.POST})
     public @ResponseBody Board boardView(
     		Model model,
-    		@RequestParam(value="seq", required=false, defaultValue="") String seq
+    		@RequestParam(value="seq", required=false, defaultValue="") String seq,
+    		Authentication authentication
     		) {
 		HashMap<String, Object> param = new HashMap<String, Object>();
 		param.put("seq", seq);
+		param.put("written", authentication.getName());
 		Board board = new Board();
 		
 		board = bService.getView(param);
@@ -213,16 +207,20 @@ public class MemberController {
 	
 	
 	@Secured({"ROLE_USER", "ROLE_ADMIN"})
-	@RequestMapping(value="/nDelete",method= {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/nDelete", method= {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
-	public void nDelete(
-			@RequestParam(value="seq", required=false, defaultValue="")String seq) {
-		HashMap<String, Object> param = new HashMap<>();
-		List<String> seq_list = new ArrayList<>();
-		seq_list.add(seq);
-		param.put("seq", seq_list);
+	public ResultDto nDelete(
+    		Model model,
+    		@RequestParam(value="delId", required=false, defaultValue="") List<String> seq
+    		) {
+		ResultDto result = new ResultDto();
+		HashMap<String, Object> param = new HashMap<String, Object>();
+		param.put("seq", seq.toArray(new String[seq.size()]));
 		nService.setDelete(param);
-	}
+		result.setResult(true);
+		
+        return result;
+    }
 	
 	@Secured({"ROLE_USER", "ROLE_ADMIN"})
 	@RequestMapping(value="/nInsert",method= {RequestMethod.GET, RequestMethod.POST})
@@ -257,19 +255,6 @@ public class MemberController {
 	}
 	
 	
-	@Secured({"ROLE_USER", "ROLE_ADMIN"})
-	@RequestMapping(value="/nAllDelete",method= {RequestMethod.GET, RequestMethod.POST})
-	@ResponseBody
-	public void nAllDelete(
-			@RequestParam(value="seq[]", required=false, defaultValue="")String[] seq) {
-		HashMap<String, Object> param = new HashMap<>();
-		List<String> seq_list = new ArrayList<>();
-		for(int i=0; i<seq.length; i++) {
-			seq_list.add(seq[i]);
-		}
-		param.put("seq", seq_list);
-		nService.setDelete(param);
-	}
 	//
 	
 	
@@ -334,17 +319,26 @@ public class MemberController {
 	
 	
 	
-	@Secured({"ROLE_ADMIN"})
-	@RequestMapping(value="/mDelete",method= {RequestMethod.GET, RequestMethod.POST})
+	@Secured("ROLE_ADMIN")
+    @RequestMapping(value = "/mDelete", method= {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
-	public void mDelete(
-			@RequestParam(value="seq", required=false, defaultValue="")String seq) {
-		HashMap<String, Object> param = new HashMap<>();
-		List<String> seq_list = new ArrayList<>();
-		seq_list.add(seq);
-		param.put("seq", seq_list);
+	public ResultDto memberDelete(
+    		Model model,
+    		@RequestParam(value="delId", required=false, defaultValue="") List<String> seq
+    		) {
+		ResultDto result = new ResultDto();
+		HashMap<String, Object> param = new HashMap<String, Object>();
+		param.put("id", "admin");
+
+		Member member = mService.getView(param);
+		seq.removeIf(s -> s.equals(member.getSeq()));
+		
+		param.put("seq", seq.toArray(new String[seq.size()]));
 		mService.setDelete(param);
-	}
+		result.setResult(true);
+		
+        return result;
+    }
 	
 	@Secured({"ROLE_ADMIN"})
 	@RequestMapping(value="/mInsert",method= {RequestMethod.GET, RequestMethod.POST})
@@ -382,19 +376,7 @@ public class MemberController {
 	}
 	
 	
-	@Secured({"ROLE_ADMIN"})
-	@RequestMapping(value="/mAllDelete",method= {RequestMethod.GET, RequestMethod.POST})
-	@ResponseBody
-	public void mAllDelete(
-			@RequestParam(value="seq[]", required=false, defaultValue="")String seq[]) {
-		HashMap<String, Object> param = new HashMap<>();
-		List<String> seq_list = new ArrayList<>();
-		for(int i=0; i<seq.length; i++) {
-			seq_list.add(seq[i]);
-		}
-		param.put("seq", seq_list);
-		mService.setDelete(param);
-	}
+	
 	//
 	
 	
