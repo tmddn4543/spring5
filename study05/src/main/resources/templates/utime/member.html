@@ -104,10 +104,10 @@
 				
 				if(button.context.value=='edit'){
 					$("#myModalLabel").html("수정");
-					$("#id").attr("readonly", true);
+					$("#id").prop("readonly", true);
 				}else if(button.context.value=='insert'){
 					$("#myModalLabel").html("등록");
-					$("#id").attr("readonly", false);
+					$("#id").prop("readonly", false);
 				}
 				
 				if(seq==undefined) {
