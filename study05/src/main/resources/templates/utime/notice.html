@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorate="~{layouts/default}">
+
+<head>
+	<meta charset="utf-8">
+	<!-- index.html 고유 CSS 추가 -->
+    <link rel="stylesheet" type="text/css" href="/resource/assets/css/admin_main.css">
+	<Script>
+	    $(document).ready(function(){
+	    	var seq="";
+	    	$("#modal_submit").click(function(){
+	    		if($("#myModalLabel").html()=="수정"){
+	    			var title = $('#title').val();
+	    			var contents = $('#contents').val();
+	    			var onoff = $('#onoff').val();
+	    			$.ajax({
+						type : "POST",
+						url : "/bd/nUpdate",
+						data : { seq: seq , title : title, contents : contents, onoff:onoff},
+						success : function(data) {
+							$('#title').val("");
+							$('#contents').val("");
+							$('#onoff option:eq(0)').prop("selected", true);
+							alert("수정을 하였습니다.");
+							location.href="/bd/notice";
+						},
+						error : function() {
+							alert("알수없는 오류가 발생하였습니다.");
+						},
+						complete : function() {
+						}
+					});
+	    		}else if($("#myModalLabel").html()=="등록"){
+	    			var title = $('#title').val();
+	    			var contents = $('#contents').val();
+	    			var onoff = $('#onoff').val();
+	    			$.ajax({
+						type : "POST",
+						url : "/bd/nInsert",
+						data : {title : title, contents : contents, onoff:onoff},
+						success : function(data) {
+							$('#title').val("");
+							$('#contents').val("");
+							$('#onoff option:eq(0)').prop("selected", true);
+							alert("등록을 하였습니다.");
+							location.href="/bd/notice";
+						},
+						error : function() {
+							alert("알수없는 오류가 발생하였습니다.");
+						},
+						complete : function() {
+						}
+					});
+	    		}
+	    	});
+	    	  	    
+	    	$("#allCheck").click(function(){
+		        //만약 전체 선택 체크박스가 체크된상태일경우
+		        if($("#allCheck").prop("checked")) {
+		            //해당화면에 전체 checkbox들을 체크해준다
+		            $("#listTable input[type=checkbox]").prop("checked",true);
+		        // 전체선택 체크박스가 해제된 경우
+		        } else {
+		            //해당화면에 모든 checkbox들의 체크를해제시킨다.
+		            $("#listTable input[type=checkbox]").prop("checked",false);
+		        }
+	    	});
+		    
+		    $('#change_modal').on('shown.bs.modal', function (event) {
+				$('#title').focus();
+				var button = $(event.relatedTarget);
+				seq = button.data('seq');
+				
+				if(button.context.value=='edit'){
+					$("#myModalLabel").html("수정");
+				}else if(button.context.value=='insert'){
+					$("#myModalLabel").html("등록");
+				}
+				
+				if(seq==undefined) {
+					$('#title').val("");
+					$('#contents').val("");
+					$('#onoff option:eq(0)').prop("selected", true);
+				} else {
+					$.ajax({
+						type : "POST",
+						url : "/bd/nView",
+						data : { seq: seq },
+						success : function(data) {
+							$('#title').val(data.title);
+							$('#contents').val(data.contents);
+							$('#onoff').val(data.onoff);
+						},
+						error : function() {
+							alert("알수없는 오류가 발생하였습니다.");
+						},
+						complete : function() {
+							
+						}
+					});
+				}
+	    	})
+	    });
+	    
+	    
+    	function searchForm() {
+    		$('#searchFrm').submit();
+    	}
+    	
+    	function doDelete(seq) {
+    		$.ajax({
+				type : "POST",
+				url : "/bd/nDelete",
+				data : { seq: seq },
+				success : function(data) {
+					alert("삭제를 성공 하였습니다.");
+					location.href="/bd/notice";
+				},
+				error : function() {
+					alert("알수없는 오류가 발생하였습니다.");
+				},
+				complete : function() {
+					
+				}
+			});
+    	}
+    	
+    	function doAllDelete() {
+    		var count = 0;
+    		var seq = [];
+    		$('input:checkbox[name="delId"]').each(function(){
+    			if(this.checked){
+    				seq[count] = this.value;
+    				count++;
+    			}
+    		});
+    		if(seq[0]!=null){
+	    		$.ajax({
+					type : "POST",
+					url : "/bd/nAllDelete",
+					data : { seq: seq },
+					success : function(data) {
+						alert("삭제를 성공 하였습니다.");
+						location.href="/bd/notice";
+					},
+					error : function() {
+						alert("알수없는 오류가 발생하였습니다.");
+					},
+					complete : function() {
+						
+					}
+				});
+    		}else{
+    			alert("삭제할 게시물을 선택 해주세요!");
+    		}
+    	}
+    	
+    	
+    </Script>
+</head>
+
+<!-- index.html 고유 스크립트 추가 -->
+<th:block layout:fragment="script">
+</th:block>
+<div class="container con_wrap" layout:fragment="content">
+	<header th:replace="fragments/header02 :: headerFragment02"></header>
+	<header th:replace="fragments/header03 :: headerFragment03"></header>
+	<div class="container">
+        <h3>공지사항 관리</h3>
+        <input type="hidden" id="memberId" th:value="${#authentication.principal}">
+        <div class="ibox-content" style="padding-top: 20px;">
+            <div class="from_wrap">
+         		<div class="from_wrap">
+                    <form name="searchFrm" id="searchFrm" method="post" class="form-horizontal">
+                    <input type="hidden" name="currentPage" value="1">
+                        <!-- 호스트 -->
+                        <div class="form-group search">
+                            <input type="text" name="search_title" th:value="${search_title}" placeholder="제목 검색">
+                            <input type="text" name="search_contents" th:value="${search_contents}" placeholder="내용 검색">
+                            <select name="search_onoff" sec:authorize="hasRole('ROLE_ADMIN')">
+                            	<option th:each="onoff : ${onoffs}" th:value="${onoff.value}" th:text="${onoff.text}" th:selected="${onoff.value == search_onoff}"></option>
+                            </select>
+                            <button type="button" class="btn btn-primary" onclick="searchForm()">검색</button>
+                        </div>
+                    </form>
+                </div>
+
+                <table class="table table-striped table-bordered table-hover" id="listTable">
+                    <colgroup>
+                    	<col width="10%">
+                        <col width="10%">
+                        <col width="20%">
+                        <col width="40%">
+                        <col width="20%">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                        	<th style="text-align:center;" sec:authorize="hasRole('ROLE_ADMIN')"><input type="checkbox" id="allCheck" /></th>
+                            <th style="text-align:center;">순번</th>
+                            <th style="text-align:center;">제목</th>
+                            <th style="text-align:center;">내용</th>
+                            <th style="text-align:center;" sec:authorize="hasRole('ROLE_ADMIN')">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="list,idx : ${List}">
+	                    	<td style="text-align:center;" sec:authorize="hasRole('ROLE_ADMIN')"> <input name="delId" type="checkbox" th:attr="value=${list.seq}" ></td>
+	                        <td style="text-align:center;" th:text="${maxnumber - idx.index}"></td>
+	                        <td style="text-align:center;" th:text="${T(utils.Utils).titleFormat(list.title)}"></td>
+	                        <td style="text-align:center;" th:text="${T(utils.Utils).contentsFormat(list.contents)}">
+	                        <td style="text-align:center;" sec:authorize="hasRole('ROLE_ADMIN')">
+	                            <button type="button" data-toggle="modal" data-target="#change_modal" th:attr="data-seq=${list.seq}" value="edit">수정</button>
+	                            <button type="button" th:onclick="doDelete([[${list.seq}]])">삭제</button>
+	                        </td>
+	                    </tr>
+<!-- 	                    <tr th:each="list,idx : ${List}" sec:authorize="hasRole('ROLE_USER')"> -->
+<!-- 	                    	<td style="text-align:center;" th:if="${list.onoff=='Y'}"> <input name="delId" type="checkbox" th:attr="value=${list.seq}"></td> -->
+<!-- 	                        <td style="text-align:center;" th:if="${list.onoff=='Y'}" th:text="${maxnumber - idx.index}"></td> -->
+<!-- 	                        <td style="text-align:center;" th:if="${list.onoff=='Y'}" th:text="${T(utils.Utils).titleFormat(list.title)}"></td> -->
+<!-- 	                        <td style="text-align:center;" th:if="${list.onoff=='Y'}" th:text="${T(utils.Utils).contentsFormat(list.contents)}"> -->
+<!-- 	                    </tr> -->
+                    </tbody>
+                </table>
+                 <div class="pn" th:utext="${page}"></div>
+                <div class="btn" sec:authorize="hasRole('ROLE_ADMIN')">
+                    <button type="button" onclick="doAllDelete()">선택삭제</button>
+                    <button type="button" data-toggle="modal" data-target="#change_modal" value="insert">등록</button>
+                </div>
+                <!-- 모달 -->
+               <div class="modal fade" id="change_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	              <div class="modal-dialog">
+	                <div class="modal-content">
+	                  <div class="modal-header">
+	                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	                    <h4 class="modal-title" id="myModalLabel"></h4>
+	                  </div>
+	                  <div class="modal-body">
+	                    <div class="form-group">
+	                        <p class="col-md-4">제목</p>
+	                        <input type="text" id="title" name="title" class="form-control col-md-8" placeholder="제목" required="true" autocomplete="off">
+	                    </div>
+	                    <div class="form-group">
+	                        <p class="col-md-4">내용</p>
+	                        <input type="text" id="contents" name="contents" class="form-control col-md-8" placeholder="내용" required="true" autocomplete="off">
+	                    </div>
+	                    <div class="form-group">
+	                        <p class="col-md-4">ONOFF</p>
+	                        <select id="onoff" name="onoff">
+                            	<option th:each="onoff : ${onoffs}" th:value="${onoff.value}" th:text="${onoff.text}"></option>
+                            </select>
+	                    </div>
+	                  </div>
+	                  <div class="modal-footer">
+	                    
+	                    <button type="button" class="btn btn-primary" id="modal_submit">저장</button>
+	                    <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+	                  </div>
+	                </div>
+	              </div>
+	            </div>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

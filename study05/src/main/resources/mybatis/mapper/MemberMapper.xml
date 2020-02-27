@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study05.www.mapper.MemberMapper">	
+	<resultMap type="member" id="getViewMap" >
+		<result property="id" column="id"/>
+		<result property="pwd" column="pwd"/>
+	</resultMap>
+	<resultMap type="member" id="getListMap" >
+		<result property="seq" column="seq"/>
+		<result property="id" column="id"/>
+		<result property="pwd" column="pwd"/>
+		<result property="level" column="level"/>
+		<result property="name" column="name"/>
+	</resultMap>
+	
+
+	<select id="getView" resultMap="getViewMap" parameterType="hashmap">
+		select seq ,id, pwd, level,name
+		from member
+		<include refid="where" />
+	</select>
+	
+
+	
+	<select id="getList" resultMap="getListMap" parameterType="hashmap">
+		select seq, id,pwd,level,name
+		from member
+		<include refid="where" />
+		order by seq desc
+		limit ${startRow},${pageSize}
+	</select>
+	
+	<select id="getListCount" resultType="int" parameterType="hashmap">
+		select count(*)
+		from member
+		<include refid="where" />
+	</select>
+	
+	
+	<insert id="setInsert" parameterType="hashmap">
+		insert into member(id, pwd, level,name)
+		values(#{id}, #{pwd}, #{level},#{name})
+	</insert>
+	
+	<update id="setUpdate" parameterType="hashmap">
+		update member set
+		id=#{id},
+		pwd=#{pwd},
+		level=#{level}
+		name=#{name}
+		where seq=#{seq}
+	</update>
+	
+	
+	
+	
+	
+	<delete id="setDelete" parameterType="hashmap">
+		delete from member where seq in
+		<foreach collection="seq" item="seq" open="(" close=")" separator="," index="index">
+			#{seq}
+		</foreach>
+	</delete>
+	
+	
+	
+	<sql id="where">
+		<where>
+			<if test='id !=null and !id.equals("")'>
+				id = #{id}
+			</if>
+			<if test='level !=null and !level.equals("")'>
+				and level = #{level}
+			</if>
+			<if test='seq !=null and !seq.equals("")'>
+				and seq = #{seq}
+			</if>
+			<if test='pwd !=null and !pwd.equals("")'>
+				and pwd = #{pwd}
+			</if>
+		</where>
+	</sql>
+</mapper>

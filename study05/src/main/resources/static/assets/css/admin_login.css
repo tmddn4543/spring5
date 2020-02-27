@@ -1,0 +1,233 @@
+@charset "utf-8";
+body{
+	background-color: #fff;
+
+}
+header{
+
+padding-top: 325px;
+}
+header >div{
+
+
+}
+header >div .container{
+	position: relative;
+}
+header h1{
+	font-weight: 900;
+
+font-size: 50px;
+
+color: #0A385B;
+	margin-bottom: 30px;
+}
+header h1 strong{
+	font-size: 76px;
+color: #01B1EC;
+display: block;
+}
+header h2{
+	color: #a4babf;
+font-size: 80px;
+font-weight: 800;
+letter-spacing: -10px;
+margin-bottom: 20px;
+text-align: right;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
+#middle{
+	background-color: #fff;
+}
+
+#middle .container{
+	padding-top: 6%;
+	padding-bottom: 6%;
+}
+#middle .middle_con{
+	width: 500px;
+
+float: right;
+}
+footer{
+background-color: #333;
+height: 14%;
+position: fixed;
+bottom: 0;
+width: 100%;
+border-top: 5px solid #01b1ec;
+}
+footer p{
+	color: darkgray;
+	position: absolute;
+
+left: 50%;
+
+top: 42%;
+
+transform: translateX(-50%);
+	width: 100%;
+	text-align: center;
+}
+
+input[type="checkbox"] {
+    display: inline-block;
+}
+.form-group p.col-md-3{
+	margin: 0;
+	line-height: 34px;
+	font-size: 15px;
+	width: 25%;
+	float: left;
+}
+.form-group input.col-md-5{
+	width: 41.66666667%;
+	float: left;
+}
+
+.form-group input.col-md-9{
+	width: 75%;
+}
+.i-checks{
+	text-align: center;
+	width: 33.33333333%;
+	float: left;
+}
+#middle button{
+	margin: 0;
+
+padding: 26px 0px;
+background-color: #01b1ec;
+
+border-color: #01b1ec;
+width: 16.66666667%;
+}
+#middle button:hover, #middle button:focus{
+	background-color: #0384AF ;
+border-color: #0384AF;
+}
+.form-group input:focus{
+
+border-color: #01b1ec !important;
+
+}
+
+.middle_con .input{
+width: 83.33333333%;
+
+float: left;
+}
+
+@media (max-width: 676px){
+	header {
+    padding-top: 250px;
+}
+header h1{
+	margin: 0;
+}
+header h2{
+    position: static;
+    margin: 0;
+
+    text-align: left;
+    margin-bottom: 30px;
+}
+}
+@media (max-width: 600px){
+body{
+	background-size: 1700px !important;
+}
+header {
+
+    padding-top: 200px;
+
+}
+header h1{
+	font-size: 44px;
+}
+header h1 strong{
+	font-size: 70px;
+}
+header h2{
+	font-size: 58px;
+
+letter-spacing: -5px;
+}
+
+#middle .middle_con{
+	width: 100%;
+}
+}
+@media (max-width: 497px){
+
+body{
+	background: none !important;
+}
+header{
+	padding: 0;
+
+background-color: #dee7e9;
+}
+header h1 strong{
+	margin-top: 20px;
+}
+.form-group p.col-md-3{
+	padding: 0;
+}
+.middle_con .input{
+	width: 100%;
+}
+.form-group p.col-md-3{
+	width: 100%;
+}
+.form-group input.col-md-5{
+	width: 100%;
+}
+.i-checks{
+	float: right;
+
+margin-bottom: 0;
+
+text-align: right;
+
+margin-top: 5px;
+	padding: 0;
+}
+.form-group:nth-child(2) p.col-md-3{
+	width: 66%;
+
+padding: 0;
+
+margin-top: 10px;
+}
+.form-group input.col-md-9{
+	width: 100%;
+}
+#middle button{
+	width: 93%;
+
+padding: 8px;
+
+margin: 0 auto;
+}
+
+}
+@media (max-width: 310px){
+
+header h1 {
+    font-size: 34px;
+}
+header h2 {
+    font-size: 44px;
+    letter-spacing: -3px;
+}
+header h1 strong {
+    margin-top: 25px;
+    font-size: 60px;
+}
+.i-checks label{
+padding: 0;
+}
+}
