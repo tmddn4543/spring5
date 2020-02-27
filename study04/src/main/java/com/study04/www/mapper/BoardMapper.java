@@ -15,4 +15,5 @@ public interface BoardMapper {
 	public void setUpdate(HashMap<String, Object> param);
 	public void setDelete(HashMap<String, Object> param);
 	public Board getView(HashMap<String, Object> param);
+	public List<Board> testList(HashMap<String, Object> param);
 }
