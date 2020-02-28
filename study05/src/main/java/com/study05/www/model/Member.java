@@ -30,7 +30,6 @@ public class Member implements UserDetails{
 	}
 	@Override
 	public String getPassword() {
-		// TODO Auto-generated method stub
 		return pwd;
 	}
 	@Override
