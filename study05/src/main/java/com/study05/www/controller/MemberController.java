@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.Appender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,12 +18,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.study05.www.TestBoardApplication;
 import com.study05.www.model.Board;
 import com.study05.www.model.Member;
 import com.study05.www.model.Notice;
 import com.study05.www.model.ResultDto;
 import com.study05.www.model.SelectLevel;
 import com.study05.www.model.SelectOnOff;
+import com.study05.www.model.Session;
 import com.study05.www.serviceImpl.BoardService;
 import com.study05.www.serviceImpl.MemberService;
 import com.study05.www.serviceImpl.NoticeService;
@@ -36,10 +40,15 @@ public class MemberController {
 	BoardService bService;
 	
 	@Autowired
-	NoticeService nService;
+	NoticeService nService;														//"egovframework.ECALL_O.main.web"
 	
 	@Autowired
 	MemberService mService;
+	
+	private static Logger my_logger = LogManager.getLogger(MemberController.class);
+	private static Logger board_log = LogManager.getLogger("board_log");
+	private static Logger notice_log = LogManager.getLogger("notice_log");
+	private static Logger member_log = LogManager.getLogger("member_log");
 	
 	
 	@Secured({"ROLE_USER", "ROLE_ADMIN"})
@@ -100,10 +109,13 @@ public class MemberController {
     		Model model,
     		@RequestParam(value="search_title", required=false, defaultValue="") String search_title,
     		@RequestParam(value="search_contents", required=false, defaultValue="") String search_contents,
-    		@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage
-    		) {
+    		@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage,
+    		Authentication authentication) {
+		my_logger.info("welcome to board");
+		board_log.info(authentication.getName() + " : " + "select seq, title, regdate, written, mod_regdate from board");
 		HashMap<String, Object> param = new HashMap<String, Object>();
 		List<Board> list = new ArrayList<Board>();
+		param.put("user_log", authentication.getName());
 		param.put("title", search_title);
 		param.put("contents", search_contents);
 		param.put("pageSize", pageSize);
@@ -157,7 +169,9 @@ public class MemberController {
     		@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage,
     		@RequestParam(value="search_onoff", required=false, defaultValue="") String search_onoff
     		,Authentication authentication) {
-		Member member = (Member) authentication.getDetails();
+		my_logger.info("welcome to notice");
+		notice_log.info(authentication.getName() + " : " + "select seq, title, contents, onoff, regdate, mod_regdate, written from notice");
+		Session member = (Session) authentication.getDetails();
 		HashMap<String, Object> param = new HashMap<String, Object>();
 		param.put("title", search_title);
 		param.put("contents", search_contents);
@@ -267,8 +281,10 @@ public class MemberController {
     		Model model,
     		@RequestParam(value="search_id", required=false, defaultValue="") String search_id,
     		@RequestParam(value="search_level", required=false, defaultValue="") String search_level,
-    		@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage
-    		) {
+    		@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage,
+    		Authentication authentication) {
+		my_logger.info("welcome to member");
+		member_log.info(authentication.getName() + " : " + "select seq ,id, pwd, level,name from member");
 		HashMap<String, Object> param = new HashMap<String, Object>();
 		param.put("id", search_id);
 		param.put("level", search_level);
@@ -349,8 +365,9 @@ public class MemberController {
 			@RequestParam(value="name", required=false, defaultValue="")String name,
 			@RequestParam(value="level", required=false, defaultValue="")String level){
 		HashMap<String, Object> param = new HashMap<>();
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		param.put("pwd", passwordEncoder.encode(pwd));
 		param.put("id", id);
-		param.put("pwd", pwd);
 		param.put("level", level);
 		param.put("name", name);
 		
@@ -367,8 +384,10 @@ public class MemberController {
 			@RequestParam(value="name", required=false, defaultValue="")String name,
 			@RequestParam(value="seq", required=false, defaultValue="")String seq) {
 		HashMap<String, Object> param = new HashMap<>();
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		
 		param.put("id", id);
-		param.put("pwd", pwd);
+		param.put("pwd", passwordEncoder.encode(pwd));
 		param.put("level", level);
 		param.put("seq", seq);
 		param.put("name", name);

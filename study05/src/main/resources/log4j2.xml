@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+        <properties>
+                <property name="my">my-webapp</property>
+                <property name="member">member-webapp</property>
+                <property name="board">board-webapp</property>
+                <property name="notice">notice-webapp</property>
+                <property name="pattern">%d{yyyy-MM-dd HH:mm:ss.SSS} | %-5.5p | %-30.30C::%-30.30M:%-5.5L | %msg%n</property>
+        </properties> 
+        <appenders>
+                <Console name="console" target="SYSTEM_OUT">
+                        <PatternLayout pattern="${pattern}"/>
+                </Console>
+                <RollingFile name="my-file" fileName="home/testboard/log/${my}.log"
+                                 filePattern="home/testboard/log/bak/$${date:yyyy}-$${date:MM}/$${date:yyyy}-$${date:MM}-$${date:dd}/%d{yyyyMMddHH}.log">
+                       <PatternLayout pattern="${pattern}"/>
+                        <Policies>
+                                <TimeBasedTriggeringPolicy /><!-- Rotated everyday -->
+                        </Policies>
+                </RollingFile>
+                <RollingFile name="member-file" fileName="home/testboard/log/member/${member}.log"
+                                 filePattern="home/testboard/log/member/bak/$${date:yyyy}-$${date:MM}/$${date:yyyy}-$${date:MM}-$${date:dd}/%d{yyyyMMddHH}.log">
+                        <PatternLayout pattern="${pattern}"/>
+                        <Policies>
+                                <TimeBasedTriggeringPolicy /><!-- Rotated everyday -->
+                        </Policies>
+                </RollingFile>
+                <RollingFile name="board-file" fileName="home/testboard/log/board/${board}.log"
+                                 filePattern="home/testboard/log/board/bak/$${date:yyyy}-$${date:MM}/$${date:yyyy}-$${date:MM}-$${date:dd}/%d{yyyyMMddHH}.log">
+                        <PatternLayout pattern="${pattern}"/>
+                        <Policies>
+                                <TimeBasedTriggeringPolicy /><!-- Rotated everyday -->
+                        </Policies>
+                </RollingFile>
+                <RollingFile name="notice-file" fileName="home/testboard/log/notice/${notice}.log"
+                                 filePattern="home/testboard/log/notice/bak/$${date:yyyy}-$${date:MM}/$${date:yyyy}-$${date:MM}-$${date:dd}/%d{yyyyMMddHH}.log">
+                        <PatternLayout pattern="${pattern}"/>
+                        <Policies>
+                                <TimeBasedTriggeringPolicy /><!-- Rotated everyday -->
+                        </Policies>
+                </RollingFile>
+        </appenders>
+        <loggers>
+        	<Logger name="board_log" level="info" additivity="false">
+		      	<AppenderRef ref="console" />
+		      	<AppenderRef ref="board-file" />
+		    </Logger>
+		    <Logger name="member_log" level="info" additivity="false">
+		      	<AppenderRef ref="console" />
+		      	<AppenderRef ref="member-file" />
+		    </Logger>
+		    <Logger name="notice_log" level="info" additivity="false">
+		      	<AppenderRef ref="console" />
+		    	<AppenderRef ref="notice-file" />
+		    </Logger>
+            <root level="info">
+            	<appender-ref ref="console"/>
+              	<appender-ref ref="my-file"/>
+            </root>
+        </loggers>
+</configuration>

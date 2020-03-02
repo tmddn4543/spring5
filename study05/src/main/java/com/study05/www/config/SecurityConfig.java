@@ -12,6 +12,8 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import com.study05.www.serviceImpl.MemberUserDetailsService;
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(
@@ -29,11 +31,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     AuthSuccessHandler authSuccessHandler;
     
+    @Autowired
+    MemberUserDetailsService memberUserDetailsService;
+    
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth
-			.inMemoryAuthentication()
-				.withUser("param1").password("param2").roles("USER", "ADMIN");
+		auth.authenticationProvider(authProvider);
 	}
  
 	@Override
@@ -56,12 +59,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.logoutSuccessUrl("/")
 			.invalidateHttpSession(true)
 		.and()
-			.csrf().disable()
-			.authenticationProvider(authProvider);
+			.csrf().disable();
 	}
 	
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-	}
+	
+	
+	
 }
