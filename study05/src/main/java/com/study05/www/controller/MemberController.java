@@ -1,16 +1,13 @@
 package com.study05.www.controller;
 
-import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.core.Appender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -21,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.study05.www.TestBoardApplication;
 import com.study05.www.model.Board;
 import com.study05.www.model.Member;
 import com.study05.www.model.Notice;
@@ -85,7 +81,7 @@ public class MemberController {
 	}
 	
 	
-	@PreAuthorize("isAuthenticated() and (#written == authentication.name or hasRole('ROLE_ADMIN'))")
+	@PreAuthorize("#auth.isMyWritten(#written) or hasRole('ROLE_ADMIN')")
 	@Secured({"ROLE_USER", "ROLE_ADMIN"})
 	@RequestMapping(value="/bUpdate",method= {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
@@ -101,11 +97,11 @@ public class MemberController {
 		param.put("contents", contents);
 		param.put("written", authentication.getName());
 		bService.setUpdate(param);
+		
 	}
 	
 	
 
-	
 	
 	
 	

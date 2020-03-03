@@ -53,5 +53,12 @@ public class MemberService implements IView<Member>,IInsert, IList<Member>,IDele
 		mapper.setInsert(param);
 	}
 
+
+	@Override
+	public String isMyWritten(String seq) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }

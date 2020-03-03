@@ -58,4 +58,12 @@ public class BoardService implements IList<Board>, IInsert, IView<Board>,IDelete
 		mapper.setUpdate(param);
 	}
 
+	@Override
+	public String isMyWritten(String seq) {
+		HashMap<String, Object> param = new HashMap<String, Object>();
+		param.put("seq", seq);
+		Board board = mapper.getView(param);
+		return board.getWritten();
+	}
+
 }

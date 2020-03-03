@@ -58,4 +58,10 @@ public class NoticeService implements IList<Notice>, IInsert, IDelete, IUpdate, 
 		mapper.setDelete(param);
 	}
 
+	@Override
+	public String isMyWritten(String seq) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
