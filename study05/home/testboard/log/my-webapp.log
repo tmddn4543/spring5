@@ -2,3 +2,1029 @@
 2020-03-03 11:19:32.921 | INFO  | t.ExecutorConfigurationSupport::shutdown                      :208   | Shutting down ExecutorService 'taskScheduler'
 2020-03-03 11:19:32.923 | INFO  | zaxxer.hikari.HikariDataSource::close                         :350   | HikariPool-1 - Shutdown initiated...
 2020-03-03 11:19:32.929 | INFO  | zaxxer.hikari.HikariDataSource::close                         :352   | HikariPool-1 - Shutdown completed.
+2020-03-03 11:29:38.680 | INFO  | udy05.www.TestBoardApplication::main                          :16    | Start 인포
+2020-03-03 11:29:38.963 | INFO  | amework.boot.StartupInfoLogger::logStarting                   :55    | Starting TestBoardApplication on DESKTOP-R7G672U with PID 8016 (C:\Users\Admin\git\spring5\study05\target\classes started by Admin in C:\Users\Admin\git\spring5\study05)
+2020-03-03 11:29:38.963 | INFO  | amework.boot.SpringApplication::logStartupProfileInfo         :651   | No active profile set, falling back to default profiles: default
+2020-03-03 11:29:39.922 | INFO  | mbedded.tomcat.TomcatWebServer::initialize                    :92    | Tomcat initialized with port(s): 8080 (http)
+2020-03-03 11:29:39.939 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing ProtocolHandler ["http-nio-8080"]
+2020-03-03 11:29:39.939 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting service [Tomcat]
+2020-03-03 11:29:39.939 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-03-03 11:29:40.017 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing Spring embedded WebApplicationContext
+2020-03-03 11:29:40.017 | INFO  | letWebServerApplicationContext::prepareWebApplicationContext  :284   | Root WebApplicationContext: initialization completed in 926 ms
+2020-03-03 11:29:40.360 | INFO  | web.DefaultSecurityFilterChain::<init>                        :43    | Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7f642bf, org.springframework.security.web.context.SecurityContextPersistenceFilter@6734ff92, org.springframework.security.web.header.HeaderWriterFilter@609b041c, org.springframework.security.web.authentication.logout.LogoutFilter@51ed2f68, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@6b9697ae, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4ce267cc, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@74500e4f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@43e3a390, org.springframework.security.web.session.SessionManagementFilter@7e2c6702, org.springframework.security.web.access.ExceptionTranslationFilter@629b780f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@fe8aaeb]
+2020-03-03 11:29:40.610 | INFO  | t.ExecutorConfigurationSupport::initialize                    :171   | Initializing ExecutorService 'taskScheduler'
+2020-03-03 11:29:40.798 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting ProtocolHandler ["http-nio-8080"]
+2020-03-03 11:29:40.813 | INFO  | mbedded.tomcat.TomcatWebServer::start                         :204   | Tomcat started on port(s): 8080 (http) with context path ''
+2020-03-03 11:29:40.829 | INFO  | amework.boot.StartupInfoLogger::logStarted                    :61    | Started TestBoardApplication in 2.101 seconds (JVM running for 3.073)
+2020-03-03 11:29:46.920 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-03 11:29:46.920 | INFO  | k.web.servlet.FrameworkServlet::initServletBean               :525   | Initializing Servlet 'dispatcherServlet'
+2020-03-03 11:29:46.927 | INFO  | k.web.servlet.FrameworkServlet::initServletBean               :547   | Completed initialization in 7 ms
+2020-03-03 11:29:47.070 | WARN  | ache.juli.logging.DirectJDKLog::log                           :173   | Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [116] milliseconds.
+2020-03-03 11:29:50.323 | INFO  | zaxxer.hikari.HikariDataSource::getConnection                 :110   | HikariPool-1 - Starting...
+2020-03-03 11:29:50.411 | INFO  | zaxxer.hikari.HikariDataSource::getConnection                 :123   | HikariPool-1 - Start completed.
+2020-03-03 11:29:50.577 | INFO  | ww.controller.MemberController::board                         :119   | welcome to board
+2020-03-03 11:29:54.862 | INFO  | ww.controller.MemberController::board                         :119   | welcome to board
+2020-03-03 11:29:58.464 | INFO  | ww.controller.MemberController::board                         :119   | welcome to board
+2020-03-03 11:31:55.177 | INFO  | gistrar$SpringApplicationAdmin::shutdown                      :159   | Application shutdown requested.
+2020-03-03 11:31:55.189 | INFO  | t.ExecutorConfigurationSupport::shutdown                      :208   | Shutting down ExecutorService 'taskScheduler'
+2020-03-03 11:31:55.189 | INFO  | zaxxer.hikari.HikariDataSource::close                         :350   | HikariPool-1 - Shutdown initiated...
+2020-03-03 11:31:55.189 | INFO  | zaxxer.hikari.HikariDataSource::close                         :352   | HikariPool-1 - Shutdown completed.
+2020-03-03 11:31:58.967 | INFO  | udy05.www.TestBoardApplication::main                          :16    | Start 인포
+2020-03-03 11:31:59.249 | INFO  | amework.boot.StartupInfoLogger::logStarting                   :55    | Starting TestBoardApplication on DESKTOP-R7G672U with PID 7108 (C:\Users\Admin\git\spring5\study05\target\classes started by Admin in C:\Users\Admin\git\spring5\study05)
+2020-03-03 11:31:59.249 | INFO  | amework.boot.SpringApplication::logStartupProfileInfo         :651   | No active profile set, falling back to default profiles: default
+2020-03-03 11:32:00.245 | INFO  | mbedded.tomcat.TomcatWebServer::initialize                    :92    | Tomcat initialized with port(s): 8080 (http)
+2020-03-03 11:32:00.255 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing ProtocolHandler ["http-nio-8080"]
+2020-03-03 11:32:00.256 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting service [Tomcat]
+2020-03-03 11:32:00.257 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-03-03 11:32:00.353 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing Spring embedded WebApplicationContext
+2020-03-03 11:32:00.353 | INFO  | letWebServerApplicationContext::prepareWebApplicationContext  :284   | Root WebApplicationContext: initialization completed in 972 ms
+2020-03-03 11:32:00.721 | INFO  | web.DefaultSecurityFilterChain::<init>                        :43    | Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2120bed, org.springframework.security.web.context.SecurityContextPersistenceFilter@4c5da4f9, org.springframework.security.web.header.HeaderWriterFilter@60dcf9ec, org.springframework.security.web.authentication.logout.LogoutFilter@2b2a4332, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@83b0d0f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@70d3cdbf, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@63de4fa, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@566fe83c, org.springframework.security.web.session.SessionManagementFilter@afee63, org.springframework.security.web.access.ExceptionTranslationFilter@26ca12a2, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@19105a87]
+2020-03-03 11:32:00.959 | INFO  | t.ExecutorConfigurationSupport::initialize                    :171   | Initializing ExecutorService 'taskScheduler'
+2020-03-03 11:32:01.156 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting ProtocolHandler ["http-nio-8080"]
+2020-03-03 11:32:01.174 | INFO  | mbedded.tomcat.TomcatWebServer::start                         :204   | Tomcat started on port(s): 8080 (http) with context path ''
+2020-03-03 11:32:01.176 | INFO  | amework.boot.StartupInfoLogger::logStarted                    :61    | Started TestBoardApplication in 2.154 seconds (JVM running for 3.132)
+2020-03-03 11:32:01.231 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-03 11:32:01.232 | INFO  | k.web.servlet.FrameworkServlet::initServletBean               :525   | Initializing Servlet 'dispatcherServlet'
+2020-03-03 11:32:01.236 | INFO  | k.web.servlet.FrameworkServlet::initServletBean               :547   | Completed initialization in 4 ms
+2020-03-03 11:32:01.375 | WARN  | ache.juli.logging.DirectJDKLog::log                           :173   | Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [113] milliseconds.
+2020-03-03 11:32:04.772 | INFO  | zaxxer.hikari.HikariDataSource::getConnection                 :110   | HikariPool-1 - Starting...
+2020-03-03 11:32:04.861 | INFO  | zaxxer.hikari.HikariDataSource::getConnection                 :123   | HikariPool-1 - Start completed.
+2020-03-03 11:32:05.033 | INFO  | ww.controller.MemberController::board                         :119   | welcome to board
+2020-03-03 11:32:08.133 | ERROR | ache.juli.logging.DirectJDKLog::log                           :175   | Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.IllegalArgumentException: Failed to evaluate expression 'isAuthenticated() and (#board.written == authentication.name or hasRole('ROLE_ADMIN'))'] with root cause
+org.springframework.expression.spel.SpelEvaluationException: EL1007E: Property or field 'written' cannot be found on null
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.readProperty(PropertyOrFieldReference.java:213) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.getValueInternal(PropertyOrFieldReference.java:104) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.access$000(PropertyOrFieldReference.java:51) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference$AccessorLValue.getValue(PropertyOrFieldReference.java:406) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.CompoundExpression.getValueInternal(CompoundExpression.java:92) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpEQ.getValueInternal(OpEQ.java:42) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpEQ.getValueInternal(OpEQ.java:32) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.SpelNodeImpl.getValue(SpelNodeImpl.java:188) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpOr.getBooleanValue(OpOr.java:56) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpOr.getValueInternal(OpOr.java:47) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpOr.getValueInternal(OpOr.java:37) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.SpelNodeImpl.getValue(SpelNodeImpl.java:188) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpAnd.getBooleanValue(OpAnd.java:57) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpAnd.getValueInternal(OpAnd.java:52) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.SpelNodeImpl.getTypedValue(SpelNodeImpl.java:117) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.standard.SpelExpression.getValue(SpelExpression.java:308) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.security.access.expression.ExpressionUtils.evaluateAsBoolean(ExpressionUtils.java:26) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.access.expression.method.ExpressionBasedPreInvocationAdvice.before(ExpressionBasedPreInvocationAdvice.java:59) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.access.prepost.PreInvocationAuthorizationAdviceVoter.vote(PreInvocationAuthorizationAdviceVoter.java:72) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.access.prepost.PreInvocationAuthorizationAdviceVoter.vote(PreInvocationAuthorizationAdviceVoter.java:40) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.access.vote.AffirmativeBased.decide(AffirmativeBased.java:63) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.access.intercept.AbstractSecurityInterceptor.beforeInvocation(AbstractSecurityInterceptor.java:233) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.access.intercept.aopalliance.MethodSecurityInterceptor.invoke(MethodSecurityInterceptor.java:65) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747) ~[spring-aop-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:689) ~[spring-aop-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at com.study05.www.controller.MemberController$$EnhancerBySpringCGLIB$$a88a92d6.bUpdate(<generated>) ~[classes/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:888) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:126) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:90) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:118) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:158) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:200) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:92) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:77) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:860) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1598) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) [?:?]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at java.lang.Thread.run(Thread.java:834) [?:?]
+2020-03-03 11:32:12.592 | ERROR | ache.juli.logging.DirectJDKLog::log                           :175   | Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.IllegalArgumentException: Failed to evaluate expression 'isAuthenticated() and (#board.written == authentication.name or hasRole('ROLE_ADMIN'))'] with root cause
+org.springframework.expression.spel.SpelEvaluationException: EL1007E: Property or field 'written' cannot be found on null
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.readProperty(PropertyOrFieldReference.java:213) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.getValueInternal(PropertyOrFieldReference.java:104) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.access$000(PropertyOrFieldReference.java:51) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference$AccessorLValue.getValue(PropertyOrFieldReference.java:406) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.CompoundExpression.getValueInternal(CompoundExpression.java:92) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpEQ.getValueInternal(OpEQ.java:42) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpEQ.getValueInternal(OpEQ.java:32) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.SpelNodeImpl.getValue(SpelNodeImpl.java:188) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpOr.getBooleanValue(OpOr.java:56) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpOr.getValueInternal(OpOr.java:47) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpOr.getValueInternal(OpOr.java:37) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.SpelNodeImpl.getValue(SpelNodeImpl.java:188) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpAnd.getBooleanValue(OpAnd.java:57) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpAnd.getValueInternal(OpAnd.java:52) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.SpelNodeImpl.getTypedValue(SpelNodeImpl.java:117) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.standard.SpelExpression.getValue(SpelExpression.java:308) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.security.access.expression.ExpressionUtils.evaluateAsBoolean(ExpressionUtils.java:26) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.access.expression.method.ExpressionBasedPreInvocationAdvice.before(ExpressionBasedPreInvocationAdvice.java:59) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.access.prepost.PreInvocationAuthorizationAdviceVoter.vote(PreInvocationAuthorizationAdviceVoter.java:72) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.access.prepost.PreInvocationAuthorizationAdviceVoter.vote(PreInvocationAuthorizationAdviceVoter.java:40) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.access.vote.AffirmativeBased.decide(AffirmativeBased.java:63) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.access.intercept.AbstractSecurityInterceptor.beforeInvocation(AbstractSecurityInterceptor.java:233) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.access.intercept.aopalliance.MethodSecurityInterceptor.invoke(MethodSecurityInterceptor.java:65) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747) ~[spring-aop-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:689) ~[spring-aop-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at com.study05.www.controller.MemberController$$EnhancerBySpringCGLIB$$a88a92d6.bUpdate(<generated>) ~[classes/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:888) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:126) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:90) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:118) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:158) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:200) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:92) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:77) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:860) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1598) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) [?:?]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at java.lang.Thread.run(Thread.java:834) [?:?]
+2020-03-03 11:34:40.170 | INFO  | gistrar$SpringApplicationAdmin::shutdown                      :159   | Application shutdown requested.
+2020-03-03 11:34:40.183 | INFO  | t.ExecutorConfigurationSupport::shutdown                      :208   | Shutting down ExecutorService 'taskScheduler'
+2020-03-03 11:34:40.183 | INFO  | zaxxer.hikari.HikariDataSource::close                         :350   | HikariPool-1 - Shutdown initiated...
+2020-03-03 11:34:40.183 | INFO  | zaxxer.hikari.HikariDataSource::close                         :352   | HikariPool-1 - Shutdown completed.
+2020-03-03 11:34:54.449 | INFO  | udy05.www.TestBoardApplication::main                          :16    | Start 인포
+2020-03-03 11:34:54.762 | INFO  | amework.boot.StartupInfoLogger::logStarting                   :55    | Starting TestBoardApplication on DESKTOP-R7G672U with PID 2132 (C:\Users\Admin\git\spring5\study05\target\classes started by Admin in C:\Users\Admin\git\spring5\study05)
+2020-03-03 11:34:54.762 | INFO  | amework.boot.SpringApplication::logStartupProfileInfo         :651   | No active profile set, falling back to default profiles: default
+2020-03-03 11:34:55.705 | INFO  | mbedded.tomcat.TomcatWebServer::initialize                    :92    | Tomcat initialized with port(s): 8080 (http)
+2020-03-03 11:34:55.721 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing ProtocolHandler ["http-nio-8080"]
+2020-03-03 11:34:55.722 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting service [Tomcat]
+2020-03-03 11:34:55.723 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-03-03 11:34:55.802 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing Spring embedded WebApplicationContext
+2020-03-03 11:34:55.802 | INFO  | letWebServerApplicationContext::prepareWebApplicationContext  :284   | Root WebApplicationContext: initialization completed in 909 ms
+2020-03-03 11:34:56.163 | INFO  | web.DefaultSecurityFilterChain::<init>                        :43    | Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@61ab6521, org.springframework.security.web.context.SecurityContextPersistenceFilter@426710f0, org.springframework.security.web.header.HeaderWriterFilter@25218a4d, org.springframework.security.web.authentication.logout.LogoutFilter@31228d83, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@43588265, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5e37fb82, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@74b1838, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@328e4ec2, org.springframework.security.web.session.SessionManagementFilter@56da96b3, org.springframework.security.web.access.ExceptionTranslationFilter@7e747037, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@589dfa6f]
+2020-03-03 11:34:56.398 | INFO  | t.ExecutorConfigurationSupport::initialize                    :171   | Initializing ExecutorService 'taskScheduler'
+2020-03-03 11:34:56.585 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting ProtocolHandler ["http-nio-8080"]
+2020-03-03 11:34:56.601 | INFO  | mbedded.tomcat.TomcatWebServer::start                         :204   | Tomcat started on port(s): 8080 (http) with context path ''
+2020-03-03 11:34:56.601 | INFO  | amework.boot.StartupInfoLogger::logStarted                    :61    | Started TestBoardApplication in 2.105 seconds (JVM running for 3.058)
+2020-03-03 11:34:58.480 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-03 11:34:58.481 | INFO  | k.web.servlet.FrameworkServlet::initServletBean               :525   | Initializing Servlet 'dispatcherServlet'
+2020-03-03 11:34:58.487 | INFO  | k.web.servlet.FrameworkServlet::initServletBean               :547   | Completed initialization in 6 ms
+2020-03-03 11:34:58.625 | WARN  | ache.juli.logging.DirectJDKLog::log                           :173   | Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [112] milliseconds.
+2020-03-03 11:35:02.533 | INFO  | zaxxer.hikari.HikariDataSource::getConnection                 :110   | HikariPool-1 - Starting...
+2020-03-03 11:35:02.618 | INFO  | zaxxer.hikari.HikariDataSource::getConnection                 :123   | HikariPool-1 - Start completed.
+2020-03-03 11:35:02.788 | INFO  | ww.controller.MemberController::board                         :120   | welcome to board
+2020-03-03 11:35:06.793 | INFO  | ww.controller.MemberController::board                         :120   | welcome to board
+2020-03-03 11:37:54.887 | INFO  | gistrar$SpringApplicationAdmin::shutdown                      :159   | Application shutdown requested.
+2020-03-03 11:37:54.900 | INFO  | t.ExecutorConfigurationSupport::shutdown                      :208   | Shutting down ExecutorService 'taskScheduler'
+2020-03-03 11:37:54.900 | INFO  | zaxxer.hikari.HikariDataSource::close                         :350   | HikariPool-1 - Shutdown initiated...
+2020-03-03 11:37:54.900 | INFO  | zaxxer.hikari.HikariDataSource::close                         :352   | HikariPool-1 - Shutdown completed.
+2020-03-03 11:37:58.352 | INFO  | udy05.www.TestBoardApplication::main                          :16    | Start 인포
+2020-03-03 11:37:58.636 | INFO  | amework.boot.StartupInfoLogger::logStarting                   :55    | Starting TestBoardApplication on DESKTOP-R7G672U with PID 10380 (C:\Users\Admin\git\spring5\study05\target\classes started by Admin in C:\Users\Admin\git\spring5\study05)
+2020-03-03 11:37:58.636 | INFO  | amework.boot.SpringApplication::logStartupProfileInfo         :651   | No active profile set, falling back to default profiles: default
+2020-03-03 11:37:59.070 | WARN  | ort.AbstractApplicationContext::refresh                       :558   | Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.support.BeanDefinitionOverrideException: Invalid bean definition with name 'metaDataSourceAdvisor' defined in null: Cannot register bean definition [Root bean: class [org.springframework.security.access.intercept.aopalliance.MethodSecurityMetadataSourceAdvisor]; scope=; abstract=false; lazyInit=null; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null] for bean 'metaDataSourceAdvisor': There is already [Root bean: class [org.springframework.security.access.intercept.aopalliance.MethodSecurityMetadataSourceAdvisor]; scope=; abstract=false; lazyInit=null; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null] bound.
+2020-03-03 11:37:59.086 | INFO  | valuationReportLoggingListener::logMessage                    :136   | 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-03-03 11:37:59.086 | ERROR | LoggingFailureAnalysisReporter::report                        :40    | 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+The bean 'metaDataSourceAdvisor' could not be registered. A bean with that name has already been defined and overriding is disabled.
+
+Action:
+
+Consider renaming one of the beans or enabling overriding by setting spring.main.allow-bean-definition-overriding=true
+
+2020-03-03 11:38:22.117 | INFO  | udy05.www.TestBoardApplication::main                          :16    | Start 인포
+2020-03-03 11:38:22.423 | INFO  | amework.boot.StartupInfoLogger::logStarting                   :55    | Starting TestBoardApplication on DESKTOP-R7G672U with PID 10904 (C:\Users\Admin\git\spring5\study05\target\classes started by Admin in C:\Users\Admin\git\spring5\study05)
+2020-03-03 11:38:22.423 | INFO  | amework.boot.SpringApplication::logStartupProfileInfo         :651   | No active profile set, falling back to default profiles: default
+2020-03-03 11:38:22.852 | WARN  | ort.AbstractApplicationContext::refresh                       :558   | Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.support.BeanDefinitionOverrideException: Invalid bean definition with name 'metaDataSourceAdvisor' defined in null: Cannot register bean definition [Root bean: class [org.springframework.security.access.intercept.aopalliance.MethodSecurityMetadataSourceAdvisor]; scope=; abstract=false; lazyInit=null; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null] for bean 'metaDataSourceAdvisor': There is already [Root bean: class [org.springframework.security.access.intercept.aopalliance.MethodSecurityMetadataSourceAdvisor]; scope=; abstract=false; lazyInit=null; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null] bound.
+2020-03-03 11:38:22.852 | INFO  | valuationReportLoggingListener::logMessage                    :136   | 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-03-03 11:38:22.867 | ERROR | LoggingFailureAnalysisReporter::report                        :40    | 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+The bean 'metaDataSourceAdvisor' could not be registered. A bean with that name has already been defined and overriding is disabled.
+
+Action:
+
+Consider renaming one of the beans or enabling overriding by setting spring.main.allow-bean-definition-overriding=true
+
+2020-03-03 11:38:48.965 | INFO  | udy05.www.TestBoardApplication::main                          :16    | Start 인포
+2020-03-03 11:38:49.260 | INFO  | amework.boot.StartupInfoLogger::logStarting                   :55    | Starting TestBoardApplication on DESKTOP-R7G672U with PID 10024 (C:\Users\Admin\git\spring5\study05\target\classes started by Admin in C:\Users\Admin\git\spring5\study05)
+2020-03-03 11:38:49.260 | INFO  | amework.boot.SpringApplication::logStartupProfileInfo         :651   | No active profile set, falling back to default profiles: default
+2020-03-03 11:38:50.216 | INFO  | mbedded.tomcat.TomcatWebServer::initialize                    :92    | Tomcat initialized with port(s): 8080 (http)
+2020-03-03 11:38:50.221 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing ProtocolHandler ["http-nio-8080"]
+2020-03-03 11:38:50.221 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting service [Tomcat]
+2020-03-03 11:38:50.221 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-03-03 11:38:50.315 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing Spring embedded WebApplicationContext
+2020-03-03 11:38:50.315 | INFO  | letWebServerApplicationContext::prepareWebApplicationContext  :284   | Root WebApplicationContext: initialization completed in 927 ms
+2020-03-03 11:38:50.690 | INFO  | web.DefaultSecurityFilterChain::<init>                        :43    | Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@45b7c97f, org.springframework.security.web.context.SecurityContextPersistenceFilter@3e0a9b1d, org.springframework.security.web.header.HeaderWriterFilter@762a10b6, org.springframework.security.web.authentication.logout.LogoutFilter@64440065, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@3ef3f661, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2035d65b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@394fb736, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@c212536, org.springframework.security.web.session.SessionManagementFilter@f2fb225, org.springframework.security.web.access.ExceptionTranslationFilter@66d3b881, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@dc1fadd]
+2020-03-03 11:38:50.940 | INFO  | t.ExecutorConfigurationSupport::initialize                    :171   | Initializing ExecutorService 'taskScheduler'
+2020-03-03 11:38:51.143 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting ProtocolHandler ["http-nio-8080"]
+2020-03-03 11:38:51.159 | INFO  | mbedded.tomcat.TomcatWebServer::start                         :204   | Tomcat started on port(s): 8080 (http) with context path ''
+2020-03-03 11:38:51.159 | INFO  | amework.boot.StartupInfoLogger::logStarted                    :61    | Started TestBoardApplication in 2.134 seconds (JVM running for 3.107)
+2020-03-03 11:38:53.455 | INFO  | gistrar$SpringApplicationAdmin::shutdown                      :159   | Application shutdown requested.
+2020-03-03 11:38:53.471 | INFO  | t.ExecutorConfigurationSupport::shutdown                      :208   | Shutting down ExecutorService 'taskScheduler'
+2020-03-03 11:43:54.170 | INFO  | udy05.www.TestBoardApplication::main                          :16    | Start 인포
+2020-03-03 11:43:54.460 | INFO  | amework.boot.StartupInfoLogger::logStarting                   :55    | Starting TestBoardApplication on DESKTOP-R7G672U with PID 7788 (C:\Users\Admin\git\spring5\study05\target\classes started by Admin in C:\Users\Admin\git\spring5\study05)
+2020-03-03 11:43:54.460 | INFO  | amework.boot.SpringApplication::logStartupProfileInfo         :651   | No active profile set, falling back to default profiles: default
+2020-03-03 11:43:55.383 | INFO  | mbedded.tomcat.TomcatWebServer::initialize                    :92    | Tomcat initialized with port(s): 8080 (http)
+2020-03-03 11:43:55.392 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing ProtocolHandler ["http-nio-8080"]
+2020-03-03 11:43:55.392 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting service [Tomcat]
+2020-03-03 11:43:55.392 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-03-03 11:43:55.502 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing Spring embedded WebApplicationContext
+2020-03-03 11:43:55.502 | INFO  | letWebServerApplicationContext::prepareWebApplicationContext  :284   | Root WebApplicationContext: initialization completed in 916 ms
+2020-03-03 11:43:55.861 | INFO  | web.DefaultSecurityFilterChain::<init>                        :43    | Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@52bba91a, org.springframework.security.web.context.SecurityContextPersistenceFilter@79f5a6ed, org.springframework.security.web.header.HeaderWriterFilter@7de35070, org.springframework.security.web.authentication.logout.LogoutFilter@730bea0, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@240a2619, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@edb83f8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7d401cdc, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1689527c, org.springframework.security.web.session.SessionManagementFilter@7c901203, org.springframework.security.web.access.ExceptionTranslationFilter@1ccc1026, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2035d65b]
+2020-03-03 11:43:56.111 | INFO  | t.ExecutorConfigurationSupport::initialize                    :171   | Initializing ExecutorService 'taskScheduler'
+2020-03-03 11:43:56.330 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting ProtocolHandler ["http-nio-8080"]
+2020-03-03 11:43:56.345 | INFO  | mbedded.tomcat.TomcatWebServer::start                         :204   | Tomcat started on port(s): 8080 (http) with context path ''
+2020-03-03 11:43:56.345 | INFO  | amework.boot.StartupInfoLogger::logStarted                    :61    | Started TestBoardApplication in 2.132 seconds (JVM running for 3.21)
+2020-03-03 11:43:58.441 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-03 11:43:58.442 | INFO  | k.web.servlet.FrameworkServlet::initServletBean               :525   | Initializing Servlet 'dispatcherServlet'
+2020-03-03 11:43:58.448 | INFO  | k.web.servlet.FrameworkServlet::initServletBean               :547   | Completed initialization in 6 ms
+2020-03-03 11:43:58.588 | WARN  | ache.juli.logging.DirectJDKLog::log                           :173   | Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [114] milliseconds.
+2020-03-03 11:44:01.899 | INFO  | zaxxer.hikari.HikariDataSource::getConnection                 :110   | HikariPool-1 - Starting...
+2020-03-03 11:44:01.986 | INFO  | zaxxer.hikari.HikariDataSource::getConnection                 :123   | HikariPool-1 - Start completed.
+2020-03-03 11:44:02.156 | INFO  | ww.controller.MemberController::board                         :121   | welcome to board
+2020-03-03 11:44:06.601 | ERROR | ache.juli.logging.DirectJDKLog::log                           :175   | Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.IllegalArgumentException: Failed to evaluate expression 'isAuthenticated() and (#board.written == authentication.name or hasRole('ROLE_ADMIN'))'] with root cause
+org.springframework.expression.spel.SpelEvaluationException: EL1007E: Property or field 'written' cannot be found on null
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.readProperty(PropertyOrFieldReference.java:213) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.getValueInternal(PropertyOrFieldReference.java:104) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.access$000(PropertyOrFieldReference.java:51) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference$AccessorLValue.getValue(PropertyOrFieldReference.java:406) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.CompoundExpression.getValueInternal(CompoundExpression.java:92) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpEQ.getValueInternal(OpEQ.java:42) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpEQ.getValueInternal(OpEQ.java:32) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.SpelNodeImpl.getValue(SpelNodeImpl.java:188) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpOr.getBooleanValue(OpOr.java:56) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpOr.getValueInternal(OpOr.java:47) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpOr.getValueInternal(OpOr.java:37) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.SpelNodeImpl.getValue(SpelNodeImpl.java:188) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpAnd.getBooleanValue(OpAnd.java:57) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpAnd.getValueInternal(OpAnd.java:52) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.SpelNodeImpl.getTypedValue(SpelNodeImpl.java:117) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.standard.SpelExpression.getValue(SpelExpression.java:308) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.security.access.expression.ExpressionUtils.evaluateAsBoolean(ExpressionUtils.java:26) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.access.expression.method.ExpressionBasedPreInvocationAdvice.before(ExpressionBasedPreInvocationAdvice.java:59) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.access.prepost.PreInvocationAuthorizationAdviceVoter.vote(PreInvocationAuthorizationAdviceVoter.java:72) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.access.prepost.PreInvocationAuthorizationAdviceVoter.vote(PreInvocationAuthorizationAdviceVoter.java:40) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.access.vote.AffirmativeBased.decide(AffirmativeBased.java:63) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.access.intercept.AbstractSecurityInterceptor.beforeInvocation(AbstractSecurityInterceptor.java:233) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.access.intercept.aopalliance.MethodSecurityInterceptor.invoke(MethodSecurityInterceptor.java:65) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747) ~[spring-aop-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:689) ~[spring-aop-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at com.study05.www.controller.MemberController$$EnhancerBySpringCGLIB$$4756ddf7.bUpdate(<generated>) ~[classes/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:888) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:126) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:90) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:118) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:158) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:200) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:92) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:77) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:860) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1598) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) [?:?]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at java.lang.Thread.run(Thread.java:834) [?:?]
+2020-03-03 11:44:10.681 | ERROR | ache.juli.logging.DirectJDKLog::log                           :175   | Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.IllegalArgumentException: Failed to evaluate expression 'isAuthenticated() and (#board.written == authentication.name or hasRole('ROLE_ADMIN'))'] with root cause
+org.springframework.expression.spel.SpelEvaluationException: EL1007E: Property or field 'written' cannot be found on null
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.readProperty(PropertyOrFieldReference.java:213) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.getValueInternal(PropertyOrFieldReference.java:104) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.access$000(PropertyOrFieldReference.java:51) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference$AccessorLValue.getValue(PropertyOrFieldReference.java:406) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.CompoundExpression.getValueInternal(CompoundExpression.java:92) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpEQ.getValueInternal(OpEQ.java:42) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpEQ.getValueInternal(OpEQ.java:32) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.SpelNodeImpl.getValue(SpelNodeImpl.java:188) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpOr.getBooleanValue(OpOr.java:56) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpOr.getValueInternal(OpOr.java:47) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpOr.getValueInternal(OpOr.java:37) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.SpelNodeImpl.getValue(SpelNodeImpl.java:188) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpAnd.getBooleanValue(OpAnd.java:57) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpAnd.getValueInternal(OpAnd.java:52) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.SpelNodeImpl.getTypedValue(SpelNodeImpl.java:117) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.standard.SpelExpression.getValue(SpelExpression.java:308) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.security.access.expression.ExpressionUtils.evaluateAsBoolean(ExpressionUtils.java:26) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.access.expression.method.ExpressionBasedPreInvocationAdvice.before(ExpressionBasedPreInvocationAdvice.java:59) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.access.prepost.PreInvocationAuthorizationAdviceVoter.vote(PreInvocationAuthorizationAdviceVoter.java:72) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.access.prepost.PreInvocationAuthorizationAdviceVoter.vote(PreInvocationAuthorizationAdviceVoter.java:40) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.access.vote.AffirmativeBased.decide(AffirmativeBased.java:63) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.access.intercept.AbstractSecurityInterceptor.beforeInvocation(AbstractSecurityInterceptor.java:233) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.access.intercept.aopalliance.MethodSecurityInterceptor.invoke(MethodSecurityInterceptor.java:65) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747) ~[spring-aop-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:689) ~[spring-aop-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at com.study05.www.controller.MemberController$$EnhancerBySpringCGLIB$$4756ddf7.bUpdate(<generated>) ~[classes/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:888) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:126) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:90) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:118) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:158) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:200) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:92) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:77) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:860) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1598) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) [?:?]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at java.lang.Thread.run(Thread.java:834) [?:?]
+2020-03-03 11:44:37.957 | ERROR | ache.juli.logging.DirectJDKLog::log                           :175   | Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.IllegalArgumentException: Failed to evaluate expression 'isAuthenticated() and (#board.written == authentication.name or hasRole('ROLE_ADMIN'))'] with root cause
+org.springframework.expression.spel.SpelEvaluationException: EL1007E: Property or field 'written' cannot be found on null
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.readProperty(PropertyOrFieldReference.java:213) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.getValueInternal(PropertyOrFieldReference.java:104) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.access$000(PropertyOrFieldReference.java:51) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference$AccessorLValue.getValue(PropertyOrFieldReference.java:406) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.CompoundExpression.getValueInternal(CompoundExpression.java:92) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpEQ.getValueInternal(OpEQ.java:42) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpEQ.getValueInternal(OpEQ.java:32) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.SpelNodeImpl.getValue(SpelNodeImpl.java:188) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpOr.getBooleanValue(OpOr.java:56) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpOr.getValueInternal(OpOr.java:47) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpOr.getValueInternal(OpOr.java:37) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.SpelNodeImpl.getValue(SpelNodeImpl.java:188) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpAnd.getBooleanValue(OpAnd.java:57) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpAnd.getValueInternal(OpAnd.java:52) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.SpelNodeImpl.getTypedValue(SpelNodeImpl.java:117) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.standard.SpelExpression.getValue(SpelExpression.java:308) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.security.access.expression.ExpressionUtils.evaluateAsBoolean(ExpressionUtils.java:26) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.access.expression.method.ExpressionBasedPreInvocationAdvice.before(ExpressionBasedPreInvocationAdvice.java:59) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.access.prepost.PreInvocationAuthorizationAdviceVoter.vote(PreInvocationAuthorizationAdviceVoter.java:72) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.access.prepost.PreInvocationAuthorizationAdviceVoter.vote(PreInvocationAuthorizationAdviceVoter.java:40) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.access.vote.AffirmativeBased.decide(AffirmativeBased.java:63) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.access.intercept.AbstractSecurityInterceptor.beforeInvocation(AbstractSecurityInterceptor.java:233) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.access.intercept.aopalliance.MethodSecurityInterceptor.invoke(MethodSecurityInterceptor.java:65) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747) ~[spring-aop-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:689) ~[spring-aop-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at com.study05.www.controller.MemberController$$EnhancerBySpringCGLIB$$4756ddf7.bUpdate(<generated>) ~[classes/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:888) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:126) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:90) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:118) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:158) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:200) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:92) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:77) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:860) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1598) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) [?:?]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at java.lang.Thread.run(Thread.java:834) [?:?]
+2020-03-03 11:44:52.923 | INFO  | ww.controller.MemberController::board                         :121   | welcome to board
+2020-03-03 11:44:56.678 | INFO  | ww.controller.MemberController::board                         :121   | welcome to board
+2020-03-03 11:44:59.849 | ERROR | ache.juli.logging.DirectJDKLog::log                           :175   | Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.IllegalArgumentException: Failed to evaluate expression 'isAuthenticated() and (#board.written == authentication.name or hasRole('ROLE_ADMIN'))'] with root cause
+org.springframework.expression.spel.SpelEvaluationException: EL1007E: Property or field 'written' cannot be found on null
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.readProperty(PropertyOrFieldReference.java:213) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.getValueInternal(PropertyOrFieldReference.java:104) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.access$000(PropertyOrFieldReference.java:51) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference$AccessorLValue.getValue(PropertyOrFieldReference.java:406) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.CompoundExpression.getValueInternal(CompoundExpression.java:92) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpEQ.getValueInternal(OpEQ.java:42) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpEQ.getValueInternal(OpEQ.java:32) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.SpelNodeImpl.getValue(SpelNodeImpl.java:188) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpOr.getBooleanValue(OpOr.java:56) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpOr.getValueInternal(OpOr.java:47) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpOr.getValueInternal(OpOr.java:37) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.SpelNodeImpl.getValue(SpelNodeImpl.java:188) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpAnd.getBooleanValue(OpAnd.java:57) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpAnd.getValueInternal(OpAnd.java:52) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.SpelNodeImpl.getTypedValue(SpelNodeImpl.java:117) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.standard.SpelExpression.getValue(SpelExpression.java:308) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.security.access.expression.ExpressionUtils.evaluateAsBoolean(ExpressionUtils.java:26) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.access.expression.method.ExpressionBasedPreInvocationAdvice.before(ExpressionBasedPreInvocationAdvice.java:59) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.access.prepost.PreInvocationAuthorizationAdviceVoter.vote(PreInvocationAuthorizationAdviceVoter.java:72) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.access.prepost.PreInvocationAuthorizationAdviceVoter.vote(PreInvocationAuthorizationAdviceVoter.java:40) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.access.vote.AffirmativeBased.decide(AffirmativeBased.java:63) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.access.intercept.AbstractSecurityInterceptor.beforeInvocation(AbstractSecurityInterceptor.java:233) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.access.intercept.aopalliance.MethodSecurityInterceptor.invoke(MethodSecurityInterceptor.java:65) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747) ~[spring-aop-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:689) ~[spring-aop-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at com.study05.www.controller.MemberController$$EnhancerBySpringCGLIB$$4756ddf7.bUpdate(<generated>) ~[classes/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:888) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:126) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:90) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:118) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:158) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:200) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:92) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:77) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:860) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1598) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) [?:?]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at java.lang.Thread.run(Thread.java:834) [?:?]
+2020-03-03 11:49:12.650 | INFO  | gistrar$SpringApplicationAdmin::shutdown                      :159   | Application shutdown requested.
+2020-03-03 11:49:12.656 | INFO  | t.ExecutorConfigurationSupport::shutdown                      :208   | Shutting down ExecutorService 'taskScheduler'
+2020-03-03 11:49:12.656 | INFO  | zaxxer.hikari.HikariDataSource::close                         :350   | HikariPool-1 - Shutdown initiated...
+2020-03-03 11:49:12.656 | INFO  | zaxxer.hikari.HikariDataSource::close                         :352   | HikariPool-1 - Shutdown completed.
+2020-03-03 11:49:17.269 | INFO  | udy05.www.TestBoardApplication::main                          :16    | Start 인포
+2020-03-03 11:49:17.275 | INFO  | udy05.www.TestBoardApplication::main                          :16    | Start 인포
+2020-03-03 11:49:17.694 | INFO  | amework.boot.StartupInfoLogger::logStarting                   :55    | Starting TestBoardApplication on DESKTOP-R7G672U with PID 1244 (C:\Users\Admin\git\spring5\study05\target\classes started by Admin in C:\Users\Admin\git\spring5\study05)
+2020-03-03 11:49:17.696 | INFO  | amework.boot.SpringApplication::logStartupProfileInfo         :651   | No active profile set, falling back to default profiles: default
+2020-03-03 11:49:17.699 | INFO  | amework.boot.StartupInfoLogger::logStarting                   :55    | Starting TestBoardApplication on DESKTOP-R7G672U with PID 840 (C:\Users\Admin\git\spring5\study05\target\classes started by Admin in C:\Users\Admin\git\spring5\study05)
+2020-03-03 11:49:17.702 | INFO  | amework.boot.SpringApplication::logStartupProfileInfo         :651   | No active profile set, falling back to default profiles: default
+2020-03-03 11:49:19.017 | INFO  | mbedded.tomcat.TomcatWebServer::initialize                    :92    | Tomcat initialized with port(s): 8080 (http)
+2020-03-03 11:49:19.025 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing ProtocolHandler ["http-nio-8080"]
+2020-03-03 11:49:19.026 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting service [Tomcat]
+2020-03-03 11:49:19.027 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-03-03 11:49:19.034 | INFO  | mbedded.tomcat.TomcatWebServer::initialize                    :92    | Tomcat initialized with port(s): 8080 (http)
+2020-03-03 11:49:19.044 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing ProtocolHandler ["http-nio-8080"]
+2020-03-03 11:49:19.045 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting service [Tomcat]
+2020-03-03 11:49:19.046 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-03-03 11:49:19.162 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing Spring embedded WebApplicationContext
+2020-03-03 11:49:19.162 | INFO  | letWebServerApplicationContext::prepareWebApplicationContext  :284   | Root WebApplicationContext: initialization completed in 1241 ms
+2020-03-03 11:49:19.171 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing Spring embedded WebApplicationContext
+2020-03-03 11:49:19.172 | INFO  | letWebServerApplicationContext::prepareWebApplicationContext  :284   | Root WebApplicationContext: initialization completed in 1240 ms
+2020-03-03 11:49:19.683 | INFO  | web.DefaultSecurityFilterChain::<init>                        :43    | Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@72eed547, org.springframework.security.web.context.SecurityContextPersistenceFilter@37d0d373, org.springframework.security.web.header.HeaderWriterFilter@5458c71e, org.springframework.security.web.authentication.logout.LogoutFilter@2774dcf4, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@6164e137, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@99c4993, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@632241f5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@69ffdaa8, org.springframework.security.web.session.SessionManagementFilter@b3857e2, org.springframework.security.web.access.ExceptionTranslationFilter@3f357c9d, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@42aa1324]
+2020-03-03 11:49:19.694 | INFO  | web.DefaultSecurityFilterChain::<init>                        :43    | Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6ce15112, org.springframework.security.web.context.SecurityContextPersistenceFilter@655203e3, org.springframework.security.web.header.HeaderWriterFilter@577bfadb, org.springframework.security.web.authentication.logout.LogoutFilter@54567b05, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@2353354a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@729cd862, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@100d0218, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@ba4f370, org.springframework.security.web.session.SessionManagementFilter@54f2df29, org.springframework.security.web.access.ExceptionTranslationFilter@632241f5, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7babed9e]
+2020-03-03 11:49:20.026 | INFO  | t.ExecutorConfigurationSupport::initialize                    :171   | Initializing ExecutorService 'taskScheduler'
+2020-03-03 11:49:20.077 | INFO  | t.ExecutorConfigurationSupport::initialize                    :171   | Initializing ExecutorService 'taskScheduler'
+2020-03-03 11:49:20.320 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting ProtocolHandler ["http-nio-8080"]
+2020-03-03 11:49:20.340 | INFO  | mbedded.tomcat.TomcatWebServer::start                         :204   | Tomcat started on port(s): 8080 (http) with context path ''
+2020-03-03 11:49:20.344 | INFO  | amework.boot.StartupInfoLogger::logStarted                    :61    | Started TestBoardApplication in 3.025 seconds (JVM running for 4.145)
+2020-03-03 11:49:20.345 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting ProtocolHandler ["http-nio-8080"]
+2020-03-03 11:49:20.359 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Pausing ProtocolHandler ["http-nio-8080"]
+2020-03-03 11:49:20.359 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Stopping service [Tomcat]
+2020-03-03 11:49:20.364 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Stopping ProtocolHandler ["http-nio-8080"]
+2020-03-03 11:49:20.364 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Destroying ProtocolHandler ["http-nio-8080"]
+2020-03-03 11:49:20.366 | INFO  | valuationReportLoggingListener::logMessage                    :136   | 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-03-03 11:49:20.370 | ERROR | LoggingFailureAnalysisReporter::report                        :40    | 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2020-03-03 11:49:20.372 | INFO  | t.ExecutorConfigurationSupport::shutdown                      :208   | Shutting down ExecutorService 'taskScheduler'
+2020-03-03 11:49:20.416 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-03 11:49:20.416 | INFO  | k.web.servlet.FrameworkServlet::initServletBean               :525   | Initializing Servlet 'dispatcherServlet'
+2020-03-03 11:49:20.422 | INFO  | k.web.servlet.FrameworkServlet::initServletBean               :547   | Completed initialization in 6 ms
+2020-03-03 11:49:20.569 | WARN  | ache.juli.logging.DirectJDKLog::log                           :173   | Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [118] milliseconds.
+2020-03-03 11:49:33.122 | INFO  | gistrar$SpringApplicationAdmin::shutdown                      :159   | Application shutdown requested.
+2020-03-03 11:49:33.128 | INFO  | t.ExecutorConfigurationSupport::shutdown                      :208   | Shutting down ExecutorService 'taskScheduler'
+2020-03-03 11:49:41.974 | INFO  | udy05.www.TestBoardApplication::main                          :16    | Start 인포
+2020-03-03 11:49:42.251 | INFO  | amework.boot.StartupInfoLogger::logStarting                   :55    | Starting TestBoardApplication on DESKTOP-R7G672U with PID 7496 (C:\Users\Admin\git\spring5\study05\target\classes started by Admin in C:\Users\Admin\git\spring5\study05)
+2020-03-03 11:49:42.251 | INFO  | amework.boot.SpringApplication::logStartupProfileInfo         :651   | No active profile set, falling back to default profiles: default
+2020-03-03 11:49:43.159 | INFO  | mbedded.tomcat.TomcatWebServer::initialize                    :92    | Tomcat initialized with port(s): 8080 (http)
+2020-03-03 11:49:43.174 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing ProtocolHandler ["http-nio-8080"]
+2020-03-03 11:49:43.174 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting service [Tomcat]
+2020-03-03 11:49:43.174 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-03-03 11:49:43.252 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing Spring embedded WebApplicationContext
+2020-03-03 11:49:43.267 | INFO  | letWebServerApplicationContext::prepareWebApplicationContext  :284   | Root WebApplicationContext: initialization completed in 874 ms
+2020-03-03 11:49:43.643 | INFO  | web.DefaultSecurityFilterChain::<init>                        :43    | Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6b09ce57, org.springframework.security.web.context.SecurityContextPersistenceFilter@53bb71e5, org.springframework.security.web.header.HeaderWriterFilter@7fc7152e, org.springframework.security.web.authentication.logout.LogoutFilter@29dcdd1c, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@2b9e69fb, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@15994b0b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3407aa4f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5c4f4330, org.springframework.security.web.session.SessionManagementFilter@6704df84, org.springframework.security.web.access.ExceptionTranslationFilter@74500e4f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3babcaed]
+2020-03-03 11:49:43.878 | INFO  | t.ExecutorConfigurationSupport::initialize                    :171   | Initializing ExecutorService 'taskScheduler'
+2020-03-03 11:49:44.081 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting ProtocolHandler ["http-nio-8080"]
+2020-03-03 11:49:44.112 | INFO  | mbedded.tomcat.TomcatWebServer::start                         :204   | Tomcat started on port(s): 8080 (http) with context path ''
+2020-03-03 11:49:44.112 | INFO  | amework.boot.StartupInfoLogger::logStarted                    :61    | Started TestBoardApplication in 2.102 seconds (JVM running for 3.067)
+2020-03-03 11:49:46.611 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-03 11:49:46.611 | INFO  | k.web.servlet.FrameworkServlet::initServletBean               :525   | Initializing Servlet 'dispatcherServlet'
+2020-03-03 11:49:46.618 | INFO  | k.web.servlet.FrameworkServlet::initServletBean               :547   | Completed initialization in 6 ms
+2020-03-03 11:49:49.864 | INFO  | zaxxer.hikari.HikariDataSource::getConnection                 :110   | HikariPool-1 - Starting...
+2020-03-03 11:49:49.941 | INFO  | zaxxer.hikari.HikariDataSource::getConnection                 :123   | HikariPool-1 - Start completed.
+2020-03-03 11:49:50.214 | WARN  | ache.juli.logging.DirectJDKLog::log                           :173   | Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [114] milliseconds.
+2020-03-03 11:49:50.244 | INFO  | ww.controller.MemberController::board                         :122   | welcome to board
+2020-03-03 11:49:53.981 | ERROR | ache.juli.logging.DirectJDKLog::log                           :175   | Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.IllegalArgumentException: Failed to evaluate expression 'isAuthenticated() and (#board.written == authentication.name or hasRole('ROLE_ADMIN'))'] with root cause
+org.springframework.expression.spel.SpelEvaluationException: EL1007E: Property or field 'written' cannot be found on null
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.readProperty(PropertyOrFieldReference.java:213) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.getValueInternal(PropertyOrFieldReference.java:104) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.access$000(PropertyOrFieldReference.java:51) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference$AccessorLValue.getValue(PropertyOrFieldReference.java:406) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.CompoundExpression.getValueInternal(CompoundExpression.java:92) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpEQ.getValueInternal(OpEQ.java:42) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpEQ.getValueInternal(OpEQ.java:32) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.SpelNodeImpl.getValue(SpelNodeImpl.java:188) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpOr.getBooleanValue(OpOr.java:56) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpOr.getValueInternal(OpOr.java:47) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpOr.getValueInternal(OpOr.java:37) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.SpelNodeImpl.getValue(SpelNodeImpl.java:188) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpAnd.getBooleanValue(OpAnd.java:57) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.OpAnd.getValueInternal(OpAnd.java:52) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.ast.SpelNodeImpl.getTypedValue(SpelNodeImpl.java:117) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.expression.spel.standard.SpelExpression.getValue(SpelExpression.java:308) ~[spring-expression-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.security.access.expression.ExpressionUtils.evaluateAsBoolean(ExpressionUtils.java:26) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.access.expression.method.ExpressionBasedPreInvocationAdvice.before(ExpressionBasedPreInvocationAdvice.java:59) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.access.prepost.PreInvocationAuthorizationAdviceVoter.vote(PreInvocationAuthorizationAdviceVoter.java:72) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.access.prepost.PreInvocationAuthorizationAdviceVoter.vote(PreInvocationAuthorizationAdviceVoter.java:40) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.access.vote.AffirmativeBased.decide(AffirmativeBased.java:63) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.access.intercept.AbstractSecurityInterceptor.beforeInvocation(AbstractSecurityInterceptor.java:233) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.access.intercept.aopalliance.MethodSecurityInterceptor.invoke(MethodSecurityInterceptor.java:65) ~[spring-security-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747) ~[spring-aop-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:689) ~[spring-aop-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at com.study05.www.controller.MemberController$$EnhancerBySpringCGLIB$$7bc41f34.bUpdate(<generated>) ~[classes/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:888) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:126) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:90) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:118) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:158) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:200) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:92) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:77) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:860) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1598) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) [?:?]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.30.jar:9.0.30]
+	at java.lang.Thread.run(Thread.java:834) [?:?]
+2020-03-03 11:50:13.947 | INFO  | gistrar$SpringApplicationAdmin::shutdown                      :159   | Application shutdown requested.
+2020-03-03 11:50:13.950 | INFO  | t.ExecutorConfigurationSupport::shutdown                      :208   | Shutting down ExecutorService 'taskScheduler'
+2020-03-03 11:50:13.951 | INFO  | zaxxer.hikari.HikariDataSource::close                         :350   | HikariPool-1 - Shutdown initiated...
+2020-03-03 11:50:13.951 | INFO  | zaxxer.hikari.HikariDataSource::close                         :352   | HikariPool-1 - Shutdown completed.
+2020-03-03 11:54:13.662 | INFO  | udy05.www.TestBoardApplication::main                          :16    | Start 인포
+2020-03-03 11:54:13.960 | INFO  | amework.boot.StartupInfoLogger::logStarting                   :55    | Starting TestBoardApplication on DESKTOP-R7G672U with PID 10968 (C:\Users\Admin\git\spring5\study05\target\classes started by Admin in C:\Users\Admin\git\spring5\study05)
+2020-03-03 11:54:13.960 | INFO  | amework.boot.SpringApplication::logStartupProfileInfo         :651   | No active profile set, falling back to default profiles: default
+2020-03-03 11:54:14.883 | INFO  | mbedded.tomcat.TomcatWebServer::initialize                    :92    | Tomcat initialized with port(s): 8080 (http)
+2020-03-03 11:54:14.883 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing ProtocolHandler ["http-nio-8080"]
+2020-03-03 11:54:14.883 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting service [Tomcat]
+2020-03-03 11:54:14.883 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-03-03 11:54:14.977 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing Spring embedded WebApplicationContext
+2020-03-03 11:54:14.980 | INFO  | letWebServerApplicationContext::prepareWebApplicationContext  :284   | Root WebApplicationContext: initialization completed in 891 ms
+2020-03-03 11:54:15.341 | INFO  | web.DefaultSecurityFilterChain::<init>                        :43    | Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@8ac12e6, org.springframework.security.web.context.SecurityContextPersistenceFilter@72eed547, org.springframework.security.web.header.HeaderWriterFilter@50778bde, org.springframework.security.web.authentication.logout.LogoutFilter@4cecc15a, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@54329480, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2a1e57c6, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6d421fe, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@40faff12, org.springframework.security.web.session.SessionManagementFilter@4af12a63, org.springframework.security.web.access.ExceptionTranslationFilter@2fac80a8, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@36b53f08]
+2020-03-03 11:54:15.590 | INFO  | t.ExecutorConfigurationSupport::initialize                    :171   | Initializing ExecutorService 'taskScheduler'
+2020-03-03 11:54:15.809 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting ProtocolHandler ["http-nio-8080"]
+2020-03-03 11:54:15.825 | INFO  | mbedded.tomcat.TomcatWebServer::start                         :204   | Tomcat started on port(s): 8080 (http) with context path ''
+2020-03-03 11:54:15.825 | INFO  | amework.boot.StartupInfoLogger::logStarted                    :61    | Started TestBoardApplication in 2.11 seconds (JVM running for 3.067)
+2020-03-03 11:54:18.693 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-03 11:54:18.693 | INFO  | k.web.servlet.FrameworkServlet::initServletBean               :525   | Initializing Servlet 'dispatcherServlet'
+2020-03-03 11:54:18.700 | INFO  | k.web.servlet.FrameworkServlet::initServletBean               :547   | Completed initialization in 7 ms
+2020-03-03 11:54:18.842 | WARN  | ache.juli.logging.DirectJDKLog::log                           :173   | Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [115] milliseconds.
+2020-03-03 11:54:22.023 | INFO  | zaxxer.hikari.HikariDataSource::getConnection                 :110   | HikariPool-1 - Starting...
+2020-03-03 11:54:22.114 | INFO  | zaxxer.hikari.HikariDataSource::getConnection                 :123   | HikariPool-1 - Start completed.
+2020-03-03 11:54:25.355 | INFO  | ww.controller.MemberController::board                         :120   | welcome to board
+2020-03-03 11:54:41.926 | INFO  | ww.controller.MemberController::board                         :120   | welcome to board
+2020-03-03 11:54:49.063 | INFO  | ww.controller.MemberController::board                         :120   | welcome to board
+2020-03-03 11:55:00.439 | INFO  | ww.controller.MemberController::board                         :120   | welcome to board
+2020-03-03 11:55:56.068 | INFO  | ww.controller.MemberController::board                         :120   | welcome to board
+2020-03-03 11:56:20.546 | INFO  | gistrar$SpringApplicationAdmin::shutdown                      :159   | Application shutdown requested.
+2020-03-03 11:56:20.559 | INFO  | t.ExecutorConfigurationSupport::shutdown                      :208   | Shutting down ExecutorService 'taskScheduler'
+2020-03-03 11:56:20.560 | INFO  | zaxxer.hikari.HikariDataSource::close                         :350   | HikariPool-1 - Shutdown initiated...
+2020-03-03 11:56:20.560 | INFO  | zaxxer.hikari.HikariDataSource::close                         :352   | HikariPool-1 - Shutdown completed.
+2020-03-03 11:56:30.163 | INFO  | udy05.www.TestBoardApplication::main                          :16    | Start 인포
+2020-03-03 11:56:30.459 | INFO  | amework.boot.StartupInfoLogger::logStarting                   :55    | Starting TestBoardApplication on DESKTOP-R7G672U with PID 6124 (C:\Users\Admin\git\spring5\study05\target\classes started by Admin in C:\Users\Admin\git\spring5\study05)
+2020-03-03 11:56:30.461 | INFO  | amework.boot.SpringApplication::logStartupProfileInfo         :651   | No active profile set, falling back to default profiles: default
+2020-03-03 11:56:31.471 | INFO  | mbedded.tomcat.TomcatWebServer::initialize                    :92    | Tomcat initialized with port(s): 8080 (http)
+2020-03-03 11:56:31.478 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing ProtocolHandler ["http-nio-8080"]
+2020-03-03 11:56:31.478 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting service [Tomcat]
+2020-03-03 11:56:31.479 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-03-03 11:56:31.568 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing Spring embedded WebApplicationContext
+2020-03-03 11:56:31.569 | INFO  | letWebServerApplicationContext::prepareWebApplicationContext  :284   | Root WebApplicationContext: initialization completed in 965 ms
+2020-03-03 11:56:31.939 | INFO  | web.DefaultSecurityFilterChain::<init>                        :43    | Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@23b71d24, org.springframework.security.web.context.SecurityContextPersistenceFilter@2296127, org.springframework.security.web.header.HeaderWriterFilter@2b2a4332, org.springframework.security.web.authentication.logout.LogoutFilter@5be51aa, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@632241f5, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1d283d1, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4d0e1a9a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@568f4faa, org.springframework.security.web.session.SessionManagementFilter@4cb24e2, org.springframework.security.web.access.ExceptionTranslationFilter@1152900, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@57e4b86c]
+2020-03-03 11:56:32.204 | INFO  | t.ExecutorConfigurationSupport::initialize                    :171   | Initializing ExecutorService 'taskScheduler'
+2020-03-03 11:56:32.431 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting ProtocolHandler ["http-nio-8080"]
+2020-03-03 11:56:32.450 | INFO  | mbedded.tomcat.TomcatWebServer::start                         :204   | Tomcat started on port(s): 8080 (http) with context path ''
+2020-03-03 11:56:32.452 | INFO  | amework.boot.StartupInfoLogger::logStarted                    :61    | Started TestBoardApplication in 2.24 seconds (JVM running for 3.218)
+2020-03-03 11:56:32.491 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-03 11:56:32.491 | INFO  | k.web.servlet.FrameworkServlet::initServletBean               :525   | Initializing Servlet 'dispatcherServlet'
+2020-03-03 11:56:32.498 | INFO  | k.web.servlet.FrameworkServlet::initServletBean               :547   | Completed initialization in 6 ms
+2020-03-03 11:56:32.640 | WARN  | ache.juli.logging.DirectJDKLog::log                           :173   | Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [114] milliseconds.
+2020-03-03 11:56:37.185 | INFO  | zaxxer.hikari.HikariDataSource::getConnection                 :110   | HikariPool-1 - Starting...
+2020-03-03 11:56:37.275 | INFO  | zaxxer.hikari.HikariDataSource::getConnection                 :123   | HikariPool-1 - Start completed.
+2020-03-03 11:56:37.442 | INFO  | ww.controller.MemberController::board                         :120   | welcome to board
+2020-03-03 11:56:46.904 | INFO  | ww.controller.MemberController::board                         :120   | welcome to board
+2020-03-03 11:56:50.831 | INFO  | ww.controller.MemberController::board                         :120   | welcome to board
+2020-03-03 11:56:57.764 | INFO  | gistrar$SpringApplicationAdmin::shutdown                      :159   | Application shutdown requested.
+2020-03-03 11:56:57.773 | INFO  | t.ExecutorConfigurationSupport::shutdown                      :208   | Shutting down ExecutorService 'taskScheduler'
+2020-03-03 11:56:57.774 | INFO  | zaxxer.hikari.HikariDataSource::close                         :350   | HikariPool-1 - Shutdown initiated...
+2020-03-03 11:56:57.774 | INFO  | zaxxer.hikari.HikariDataSource::close                         :352   | HikariPool-1 - Shutdown completed.

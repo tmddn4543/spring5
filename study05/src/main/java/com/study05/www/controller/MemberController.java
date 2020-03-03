@@ -84,6 +84,8 @@ public class MemberController {
 		bService.setInsert(param);
 	}
 	
+	
+	@PreAuthorize("isAuthenticated() and (#written == authentication.name or hasRole('ROLE_ADMIN'))")
 	@Secured({"ROLE_USER", "ROLE_ADMIN"})
 	@RequestMapping(value="/bUpdate",method= {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
@@ -91,6 +93,7 @@ public class MemberController {
 			@RequestParam(value="seq", required=false, defaultValue="")String seq,
 			@RequestParam(value="title", required=false, defaultValue="")String title,
 			@RequestParam(value="contents", required=false, defaultValue="")String contents,
+			@RequestParam(value="written", required=false, defaultValue="")String written,
 			Authentication authentication) {
 		HashMap<String, Object> param = new HashMap<>();
 		param.put("seq", seq);
@@ -142,7 +145,6 @@ public class MemberController {
     }
 	
 	
-	@PostAuthorize("isAuthenticated() and (returnObject.written == authentication.name or hasRole('ROLE_ADMIN'))")
 	@Secured({"ROLE_USER", "ROLE_ADMIN"})
     @RequestMapping(value = "/bView", method= {RequestMethod.GET, RequestMethod.POST})
     public @ResponseBody Board boardView(

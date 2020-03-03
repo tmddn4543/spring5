@@ -9,6 +9,7 @@
     <Script>
 	    $(document).ready(function(){
 	    	var seq="";
+	    	var written = "";
 	    	$("#modal_submit").click(function(){
 	    		if($("#myModalLabel").html()=="수정"){
 	    			var title = $('#title').val();
@@ -16,7 +17,7 @@
 	    			$.ajax({
 						type : "POST",
 						url : "/bd/bUpdate",
-						data : { seq: seq , title : title, contents : contents},
+						data : { seq: seq , title : title, contents : contents, written : written},
 						success : function(data) {
 							$('#title').val("");
 							$('#contents').val("");
@@ -26,7 +27,7 @@
 						error : function() {
 							$('#title').val("");
 							$('#contents').val("");
-							$('#myModalLabel').modal("hide");
+							$('#change_modal').modal("hide");
 							alert("알수없는 오류가 발생하였습니다.");
 						},
 						complete : function() {
@@ -88,6 +89,7 @@
 						success : function(data) {
 							$('#title').val(data.title);
 							$('#contents').val(data.contents);
+							written = data.written;
 						},
 						error : function() {
 							$('#title').val("");
