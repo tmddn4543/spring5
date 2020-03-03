@@ -1,5 +1,6 @@
 package com.study05.www.controller;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,6 +10,8 @@ import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.core.Appender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -112,7 +115,6 @@ public class MemberController {
     		@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage,
     		Authentication authentication) {
 		my_logger.info("welcome to board");
-		board_log.info(authentication.getName() + " : " + "select seq, title, regdate, written, mod_regdate from board");
 		HashMap<String, Object> param = new HashMap<String, Object>();
 		List<Board> list = new ArrayList<Board>();
 		param.put("user_log", authentication.getName());
@@ -120,6 +122,7 @@ public class MemberController {
 		param.put("contents", search_contents);
 		param.put("pageSize", pageSize);
 		param.put("startRow", (currentPage - 1) * pageSize);
+		board_log.info(authentication.getName() + " : " + param.toString());
 		list = bService.getList(param);
 		int total = bService.getListCount(param);
 		
@@ -138,6 +141,8 @@ public class MemberController {
         return "utime/board";
     }
 	
+	
+	@PostAuthorize("isAuthenticated() and (returnObject.written == authentication.name or hasRole('ROLE_ADMIN'))")
 	@Secured({"ROLE_USER", "ROLE_ADMIN"})
     @RequestMapping(value = "/bView", method= {RequestMethod.GET, RequestMethod.POST})
     public @ResponseBody Board boardView(
@@ -149,9 +154,7 @@ public class MemberController {
 		param.put("seq", seq);
 		param.put("written", authentication.getName());
 		Board board = new Board();
-		
 		board = bService.getView(param);
-		
         return board;
     }
 	
@@ -170,7 +173,6 @@ public class MemberController {
     		@RequestParam(value="search_onoff", required=false, defaultValue="") String search_onoff
     		,Authentication authentication) {
 		my_logger.info("welcome to notice");
-		notice_log.info(authentication.getName() + " : " + "select seq, title, contents, onoff, regdate, mod_regdate, written from notice");
 		Session member = (Session) authentication.getDetails();
 		HashMap<String, Object> param = new HashMap<String, Object>();
 		param.put("title", search_title);
@@ -193,6 +195,7 @@ public class MemberController {
 				5, 
 				"searchFrm", 
 				"");
+		notice_log.info(authentication.getName() + " : " + param.toString());
 		model.addAttribute("onoffs", onoffs.getList());
 		model.addAttribute("List", list);
 		model.addAttribute("search_title", search_title);
@@ -284,12 +287,12 @@ public class MemberController {
     		@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage,
     		Authentication authentication) {
 		my_logger.info("welcome to member");
-		member_log.info(authentication.getName() + " : " + "select seq ,id, pwd, level,name from member");
 		HashMap<String, Object> param = new HashMap<String, Object>();
 		param.put("id", search_id);
 		param.put("level", search_level);
 		param.put("pageSize", pageSize);
 		param.put("startRow", (currentPage - 1) * pageSize);
+		member_log.info(authentication.getName() + " : " +param.toString());
 		List<Member> list = new ArrayList<Member>();
 		
 		list = mService.getList(param);

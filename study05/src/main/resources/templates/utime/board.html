@@ -24,6 +24,9 @@
 							location.href="/bd/board";
 						},
 						error : function() {
+							$('#title').val("");
+							$('#contents').val("");
+							$('#myModalLabel').modal("hide");
 							alert("알수없는 오류가 발생하였습니다.");
 						},
 						complete : function() {
@@ -87,10 +90,12 @@
 							$('#contents').val(data.contents);
 						},
 						error : function() {
+							$('#title').val("");
+							$('#contents').val("");
+							$('#change_modal').modal("hide");
 							alert("알수없는 오류가 발생하였습니다.");
 						},
 						complete : function() {
-							
 						}
 					});
 				}
@@ -202,15 +207,19 @@
 	                </thead>
 	                <tbody>
 	                    <tr th:each="list,idx : ${List}">
-	                    	<td style="text-align:center;"><input name="delId" type="checkbox" th:attr="value=${list.seq}" th:if="${list.written} eq${#authentication.principal} or ${#authentication.details.level} eq'0'"></td>
+	                    	<td style="text-align:center;"><input name="delId" type="checkbox" th:attr="value=${list.seq}"></td>
 	                        <td style="text-align:center;" th:text="${maxnumber - idx.index}"></td>
 	                        <td style="text-align:center;" th:text="${T(utils.Utils).titleFormat(list.title)}"></td>
 	                        <td style="text-align:center;" th:text="${T(utils.Utils).format(list.regdate)}"></td> 
 	                        <td style="text-align:center;" th:text="${T(utils.Utils).format(list.mod_regdate)}"></td>
 	                        <td style="text-align:center;">
-	                            <button type="button" data-toggle="modal" data-target="#change_modal" th:attr="data-seq=${list.seq}" value="edit" th:if="${list.written} eq${#authentication.principal} or ${#authentication.details.level} eq'0'">수정</button>
-	                            <button type="button" th:if="${list.written} eq${#authentication.principal} or ${#authentication.details.level} eq'0'" th:onclick="doDelete([[${list.seq}]])">삭제</button>
+	                        	<button type="button" data-toggle="modal" data-target="#change_modal" th:attr="data-seq=${list.seq}" value="edit">수정</button>
+	                        	<button type="button" th:onclick="doDelete([[${list.seq}]])">삭제</button>
 	                        </td>
+<!-- 	                        <td style="text-align:center;"> -->
+<!-- 	                            <button type="button" data-toggle="modal" data-target="#change_modal" th:attr="data-seq=${list.seq}" value="edit" th:if="${list.written} eq${#authentication.principal} or ${#authentication.details.level} eq'0'">수정</button> -->
+<!-- 	                            <button type="button" th:if="${list.written} eq${#authentication.principal} or ${#authentication.details.level} eq'0'" th:onclick="doDelete([[${list.seq}]])">삭제</button> -->
+<!-- 	                        </td> -->
 	                    </tr>
 	                </tbody>
 	            </table>

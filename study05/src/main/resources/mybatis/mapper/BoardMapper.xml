@@ -56,7 +56,7 @@
 		<result property="contents" column="contents"/>
 	</resultMap>
 	<select id="getView" resultMap="getViewMap" parameterType="hashmap">
-		select title, contents
+		select title, contents, written
 		from board
 		<include refid="where" />
 	</select>

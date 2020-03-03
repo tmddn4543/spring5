@@ -1,0 +1,4 @@
+2020-03-03 11:19:32.911 | INFO  | gistrar$SpringApplicationAdmin::shutdown                      :159   | Application shutdown requested.
+2020-03-03 11:19:32.921 | INFO  | t.ExecutorConfigurationSupport::shutdown                      :208   | Shutting down ExecutorService 'taskScheduler'
+2020-03-03 11:19:32.923 | INFO  | zaxxer.hikari.HikariDataSource::close                         :350   | HikariPool-1 - Shutdown initiated...
+2020-03-03 11:19:32.929 | INFO  | zaxxer.hikari.HikariDataSource::close                         :352   | HikariPool-1 - Shutdown completed.
