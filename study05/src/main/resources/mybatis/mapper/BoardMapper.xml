@@ -54,6 +54,7 @@
 	<resultMap type="board" id="getViewMap" >
 		<result property="title" column="title"/>
 		<result property="contents" column="contents"/>
+		<result property="written" column="written"/>
 	</resultMap>
 	<select id="getView" resultMap="getViewMap" parameterType="hashmap">
 		select title, contents, written

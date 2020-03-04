@@ -14,6 +14,8 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.study05.www.serviceImpl.BoardService;
+
 @Configuration
 @MapperScan(basePackages = "com.study05.www")
 @EnableTransactionManagement
@@ -40,4 +42,5 @@ public class DatabaseConfig {
 		final SqlSessionTemplate sqlSessionTemplate = new SqlSessionTemplate(sqlSessionFactory);
 		return sqlSessionTemplate;
 	}
+	
 }

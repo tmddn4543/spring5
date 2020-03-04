@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.study05.www.model.Board;
 import com.study05.www.model.Member;
@@ -50,6 +51,8 @@ public class MemberController {
 	private static Logger member_log = LogManager.getLogger("member_log");
 	
 	
+	
+	
 	@Secured({"ROLE_USER", "ROLE_ADMIN"})
     @RequestMapping(value = "/bDelete", method= {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
@@ -81,7 +84,7 @@ public class MemberController {
 	}
 	
 	
-	@PreAuthorize("#auth.isMyWritten(#written) or hasRole('ROLE_ADMIN')")
+	@PreAuthorize("#auth.isMyWritten(#seq) or hasRole('ROLE_ADMIN')")
 	@Secured({"ROLE_USER", "ROLE_ADMIN"})
 	@RequestMapping(value="/bUpdate",method= {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
@@ -150,7 +153,6 @@ public class MemberController {
     		) {
 		HashMap<String, Object> param = new HashMap<String, Object>();
 		param.put("seq", seq);
-		param.put("written", authentication.getName());
 		Board board = new Board();
 		board = bService.getView(param);
         return board;
