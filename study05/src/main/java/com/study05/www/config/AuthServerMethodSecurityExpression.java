@@ -27,10 +27,10 @@ public class AuthServerMethodSecurityExpression {
 		param.put("seq", seq);
 		Board board = bService.getView(param);
 		String written = board.getWritten();
-		if(!name.equals(written)) {
-			return false;
-		}else {
+		if(name.equals(written)) {
 			return true;
+		}else {
+			return false;
 		}
 	}
 }
