@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<meta charset="utf-8">
+<div class="header" th:fragment="headerFragment">
+
+<nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element">
+                        <span>
+                            <img alt="image" class="img-circle" src="/resource/assets/img/admin.png" />
+                        </span>
+                        <a href="#">
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">admintest</strong>
+                             </span> <span class="text-muted text-xs block">admin </span> </span> </a>
+                        
+                    </div>
+                    <div class="logo-element">
+                        <img alt="image" class="img-circle" src="/resource/assets/img/admin.png" />
+                    </div>
+                </li>
+                <li class="active page_open">
+                    <a href="/resource/index/index.html" ><i class="fa fa-search" aria-hidden="true"></i> <span class="nav-label">검색/청취</span></a>
+                </li>
+                <li>
+                    <a href="/resource/index/user_admin.html"><i class="fa fa-user" aria-hidden="true"></i> <span class="nav-label">사용자관리</span></a>
+                </li>
+                <li>
+                    <a href="/resource/index/access_log.html"><i class="fa fa-file-text-o" aria-hidden="true"></i> <span class="nav-label">접속로그</span></a>
+                </li>
+                <li>
+                    <a href="/resource/index/monitoring.html"><i class="fa fa-desktop" aria-hidden="true"></i> <span class="nav-label">모니터링</span></a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">통계</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/resource/statistics/month_group.html">월별(그룹)</a></li>
+                        <li><a href="/resource/statistics/day_group.html">일별(그룹)</a></li>
+                        <li><a href="../statistics/time_group.html">시간대별(그룹)</a></li>
+                        <li class="divider"></li>
+                        <li><a href="../statistics/month_user.html">월별(사용자)</a></li>
+                        <li><a href="../statistics/day_user.html">일별(사용자)</a></li>
+                        <li><a href="../statistics/time_user.html">시간대별(사용자)</a></li>
+                    </ul>
+                </li>
+               
+            </ul>
+
+        </div>
+    </nav>
+    
+</div>
+</html>

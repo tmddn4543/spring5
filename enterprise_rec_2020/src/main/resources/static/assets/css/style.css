@@ -1,0 +1,230 @@
+@charset "utf-8";
+
+body{
+	background-color: #353535;
+}
+.nav > li.active {
+border-left: 4px solid #34AADC;
+background: #474747;
+}
+.navbar-default .nav > li > a:hover, .navbar-default .nav > li > a:focus{
+	background-color: #474747;
+}
+header{
+	background-color: #34AADC;
+}
+header h1{
+	margin: 0;
+}
+header h1 img{
+max-width: 100%;
+max-height: 100%;
+}
+
+header h1 a.navbar-brand{
+padding: 0px;
+
+margin-top: 10px;
+
+margin-bottom: 10px;
+}
+header .navbar-right{
+	margin-top: 10px;
+}
+.side_menu{
+	float: left;
+height: calc(100vh - 70px)
+}
+.wrapper{
+}
+.side_menu > ul > li:hover{
+background-color: #ddd;
+}
+.side_menu > ul > li > a{
+line-height: 45px;
+
+display: block;
+
+border-bottom: 1px solid #e1e1e1;
+
+padding: 0px 20px;
+
+color: #555;
+}
+.side_menu > ul > li > ul {
+	background-color: #e1e1e1;
+}
+.side_menu > ul > li > ul li a{
+	border-bottom: 1px solid #d5d5d5;
+	display: block;
+	line-height: 40px;
+	padding: 0px 30px;
+	color: #777;
+}
+a:focus, a:hover{
+text-decoration: unset;
+outline: unset;
+}
+
+.wrapper label{
+	text-align: right;
+	line-height: 32px;
+	margin: 0;
+}
+.bottom_line{
+	border-top: 1px dashed #e7eaec;
+color: #ffffff;
+background-color: #ffffff;
+height: 1px;
+margin: 0px 0 5px;
+}
+.wrapper input{
+	height: 32px;
+}
+
+.wrapper button{
+	height: 32px;
+}
+
+.jqx-dropdownlist-content{
+	margin: 0 !important;
+	line-height: 32px;
+}
+.wrapper .form-group{
+	display: inline-block;
+	width: 100%;
+	margin: 5px 0px;
+}
+#jqxcalendar input{
+	padding: 0 3px !important;
+}
+
+
+.wrapper .form-control{
+ height: 32px;
+ border-radius: 4px;
+}
+
+.form-group .col-md-8 .col-md-5{
+	padding: 0;
+}
+.form-group .col-md-4 > .col-md-4{
+ text-align: left;
+}
+.form-group .col-md-8 .col-md-2{
+line-height: 32px;
+text-align: center;
+}
+.btn_group{
+	text-align: center;
+}
+
+.list_table .container{
+overflow: auto;
+width: auto;
+}
+.jqx-grid-cell-left-align{
+	text-align: center;
+	margin: 0 !important;
+	line-height: 32px;
+}
+.jqx-grid-column-header > div > div{
+	text-align: center !important;
+}
+
+.navbar-fixed-top, .navbar-static-top{
+background-color: #34aadc;
+}
+.disk{
+background-color: #0B8CC6;
+border-radius: 50px;
+line-height: 30px;
+margin-top: 15px;
+margin-bottom: 15px;
+color: #fff;
+text-align: center;
+
+}
+.disk span{
+	color: #111;
+	font-weight: bold;
+}
+.navbar-form-custom{
+	margin-left: 15px;
+}
+#side-menu > li > a{
+	border-bottom: 1px solid #444;
+}
+
+.nav-header{
+	padding: 20px 25px;
+}
+
+.nav.navbar-right > li > a{
+	color: #fff;
+}
+.nav.navbar-top-links > li > a:hover, .nav.navbar-top-links > li > a:focus{
+	color: #ddd;
+}
+
+#side-menu > li.page_open::after{
+content: ".";
+
+background-color: #eee;
+position: absolute;
+top: 45%;
+right: -3px;
+color: #eee;
+width: 15px;
+transform: rotate( 45deg ) translateY(-50%);
+height: 15px;
+}
+
+.ibox-title h2{
+	margin: 0px;
+	display: table;
+}
+.ibox-title h2 img{
+	max-height: 38px;
+	display: table-cell;
+}
+.ibox-title h2 span{
+font-size: 21px;
+display: table-cell;
+vertical-align: bottom;
+padding-bottom: 5px;
+padding-left: 5px;
+}
+.ibox-title{
+padding: 14px 32px 14px;	
+}
+.title_wrap{
+display: inline-block;
+}
+.ibox-title button{
+float: right;
+height: 38px;
+}
+
+.popover{
+max-width: 100%;
+z-index: 111111;
+margin-left: 48px;
+margin-right: 48px;
+right: 0;
+left: 0 !important;
+}
+.popover.bottom{
+	margin-top: 17px;
+}
+.input-group-btn button{
+height: 32px;
+}
+
+.ibox-title .popover-content button{
+	height: 32px;
+}
+
+.ibox-title .popover-content button{
+	float: unset;
+}
