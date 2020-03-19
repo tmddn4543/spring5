@@ -3,9 +3,10 @@
 	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <meta charset="utf-8">
 <div class="navbar" th:fragment="navbarFragment">
-<nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0" >
+	<nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
                 <div class="navbar-header">
-                    <div class="navbar-form-custom">
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+                    <div role="search" class="navbar-form-custom" action="search_results.html">
                         <div class="disk">
                             HDD REC #1 <span>356G [USE:2%]</span>
                         </div>
@@ -14,11 +15,11 @@
                 <ul class="nav navbar-top-links navbar-right">
                  
                     <li>
-                        <a href="../login/login.html">
+                        <a href="login.html">
                             <i class="fa fa-sign-out"></i> 로그아웃
                         </a>
                     </li>
                 </ul>
-            </nav>
+	</nav>
 </div>
 </html>

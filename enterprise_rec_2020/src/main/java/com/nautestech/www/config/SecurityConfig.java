@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -21,18 +22,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     AuthSuccessHandler authSuccessHandler;
     
+    
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth
-			.inMemoryAuthentication()
-				.withUser("param1").password("param2").roles("USER", "ADMIN");
+		auth.authenticationProvider(authProvider);
 	}
  
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-   		.antMatchers("/resource/**").permitAll()
-   		.antMatchers("/**").permitAll()// 모든걸다 허용한다
+	   		.antMatchers("/resource/**").permitAll()
+	   		.antMatchers("/admin/**").hasAnyRole("ADMIN","SMSUSER","LISTENUSER","GROUPADMIN","OPERATIONADMIN")
+	   		.antMatchers("/**").permitAll()
 	   		.anyRequest().authenticated()
 		.and()
 			.formLogin()
@@ -47,7 +49,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.logoutSuccessUrl("/")
 			.invalidateHttpSession(true)
 		.and()
-			.csrf().disable()
-			.authenticationProvider(authProvider);
+			.csrf().disable();
 	}
+	
+	
+	
+	
 }

@@ -6,16 +6,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Enterprise_Rec_2020</title>
 	<link th:href="@{/resource/assets/css/reset.css}" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" th:href="@{/resource/assets/css/bootstrap.min.css}">
 	<link th:href="@{/resource/assets/font-awesome/css/font-awesome.css}" rel="stylesheet">
-
-    <link th:href="@{/resource/assets/css/animate.css}" rel="stylesheet">
-    <link th:href="@{/resource/assets/css/style.css}" rel="stylesheet">
-    
+<!--     <link th:href="@{/resource/assets/css/style.css}" rel="stylesheet"> -->
+	<link rel="stylesheet" type="text/css" th:href="@{/resource/assets/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/resource/assets/css/sideMenu_style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/resource/assets/css/animate.css}">
     <script th:src="@{/resource/assets/js/jquery-2.1.1.js}"></script>
     <script th:src="@{/resource/assets/js/bootstrap.min.js}"></script>
+    <script th:src="@{/resource/assets/js/inspinia.js}"></script>
+    <script th:src="@{/resource/assets/js/plugins/pace/pace.min.js}"></script>
+    <script th:src="@{/resource/assets/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
+    <script th:src="@{/resource/assets/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
+    
+    <script type="text/javascript" th:src="@{/resource/assets/js/popover.js}"></script>
+    
+    <link rel="stylesheet" th:href="@{/resource/assets/jqwidgets/styles/jqx.base.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/resource/assets/jqwidgets/styles/jqx.bootstrap.css}" type="text/css" />
+    <link rel="stylesheet" type="text/css" th:href="@{/resource/assets/jqwidgets/styles/jqx.material.css}">
+    
 </head>
 <header th:replace="fragments/header :: headerFragment"></header>
 <div layout:fragment="content"></div>
-<footer></footer>
 </html>

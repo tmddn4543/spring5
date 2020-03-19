@@ -1,6 +1,5 @@
 package com.nautestech.www.config;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -10,16 +9,18 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import com.nautestech.www.model.Constant;
+import com.nautestech.www.model.Session;
+import com.nautestech.www.serviceImpl.UsersDetailsService;
 
 @Component("authProvider")
 public class AuthProvider implements AuthenticationProvider {
-//	@Autowired
-//	MemberService mService;
+
+	@Autowired
+	UsersDetailsService uService;
 	
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
@@ -27,18 +28,18 @@ public class AuthProvider implements AuthenticationProvider {
         String password = authentication.getCredentials().toString();
         HashMap<String, Object> map = new HashMap<String, Object>();
         map.put("param1", id);
-        //Member user = mService.getView(map);
+         
+        Session users = (Session) uService.loadUserByUsername(id);
         
-//        if (null == user || !user.getPwd().equals(password)) {
-//        	throw new UsernameNotFoundException("USER NOT FOUND OR NOT MATCH PASSWORD");
-//        }
-        
-        List<GrantedAuthority> grantedAuthorityList = new ArrayList<>();
-        
-        // 로그인한 계정에게 권한 부여 등급이 없으니 ADMIN 권한부여
-        grantedAuthorityList.add(new SimpleGrantedAuthority(Constant.ROLE_TYPE.ROLE_ADMIN.toString()));
-        
-        return new UsernamePasswordAuthenticationToken(authentication.getPrincipal(), password, grantedAuthorityList);
+//        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//		
+//        if (!passwordEncoder.matches(authentication.getCredentials().toString(), users.getPassword())) {
+//			throw new UsernameNotFoundException("USER NOT FOUND OR NOT MATCH PASSWORD");
+//		}
+        UsernamePasswordAuthenticationToken result = new UsernamePasswordAuthenticationToken(authentication.getPrincipal(), users.getPassword(), users.getAuthorities());
+		result.setDetails(users);
+		System.out.println(result.getDetails());
+		return result;
 	}
 
 

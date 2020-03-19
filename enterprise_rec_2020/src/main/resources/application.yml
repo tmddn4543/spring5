@@ -8,6 +8,6 @@ spring:
   datasource:
     hikari:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      jdbc-url: jdbc:mysql://192.168.2.87:3306/test_board?serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8
+      jdbc-url: jdbc:mysql://localhost:3307/web_recording?serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8
       username: root
       password: root

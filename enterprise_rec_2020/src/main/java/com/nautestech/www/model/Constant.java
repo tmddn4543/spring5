@@ -18,6 +18,14 @@ public enum Constant {
 	public static final int LOGOUT_TIME = 1000 * 60 * 20;
 
 	public static enum ROLE_TYPE {
-		ROLE_USER, ROLE_ADMIN, ROLE_GUEST
+		ROLE_USER,
+		ROLE_ADMIN,
+		ROLE_SMSUSER,
+		ROLE_LISTENUSER,
+		ROLE_ENDUSER,
+		ROLE_GROUPADMIN,
+		ROLE_OPERATIONADMIN,
+		ROLE_BRANCH,
+		ROLE_RECTYPE
 	};
 }

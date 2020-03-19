@@ -13,7 +13,8 @@
 	</settings>
   
 	<typeAliases>
-<!-- 		<typeAlias alias="board" type="com.study05.www.model.Board"/> -->
+		<typeAlias alias="users" type="com.nautestech.www.model.Users"/>
+		<typeAlias alias="call" type="com.nautestech.www.model.Call"/>
 	</typeAliases>
 
 </configuration>

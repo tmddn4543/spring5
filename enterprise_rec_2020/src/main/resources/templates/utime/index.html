@@ -7,211 +7,40 @@
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Recording</title>
-    <link rel="stylesheet" href="/resource/assets/jqwidgets/styles/jqx.bootstrap.css" type="text/css" />
 
-    <link rel="stylesheet" type="text/css" href="/resource/assets/css/sideMenu_style.css">
-    <link rel="stylesheet" type="text/css" href="/resource/assets/css/animate.css">
+    <!-- option -->
+    <link rel="stylesheet" type="text/css" th:href="@{/resource/assets/css/style.css}">
 
-
-    <script src="/resource/assets/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="/resource/assets/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-
-    <!-- Custom and plugin javascript -->
-    <script src="/resource/assets/js/inspinia.js"></script>
-    <script src="/resource/assets/js/plugins/pace/pace.min.js"></script>
-
-
-    <!-- jqxDateTimeInput -->
-    <link rel="stylesheet" href="/resource/assets/jqwidgets/styles/jqx.base.css" type="text/css" />
-
-    <script type="text/javascript" src="/resource/assets/jqwidgets/jqxcore.js"></script>
-    <script type="text/javascript" src="/resource/assets/jqwidgets/jqxdatetimeinput.js"></script>
-    <script type="text/javascript" src="/resource/assets/jqwidgets/jqxcalendar.js"></script>
-    <script type="text/javascript" src="/resource/assets/jqwidgets/jqxtooltip.js"></script>
-    <script type="text/javascript" src="/resource/assets/jqwidgets/globalization/globalize.js"></script>
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxcore.js}"></script>
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxdatetimeinput.js}"></script>
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxcalendar.js}"></script>
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxtooltip.js}"></script>
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/globalization/globalize.js}"></script>
 
     <!-- DropDownList -->
 
-    <script type="text/javascript" src="/resource/assets/jqwidgets/jqxbuttons.js"></script>
-    <script type="text/javascript" src="/resource/assets/jqwidgets/jqxscrollbar.js"></script>
-    <script type="text/javascript" src="/resource/assets/jqwidgets/jqxlistbox.js"></script>
-    <script type="text/javascript" src="/resource/assets/jqwidgets/jqxdropdownlist.js"></script>
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxbuttons.js}"></script>
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxscrollbar.js}"></script>
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxlistbox.js}"></script>
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxdropdownlist.js}"></script>
 
     <!-- Grid -->
 
-    <script type="text/javascript" src="/resource/assets/jqwidgets/jqxdata.js"></script> 
-    <script type="text/javascript" src="/resource/assets/jqwidgets/jqxmenu.js"></script>
-    <script type="text/javascript" src="/resource/assets/jqwidgets/jqxgrid.js"></script>
-    <script type="text/javascript" src="/resource/assets/jqwidgets/jqxgrid.sort.js"></script> 
-    <script type="text/javascript" src="/resource/assets/jqwidgets/jqxgrid.pager.js"></script> 
-    <script type="text/javascript" src="/resource/assets/jqwidgets/jqxgrid.columnsresize.js"></script> 
-    <script type="text/javascript" src="/resource/assets/jqwidgets/jqxgrid.selection.js"></script> 
-    <script type="text/javascript" src="/resource/assets/jqwidgets/generatedata.js"></script>
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxdata.js}"></script> 
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxmenu.js}"></script>
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxgrid.js}"></script>
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxgrid.sort.js}"></script> 
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxgrid.pager.js}"></script> 
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxgrid.columnsresize.js}"></script> 
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxgrid.selection.js}"></script> 
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/generatedata.js}"></script>
+ 	<script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxpanel.js}"></script>
+
+    <script type="text/javascript" th:src="@{/resource/assets/js/grid_search.js}"></script>
+	<script type="text/javascript" th:src="@{/resource/assets/js/format.js}"></script>
 
 
-    <script type="text/javascript">
-        $(document).ready(function () {                
-            var source = [
-                "전체",
-                "admin",
-                "user"
-            ];
-            // Create a jqxDropDownList
-            $("#group_btn").jqxDropDownList({ source: source, selectedIndex: 1, width: 100 + '%', height: 34, autoItemsHeight: true, theme: 'bootstrap', autoDropDownHeight: true});
-          
-            var source = [
-                "전체",
-                "전수녹취",
-                "인증녹취"
-            ];
-            // Create a jqxDropDownList
-            $("#record_type").jqxDropDownList({ source: source, selectedIndex: 1, width: 100 + '%', height: 34, autoItemsHeight: true, theme: 'bootstrap', autoDropDownHeight: true});
-
-
-            // create jqxcalendar.
-            $("#jqxcalendar").jqxDateTimeInput({ width: 100 + '%', height: 32,  selectionMode: 'range', formatString: "yyyy/MM/dd", theme: 'bootstrap' });
-            $("#jqxcalendar").on('jqxcalendar', function (event) {
-                var selection = $("#jqxWidget").jqxDateTimeInput('getRange');
-                if (selection.from != null) {
-                    $("#selection").html("<div>From: " + selection.from.toLocaleDateString() + " <br/>To: " + selection.to.toLocaleDateString() + "</div>");
-                }
-            });
-             
-            var date1 = new Date();
-            date1.setFullYear(2020, 3, 7);
-            var date2 = new Date();
-            date2.setFullYear(2020, 3, 15);
-            $("#jqxcalendar").jqxDateTimeInput('setRange', date1, date2);
-
-
-            /* time select box */
-            var Html = []; //배열로 담을 변수 선언
-            var value = ""; //값을 입력할 변수 선언
-
-            //시간 삽입
-            for (var i = 0; i < 60; i++) {// 0 부터 23 까지 for문으로 생성
-                if(i < 10) {// 값이 10보다 작을때에는 앞에 0을 하나 더 붙여주기 위해 if문으로 걸러냄.
-                    value = "0" + i;
-                }else{
-                    value = i;
-                }
-
-                Html[i] = "<option value = "+value+" > "+value+"</option>"; //option값을 만든 다음 value값을 셋팅
-                
-            }
-            $("#selStartTime").append(Html.join(''));
-            $("#selEndTime").append(Html.join(''));
-        
-
-
-            // prepare the data
-            var data = new Array();
-            var groupNames =
-            [
-                "admin"
-            ];
-            var userId =
-            [
-                "a123", "b123", "c123", "d123"
-            ];
-            var userNames =
-            [
-                "기러기", "까마귀", "까치", "소쩍새", "강아지"
-            ];
-            var sendNum =
-            [
-                "01033332222", "01111111111", "11211111111", "3333333333", "44444444444", "555555555555", "666666666", "777777777777", "8888888888", "08425116541", "99999999"
-            ];
-            var receiveNum =
-            [
-                "01033332222", "01111111111", "11211111111", "3333333333", "44444444444", "555555555555", "666666666", "777777777777", "8888888888", "08425116541", "99999999"
-            ];
-            var callDate = [
-                "2020-03-03", "2020-03-02", "2020-03-01", "2020-02-29", "2020-02-28"
-            ];
-            var callHour = [
-                "12:23:38~12:25:41", "11:55:56~11:58:30", "11:54:24~11:55:32", "11:53:25~11:53:52", "11:52:01~11:53:01", "11:41:46~11:43:57", "11:39:46~11:40:55", "11:22:16~11:23:30"
-            ];
-            var callTime = [
-                "00:01:44", "00:02:03", "00:02:34", "00:01:08", "00:00:27", "00:01:00", "00:02:11", "00:01:09", "00:01:14", "00:00:32"
-            ];
-            var callType = [
-                "전수녹취", "인증녹취"
-            ];
-            var listenCell = [
-                "<button type='button' class='btn btn-default' data-toggle='modal' data-target='.audio_modal'>듣기</button>"
-            ];
-
-            // generate sample data.
-            var generatedata = function (startindex, endindex) {
-                var data = {};
-                for (var i = startindex; i < endindex; i++) {
-                    var row = {};
-                    row["num"] = i;
-                    row["groupname"] = groupNames[Math.floor(Math.random() * groupNames.length)];
-                    row["userid"] = userId[Math.floor(Math.random() * userId.length)];
-                    row["name"] = userNames[Math.floor(Math.random() * userNames.length)];
-                    row["send_num"] = sendNum[Math.floor(Math.random() * sendNum.length)];
-                    row["receive_num"] = receiveNum[Math.floor(Math.random() * receiveNum.length)];
-                    row["call_date"] = callDate[Math.floor(Math.random() * callDate.length)];
-                    row["call_hour"] = callHour[Math.floor(Math.random() * callHour.length)];
-                    row["call_time"] = callTime[Math.floor(Math.random() * callTime.length)];
-                    row["call_type"] = callType[Math.floor(Math.random() * callType.length)];
-                    row["listen"] = listenCell
-                    data[i] = row;
-                }
-                return data;
-            }
-            var source =
-            {
-                datatype: "array",
-                localdata: {},
-                totalrecords: 100
-            };
-            // load virtual data.
-            var rendergridrows = function (params) {
-                var data = generatedata(params.startindex, params.endindex);
-                return data;
-            }
-            var totalcolumnrenderer = function (row, column, cellvalue) {
-                var cellvalue = $.jqx.dataFormat.formatnumber(cellvalue, 'c2');
-                return '<span style="margin: 6px 3px; font-size: 12px; float: right; font-weight: bold;">' + cellvalue + '</span>';
-            }
-            var dataAdapter = new $.jqx.dataAdapter(source);
-            $("#grid").jqxGrid(
-            {
-                autoheight:true,
-                width: 100 + '%',
-                autoheight: true,
-                source: dataAdapter,                
-                virtualmode: true,
-                pageable: true,
-                rendergridrows: rendergridrows,
-                columns: [
-                    { text: '순번', datafield: 'num', width: 5 + '%' },
-                    { text: '그룹', datafield: 'groupname', width: 9.090909 + '%' },
-                    { text: '사용자ID', datafield: 'userid', width: 9.090909 + '%' },
-                    { text: '이름', datafield: 'name', width: 9.090909 + '%' },
-                    { text: '발신번호', datafield: 'send_num', width: 9.090909 + '%'},
-                    { text: '수신번호', datafield: 'receive_num', width: 9.090909 + '%'},
-                    { text: '통화일자', datafield: 'call_date', width: 9.090909 + '%'},
-                    { text: '통화시각', datafield: 'call_hour', width: 13.181818 + '%'},
-                    { text: '통화시간', datafield: 'call_time', width: 9.090909 + '%'},
-                    { text: '유형', datafield: 'call_type', width: 9.090909 + '%'},
-                    { text: '듣기', datafield: 'listen', width: 9.090909 + '%'}
-                ]
-            });
-            function popbt(){
-            	alert("asd");
-            }
-        });
-
-
-    </script>
-
-
-    <!-- option -->
-    <link rel="stylesheet" type="text/css" href="/resource/assets/css/style.css">
+    
 
 </head>
 <body>
@@ -219,122 +48,119 @@
        <div class="row border-bottom">
     	<div th:replace="fragments/navbar :: navbarFragment"></div>
         </div>
+        
         <div class="ibox">
             <div class="ibox-title">
                 <div class="title_wrap">
                     <h2>
-                        <img src="/resource/assets/img/nautes_logo.png" alt="company_logo"> <span>검색/청취</span>
+                        <img th:src="@{/resource/assets/img/nautes_logo.png}" alt="company_logo"> <span>검색/청취</span>
                     </h2>
                 </div>
-                    <button data-placement="bottom" title="필터"  data-toggle="popover"  type="button" data-html="true" class="btn btn-primary">
-                        <i class="fa fa-filter" aria-hidden="true"></i>
-                    </button>
+                <!-- Button trigger modal -->
+                <button  id="popbt" type="button" class="btn btn-primary btn-lg hide" data-toggle="modal" data-target="#search_filter">
+                    <span>검색</span> <i class="fa fa-filter" aria-hidden="true"></i>
+                </button>
 
+                
 
-                    <div id="popover-content" class="hide">
-                        <div class="list_search">
-                            <form class="form-horizontal">
-                                <div class="form-group">
-                                    <div class="col-md-4">
-                                        <label class="col-md-4">그룹</label>
-                                        <div class="col-md-8">
-                                            <div id="group_btn"> </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label class="col-md-4">사용자 ID 또는 이름</label>
-                                        <div class="col-md-8">
-                                            <div class="input-group">
-                                              <input type="text" class="form-control" placeholder="">
-                                              <span type="text" id="user_name" placeholder="" class="input-group-btn">
-                                                <button class="btn btn-default" type="button">사용자 검색</button>
-                                              </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label class="col-md-4">업체명</label>
-                                        <div class="col-md-8">
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="">
-                                                <span type="text" id="user_name" placeholder="" class="input-group-btn">
-                                                <button class="btn btn-default" type="button">사용자 검색</button>
-                                              </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bottom_line"></div>
-                                <div class="form-group">
-                                    <div class="col-md-4">
-                                        <label class="col-md-4">통화날짜</label>
-                                        <div class="col-md-8">
-                                            <div id="jqxcalendar">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label class="col-md-4">통화시각</label>
-                                        <div class="col-md-8">
-                                            <div class="col-md-5">
-                                                <select id="selStartTime" name="selStartTime" class="form-control">
-                                                </select>
-                                            </div>
-                                            <div class="col-md-2">~</div>
-                                                
-                                            <div class="col-md-5">
-                                                <select id="selEndTime" name="selEndTime" class="form-control"></select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label class="col-md-4">통화시간</label>
-                                        <div class="col-md-8">
-                                            <div class="dropdown col-md-5">
-                                                <input type="text" class="form-control col-md-10" id="time_start" placeholder="00">
-                                            </div>
-                                            <div class="col-md-2">~</div>
-                                            <div class="dropdown col-md-5">
-                                                <input type="text" class="form-control col-md-10" id="time_end" placeholder="03">
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-4">
-                                        <label class="col-md-4">수신전화번호</label>
-                                        <div class="col-md-8">
-                                            <input type="text" class="form-control" id="receive_number" placeholder="">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label class="col-md-4">발신전화번호</label>
-                                        <div class="col-md-8">
-                                            <input type="text" class="form-control col-md-8" id="send_number" placeholder="">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label class="col-md-4">녹취유형</label>
-                                        <div class="col-md-8">
-                                            <div id="record_type"> </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bottom_line"></div>
-                                <div class="form-group btn_group">
-                                    <button type="button" class="btn btn-default">조회</button>
-                                    <button type="button" class="btn btn-default">액셀 다운로드</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                             
+                
+                                             
 
             </div>
             <div class="ibox-content">
-                <div class="list">
-                    
+                <div class="list_search first_page">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <label class="col-lg-4">그룹</label>
+                                <div class="col-lg-8">
+                                    <div class="group_btn_act"> </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <label class="col-lg-4">사용자 ID 또는 이름</label>
+                                <div class="col-lg-8">
+                                    <div class="input-group">
+                                      <input type="text" class="form-control user_name" placeholder="" id="emp1">
+                                      <span type="text" placeholder="" class="input-group-btn">
+<!--                                       data-toggle="modal" data-target="#user_search" -->
+                                        <button class="btn btn-default" type="button" id="id_user_search1">사용자 검색</button>
+                                      </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <label class="col-lg-4">업체명</label>
+                                <div class="col-lg-8">
+                                    <input type="text" class="form-control" placeholder="" id="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bottom_line"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <label class="col-lg-4">통화날짜</label>
+                                <div class="col-lg-8">
+                                    <div class="jqxcalendar_act">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <label class="col-lg-4">통화시각</label>
+                                <div class="col-lg-8">
+                                    <div class="col-sm-5">
+                                        <select name="selStartTime" class="form-control selStartTime">
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-2">~</div>
+                                        
+                                    <div class="col-sm-5">
+                                        <select name="selEndTime" class="selEndTime form-control"></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <label class="col-lg-4">통화시간</label>
+                                <div class="col-lg-8">
+                                    <div class="dropdown col-sm-5">
+                                        <input type="text" class="form-control col-lg-10 time_start" placeholder="03">
+                                    </div>
+                                    <div class="col-sm-2">~</div>
+                                    <div class="dropdown col-sm-5">
+                                        <input type="text" class="form-control col-lg-10 time_end" placeholder="sec">
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <label class="col-lg-4">수신전화번호</label>
+                                <div class="col-lg-8">
+                                    <input type="text" class="form-control receive_number" placeholder="">
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <label class="col-lg-4">발신전화번호</label>
+                                <div class="col-lg-8">
+                                    <input type="text" class="form-control col-lg-8 send_number" placeholder="">
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <label class="col-lg-4">녹취유형</label>
+                                <div class="col-lg-8">
+                                    <div class="record_type"> </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bottom_line"></div>
+                        <div class="form-group btn_group">
+                            <button type="button" class="btn btn-default next_action">조회</button>
+                            <button type="button" class="btn btn-default">액셀 다운로드</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="list hide">
                     <div class="list_table">
                         <div class="container">
                             <div id="grid">
@@ -343,34 +169,173 @@
                         </div>
                     </div>
                 </div>
+                
             </div>
         </div>
     </div>
 
 
+<!-- 서치 필터 -->
+<div class="modal" id="search_filter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-background="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">검색·청취 필터</h4>
+                
+            </div>
+            <div class="modal-body">
+                <div class="list_search">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <label class="col-lg-4">그룹</label>
+                                <div class="col-lg-8">
+                                    <div class="group_btn_act"></div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <label class="col-lg-4">사용자 ID 또는 이름</label>
+                                <div class="col-lg-8">
+                                    <div class="input-group">
+                                      <input type="text" class="form-control" placeholder="" id="emp2">
+                                      <span type="text" placeholder="" class="input-group-btn user_name">
+                                        <button class="btn btn-default" id="id_user_search2" type="button">사용자 검색</button>
+                                      </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <label class="col-lg-4">업체명</label>
+                                <div class="col-lg-8">
+                                    <input type="text" class="form-control" placeholder="" id="">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bottom_line"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <label class="col-lg-4">통화날짜</label>
+                                <div class="col-lg-8">
+                                    <div class="jqxcalendar_act">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <label class="col-lg-4">통화시각</label>
+                                <div class="col-lg-8">
+                                    <div class="col-sm-5">
+                                        <select class="selStartTime form-control" name="selStartTime">
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-2">~</div>
+                                        
+                                    <div class="col-sm-5">
+                                        <select class="selEndTime form-control" name="selEndTime"></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <label class="col-lg-4">통화시간</label>
+                                <div class="col-lg-8">
+                                    <div class="dropdown col-sm-5">
+                                        <input type="text" class="form-control time_start col-lg-10" placeholder="03">
+                                    </div>
+                                    <div class="col-sm-2">~</div>
+                                    <div class="dropdown col-sm-5">
+                                        <input type="text" class="time_end form-control col-lg-10" placeholder="sec">
+                                    </div>
 
-
-    <div class="modal fade audio_modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Recording</h4>
-                </div>
-                <div class="modal-body">
-                    ...
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <label class="col-lg-4">수신전화번호</label>
+                                <div class="col-lg-8">
+                                    <input type="text" class="form-control receive_number" placeholder="" id="ph1">
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <label class="col-lg-4">발신전화번호</label>
+                                <div class="col-lg-8">
+                                    <input type="text" class="form-control col-lg-8 send_number" placeholder="">
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <label class="col-lg-4">녹취유형</label>
+                                <div class="col-lg-8">
+                                    <div class="record_type"> </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bottom_line"></div>
+                        <div class="form-group btn_group">
+                            <button type="button" class="btn btn-default next_action">조회</button>
+                            <button type="button" class="btn btn-default">액셀 다운로드</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </div>     
-<script type="text/javascript">
-	
-    $("[data-toggle=popover]").popover({
-        html: true, 
-        content: function() {
-        return $('#popover-content').html();
-        }
-    });
-</script>
+    </div>
+</div>  
+
+
+
+<!-- 사용자 검색 -->
+<div class="modal fade" id="user_search" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">녹취 사용자 선택</h4>
+        </div>
+        <div class="modal-body">
+
+        <div class="list_search">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-3">
+                        <label class="col-lg-4">그룹</label>
+                        <div class="col-lg-8">
+                            <div class="group_btn_act"> </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <label class="col-lg-4">권한등급</label>
+                        <div class="col-lg-8">
+                            <div class="authority_num"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <label class="col-lg-4">사용자</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" placeholder="" id="">
+                            
+                        </div>
+                    </div>
+                    <div class="col-sm-1">
+                        <input type="button" class="btn btn-primary" value="검색" id="id_user_search3">
+                    </div>
+                    <div class="col-sm-1"></div>
+                </div>
+            </form>
+        </div>
+        <div class="bottom_line"></div>
+        <div class="user_search_con">
+            <div class="user_search_grid">
+                
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 </body>
+
 </html>

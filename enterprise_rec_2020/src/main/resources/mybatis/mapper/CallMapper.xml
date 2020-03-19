@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.nautestech.www.mapper.CallMapper">	
+	<resultMap type="call" id="getSelectMap">
+		<result property="c_id" column="c_id"/>
+		<result property="btime" column="btime"/>
+		<result property="etime" column="etime"/>
+		<result property="caller" column="caller"/>
+		<result property="called" column="called"/>
+		<result property="callid" column="callid"/>
+		<result property="dirname" column="dirname"/>
+		<result property="filesize" column="filesize"/>
+		<result property="fname" column="fname"/>
+		<result property="emp_id" column="emp_id"/>
+		<result property="branch_cd" column="branch_cd"/>
+		<result property="emp_nm" column="emp_nm"/>
+		<result property="system_id" column="system_id"/>
+		<result property="is_statistics" column="is_statistics"/>
+		<result property="auth_cd" column="auth_cd"/>
+		<result property="rbtime" column="rbtime"/>
+		<result property="retime" column="retime"/>
+		<result property="duple_flag" column="duple_flag"/>
+		<result property="rec_type" column="rec_type"/>
+		<result property="group_id" column="group_id"/>
+	</resultMap>
+	
+	<select id="getView" resultMap="getSelectMap" parameterType="hashmap">
+		select * from `web_recording`.`call_history`
+		<include refid="where"/>
+		order by c_id desc limit #{limit}
+	</select>
+	
+	
+	
+<!-- 	and emp_nm like concat(concat('%', #{emp_nm}), '%') -->
+	<sql id="where">
+		<where>
+			<if test='emp_id !=null and !emp_id.equals("")'>
+				emp_id = #{emp_id}
+			</if>
+			<if test='emp_nm !=null and !emp_nm.equals("")'>
+				and emp_nm = #{emp_nm}
+			</if>
+			<if test='group_id !=null and !group_id.equals("")'>
+				and group_id = #{group_id}
+			</if>
+			<if test='rec_type !=null and !rec_type.equals("")'>
+				and rec_type = #{rec_type}
+			</if>
+			<if test='auth_cd !=null and !auth_cd.equals("")'>
+				and auth_cd = #{auth_cd}
+			</if>
+			<if test='branch_cd !=null and !branch_cd.equals("")'>
+				and branch_cd = #{branch_cd}
+			</if>
+		</where>
+	</sql>
+</mapper>

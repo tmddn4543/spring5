@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="utf-8">
@@ -22,24 +22,59 @@
   <!-- Custom styles -->
   <link href="/resource/assets/css/login_style.css" rel="stylesheet">
 
+
+	<script>
+	$(document).ready(function() {
+		var autoAccount = setTimeout(function() {
+			$("input[name=param1]").val("admin");
+			$("input[name=param2]").val("admin");
+		}, 1000);
+		
+		$("#login").click(function(event) {
+			if ($("input[name=param1]").val() == "") {
+				alert("아이디를 입력해주세요.");
+				return;
+			}
+			if ($("input[name=param2]").val() == "") {
+				alert("비밀번호를 입력해주세요.");
+				return;
+			}
+			$.ajax({
+				type : "POST",
+				url : "/doLogin",
+				data : $("#loginFrm").serialize(),
+				success : function(data) {
+					if(JSON.parse(data).result) {
+						location.href = "/admin/index";
+					} else {
+						alert("계정정보를 확인해주세요.");
+					}
+				},
+				error : function() {
+					alert("계정정보를 확인해주세요.");
+				}
+			});
+		});
+	});
+	</script>
 </head>
 
 <body class="login-img3-body">
 
   <div class="container">
 
-    <form class="login-form">
+    <form class="login-form" id="loginFrm">
       <div class="login-wrap">
-        <p class="login-img"><img src="/resource/assets/img/nautes_logo.png" alt="logo_270*85" data-toggle="tooltip" data-placement="right" title="270*85"></p>
+        <p class="login-img"><img th:src="${webLoginLogo}" alt="logo_270*85" data-toggle="tooltip" data-placement="right" title="270*85"></p>
         <div class="input-group">
           <span class="input-group-addon"><i class="icon_profile"></i></span>
-          <input type="text" class="form-control" placeholder="Username" autofocus required="">
+          <input type="text" class="form-control" name="param1" placeholder="Username" autofocus required="">
         </div>
         <div class="input-group">
           <span class="input-group-addon"><i class="icon_key_alt"></i></span>
-          <input type="password" class="form-control" placeholder="Password" required="">
+          <input type="password" class="form-control" placeholder="Password" required="" name="param2">
         </div>
-        <a class="btn btn-info btn-lg btn-block" type="submit" href="../index/index.html" alt="login button">Login</a>
+        <a class="btn btn-info btn-lg btn-block" type="submit" id="login" alt="login button">Login</a>
       </div>
     </form>
     <div class="text-center">

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.nautestech.www.mapper.UsersMapper">	
+	<resultMap type="users" id="getSelectMap">
+		<result property="tel_no" column="tel_no"/>
+		<result property="branch_cd" column="branch_cd"/>
+		<result property="emp_id" column="emp_id"/>
+		<result property="auth_cd" column="auth_cd"/>
+		<result property="emp_nm" column="emp_nm"/>
+		<result property="rec_is_use" column="rec_is_use"/>
+		<result property="rec_type" column="rec_type"/>
+		<result property="rec_type_regdate" column="rec_type_regdate"/>
+		<result property="work_emp_id" column="work_emp_id"/>
+		<result property="work_emp_nm" column="work_emp_nm"/>
+		<result property="rec_regdate" column="rec_regdate"/>
+		<result property="login_date" column="login_date"/>
+		<result property="pass" column="pass"/>
+		<result property="SERVERCODE" column="SERVERCODE"/>
+		<result property="tel_no_070" column="tel_no_070"/>
+		<result property="is_pass" column="is_pass"/>
+		<result property="down_type" column="down_type"/>
+		<result property="group_id" column="group_id"/>
+	</resultMap>
+	
+	<select id="getView" resultMap="getSelectMap" parameterType="hashmap">
+		select * from `web_recording`.`users`
+		<include refid="where"/>
+	</select>
+	
+	
+	<insert id="setInsert" parameterType="hashmap">
+		insert into users(
+		tel_no,
+		branch_cd,
+		emp_id,
+		auth_cd,
+		emp_nm,
+		rec_is_use,
+		rec_type,
+		rec_type_regdate,
+		work_emp_id,
+		work_emp_nm,
+		rec_regdate,
+		login_date,
+		pass,
+		SERVERCODE,
+		tel_no_070,
+		is_pass,
+		down_type,
+		group_id
+		) values(
+		#{tel_no},
+		#{branch_cd},
+		#{emp_id},
+		#{auth_cd},
+		#{emp_nm},
+		#{rec_is_use},
+		#{rec_type},
+		#{rec_type_regdate},
+		#{work_emp_id},
+		#{work_emp_nm},
+		#{rec_regdate},
+		#{login_date},
+		#{pass},
+		#{SERVERCODE},
+		#{tel_no_070},
+		#{is_pass},
+		#{down_type},
+		#{group_id})
+	</insert>
+<!-- 	and emp_nm like concat(concat('%', #{emp_nm}), '%') -->
+	<sql id="where">
+		<where>
+			<if test='emp_id !=null and !emp_id.equals("")'>
+				emp_id = #{emp_id}
+			</if>
+			<if test='emp_nm !=null and !emp_nm.equals("")'>
+				and emp_nm = #{emp_nm}
+			</if>
+			<if test='group_id !=null and !group_id.equals("")'>
+				and group_id = #{group_id}
+			</if>
+			<if test='rec_type !=null and !rec_type.equals("")'>
+				and rec_type = #{rec_type}
+			</if>
+			<if test='auth_cd !=null and !auth_cd.equals("")'>
+				and auth_cd = #{auth_cd}
+			</if>
+			<if test='branch_cd !=null and !branch_cd.equals("")'>
+				and branch_cd = #{branch_cd}
+			</if>
+		</where>
+	</sql>
+</mapper>
