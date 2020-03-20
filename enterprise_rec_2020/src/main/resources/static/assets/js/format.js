@@ -1,3 +1,14 @@
+function bdayFormat(selectday,selectstime){
+	selectday = selectday.substr(0,10);
+	selectday = selectday+":"+selectstime+":00:00";
+	return selectday;
+};
+function edayFormat(selectday,selectetime){
+	selectday = selectday.substr(13,23);
+	selectday = selectday+":"+selectetime+":59:59";
+	return selectday;
+};
+
 function dateFormat(btime){
 	btime = btime.substr(0,10);
 	return btime;
@@ -53,10 +64,23 @@ function timeFormat(btime,etime){
 function recFormat(rec_type){
 	if(rec_type=="S"){
 		return "인증녹취";
-	}else if(rec_type="B"){
+	}else if(rec_type=="B"){
 		return "전수녹취";
-	}else if(rec_type="N"){
+	}else if(rec_type=="N"){
 		return "녹취정지";
+	}else{
+		return "";
+	}
+};
+function recFormat2(rec_type){
+	if(rec_type=="전체"){
+		return "";
+	}else if(rec_type=="인증녹취"){
+		return "S";
+	}else if(rec_type=="전수녹취"){
+		return "B";
+	}else if(rec_type=="녹취정지"){
+		return "N";
 	}else{
 		return "";
 	}

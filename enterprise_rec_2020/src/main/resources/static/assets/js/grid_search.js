@@ -1,11 +1,19 @@
 $(document).ready(
     function(){
-
-    	
     	var emp = "";
         var branch_cd = "";
         var auth_cd = "";
-        
+        var caller = "";
+    	var called = "";
+    	var selectday = "";
+    	var selectstime = "";
+    	var selectetime = "";
+    	var bday = "";
+    	var eday = "";
+    	var rec_type = "";
+    	var end_talk_time = "";
+    	var start_talk_time = "";
+    	
         /* 반응형 */
         $(window).resize(function(){
         var width = parseInt($(this).width()); //parseint는 정수로 하기 위함
@@ -62,9 +70,9 @@ $(document).ready(
                 $("#selection").html("<div>From: " + selection.from.toLocaleDateString() + " <br/>To: " + selection.to.toLocaleDateString() + "</div>");
             }
         });
+        var cal_date = new Date();
         
-        
-        $(".jqxcalendar_act").jqxDateTimeInput("setRange", new Date(), new Date());
+        $(".jqxcalendar_act").jqxDateTimeInput("setRange", cal_date, cal_date);
         
 
 
@@ -88,24 +96,102 @@ $(document).ready(
         $(".selEndTime").val("23").prop("selected",true);
 
         /* 조회클릭 */
-        $(".next_action").click(function(){
-        	branch_cd = $(".group_btn_act").val();
+        $("#next_action1").click(function(){
+        	branch_cd = $("#group_btn_act1").val();
+        	caller = $("#caller1").val();
+        	called = $("#called1").val();
+        	selectday = $("#jqxcalendar_act1").val();
+        	selectstime = $("#selStartTime1").val();
+        	selectetime = $("#selEndTime1").val();
+        	bday = bdayFormat(selectday,selectstime);
+        	eday = edayFormat(selectday,selectetime);
+        	rec_type = recFormat2($("#record_type1").val());
+        	emp = $("#emp1").val();
+        	end_talk_time = $("#end_talk_time1").val();
+        	start_talk_time = $("#start_talk_time1").val();
+        	callSearch();
         	
-        	console.log($(".jqxcalendar_act").val());
-        	console.log($(".selStartTime").val());
-        	console.log($(".selEndTime").val());
+            $(".hide").removeClass("hide");
+            $(".first_page").css({"display" : "none"});
+        });
+        
+        
+        $("#next_action2").click(function(){
+        	branch_cd = $("#group_btn_act2").val();
+        	caller = $("#caller2").val();
+        	called = $("#called2").val();
+        	selectday = $("#jqxcalendar_act2").val();
+        	selectstime = $("#selStartTime2").val();
+        	selectetime = $("#selEndTime2").val();
+        	bday = bdayFormat(selectday,selectstime);
+        	eday = edayFormat(selectday,selectetime);
+        	rec_type = recFormat2($("#record_type2").val());
+        	emp = $("#emp2").val();
+        	end_talk_time = $("#end_talk_time2").val();
+        	start_talk_time = $("#start_talk_time2").val();
         	
-        	if($("#emp1").val()==""){
-        		emp = $("#emp2").val();
-        	}else{
-        		emp = $("#emp1").val();
-        	}
+        	callSearch();
+        });
+
+        
+
+
+       
+        
+        
+        
+        
+        
+        $("#listBoxgridpagerlistgrid").on("click", "span", function(event){
+            console.log(event.target);
+             var rows = event.target.innerText;
+             console.log(rows);
+             if(rows>14){
+                $("#grid").jqxGrid({
+                    height: 100 + "%",
+                    autoheight: false
+                });
+                
+             }else{
+                $("#grid").jqxGrid({
+                    height:  + "%",
+                    autoheight: true
+                });
+             }
+        });
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        function callSearch(){
         	$.ajax({
         		type : "POST",
         		url : "/admin/callSearch",
-				data : {emp : emp, branch_cd : branch_cd, auth_cd : auth_cd},
+				data : {emp : emp, branch_cd : branch_cd, auth_cd : auth_cd, bday : bday, eday : eday, caller : caller, called : called, rec_type : rec_type, end_talk_time:end_talk_time, start_talk_time : start_talk_time},
 				success : function(call) {
 					/* 그리드 */
+					if(call.length==0){
+						alert("검색된게없습니다.");
+						return false;
+					}
 		            var customsortfunc = function (column, direction) {
 		            var sortdata = new Array();
 		            if (direction == 'ascending') direction = true;
@@ -157,7 +243,7 @@ $(document).ready(
 		            // generate sample data.
 		            var generatedata = function (startindex, endindex) {
 		                var data = {};
-		                for (var i = startindex; i < endindex; i++) {
+		                for (var i = startindex; i < call.length; i++) {
 		                    var row = {};
 		                    row["num"] = i;
 		                    row["groupname"] = call[i].branch_cd;
@@ -168,7 +254,7 @@ $(document).ready(
 		                    row["call_date"] = dateFormat(call[i].btime);
 		                    row["call_hour"] = hourFormat(call[i].btime,call[i].etime);
 		                    row["call_time"] = timeFormat(call[i].btime,call[i].etime);
-		                    row["call_type"] = recFormat(call[i].rec_typ);
+		                    row["call_type"] = recFormat(call[i].rec_type);
 		                    row["listen"] = "<label class='check_label'><input type='checkbox' value=''></label>";
 		                    data[i] = row;
 		                }
@@ -221,6 +307,7 @@ $(document).ready(
 		                            { text: "<button class='btn btn-default'>받기</button>", datafield: "listen", width: 9.090909 + "%", minwidth: 91.7333}
 		                        ]
 		            });
+		            alert("녹취를 검색했습니다.");
 				},
 				error : function() {
 					alert("알수없는 오류가 발생하였습니다.");
@@ -228,59 +315,7 @@ $(document).ready(
 				complete : function() {
 				}
         	});
-            $(".hide").removeClass("hide");
-            $(".first_page").css({"display" : "none"});
-        });
-
-
-
-
-       
-        
-        
-        
-        
-        
-        $("#listBoxgridpagerlistgrid").on("click", "span", function(event){
-            console.log(event.target);
-             var rows = event.target.innerText;
-             console.log(rows);
-             if(rows>14){
-                $("#grid").jqxGrid({
-                    height: 100 + "%",
-                    autoheight: false
-                });
-                
-             }else{
-                $("#grid").jqxGrid({
-                    height:  + "%",
-                    autoheight: true
-                });
-             }
-        });
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        }
         
         
         function usersSearch(){
@@ -346,7 +381,7 @@ $(document).ready(
 		                  { text: '녹취유형', datafield: 'call_type', width: 19 + '%', minwidth: 159.217 }
 		                ]
 		            });
-		            
+		            alert("사용자를 검색했습니다.");
 				},
 				error : function() {
 					alert("알수없는 오류가 발생하였습니다.");

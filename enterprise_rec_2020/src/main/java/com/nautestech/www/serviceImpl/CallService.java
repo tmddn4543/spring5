@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.nautestech.www.mapper.CallMapper;
 import com.nautestech.www.model.Call;
-import com.nautestech.www.service.Select;
+import com.nautestech.www.service.ISelect;
 
 @Service
-public class CallService implements Select<Call>{
+public class CallService implements ISelect<Call>{
 	
 	@Autowired
 	CallMapper mapper;

@@ -2,6 +2,6 @@ package com.nautestech.www.service;
 
 import java.util.HashMap;
 
-public interface Update {
+public interface IUpdate {
 	public void setUpdate (HashMap<String, Object>param);
 }

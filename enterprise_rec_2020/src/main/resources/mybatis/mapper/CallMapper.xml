@@ -56,6 +56,27 @@
 			<if test='branch_cd !=null and !branch_cd.equals("")'>
 				and branch_cd = #{branch_cd}
 			</if>
+			<if test='bday !=null and !bday.equals("") and eday !=null and !eday.equals("")'>
+				and btime between #{bday} and #{eday}
+			</if>
+			<if test='caller !=null and !caller.equals("")'>
+				and caller = #{caller}
+			</if>
+			<if test='called !=null and !called.equals("")'>
+				and called = #{called}
+			</if>
+<!-- 			timestampdiff(second, btime,etime) between '3' and '4' -->
+			<if test='rec_type !=null and !rec_type.equals("")'>
+				and rec_type = #{rec_type}
+			</if>
+			<choose>
+				<when test='start_talk_time !=null and !start_talk_time.equals("") and end_talk_time !=null and !end_talk_time.equals("")'>
+					and timestampdiff(second, btime,etime) between #{start_talk_time} and #{end_talk_time}
+				</when>
+				<otherwise>
+					and timestampdiff(second, btime,etime) >= #{start_talk_time}
+				</otherwise>
+			</choose>
 		</where>
 	</sql>
 </mapper>

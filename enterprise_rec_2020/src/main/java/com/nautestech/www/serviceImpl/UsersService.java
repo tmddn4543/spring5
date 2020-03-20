@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 
 import com.nautestech.www.mapper.UsersMapper;
 import com.nautestech.www.model.Users;
-import com.nautestech.www.service.Insert;
-import com.nautestech.www.service.Select;
+import com.nautestech.www.service.IInsert;
+import com.nautestech.www.service.ISelect;
 
 @Service
-public class UsersService implements Insert,Select<Users>{
+public class UsersService implements IInsert,ISelect<Users>{
 
 	
 	@Autowired
