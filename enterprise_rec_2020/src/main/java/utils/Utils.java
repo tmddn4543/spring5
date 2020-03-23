@@ -1,9 +1,6 @@
 package utils;
 
 public class Utils {
-	public String btime;
-	public String etime;
-
 	public static String authFormat(String param) {
 		if (param.equals("시스템관리자")) {
 			return "00";
@@ -29,22 +26,5 @@ public class Utils {
 		}
 		return "";
 	}
-
-	public String getBtime() {
-		return btime;
-	}
-
-	public void setBtime(String btime) {
-		this.btime = btime;
-	}
-
-	public String getEtime() {
-		return etime;
-	}
-
-	public void setEtime(String etime) {
-		this.etime = etime;
-	}
-	
 
 }

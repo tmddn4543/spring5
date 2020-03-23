@@ -13,7 +13,7 @@ $(document).ready(
     	var rec_type = "";
     	var end_talk_time = "";
     	var start_talk_time = "";
-    	
+    	var xlsx_file = "";
         /* 반응형 */
         $(window).resize(function(){
         var width = parseInt($(this).width()); //parseint는 정수로 하기 위함
@@ -192,6 +192,7 @@ $(document).ready(
 						alert("검색된게없습니다.");
 						return false;
 					}
+					xlsx_file = call;
 		            var customsortfunc = function (column, direction) {
 		            var sortdata = new Array();
 		            if (direction == 'ascending') direction = true;
@@ -263,7 +264,7 @@ $(document).ready(
 		            var source =
 		            {
 		                datatype: "array",
-		                localdata: {},
+		                localdata: data,
 		                totalrecords: call.length
 		            };
 		            
@@ -381,6 +382,7 @@ $(document).ready(
 		                  { text: '녹취유형', datafield: 'call_type', width: 19 + '%', minwidth: 159.217 }
 		                ]
 		            });
+		            
 		            alert("사용자를 검색했습니다.");
 				},
 				error : function() {
@@ -411,7 +413,22 @@ $(document).ready(
         	$("#user_search").modal("show");
         });
         
-        
+        $("#excelExport").click(function(){
+        	console.log(xlsx_file);
+        	$.ajax({
+        		type : "POST",
+        		url : "/admin/xlsxDownload",
+				data : {xlsx_file : xlsx_file},
+				success : function(result) {
+					alert("asd");
+				},
+				error : function() {
+					alert("알수없는 오류가 발생하였습니다.");
+				},
+				complete : function() {
+				}
+        	});
+        });
         
         
 });

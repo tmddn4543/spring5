@@ -8,13 +8,16 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.View;
 
 import com.nautestech.www.model.Call;
 import com.nautestech.www.model.Users;
+import com.nautestech.www.model.listExcelDownload;
 import com.nautestech.www.serviceImpl.CallService;
 import com.nautestech.www.serviceImpl.UsersService;
 
@@ -23,10 +26,13 @@ import utils.Utils;
 @Controller
 @RequestMapping(value = "/admin")
 public class MainController {
-
+ 
 		
 	@Value("${statisticsLimit}")
 	int statisticsLimit;
+	
+	@Value("${callhistoryYMD}")
+	boolean callhistoryYMD;
 	
 	@Autowired
 	UsersService uService;
@@ -40,13 +46,20 @@ public class MainController {
 		return "utime/index";
     }
 	
-	@RequestMapping(value = "/xlsDownload", produces = "application/vnd.ms-excel")
-	public String down(
-			@RequestParam(value="xls_file", required=false, defaultValue="")List<Call> xls_file
-			,Model model){
-		model.addAttribute("xls_file", xls_file);
-		return "Xls";
-    }
+	@RequestMapping(value = "/xlsxDownload", method= {RequestMethod.GET, RequestMethod.POST})
+	@ResponseBody
+	public String down(@RequestParam(value="xlsx_file", required=false, defaultValue="")List<Call> xlsx_file
+    		) {
+		listExcelDownload xlsx = new listExcelDownload();
+		System.out.println(xlsx_file.toString());
+		//xlsx.down(xlsx_file);
+		return "";
+	}
+	
+//	public View down(Model model){
+//		return new listExcelDownload();
+//    }
+//	
 	
 	@Secured({"ROLE_ADMIN"})
 	@RequestMapping(value = "/usersSearch", method= {RequestMethod.GET, RequestMethod.POST})
