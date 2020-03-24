@@ -28,14 +28,34 @@
 	</resultMap>
 	
 	<select id="getView" resultMap="getSelectMap" parameterType="hashmap">
-		select * from `web_recording`.`call_history`
+		select 
+		c_id,
+		btime,
+		etime,
+		caller,
+		called,
+		dirname,
+		fname,
+		emp_id,
+		branch_cd,
+		emp_nm,
+		auth_cd,
+		rec_type
+		 from `web_recording`.`call_history`
+		use index(emp_id)
+		use index(emp_nm)
+		use index(group_id)
+		use index(rec_type)
+		use index(auth_cd)
+		use index(branch_cd)
+		use index(caller)
+		use index(called)
 		<include refid="where"/>
 		order by c_id desc limit #{limit}
 	</select>
 	
 	
 	
-<!-- 	and emp_nm like concat(concat('%', #{emp_nm}), '%') -->
 	<sql id="where">
 		<where>
 			<if test='emp_id !=null and !emp_id.equals("")'>
@@ -56,18 +76,15 @@
 			<if test='branch_cd !=null and !branch_cd.equals("")'>
 				and branch_cd = #{branch_cd}
 			</if>
-			<if test='bday !=null and !bday.equals("") and eday !=null and !eday.equals("")'>
-				and btime between #{bday} and #{eday}
-			</if>
 			<if test='caller !=null and !caller.equals("")'>
 				and caller = #{caller}
 			</if>
 			<if test='called !=null and !called.equals("")'>
 				and called = #{called}
 			</if>
-<!-- 			timestampdiff(second, btime,etime) between '3' and '4' -->
-			<if test='rec_type !=null and !rec_type.equals("")'>
-				and rec_type = #{rec_type}
+			
+			<if test='bday !=null and !bday.equals("") and eday !=null and !eday.equals("")'>
+				and btime between #{bday} and #{eday}
 			</if>
 			<choose>
 				<when test='start_talk_time !=null and !start_talk_time.equals("") and end_talk_time !=null and !end_talk_time.equals("")'>
