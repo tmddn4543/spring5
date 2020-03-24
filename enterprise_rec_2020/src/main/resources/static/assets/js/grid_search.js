@@ -414,20 +414,9 @@ $(document).ready(
         });
         
         $("#excelExport").click(function(){
-        	console.log(xlsx_file);
-        	$.ajax({
-        		type : "POST",
-        		url : "/admin/xlsxDownload",
-				data : {xlsx_file : xlsx_file},
-				success : function(result) {
-					alert("asd");
-				},
-				error : function() {
-					alert("알수없는 오류가 발생하였습니다.");
-				},
-				complete : function() {
-				}
-        	});
+        	console.log(eday);
+//        		data : {emp : emp, branch_cd : branch_cd, auth_cd : auth_cd, bday : bday, eday : eday, caller : caller, called : called, rec_type : rec_type, end_talk_time:end_talk_time, start_talk_time : start_talk_time},
+        	location.href="/admin/xlsxDownload?emp="+emp+"&branch_cd="+branch_cd+"&auth_cd="+auth_cd+"&bday="+bday+"&eday="+eday+"&caller="+caller+"&called="+called+"&rec_type="+rec_type+"&end_talk_time="+end_talk_time+"&start_talk_time="+start_talk_time;
         });
         
         

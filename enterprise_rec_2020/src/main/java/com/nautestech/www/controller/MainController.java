@@ -47,13 +47,46 @@ public class MainController {
     }
 	
 	@RequestMapping(value = "/xlsxDownload", method= {RequestMethod.GET, RequestMethod.POST})
-	@ResponseBody
-	public String down(@RequestParam(value="xlsx_file", required=false, defaultValue="")List<Call> xlsx_file
-    		) {
-		listExcelDownload xlsx = new listExcelDownload();
-		System.out.println(xlsx_file.toString());
-		//xlsx.down(xlsx_file);
-		return "";
+	public View down(@RequestParam(value="emp", required=false, defaultValue="")String emp,
+    		@RequestParam(value="branch_cd", required=false, defaultValue="")String branch_cd,
+    		@RequestParam(value="auth_cd", required=false, defaultValue="")String auth_cd,
+    		@RequestParam(value="bday", required=false, defaultValue="")String bday,
+    		@RequestParam(value="eday", required=false, defaultValue="")String eday,
+    		@RequestParam(value="caller", required=false, defaultValue="")String caller,
+    		@RequestParam(value="called", required=false, defaultValue="")String called,
+    		@RequestParam(value="rec_type", required=false, defaultValue="")String rec_type,
+    		@RequestParam(value="start_talk_time", required=false, defaultValue="")String start_talk_time,
+    		@RequestParam(value="end_talk_time", required=false, defaultValue="")String end_talk_time
+    		,Model model) {
+		if(branch_cd.equals("전체")) {
+			branch_cd = "";
+		}
+		HashMap<String, Object> param = new HashMap<>();
+		System.out.println("======================");
+		System.out.println("emp : "+emp);
+		System.out.println("branch_cd : "+branch_cd);
+		System.out.println("bday : "+bday);
+		System.out.println("eday : "+eday);
+		System.out.println("caller : "+caller);
+		System.out.println("called : "+called);
+		System.out.println("rec_type : "+rec_type);
+		System.out.println("start_talk_time : "+start_talk_time);
+		System.out.println("end_talk_time : "+end_talk_time);
+		param.put("emp_id", emp);
+		param.put("emp_nm", emp);
+		param.put("branch_cd", branch_cd);
+		param.put("bday", bday);
+		param.put("eday", eday);
+		param.put("caller", caller);
+		param.put("called", called);
+		param.put("rec_type", rec_type);
+		param.put("start_talk_time", start_talk_time);
+		param.put("end_talk_time", end_talk_time);
+		param.put("limit", statisticsLimit);
+		List<Call> call = cService.getView(param);
+		System.out.println(call.size());
+		model.addAttribute("list", call);
+		return new listExcelDownload();
 	}
 	
 //	public View down(Model model){
