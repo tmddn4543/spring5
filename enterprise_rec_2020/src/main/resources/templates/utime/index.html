@@ -38,7 +38,7 @@
 	<script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxgrid.sort.js}"></script>
 	
 	
-    <script type="text/javascript" th:src="@{/resource/assets/js/grid_search.js}"></script>
+    <script type="text/javascript" th:inline="javascript" th:src="@{/resource/assets/js/grid_search.js}"></script>
 	<script type="text/javascript" th:src="@{/resource/assets/js/format.js}"></script>
 
 
@@ -50,7 +50,7 @@
        <div class="row border-bottom">
     	<div th:replace="fragments/navbar :: navbarFragment"></div>
         </div>
-        
+        <input type="hidden" th:value="${callhistoryYMD}" id="callhistoryYMD">
         <div class="ibox">
             <div class="ibox-title">
                 <div class="title_wrap">

@@ -20,5 +20,10 @@ public class CallService implements ISelect<Call>{
 	public List<Call> getView(HashMap<String, Object> param) {
 		return mapper.getView(param);
 	}
+
+	@Override
+	public List<Call> getViewYYYYMM(HashMap<String, Object> param) {
+		return mapper.getViewYYYYMM(param);
+	}
 	
 }

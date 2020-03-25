@@ -32,7 +32,7 @@ public class MainController {
 	int statisticsLimit;
 	
 	@Value("${callhistoryYMD}")
-	boolean callhistoryYMD;
+	Boolean callhistoryYMD;
 	
 	@Autowired
 	UsersService uService;
@@ -42,10 +42,12 @@ public class MainController {
 	
 	@Secured({"ROLE_ADMIN"})
 	@RequestMapping(value = "/index", method= {RequestMethod.GET, RequestMethod.POST})
-    public String index(){
+    public String index(Model model){
+		model.addAttribute("callhistoryYMD", callhistoryYMD);
 		return "utime/index";
     }
 	
+	@Secured({"ROLE_ADMIN"})
 	@RequestMapping(value = "/xlsxDownload", method= {RequestMethod.GET, RequestMethod.POST})
 	public View down(@RequestParam(value="emp", required=false, defaultValue="")String emp,
     		@RequestParam(value="branch_cd", required=false, defaultValue="")String branch_cd,
@@ -62,16 +64,6 @@ public class MainController {
 			branch_cd = "";
 		}
 		HashMap<String, Object> param = new HashMap<>();
-		System.out.println("======================");
-		System.out.println("emp : "+emp);
-		System.out.println("branch_cd : "+branch_cd);
-		System.out.println("bday : "+bday);
-		System.out.println("eday : "+eday);
-		System.out.println("caller : "+caller);
-		System.out.println("called : "+called);
-		System.out.println("rec_type : "+rec_type);
-		System.out.println("start_talk_time : "+start_talk_time);
-		System.out.println("end_talk_time : "+end_talk_time);
 		param.put("emp_id", emp);
 		param.put("emp_nm", emp);
 		param.put("branch_cd", branch_cd);
@@ -89,10 +81,6 @@ public class MainController {
 		return new listExcelDownload();
 	}
 	
-//	public View down(Model model){
-//		return new listExcelDownload();
-//    }
-//	
 	
 	@Secured({"ROLE_ADMIN"})
 	@RequestMapping(value = "/usersSearch", method= {RequestMethod.GET, RequestMethod.POST})
@@ -136,15 +124,6 @@ public class MainController {
 			branch_cd = "";
 		}
 		HashMap<String, Object> param = new HashMap<>();
-		System.out.println("emp : "+emp);
-		System.out.println("branch_cd : "+branch_cd);
-		System.out.println("bday : "+bday);
-		System.out.println("eday : "+eday);
-		System.out.println("caller : "+caller);
-		System.out.println("called : "+called);
-		System.out.println("rec_type : "+rec_type);
-		System.out.println("start_talk_time : "+start_talk_time);
-		System.out.println("end_talk_time : "+end_talk_time);
 		param.put("emp_id", emp);
 		param.put("emp_nm", emp);
 		param.put("branch_cd", branch_cd);
@@ -157,6 +136,51 @@ public class MainController {
 		param.put("end_talk_time", end_talk_time);
 		param.put("limit", statisticsLimit);
 		List<Call> call = cService.getView(param);
+		return call;
+    }
+	
+	
+	
+	@Secured({"ROLE_ADMIN"})
+	@RequestMapping(value = "/callSearch_YYYYMMDD", method= {RequestMethod.GET, RequestMethod.POST})
+	@ResponseBody
+    public List<Call> callSearch_YYYYMMDD(
+    		@RequestParam(value="emp", required=false, defaultValue="")String emp,
+    		@RequestParam(value="branch_cd", required=false, defaultValue="")String branch_cd,
+    		@RequestParam(value="auth_cd", required=false, defaultValue="")String auth_cd,
+    		@RequestParam(value="bday", required=false, defaultValue="")String bday,
+    		@RequestParam(value="eday", required=false, defaultValue="")String eday,
+    		@RequestParam(value="caller", required=false, defaultValue="")String caller,
+    		@RequestParam(value="called", required=false, defaultValue="")String called,
+    		@RequestParam(value="rec_type", required=false, defaultValue="")String rec_type,
+    		@RequestParam(value="start_talk_time", required=false, defaultValue="")String start_talk_time,
+    		@RequestParam(value="end_talk_time", required=false, defaultValue="")String end_talk_time
+    		){ 
+		String startYYYYMM = bday.substring(0,7);
+		String endYYYYMM = eday.substring(0,7);
+		startYYYYMM = startYYYYMM.replace(":", "");
+		endYYYYMM = endYYYYMM.replace(":", "");
+		
+		if(branch_cd.equals("전체")) {
+			branch_cd = "";
+		}
+		HashMap<String, Object> param = new HashMap<>();
+		param.put("emp_id", emp);
+		param.put("emp_nm", emp);
+		param.put("branch_cd", branch_cd);
+		param.put("bday", bday);
+		param.put("eday", eday);
+		param.put("startYYYYMM",startYYYYMM);
+		param.put("endYYYYMM",endYYYYMM);
+		
+
+		param.put("caller", caller);
+		param.put("called", called);
+		param.put("rec_type", rec_type);
+		param.put("start_talk_time", start_talk_time);
+		param.put("end_talk_time", end_talk_time);
+		param.put("limit", statisticsLimit);
+		List<Call> call = cService.getViewYYYYMM(param);
 		return call;
     }
 	

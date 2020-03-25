@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -96,6 +97,9 @@ public class listExcelDownload extends AbstractXlsxView {
 		
 		style.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
 		style.setAlignment(CellStyle.ALIGN_CENTER);
+		style1.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+		style1.setFillPattern(CellStyle.SOLID_FOREGROUND);
+		
 		font.setFontHeight((short)(20*20));
 		font1.setBoldweight(Font.BOLDWEIGHT_BOLD);
 		style.setFont(font);

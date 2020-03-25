@@ -1,3 +1,15 @@
+function YYYYMM(bday, eday){
+	bday = bday.substr(0,7);
+	eday = eday.substr(0,7);
+	bday = bday.replace(":", "");
+	eday = eday.replace(":", "");
+	var result = eday - bday;
+	if(result>1 && result != 89){
+		return 'false';
+	}else{
+		return 'true';
+	}
+};
 function bdayFormat(selectday,selectstime){
 	selectday = selectday.substr(0,10);
 	selectday = selectday+":"+selectstime+":00:00";

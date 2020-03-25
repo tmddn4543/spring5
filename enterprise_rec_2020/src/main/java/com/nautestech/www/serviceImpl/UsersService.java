@@ -28,6 +28,8 @@ public class UsersService implements IInsert,ISelect<Users>{
 		return mapper.getView(param);
 	}
 
-	
-
+	@Override
+	public List<?> getViewYYYYMM(HashMap<String, Object> param) {
+		return null;
+	}
 }
