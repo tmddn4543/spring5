@@ -112,7 +112,7 @@ width: auto;
 .jqx-grid-cell-left-align{
 	text-align: center;
 	margin: 0 !important;
-	line-height: 32px;
+	line-height: 28px;
 }
 .jqx-grid-column-header > div > div{
 	text-align: center !important;
@@ -445,10 +445,19 @@ left: 3px !important;
 }
 
 /* 그리드 셀 */
+
+.jqx-widget .jqx-grid-cell, .jqx-widget .jqx-grid-column-header, .jqx-widget .jqx-grid-group-cell{
+	margin: 0 !important;
+}
+.wrapper #grid .check_label{
+margin: 0;
+}
+
 .jqx-enableselect{
 	display: flex;
 
-	background-color: #f5f5f5;
+	background-color: #fafafa;
+	border-top: 1px solid #eee !important;
 }
 .jqx-enableselect > div{
 	margin: auto !important;
@@ -462,9 +471,17 @@ margin-top: 0px;
 	width: 47px !important;
 }
 
+input[type="radio"]{
+	display: inline-block;
+}
 
+.user_manage .checkbox-inline, .user_manage .radio-inline{
+	padding-left: 20px;
+}
 
-
+.user_manage .checkbox-inline input, .user_manage .radio-inline input{
+height: 26px;
+}
 /* 사용자관리 */
 body.user_manage .modal .list_search .form-group > div:last-child{
 text-align: right;
@@ -472,30 +489,70 @@ text-align: right;
 body.user_manage .modal .list_search .form-group > div:last-child .col-lg-4{
 float: right;
 }
+.grid_bottom{
+text-align: center;
 
-/* 사용자 관리 그리드 */
+border-top: 1px dashed #ddd;
 
+margin-top: 15px;
 
-#user_grid #columntableuser_grid > .jqx-grid-column-header:nth-child(2) > div > div span label{
-line-height: 1;
-
-vertical-align: top;
+padding-top: 15px;
 }
 
-#user_grid #columntableuser_grid > .jqx-grid-column-header:nth-child(2) > div > div span label input{
-margin: 0;
-
-position: unset;
+.grid_bottom button{
+	height: 34px;
+}
+.modal#user_add{
+z-index: 11111 !important;
+}
+.modal#user_add .modal-body{
+	padding: 10px 20px 5px;
+}
+.modal#user_add .modal-footer{
+	text-align: center;
+}
+.modal#user_add .modal-footer button{
+	height: 34px;
+}
+.modal#user_add .modal-body .form-group >div.col-lg-2{
+	padding: 0;
+}
+.modal#user_add .modal-body .form-group >div.col-lg-2 button{
+	height: 34px;
+}
+.list_table .grid_height{
+	height: auto;
+}
+#user_more{
+	z-index: 11111 !important;
 }
 
-#contenttableuser_grid > div > .jqx-grid-cell:nth-child(2) > div label{
-vertical-align: top;
+#user_more .modal-body .form-group > div.col-lg-8{
+	line-height: 34px;
 }
-#contenttableuser_grid > div > .jqx-grid-cell:nth-child(2) > div label input{
-	margin: 0;
-	position: unset;
+#user_more .modal-footer{
+	text-align: center;
 }
-
+#user_more .modal-footer button{
+	height: 34px;
+}
+#user_more .modal-body{
+	padding: 10px 20px 5px;
+}
+.list_search .col-lg-8.input-group{
+	padding-right: 15px;
+	padding-left: 15px;
+}
+.list_search .col-lg-8.input-group button{
+	width: 80px;
+}
+.list_search .dropup .dropdown-menu, .navbar-fixed-bottom .dropdown .dropdown-menu{
+	left: auto;
+	right: 0;
+}
+.list_search .col-lg-8{
+	height: 32px;
+}
 /* 반응형 */
 @media (max-width: 1464px){
 #search_filter{
@@ -512,6 +569,10 @@ vertical-align: top;
 .wrapper label {
     padding-right: 15px;
     padding-left: 15px;
+
+}
+body.user_manage .modal .list_search .form-group > div:last-child{
+	margin-top: 32px;
 }
 .modal label {
     padding-right: 15px;
@@ -525,6 +586,29 @@ vertical-align: top;
 }
 }
 @media (max-width: 767px){
+body.user_manage .modal .list_search .form-group > div:last-child{
+text-align: center;
+
+margin-top: 15px;
+
+border-top: 1px dashed #ccc;
+
+padding-top: 15px;	
+}
+.user_manage #search_filter .list_search{
+display: flex;
+}
+.user_manage #search_filter .list_search > form{
+	flex: 1;
+	margin: auto;
+}
+.user_manage #search_filter .list_search .form-horizontal .form-group > div:nth-child(1) label{
+margin-top: 0;
+}
+body.user_manage .modal .list_search .form-group > div:last-child .col-lg-4{
+	display: none;
+}
+
 #search_filter .list_search{
 	overflow: auto;
 	height: 200px;
@@ -602,7 +686,9 @@ float: left;
 	right: 65.5px;
 }
 }
+
 @media (max-width: 450px){
+	
 	.navbar-minimalize{
 		display: block;
 	}
@@ -679,6 +765,7 @@ float: left;
 @media (max-width: 350px){
 .ibox-title{
 	position: relative;
+	height: 102px;
 }
 .ibox-title .title_wrap{
     display: block;
@@ -701,7 +788,28 @@ top: 50%;
 right: 15px;
 transform: translateY(-50%);
 }
+.ibox-content {
+    height: calc(100% - 102px);
+    padding: 5px;
+}
 
+#search_filter::after {
+    right: 42.5px;
+    top: 169.5px;
+}
+#search_filter{
+top: 177px;
+}
+.grid_bottom{
+	padding-top: 10px;
+	margin-top: 10px;
+}
+}
+
+@media (max-height: 672px){
+	.list_table .grid_height{
+		height: calc(100% - 65px);
+	}
 }
 
 @media (max-height: 600px){
@@ -710,6 +818,9 @@ transform: translateY(-50%);
 		top: 15px !important;
 		left: 50% !important;
 		transform: translateX(-50%);
+	}
+	.user_manage .list_table .grid_height{
+		height: auto;
 	}
 }
 

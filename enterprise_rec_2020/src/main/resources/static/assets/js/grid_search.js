@@ -15,6 +15,8 @@ $(document).ready(
     	var end_talk_time = "";
     	var start_talk_time = "";
     	var xlsx_file = "";
+    	var caller_attr = "";
+    	var called_attr = "";
         /* 반응형 */
         $(window).resize(function(){
         var width = parseInt($(this).width()); //parseint는 정수로 하기 위함
@@ -98,6 +100,8 @@ $(document).ready(
 
         /* 조회클릭 */
         $("#next_action1").click(function(){
+        	
+        	
         	branch_cd = $("#group_btn_act1").val();
         	caller = $("#caller1").val();
         	called = $("#called1").val();
@@ -106,7 +110,18 @@ $(document).ready(
         	selectetime = $("#selEndTime1").val();
         	bday = bdayFormat(selectday,selectstime);
         	eday = edayFormat(selectday,selectetime);
+        	if($("#caller1_bt").text()=="선택 " && caller!=""){
+        		alert("선택여부 확인해주세요.");
+            	return false;
+        	}
         	
+        	if($("#called1_bt").text()=="선택 " && called!=""){
+        		alert("선택여부 확인해주세요.");
+        		return false;
+        	}
+        	
+        	$("#caller2").val(caller);
+        	$("#called2").val(called);
         	
         	rec_type = recFormat2($("#record_type1").val());
         	emp = $("#emp1").val();
@@ -142,7 +157,14 @@ $(document).ready(
         	emp = $("#emp2").val();
         	end_talk_time = $("#end_talk_time2").val();
         	start_talk_time = $("#start_talk_time2").val();
-        	
+        	if($("#caller2_bt").text()=="선택 " && caller!=""){
+        		alert("선택여부 확인해주세요.");
+        		return false;
+        	}
+        	if($("#called2_bt").text()=="선택 " && called!=""){
+        		alert("선택여부 확인해주세요.");
+        		return false;
+        	}
         	//콜이력 월별 테이블 사용구분
         	if(callhistoryYMD=='true'){
         		callSearch_YYYYMMDD();
@@ -206,7 +228,18 @@ $(document).ready(
         	$.ajax({
         		type : "POST",
         		url : "/admin/callSearch",
-				data : {emp : emp, branch_cd : branch_cd, auth_cd : auth_cd, bday : bday, eday : eday, caller : caller, called : called, rec_type : rec_type, end_talk_time:end_talk_time, start_talk_time : start_talk_time},
+				data : {emp : emp,
+					branch_cd : branch_cd,
+					auth_cd : auth_cd,
+					bday : bday,
+					eday : eday,
+					caller : caller,
+					called : called,
+					rec_type : rec_type,
+					end_talk_time : end_talk_time,
+					start_talk_time : start_talk_time,
+					caller_attr : caller_attr,
+					called_attr : called_attr},
 				success : function(call) {
 					gridJs(call);
 				},
@@ -228,7 +261,18 @@ $(document).ready(
         	$.ajax({
         		type : "POST",
         		url : "/admin/callSearch_YYYYMMDD",
-				data : {emp : emp, branch_cd : branch_cd, auth_cd : auth_cd, bday : bday, eday : eday, caller : caller, called : called, rec_type : rec_type, end_talk_time:end_talk_time, start_talk_time : start_talk_time},
+				data : {emp : emp,
+					branch_cd : branch_cd,
+					auth_cd : auth_cd,
+					bday : bday,
+					eday : eday,
+					caller : caller,
+					called : called,
+					rec_type : rec_type,
+					end_talk_time : end_talk_time,
+					start_talk_time : start_talk_time,
+					caller_attr : caller_attr,
+					called_attr : called_attr},
 				success : function(call) {
 					gridJs(call);
 				},
@@ -462,9 +506,50 @@ $(document).ready(
         });
         
         $("#excelExport").click(function(){
-        	console.log(eday);
-//        		data : {emp : emp, branch_cd : branch_cd, auth_cd : auth_cd, bday : bday, eday : eday, caller : caller, called : called, rec_type : rec_type, end_talk_time:end_talk_time, start_talk_time : start_talk_time},
-        	location.href="/admin/xlsxDownload?emp="+emp+"&branch_cd="+branch_cd+"&auth_cd="+auth_cd+"&bday="+bday+"&eday="+eday+"&caller="+caller+"&called="+called+"&rec_type="+rec_type+"&end_talk_time="+end_talk_time+"&start_talk_time="+start_talk_time;
+        	location.href="/admin/xlsxDownload?emp="+emp+"&branch_cd="+branch_cd+"&auth_cd="+auth_cd+"&bday="+bday+"&eday="+eday+"&caller="+caller+"&called="+called+"&rec_type="+rec_type+"&end_talk_time="+end_talk_time+"&start_talk_time="+start_talk_time+"&called_attr="+called_attr+"&caller_attr="+caller_attr;
+        });
+        
+        $("#called1_ul").on("click", "li", function(){
+        	var res = $(this).text();
+        	$("#called1_bt").html(res+" <span class='caret'></span>");
+        	$("#called2_bt").html(res+" <span class='caret'></span>");
+        	if(res=="정확"){
+        		called_attr = "eq";
+        	}else if(res=="포함"){
+        		called_attr = "like";
+        	}
+        });
+        
+        $("#called2_ul").on("click", "li", function(){
+        	var res = $(this).text();
+        	$("#called2_bt").html(res+" <span class='caret'></span>");
+        	if(res=="정확"){
+        		called_attr = "eq";
+        	}else if(res=="포함"){
+        		called_attr = "like";
+        	}
+        });
+        
+        
+        $("#caller1_ul").on("click", "li", function(){
+        	var res = $(this).text();
+        	$("#caller1_bt").html(res+" <span class='caret'></span>");
+        	$("#caller2_bt").html(res+" <span class='caret'></span>");
+        	if(res=="정확"){
+        		caller_attr = "eq";
+        	}else if(res=="포함"){
+        		caller_attr = "like";
+        	}
+        });
+        
+        $("#caller2_ul").on("click", "li", function(){
+        	var res = $(this).text();
+        	$("#caller2_bt").html(res+" <span class='caret'></span>");
+        	if(res=="정확"){
+        		caller_attr = "eq";
+        	}else if(res=="포함"){
+        		caller_attr = "like";
+        	}
         });
         
         

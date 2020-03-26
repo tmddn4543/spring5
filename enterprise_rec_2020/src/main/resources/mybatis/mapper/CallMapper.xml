@@ -27,6 +27,12 @@
 		<result property="group_id" column="group_id"/>
 	</resultMap>
 	
+	<select id="setCreate" parameterType="hashmap">
+		#{value}
+	</select>
+	
+	
+	
 	<select id="getViewYYYYMM" resultMap="getSelectMap" parameterType="hashmap">
 		select 
 		c_id,
@@ -138,13 +144,26 @@
 			<if test='branch_cd !=null and !branch_cd.equals("")'>
 				and branch_cd = #{branch_cd}
 			</if>
-			<if test='caller !=null and !caller.equals("")'>
+			<if test='caller_attr != null and !caller_attr.equals("")'>
+			<choose>
+				<when test='caller_attr.equals("like")'>
+				and caller like concat(concat('%', #{caller}), '%')
+				</when>
+				<otherwise>
 				and caller = #{caller}
+				</otherwise>
+			</choose>
 			</if>
-			<if test='called !=null and !called.equals("")'>
+			<if test='called_attr != null and !called_attr.equals("")'>
+			<choose>
+				<when test='called_attr.equals("like")'>
+				and called like concat(concat('%', #{called}), '%')
+				</when>
+				<otherwise>
 				and called = #{called}
+				</otherwise>
+			</choose>
 			</if>
-			
 			<if test='bday !=null and !bday.equals("") and eday !=null and !eday.equals("")'>
 				and btime between #{bday} and #{eday}
 			</if>

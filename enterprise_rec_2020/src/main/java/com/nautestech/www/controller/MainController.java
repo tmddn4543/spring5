@@ -17,9 +17,9 @@ import org.springframework.web.servlet.View;
 
 import com.nautestech.www.model.Call;
 import com.nautestech.www.model.Users;
-import com.nautestech.www.model.listExcelDownload;
 import com.nautestech.www.serviceImpl.CallService;
 import com.nautestech.www.serviceImpl.UsersService;
+import com.nautestech.www.util.listExcelDownload;
 
 import utils.Utils;
 
@@ -44,7 +44,7 @@ public class MainController {
 	@RequestMapping(value = "/index", method= {RequestMethod.GET, RequestMethod.POST})
     public String index(Model model){
 		model.addAttribute("callhistoryYMD", callhistoryYMD);
-		return "utime/index";
+		return "recording/index";
     }
 	
 	@Secured({"ROLE_ADMIN"})
@@ -58,7 +58,9 @@ public class MainController {
     		@RequestParam(value="called", required=false, defaultValue="")String called,
     		@RequestParam(value="rec_type", required=false, defaultValue="")String rec_type,
     		@RequestParam(value="start_talk_time", required=false, defaultValue="")String start_talk_time,
-    		@RequestParam(value="end_talk_time", required=false, defaultValue="")String end_talk_time
+    		@RequestParam(value="end_talk_time", required=false, defaultValue="")String end_talk_time,
+    		@RequestParam(value="caller_attr", required=false, defaultValue="")String caller_attr,
+    		@RequestParam(value="called_attr", required=false, defaultValue="")String called_attr
     		,Model model) {
 		if(branch_cd.equals("전체")) {
 			branch_cd = "";
@@ -71,6 +73,8 @@ public class MainController {
 		param.put("eday", eday);
 		param.put("caller", caller);
 		param.put("called", called);
+		param.put("caller_attr", caller_attr);
+		param.put("called_attr", called_attr);
 		param.put("rec_type", rec_type);
 		param.put("start_talk_time", start_talk_time);
 		param.put("end_talk_time", end_talk_time);
@@ -117,9 +121,10 @@ public class MainController {
     		@RequestParam(value="called", required=false, defaultValue="")String called,
     		@RequestParam(value="rec_type", required=false, defaultValue="")String rec_type,
     		@RequestParam(value="start_talk_time", required=false, defaultValue="")String start_talk_time,
-    		@RequestParam(value="end_talk_time", required=false, defaultValue="")String end_talk_time
+    		@RequestParam(value="end_talk_time", required=false, defaultValue="")String end_talk_time,
+    		@RequestParam(value="caller_attr", required=false, defaultValue="")String caller_attr,
+    		@RequestParam(value="called_attr", required=false, defaultValue="")String called_attr
     		){ 
-		
 		if(branch_cd.equals("전체")) {
 			branch_cd = "";
 		}
@@ -131,6 +136,8 @@ public class MainController {
 		param.put("eday", eday);
 		param.put("caller", caller);
 		param.put("called", called);
+		param.put("caller_attr", caller_attr);
+		param.put("called_attr", called_attr);
 		param.put("rec_type", rec_type);
 		param.put("start_talk_time", start_talk_time);
 		param.put("end_talk_time", end_talk_time);
@@ -154,7 +161,9 @@ public class MainController {
     		@RequestParam(value="called", required=false, defaultValue="")String called,
     		@RequestParam(value="rec_type", required=false, defaultValue="")String rec_type,
     		@RequestParam(value="start_talk_time", required=false, defaultValue="")String start_talk_time,
-    		@RequestParam(value="end_talk_time", required=false, defaultValue="")String end_talk_time
+    		@RequestParam(value="end_talk_time", required=false, defaultValue="")String end_talk_time,
+    		@RequestParam(value="caller_attr", required=false, defaultValue="")String caller_attr,
+    		@RequestParam(value="called_attr", required=false, defaultValue="")String called_attr
     		){ 
 		String startYYYYMM = bday.substring(0,7);
 		String endYYYYMM = eday.substring(0,7);
@@ -172,10 +181,10 @@ public class MainController {
 		param.put("eday", eday);
 		param.put("startYYYYMM",startYYYYMM);
 		param.put("endYYYYMM",endYYYYMM);
-		
-
 		param.put("caller", caller);
 		param.put("called", called);
+		param.put("caller_attr", caller_attr);
+		param.put("called_attr", called_attr);
 		param.put("rec_type", rec_type);
 		param.put("start_talk_time", start_talk_time);
 		param.put("end_talk_time", end_talk_time);

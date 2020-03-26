@@ -15,6 +15,6 @@ public class IndexController {
 	@RequestMapping(value = "/", method= {RequestMethod.GET, RequestMethod.POST})
     public String loginPage(Model model){
 		model.addAttribute("webLoginLogo",webLoginLogo);
-		return "utime/login";
+		return "recording/login";
     }
 }

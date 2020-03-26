@@ -32,4 +32,8 @@ public class UsersService implements IInsert,ISelect<Users>{
 	public List<?> getViewYYYYMM(HashMap<String, Object> param) {
 		return null;
 	}
+
+	@Override
+	public void setCreate(HashMap<String, Object> param) {
+	}
 }
