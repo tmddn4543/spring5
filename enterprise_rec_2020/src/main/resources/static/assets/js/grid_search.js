@@ -356,7 +356,7 @@ $(document).ready(
                     row["call_hour"] = hourFormat(call[i].btime,call[i].etime);
                     row["call_time"] = timeFormat(call[i].btime,call[i].etime);
                     row["call_type"] = recFormat(call[i].rec_type);
-                    row["listen"] = "<label class='check_label'><input type='checkbox' value=''></label>";
+                    row["listen"] = "<label class='check_label'><input type='checkbox' class='checkbox_name' value='"+call[i].dirname+""+call[i].fname+"'></label>";
                     data[i] = row;
                 }
                 return data;
@@ -405,7 +405,7 @@ $(document).ready(
                             { text: "통화시각", datafield: "call_hour", width: 13.181818 + "%", minwidth: 132.55},
                             { text: "통화시간", datafield: "call_time", width: 9.090909 + "%", minwidth: 91.7333},
                             { text: "유형", datafield: "call_type", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "<button class='btn btn-default'>받기</button>", datafield: "listen", width: 9.090909 + "%", minwidth: 91.7333}
+                            { text: "<button class='btn btn-default' id='zipDown_bt'>받기</button>", datafield: "listen", width: 9.090909 + "%", minwidth: 91.7333}
                         ]
             });
             alert("녹취를 검색했습니다.");
@@ -485,6 +485,7 @@ $(document).ready(
         	});
         }
         
+        
         $("#id_user_search3").click(function(){
         	emp = $("#emp3").val();
         	branch_cd = $(".group_btn_act").val();
@@ -508,6 +509,26 @@ $(document).ready(
         $("#excelExport").click(function(){
         	location.href="/admin/xlsxDownload?emp="+emp+"&branch_cd="+branch_cd+"&auth_cd="+auth_cd+"&bday="+bday+"&eday="+eday+"&caller="+caller+"&called="+called+"&rec_type="+rec_type+"&end_talk_time="+end_talk_time+"&start_talk_time="+start_talk_time+"&called_attr="+called_attr+"&caller_attr="+caller_attr;
         });
+        
+        
+        
+
+       $("#grid").on("click","button",function(){
+        	var count = 0;
+        	var arr = new Array();
+        	$(".checkbox_name").each(function(){  // .each()는 forEach를 뜻한다.
+    			if($(this).is(":checked")){
+    				var res = $(this).val();
+    				console.log(res);
+    				arr[count] = res;
+    				count = count+1;
+    			}  
+        	});
+        	$("#hidden_arr").val(arr);
+        	$("#form_arr").submit();
+       });
+        
+        
         
         $("#called1_ul").on("click", "li", function(){
         	var res = $(this).text();

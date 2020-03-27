@@ -1,7 +1,23 @@
 package com.nautestech.www.controller;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
+
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,6 +35,7 @@ import com.nautestech.www.model.Call;
 import com.nautestech.www.model.Users;
 import com.nautestech.www.serviceImpl.CallService;
 import com.nautestech.www.serviceImpl.UsersService;
+import com.nautestech.www.util.ZipDownload;
 import com.nautestech.www.util.listExcelDownload;
 
 import utils.Utils;
@@ -39,6 +56,18 @@ public class MainController {
 	
 	@Autowired
 	CallService cService;
+	
+	
+	
+	@RequestMapping(value = "/zip", method= {RequestMethod.GET, RequestMethod.POST})
+	public String zip(HttpServletRequest request, HttpServletResponse response) {
+		String arr = request.getParameter("arr");
+		String[] sp_arr = arr.split(",");
+		ZipDownload zip_class = new ZipDownload();
+		zip_class.down(request, response, sp_arr);
+		return "/recording/index";
+	}
+	
 	
 	@Secured({"ROLE_ADMIN"})
 	@RequestMapping(value = "/index", method= {RequestMethod.GET, RequestMethod.POST})
@@ -167,9 +196,12 @@ public class MainController {
     		){ 
 		String startYYYYMM = bday.substring(0,7);
 		String endYYYYMM = eday.substring(0,7);
+		
 		startYYYYMM = startYYYYMM.replace(":", "");
 		endYYYYMM = endYYYYMM.replace(":", "");
 		
+		System.out.println(startYYYYMM);
+		System.out.println(endYYYYMM);
 		if(branch_cd.equals("전체")) {
 			branch_cd = "";
 		}

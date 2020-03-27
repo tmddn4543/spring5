@@ -3,30 +3,30 @@ package com.nautestech.www.util;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import com.nautestech.www.model.Call;
 import com.nautestech.www.serviceImpl.CallService;
 
 @Component
 public class Scheduler {
 	
-	
-	
 	@Autowired
 	CallService cService;
 
 	//매월 1일  0시 1분 실행되는 메서드
-	//@Scheduled(cron="0 1 0 1 * *")
-	@Scheduled(cron="*/10 * * * * *")
+	//@Scheduled(cron="*/10 * * * * *")
+	@Scheduled(cron="0 1 0 1 * *")
 	public void createTable() {
 		String YYYYMM = new SimpleDateFormat("yyyyMM", Locale.KOREA).format(new Date());
 		HashMap<String, Object> param = new HashMap<>();
 		String createQry = "";
-		createQry+="CREATE TABLE if not exists `call_history_"+YYYYMM+"` (                               ";
+		createQry+="CREATE TABLE if not exists `call_history_"+YYYYMM+"` (         ";
 		createQry+="		  `c_id` int(11) NOT NULL AUTO_INCREMENT,              ";
 		createQry+="		  `btime` varchar(19) DEFAULT NULL,                    ";
 		createQry+="		  `etime` varchar(19) DEFAULT NULL,                    ";
@@ -48,17 +48,17 @@ public class Scheduler {
 		createQry+="		  `rec_type` char(1) DEFAULT NULL,                     ";
 		createQry+="		  `group_id` varchar(20) DEFAULT NULL,                 ";
 		createQry+="		  PRIMARY KEY (`c_id`),                                ";
-		createQry+="		  KEY `idx_branch_cd_ch"+YYYYMM+"` (`branch_cd`),                ";
-		createQry+="		  KEY `idx_btime_ch"+YYYYMM+"` (`btime`),                        ";
-		createQry+="		  KEY `idx_etime_ch"+YYYYMM+"` (`etime`),                        ";
-		createQry+="		  KEY `idx_caller_ch"+YYYYMM+"` (`caller`),                      ";
-		createQry+="		  KEY `idx_called_ch"+YYYYMM+"` (`called`),                      ";
-		createQry+="		  KEY `idx_emp_id_ch"+YYYYMM+"` (`emp_id`),                      ";
-		createQry+="		  KEY `idx_is_statistics_ch"+YYYYMM+"` (`is_statistics`),        ";
-		createQry+="		  KEY `idx_rbtime_ch"+YYYYMM+"` (`rbtime`),                      ";
-		createQry+="		  KEY `idx_retime_ch"+YYYYMM+"` (`retime`)                       ";
+		createQry+="		  KEY `emp_id` (`emp_id`),                             ";
+		createQry+="		  KEY `emp_nm` (`emp_nm`),                             ";
+		createQry+="		  KEY `group_id` (`group_id`),                         ";
+		createQry+="		  KEY `rec_type` (`rec_type`),                         ";
+		createQry+="		  KEY `auth_cd` (`auth_cd`),                           ";
+		createQry+="		  KEY `branch_cd` (`branch_cd`),                       ";
+		createQry+="		  KEY `caller` (`caller`),                             ";
+		createQry+="		  KEY `called` (`called`)                              ";
 		createQry+="		) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=euckr ";
-		param.put("value", createQry);
+		param.put("createQry", createQry);
 		cService.setCreate(param);
+		System.out.println("월별 테이블 생성!");
 	}
 }

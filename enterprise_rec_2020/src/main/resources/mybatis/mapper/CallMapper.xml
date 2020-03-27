@@ -28,7 +28,7 @@
 	</resultMap>
 	
 	<select id="setCreate" parameterType="hashmap">
-		#{value}
+		${createQry}
 	</select>
 	
 	
@@ -47,7 +47,7 @@
 		emp_nm,
 		auth_cd,
 		rec_type
-		 from `web_recording`.`call_history_#{startYYYYMM}`
+		from web_recording.call_history_${startYYYYMM}
 		use index(emp_id)
 		use index(emp_nm)
 		use index(group_id)
@@ -58,14 +58,14 @@
 		use index(called)
 		<include refid="where"/>
 		<choose>
-			<when test="startYYYYMM != endYYYYMM">
+			<when test="!startYYYYMM.equals(endYYYYMM)">
 			limit #{limit}			
 			</when>
 			<otherwise>
 			order by c_id desc limit #{limit}
 			</otherwise>
 		</choose>
-		<if test='startYYYYMM != endYYYYMM'>
+		<if test='!startYYYYMM.equals(endYYYYMM)'>
 		union all
 		select 
 		c_id,
@@ -80,7 +80,7 @@
 		emp_nm,
 		auth_cd,
 		rec_type
-		 from `web_recording`.`call_history_#{endYYYYMM}`
+		from web_recording.call_history_${endYYYYMM}
 		use index(emp_id)
 		use index(emp_nm)
 		use index(group_id)
