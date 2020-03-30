@@ -227,7 +227,7 @@ $(document).ready(
         function callSearch(){
         	$.ajax({
         		type : "POST",
-        		url : "/admin/callSearch",
+        		url : "/call/callSearch",
 				data : {emp : emp,
 					branch_cd : branch_cd,
 					auth_cd : auth_cd,
@@ -260,7 +260,7 @@ $(document).ready(
         	
         	$.ajax({
         		type : "POST",
-        		url : "/admin/callSearch_YYYYMMDD",
+        		url : "/call/callSearch_YYYYMMDD",
 				data : {emp : emp,
 					branch_cd : branch_cd,
 					auth_cd : auth_cd,
@@ -414,7 +414,7 @@ $(document).ready(
         function usersSearch(){
         	$.ajax({
         		type : "POST",
-        		url : "/admin/usersSearch",
+        		url : "/call/usersSearch",
 				data : {emp : emp, branch_cd : branch_cd, auth_cd : auth_cd},
 				success : function(users) {
 					/* 사용자 검색 */
@@ -507,7 +507,7 @@ $(document).ready(
         });
         
         $("#excelExport").click(function(){
-        	location.href="/admin/xlsxDownload?emp="+emp+"&branch_cd="+branch_cd+"&auth_cd="+auth_cd+"&bday="+bday+"&eday="+eday+"&caller="+caller+"&called="+called+"&rec_type="+rec_type+"&end_talk_time="+end_talk_time+"&start_talk_time="+start_talk_time+"&called_attr="+called_attr+"&caller_attr="+caller_attr;
+        	location.href="/call/xlsxDownload?emp="+emp+"&branch_cd="+branch_cd+"&auth_cd="+auth_cd+"&bday="+bday+"&eday="+eday+"&caller="+caller+"&called="+called+"&rec_type="+rec_type+"&end_talk_time="+end_talk_time+"&start_talk_time="+start_talk_time+"&called_attr="+called_attr+"&caller_attr="+caller_attr;
         });
         
         

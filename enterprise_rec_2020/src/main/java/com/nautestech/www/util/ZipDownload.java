@@ -38,9 +38,7 @@ public class ZipDownload {
 			System.out.println(sp_arr[i]);
 			sourceFiles.add(sp_arr[i]);
 		}
-
 		try{
-
 		    // ZipOutputStream을 FileOutputStream 으로 감쌈
 		    FileOutputStream fout = new FileOutputStream(zipFile);
 		    ZipOutputStream zout = new ZipOutputStream(fout);

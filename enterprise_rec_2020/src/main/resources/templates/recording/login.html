@@ -45,7 +45,7 @@
 				data : $("#loginFrm").serialize(),
 				success : function(data) {
 					if(JSON.parse(data).result) {
-						location.href = "/admin/index";
+						location.href = "/call/call_page";
 					} else {
 						alert("계정정보를 확인해주세요.");
 					}

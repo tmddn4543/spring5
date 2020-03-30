@@ -21,11 +21,11 @@
                         <img alt="image" class="img-circle" src="/resource/assets/img/admin.png" />
                     </div>
                 </li>
-                <li class="active page_open">
-                    <a href="index.html" ><i class="fa fa-search" aria-hidden="true"></i> <span class="nav-label">검색/청취</span></a>
+                <li th:class="${call_active}">
+                    <a href="/call/call_page"><i class="fa fa-search" aria-hidden="true"></i> <span class="nav-label">검색/청취</span></a>
                 </li>
-                <li>
-                    <a href="user_admin.html"><i class="fa fa-user" aria-hidden="true"></i> <span class="nav-label">사용자관리</span></a>
+                <li th:class="${user_active}">
+                    <a href="/user/user_page"><i class="fa fa-user" aria-hidden="true"></i> <span class="nav-label">사용자관리</span></a>
                 </li>
                 <li>
                     <a href="access_log.html"><i class="fa fa-file-text-o" aria-hidden="true"></i> <span class="nav-label">접속로그</span></a>

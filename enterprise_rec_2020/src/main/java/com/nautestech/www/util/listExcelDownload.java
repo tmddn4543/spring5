@@ -86,7 +86,7 @@ public class listExcelDownload extends AbstractXlsxView {
 		String sCurTime = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA).format(new Date());
 
 		// String excelName = sCurTime + ".xlsx";
-		String excelName = "CallHistory.xlsx";
+		String excelName = "CallHistory_"+sCurTime+".xlsx";
 		Sheet worksheet = null;
 		Row row = null;
 		Cell cell = null;

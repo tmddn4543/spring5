@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class IndexController {
 
+	
+	//페이지로고설정
 	@Value("${webLoginLogo}")
 	String webLoginLogo;
 	

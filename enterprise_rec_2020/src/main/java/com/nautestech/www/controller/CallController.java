@@ -1,21 +1,7 @@
 package com.nautestech.www.controller;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipOutputStream;
-
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -24,13 +10,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.View;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nautestech.www.model.Call;
 import com.nautestech.www.model.Users;
 import com.nautestech.www.serviceImpl.CallService;
@@ -41,8 +27,8 @@ import com.nautestech.www.util.listExcelDownload;
 import utils.Utils;
 
 @Controller
-@RequestMapping(value = "/admin")
-public class MainController {
+@RequestMapping(value = "/call")
+public class CallController {
  
 		
 	@Value("${statisticsLimit}")
@@ -64,16 +50,21 @@ public class MainController {
 		String arr = request.getParameter("arr");
 		String[] sp_arr = arr.split(",");
 		ZipDownload zip_class = new ZipDownload();
+		String active = "active page_open";
+		request.setAttribute("call_active", active);
 		zip_class.down(request, response, sp_arr);
-		return "/recording/index";
+		return "/recording/call_page";
 	}
 	
 	
 	@Secured({"ROLE_ADMIN"})
-	@RequestMapping(value = "/index", method= {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "/call_page", method= {RequestMethod.GET, RequestMethod.POST})
     public String index(Model model){
+		String active = "active page_open";
+		model.addAttribute("call_active", active);
 		model.addAttribute("callhistoryYMD", callhistoryYMD);
-		return "recording/index";
+		
+		return "recording/call_page";
     }
 	
 	@Secured({"ROLE_ADMIN"})
