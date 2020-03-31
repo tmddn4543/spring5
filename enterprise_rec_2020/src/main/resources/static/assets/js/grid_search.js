@@ -225,6 +225,57 @@ $(document).ready(
         
         
         function callSearch(){
+        	
+//        	var source =
+//            {
+//                 datatype: "json",
+//                 datafields: [
+//					 { name: 'c_id'},
+//					 { name: 'emp_nm'},
+//					 { name: 'caller'},
+//					 { name: 'called'},
+//					 { name: 'auth_cd'},
+//					 { name: 'group_id'}
+//                ],
+//			    url: '/call/callSearch',
+//			    root: 'Rows',
+//                cache: false,
+//				beforeprocessing: function(data)
+//				{		
+//					console.log(data);
+//					source.totalrecords = data[0].TotalRows;
+//				}
+//            };		
+//			
+//		    var dataadapter = new $.jqx.dataAdapter(source);
+//
+//            // initialize jqxGrid
+//            $("#grid").jqxGrid(
+//            {
+//                width: 800,
+//			    source: dataadapter,
+//                
+//			    autoheight: true,
+//				pageable: true,
+//				virtualmode: true,
+//				rendergridrows: function(obj)
+//				{
+//						console.log(obj.data);
+//					  return obj.data;     
+//				},
+//                columns: [
+//                      { text: 'Company Name', datafield: 'c_id', width: 100 },
+//                      { text: 'Contact Name', datafield: 'emp_nm', width: 100 },
+//                      { text: 'Contact Title', datafield: 'caller', width: 100 },
+//                      { text: 'Address', datafield: 'called', width: 100 },
+//                      { text: 'City', datafield: 'auth_cd', width: 100 },
+//                      { text: 'Country', datafield: 'group_id', width:100}
+//                  ]
+//            });
+        	
+        	
+        	
+        	
         	$.ajax({
         		type : "POST",
         		url : "/call/callSearch",
@@ -250,6 +301,8 @@ $(document).ready(
 				}
         	});
         }
+        
+        
         
         function callSearch_YYYYMMDD(){
 
@@ -293,28 +346,7 @@ $(document).ready(
 				return false;
 			}
 			xlsx_file = call;
-            var customsortfunc = function (column, direction) {
-            var sortdata = new Array();
-            if (direction == 'ascending') direction = true;
-            if (direction == 'descending') direction = false;
-            if (direction != null) {
-                for (i = 0; i < data.length; i++) {
-                    sortdata.push(data[i]);
-                }
-            }
-            else sortdata = data;
-            var tmpToString = Object.prototype.toString;
-            Object.prototype.toString = (typeof column == "function") ? column : function () { return this[column] };
-            if (direction != null) {
-                sortdata.sort(compare);
-                if (!direction) {
-                    sortdata.reverse();
-                }
-            }
-            source.localdata = sortdata;
-            $("#grid").jqxGrid('updatebounddata', 'sort');
-            Object.prototype.toString = tmpToString;
-            }
+            
              // custom comparer.
             var compare = function (value1, value2) {
                 value1 = String(value1).toLowerCase();
@@ -370,6 +402,10 @@ $(document).ready(
             
             
             // load virtual data.
+            //ajax(params.startindex, params.endindex)해준다
+            //10개 20개 나온값들..을 generatedata(call)이런식을해준다 ㅇㅇ
+            //음 낫벳?
+            //ajax는 따로뺀다 ㅇㅇ
             var rendergridrows = function (params) {
                 var data = generatedata(params.startindex, params.endindex);
                 return data;

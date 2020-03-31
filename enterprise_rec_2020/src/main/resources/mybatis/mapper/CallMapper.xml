@@ -59,10 +59,10 @@
 		<include refid="where"/>
 		<choose>
 			<when test="!startYYYYMM.equals(endYYYYMM)">
-			limit #{limit}			
+			
 			</when>
 			<otherwise>
-			order by c_id desc limit #{limit}
+			order by c_id desc
 			</otherwise>
 		</choose>
 		<if test='!startYYYYMM.equals(endYYYYMM)'>
@@ -90,7 +90,7 @@
 		use index(caller)
 		use index(called)
 		<include refid="where"/>
-		order by c_id desc limit #{limit}
+		order by c_id desc
 		</if>
 	</select>
 	
@@ -119,7 +119,7 @@
 		use index(caller)
 		use index(called)
 		<include refid="where"/>
-		order by c_id desc limit #{limit}
+		order by c_id desc
 	</select>
 	
 	
