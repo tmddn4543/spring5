@@ -186,7 +186,43 @@ $(document).ready(function(){
 	});
 	
 	$("#modal_ajax").click(function (){
-		alert("asd");
+		
+		
+		emp_id = $("#emp_id").val();
+		emp_nm = $("#emp_nm").val();
+		tel_no = $("#tel_no").val();
+		tel_no_070 = $("#tel_no_070").val();
+		pass = $("#pass").val();
+		pass_check = $("#pass_check").val();
+		if(emp_id==null || emp_id==""){
+			alert("사용자 아이디를 입력해주세요.");
+			return false;
+		}else if(emp_nm==null || emp_nm==""){
+			alert("사용자 이름을 입력해주세요.");
+			return false;
+		}else if(tel_no==null || tel_no==""){
+			alert("녹취번호를 입력해주세요.");
+			return false;
+		}else if(tel_no_070==null || tel_no_070==""){
+			alert("070 녹취번호를 입력해주세요.");
+			return false;
+		}else if(pass==null || pass==""){
+			alert("비밀번호를 입력해주세요.");
+			return false;
+		}else if(pass_check==null || pass_check==""){
+			alert("비밀번호 확인을 입력해주세요.");
+			return false;
+		}else if(pass!=pass_check){
+			alert("비밀번호가 다릅니다.");
+			return false;
+		}
+		
+		if($('#myModalLabel1').html()=="사용자 등록"){
+		
+			
+		}else if($('#myModalLabel1').html()=="사용자 상세보기"){
+			alert("상세보기");
+		}
 	});
 	
         

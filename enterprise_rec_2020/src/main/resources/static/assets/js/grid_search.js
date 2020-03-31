@@ -57,8 +57,8 @@ $(document).ready(
             "시스템관리자",
             "운용사용자",
             "그룹관리자",
-            "알람서비스등록",
-            "상담원"
+            "상담원",
+            "알람서비스등록"
         ];
         // Create a jqxDropDownList
         $(".authority_num").jqxDropDownList({ source: source, selectedIndex: 1, width: 100 + "%", height: 34, autoItemsHeight: true, theme: "bootstrap", autoDropDownHeight: true});
@@ -431,7 +431,7 @@ $(document).ready(
 		                    row["groupname"] = users[i].branch_cd;
 
 		                    row["phone_num"] = users[i].tel_no_070;
-		                    row["call_type"] = users[i].rec_type;
+		                    row["call_type"] = recFormat(users[i].rec_type);
 		                    data[i] = row;
 		                }
 		                return data;

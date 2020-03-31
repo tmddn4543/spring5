@@ -19,9 +19,11 @@ public class Scheduler {
 	@Autowired
 	CallService cService;
 
+	
+	//(cron="0 1 0 1 * *")
 	//매월 1일  0시 1분 실행되는 메서드
 	//@Scheduled(cron="*/10 * * * * *")
-	@Scheduled(cron="0 1 0 1 * *")
+	@Scheduled(cron="*/10 * * * * *")
 	public void createTable() {
 		String YYYYMM = new SimpleDateFormat("yyyyMM", Locale.KOREA).format(new Date());
 		HashMap<String, Object> param = new HashMap<>();
