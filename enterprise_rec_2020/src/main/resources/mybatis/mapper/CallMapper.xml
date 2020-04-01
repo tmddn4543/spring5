@@ -32,6 +32,20 @@
 	</select>
 	
 	
+	<select id="getListCount" resultType="int" parameterType="hashmap">
+		select count(*)
+		from `web_recording`.`call_history`
+		use index(emp_id)
+		use index(emp_nm)
+		use index(group_id)
+		use index(rec_type)
+		use index(auth_cd)
+		use index(branch_cd)
+		use index(caller)
+		use index(called)
+		<include refid="where"/>
+	</select>
+	
 	
 	<select id="getViewYYYYMM" resultMap="getSelectMap" parameterType="hashmap">
 		select 
@@ -120,6 +134,7 @@
 		use index(called)
 		<include refid="where"/>
 		order by c_id desc
+<!-- 		limit ${startRow},${pageSize} -->
 	</select>
 	
 	

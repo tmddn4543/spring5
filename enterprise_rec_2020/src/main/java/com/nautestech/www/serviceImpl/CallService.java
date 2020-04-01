@@ -30,5 +30,10 @@ public class CallService implements ISelect<Call>{
 	public void setCreate(HashMap<String, Object> param) {
 		mapper.setCreate(param);
 	}
+
+	@Override
+	public int getListCount(HashMap<String, Object> param) {
+		return mapper.getListCount(param);
+	}
 	
 }

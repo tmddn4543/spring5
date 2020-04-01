@@ -24,4 +24,5 @@ public class Call {
 	public String duple_flag;
 	public String rec_type;
 	public String group_id;
+	public int total;
 }

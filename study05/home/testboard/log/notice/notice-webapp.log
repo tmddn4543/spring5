@@ -1,2 +1,4 @@
-2020-03-04 14:09:34.645 | INFO  | ww.controller.MemberController::notice                        :200   | 111 : {startRow=0, contents=, pageSize=10, title=, onoff=Y}
-2020-03-04 14:12:05.751 | INFO  | ww.controller.MemberController::notice                        :200   | 111 : {startRow=0, contents=, pageSize=10, title=, onoff=Y}
+2020-03-31 12:00:22.502 | INFO  | ww.controller.MemberController::notice                        :198   | 123123 : {startRow=0, contents=, pageSize=10, title=, onoff=}
+2020-03-31 12:00:23.642 | INFO  | ww.controller.MemberController::notice                        :198   | 123123 : {startRow=0, contents=, pageSize=10, title=, onoff=}
+2020-03-31 12:00:26.473 | INFO  | ww.controller.MemberController::notice                        :198   | 123123 : {startRow=0, contents=, pageSize=10, title=, onoff=}
+2020-03-31 12:00:27.879 | INFO  | ww.controller.MemberController::notice                        :198   | 123123 : {startRow=0, contents=, pageSize=10, title=, onoff=}

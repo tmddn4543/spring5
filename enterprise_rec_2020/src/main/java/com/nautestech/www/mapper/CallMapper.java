@@ -9,4 +9,5 @@ public interface CallMapper {
 	public List<Call> getView(HashMap<String, Object> param);
 	public List<Call> getViewYYYYMM(HashMap<String, Object> param);
 	public void setCreate(HashMap<String, Object>param);
+	public int getListCount(HashMap<String, Object>param);
 }

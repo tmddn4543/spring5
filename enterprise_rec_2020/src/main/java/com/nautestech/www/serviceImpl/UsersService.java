@@ -37,4 +37,9 @@ public class UsersService implements IInsert,ISelect<Users>{
 	@Override
 	public void setCreate(HashMap<String, Object> param) {
 	}
+
+	@Override
+	public int getListCount(HashMap<String, Object> param) {
+		return 0;
+	}
 }

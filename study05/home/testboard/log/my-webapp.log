@@ -1,198 +1,33 @@
-2020-03-04 14:04:44.435 | INFO  | udy05.www.TestBoardApplication::main                          :16    | Start 인포
-2020-03-04 14:04:44.732 | INFO  | amework.boot.StartupInfoLogger::logStarting                   :55    | Starting TestBoardApplication on DESKTOP-R7G672U with PID 4184 (C:\Users\Admin\git\spring5\study05\target\classes started by Admin in C:\Users\Admin\git\spring5\study05)
-2020-03-04 14:04:44.735 | INFO  | amework.boot.SpringApplication::logStartupProfileInfo         :651   | No active profile set, falling back to default profiles: default
-2020-03-04 14:04:45.154 | WARN  | ort.AbstractApplicationContext::refresh                       :558   | Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.support.BeanDefinitionOverrideException: Invalid bean definition with name 'boardService' defined in class path resource [com/study05/www/config/DatabaseConfig.class]: Cannot register bean definition [Root bean: class [null]; scope=; abstract=false; lazyInit=null; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=databaseConfig; factoryMethodName=boardService; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [com/study05/www/config/DatabaseConfig.class]] for bean 'boardService': There is already [Generic bean: class [com.study05.www.serviceImpl.BoardService]; scope=singleton; abstract=false; lazyInit=null; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in file [C:\Users\Admin\git\spring5\study05\target\classes\com\study05\www\serviceImpl\BoardService.class]] bound.
-2020-03-04 14:04:45.165 | INFO  | valuationReportLoggingListener::logMessage                    :136   | 
-
-Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2020-03-04 14:04:45.167 | ERROR | LoggingFailureAnalysisReporter::report                        :40    | 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-The bean 'boardService', defined in class path resource [com/study05/www/config/DatabaseConfig.class], could not be registered. A bean with that name has already been defined in file [C:\Users\Admin\git\spring5\study05\target\classes\com\study05\www\serviceImpl\BoardService.class] and overriding is disabled.
-
-Action:
-
-Consider renaming one of the beans or enabling overriding by setting spring.main.allow-bean-definition-overriding=true
-
-2020-03-04 14:05:36.992 | INFO  | udy05.www.TestBoardApplication::main                          :16    | Start 인포
-2020-03-04 14:05:37.286 | INFO  | amework.boot.StartupInfoLogger::logStarting                   :55    | Starting TestBoardApplication on DESKTOP-R7G672U with PID 10480 (C:\Users\Admin\git\spring5\study05\target\classes started by Admin in C:\Users\Admin\git\spring5\study05)
-2020-03-04 14:05:37.288 | INFO  | amework.boot.SpringApplication::logStartupProfileInfo         :651   | No active profile set, falling back to default profiles: default
-2020-03-04 14:05:38.222 | INFO  | mbedded.tomcat.TomcatWebServer::initialize                    :92    | Tomcat initialized with port(s): 8080 (http)
-2020-03-04 14:05:38.229 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing ProtocolHandler ["http-nio-8080"]
-2020-03-04 14:05:38.230 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting service [Tomcat]
-2020-03-04 14:05:38.230 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting Servlet engine: [Apache Tomcat/9.0.30]
-2020-03-04 14:05:38.320 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing Spring embedded WebApplicationContext
-2020-03-04 14:05:38.320 | INFO  | letWebServerApplicationContext::prepareWebApplicationContext  :284   | Root WebApplicationContext: initialization completed in 909 ms
-2020-03-04 14:05:38.684 | INFO  | web.DefaultSecurityFilterChain::<init>                        :43    | Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@328e4ec2, org.springframework.security.web.context.SecurityContextPersistenceFilter@bf2aa32, org.springframework.security.web.header.HeaderWriterFilter@b5c902, org.springframework.security.web.authentication.logout.LogoutFilter@2bb717d7, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@6f8667bb, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6b3d9c38, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4aa3fc9a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7757025d, org.springframework.security.web.session.SessionManagementFilter@4d0e1a9a, org.springframework.security.web.access.ExceptionTranslationFilter@69eb544f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@43588265]
-2020-03-04 14:05:38.938 | INFO  | t.ExecutorConfigurationSupport::initialize                    :171   | Initializing ExecutorService 'taskScheduler'
-2020-03-04 14:05:39.128 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting ProtocolHandler ["http-nio-8080"]
-2020-03-04 14:05:39.151 | INFO  | mbedded.tomcat.TomcatWebServer::start                         :204   | Tomcat started on port(s): 8080 (http) with context path ''
-2020-03-04 14:05:39.153 | INFO  | amework.boot.StartupInfoLogger::logStarted                    :61    | Started TestBoardApplication in 2.113 seconds (JVM running for 3.069)
-2020-03-04 14:05:51.790 | INFO  | gistrar$SpringApplicationAdmin::shutdown                      :159   | Application shutdown requested.
-2020-03-04 14:05:51.791 | INFO  | t.ExecutorConfigurationSupport::shutdown                      :208   | Shutting down ExecutorService 'taskScheduler'
-2020-03-04 14:09:14.158 | INFO  | udy05.www.TestBoardApplication::main                          :16    | Start 인포
-2020-03-04 14:09:14.446 | INFO  | amework.boot.StartupInfoLogger::logStarting                   :55    | Starting TestBoardApplication on DESKTOP-R7G672U with PID 6728 (C:\Users\Admin\git\spring5\study05\target\classes started by Admin in C:\Users\Admin\git\spring5\study05)
-2020-03-04 14:09:14.448 | INFO  | amework.boot.SpringApplication::logStartupProfileInfo         :651   | No active profile set, falling back to default profiles: default
-2020-03-04 14:09:15.440 | INFO  | mbedded.tomcat.TomcatWebServer::initialize                    :92    | Tomcat initialized with port(s): 8080 (http)
-2020-03-04 14:09:15.447 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing ProtocolHandler ["http-nio-8080"]
-2020-03-04 14:09:15.449 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting service [Tomcat]
-2020-03-04 14:09:15.449 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting Servlet engine: [Apache Tomcat/9.0.30]
-2020-03-04 14:09:15.543 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing Spring embedded WebApplicationContext
-2020-03-04 14:09:15.544 | INFO  | letWebServerApplicationContext::prepareWebApplicationContext  :284   | Root WebApplicationContext: initialization completed in 971 ms
-2020-03-04 14:09:15.918 | INFO  | web.DefaultSecurityFilterChain::<init>                        :43    | Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3d40498a, org.springframework.security.web.context.SecurityContextPersistenceFilter@713999c2, org.springframework.security.web.header.HeaderWriterFilter@41f964f9, org.springframework.security.web.authentication.logout.LogoutFilter@2035d65b, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@5d601832, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@33627576, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@61911947, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@14d1737a, org.springframework.security.web.session.SessionManagementFilter@7574d4ad, org.springframework.security.web.access.ExceptionTranslationFilter@684372d0, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7308c820]
-2020-03-04 14:09:16.181 | INFO  | t.ExecutorConfigurationSupport::initialize                    :171   | Initializing ExecutorService 'taskScheduler'
-2020-03-04 14:09:16.382 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting ProtocolHandler ["http-nio-8080"]
-2020-03-04 14:09:16.399 | INFO  | mbedded.tomcat.TomcatWebServer::start                         :204   | Tomcat started on port(s): 8080 (http) with context path ''
-2020-03-04 14:09:16.402 | INFO  | amework.boot.StartupInfoLogger::logStarted                    :61    | Started TestBoardApplication in 2.195 seconds (JVM running for 3.143)
-2020-03-04 14:09:17.320 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-03-04 14:09:17.320 | INFO  | k.web.servlet.FrameworkServlet::initServletBean               :525   | Initializing Servlet 'dispatcherServlet'
-2020-03-04 14:09:17.326 | INFO  | k.web.servlet.FrameworkServlet::initServletBean               :547   | Completed initialization in 6 ms
-2020-03-04 14:09:17.466 | WARN  | ache.juli.logging.DirectJDKLog::log                           :173   | Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [115] milliseconds.
-2020-03-04 14:09:20.978 | INFO  | zaxxer.hikari.HikariDataSource::getConnection                 :110   | HikariPool-1 - Starting...
-2020-03-04 14:09:21.071 | INFO  | zaxxer.hikari.HikariDataSource::getConnection                 :123   | HikariPool-1 - Start completed.
-2020-03-04 14:09:21.259 | INFO  | ww.controller.MemberController::board                         :121   | welcome to board
-2020-03-04 14:09:34.638 | INFO  | ww.controller.MemberController::notice                        :177   | welcome to notice
-2020-03-04 14:09:35.253 | INFO  | ww.controller.MemberController::board                         :121   | welcome to board
-2020-03-04 14:12:05.747 | INFO  | ww.controller.MemberController::notice                        :177   | welcome to notice
-2020-03-04 14:12:06.682 | INFO  | ww.controller.MemberController::board                         :121   | welcome to board
-2020-03-04 14:25:09.979 | INFO  | gistrar$SpringApplicationAdmin::shutdown                      :159   | Application shutdown requested.
-2020-03-04 14:25:09.982 | INFO  | t.ExecutorConfigurationSupport::shutdown                      :208   | Shutting down ExecutorService 'taskScheduler'
-2020-03-04 14:25:09.983 | INFO  | zaxxer.hikari.HikariDataSource::close                         :350   | HikariPool-1 - Shutdown initiated...
-2020-03-04 14:25:09.994 | INFO  | zaxxer.hikari.HikariDataSource::close                         :352   | HikariPool-1 - Shutdown completed.
-2020-03-04 14:27:37.396 | INFO  | udy05.www.TestBoardApplication::main                          :16    | Start 인포
-2020-03-04 14:27:37.685 | INFO  | amework.boot.StartupInfoLogger::logStarting                   :55    | Starting TestBoardApplication on DESKTOP-R7G672U with PID 1344 (C:\Users\Admin\git\spring5\study05\target\classes started by Admin in C:\Users\Admin\git\spring5\study05)
-2020-03-04 14:27:37.687 | INFO  | amework.boot.SpringApplication::logStartupProfileInfo         :651   | No active profile set, falling back to default profiles: default
-2020-03-04 14:27:38.788 | INFO  | mbedded.tomcat.TomcatWebServer::initialize                    :92    | Tomcat initialized with port(s): 8080 (http)
-2020-03-04 14:27:38.795 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing ProtocolHandler ["http-nio-8080"]
-2020-03-04 14:27:38.795 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting service [Tomcat]
-2020-03-04 14:27:38.796 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting Servlet engine: [Apache Tomcat/9.0.30]
-2020-03-04 14:27:38.892 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing Spring embedded WebApplicationContext
-2020-03-04 14:27:38.892 | INFO  | letWebServerApplicationContext::prepareWebApplicationContext  :284   | Root WebApplicationContext: initialization completed in 1080 ms
-2020-03-04 14:27:39.107 | INFO  | web.DefaultSecurityFilterChain::<init>                        :43    | Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@c262f2f, org.springframework.security.web.context.SecurityContextPersistenceFilter@b55f5b7, org.springframework.security.web.header.HeaderWriterFilter@141aba65, org.springframework.security.web.authentication.logout.LogoutFilter@7e050be1, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@c732e1c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2aa6bbad, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@9f9146d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5563bb40, org.springframework.security.web.session.SessionManagementFilter@3356ff58, org.springframework.security.web.access.ExceptionTranslationFilter@4afd65fd, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@68e24e7]
-2020-03-04 14:27:39.353 | INFO  | t.ExecutorConfigurationSupport::initialize                    :171   | Initializing ExecutorService 'taskScheduler'
-2020-03-04 14:27:39.550 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting ProtocolHandler ["http-nio-8080"]
-2020-03-04 14:27:39.567 | INFO  | mbedded.tomcat.TomcatWebServer::start                         :204   | Tomcat started on port(s): 8080 (http) with context path ''
-2020-03-04 14:27:39.570 | INFO  | amework.boot.StartupInfoLogger::logStarted                    :61    | Started TestBoardApplication in 2.125 seconds (JVM running for 3.081)
-2020-03-04 14:27:42.099 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-03-04 14:27:42.099 | INFO  | k.web.servlet.FrameworkServlet::initServletBean               :525   | Initializing Servlet 'dispatcherServlet'
-2020-03-04 14:27:42.106 | INFO  | k.web.servlet.FrameworkServlet::initServletBean               :547   | Completed initialization in 7 ms
-2020-03-04 14:27:42.244 | WARN  | ache.juli.logging.DirectJDKLog::log                           :173   | Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [113] milliseconds.
-2020-03-04 14:27:46.977 | INFO  | zaxxer.hikari.HikariDataSource::getConnection                 :110   | HikariPool-1 - Starting...
-2020-03-04 14:27:47.065 | INFO  | zaxxer.hikari.HikariDataSource::getConnection                 :123   | HikariPool-1 - Start completed.
-2020-03-04 14:27:47.241 | INFO  | ww.controller.MemberController::board                         :121   | welcome to board
-2020-03-04 14:28:59.465 | INFO  | gistrar$SpringApplicationAdmin::shutdown                      :159   | Application shutdown requested.
-2020-03-04 14:28:59.467 | INFO  | t.ExecutorConfigurationSupport::shutdown                      :208   | Shutting down ExecutorService 'taskScheduler'
-2020-03-04 14:28:59.469 | INFO  | zaxxer.hikari.HikariDataSource::close                         :350   | HikariPool-1 - Shutdown initiated...
-2020-03-04 14:28:59.477 | INFO  | zaxxer.hikari.HikariDataSource::close                         :352   | HikariPool-1 - Shutdown completed.
-2020-03-04 14:29:03.524 | INFO  | udy05.www.TestBoardApplication::main                          :16    | Start 인포
-2020-03-04 14:29:03.819 | INFO  | amework.boot.StartupInfoLogger::logStarting                   :55    | Starting TestBoardApplication on DESKTOP-R7G672U with PID 5660 (C:\Users\Admin\git\spring5\study05\target\classes started by Admin in C:\Users\Admin\git\spring5\study05)
-2020-03-04 14:29:03.821 | INFO  | amework.boot.SpringApplication::logStartupProfileInfo         :651   | No active profile set, falling back to default profiles: default
-2020-03-04 14:29:04.937 | INFO  | mbedded.tomcat.TomcatWebServer::initialize                    :92    | Tomcat initialized with port(s): 8080 (http)
-2020-03-04 14:29:04.945 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing ProtocolHandler ["http-nio-8080"]
-2020-03-04 14:29:04.946 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting service [Tomcat]
-2020-03-04 14:29:04.946 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting Servlet engine: [Apache Tomcat/9.0.30]
-2020-03-04 14:29:05.037 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing Spring embedded WebApplicationContext
-2020-03-04 14:29:05.037 | INFO  | letWebServerApplicationContext::prepareWebApplicationContext  :284   | Root WebApplicationContext: initialization completed in 1093 ms
-2020-03-04 14:29:05.237 | INFO  | web.DefaultSecurityFilterChain::<init>                        :43    | Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@100d0218, org.springframework.security.web.context.SecurityContextPersistenceFilter@66234b0f, org.springframework.security.web.header.HeaderWriterFilter@7be38eba, org.springframework.security.web.authentication.logout.LogoutFilter@750cd36d, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@655203e3, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@69eb544f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@56da96b3, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2774dcf4, org.springframework.security.web.session.SessionManagementFilter@5ce3409b, org.springframework.security.web.access.ExceptionTranslationFilter@2cbe455c, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6df791a4]
-2020-03-04 14:29:05.504 | INFO  | t.ExecutorConfigurationSupport::initialize                    :171   | Initializing ExecutorService 'taskScheduler'
-2020-03-04 14:29:05.722 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting ProtocolHandler ["http-nio-8080"]
-2020-03-04 14:29:05.740 | INFO  | mbedded.tomcat.TomcatWebServer::start                         :204   | Tomcat started on port(s): 8080 (http) with context path ''
-2020-03-04 14:29:05.742 | INFO  | amework.boot.StartupInfoLogger::logStarted                    :61    | Started TestBoardApplication in 2.169 seconds (JVM running for 3.125)
-2020-03-04 14:29:06.723 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-03-04 14:29:06.724 | INFO  | k.web.servlet.FrameworkServlet::initServletBean               :525   | Initializing Servlet 'dispatcherServlet'
-2020-03-04 14:29:06.730 | INFO  | k.web.servlet.FrameworkServlet::initServletBean               :547   | Completed initialization in 6 ms
-2020-03-04 14:29:06.873 | WARN  | ache.juli.logging.DirectJDKLog::log                           :173   | Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [117] milliseconds.
-2020-03-04 14:29:09.911 | INFO  | zaxxer.hikari.HikariDataSource::getConnection                 :110   | HikariPool-1 - Starting...
-2020-03-04 14:29:10.000 | INFO  | zaxxer.hikari.HikariDataSource::getConnection                 :123   | HikariPool-1 - Start completed.
-2020-03-04 14:29:10.168 | INFO  | ww.controller.MemberController::board                         :121   | welcome to board
-2020-03-04 14:29:28.153 | INFO  | ww.controller.MemberController::board                         :121   | welcome to board
-2020-03-04 14:30:15.622 | INFO  | gistrar$SpringApplicationAdmin::shutdown                      :159   | Application shutdown requested.
-2020-03-04 14:30:15.625 | INFO  | t.ExecutorConfigurationSupport::shutdown                      :208   | Shutting down ExecutorService 'taskScheduler'
-2020-03-04 14:30:15.626 | INFO  | zaxxer.hikari.HikariDataSource::close                         :350   | HikariPool-1 - Shutdown initiated...
-2020-03-04 14:30:15.637 | INFO  | zaxxer.hikari.HikariDataSource::close                         :352   | HikariPool-1 - Shutdown completed.
-2020-03-04 14:30:18.519 | INFO  | udy05.www.TestBoardApplication::main                          :16    | Start 인포
-2020-03-04 14:30:18.817 | INFO  | amework.boot.StartupInfoLogger::logStarting                   :55    | Starting TestBoardApplication on DESKTOP-R7G672U with PID 2392 (C:\Users\Admin\git\spring5\study05\target\classes started by Admin in C:\Users\Admin\git\spring5\study05)
-2020-03-04 14:30:18.820 | INFO  | amework.boot.SpringApplication::logStartupProfileInfo         :651   | No active profile set, falling back to default profiles: default
-2020-03-04 14:30:19.925 | INFO  | mbedded.tomcat.TomcatWebServer::initialize                    :92    | Tomcat initialized with port(s): 8080 (http)
-2020-03-04 14:30:19.932 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing ProtocolHandler ["http-nio-8080"]
-2020-03-04 14:30:19.933 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting service [Tomcat]
-2020-03-04 14:30:19.934 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting Servlet engine: [Apache Tomcat/9.0.30]
-2020-03-04 14:30:20.025 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing Spring embedded WebApplicationContext
-2020-03-04 14:30:20.026 | INFO  | letWebServerApplicationContext::prepareWebApplicationContext  :284   | Root WebApplicationContext: initialization completed in 1080 ms
-2020-03-04 14:30:20.224 | INFO  | web.DefaultSecurityFilterChain::<init>                        :43    | Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@18c7f6b5, org.springframework.security.web.context.SecurityContextPersistenceFilter@25214797, org.springframework.security.web.header.HeaderWriterFilter@7b377a53, org.springframework.security.web.authentication.logout.LogoutFilter@6a5dd083, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@5e5a8718, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@60928a61, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7e18ced7, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@629b780f, org.springframework.security.web.session.SessionManagementFilter@6009cd34, org.springframework.security.web.access.ExceptionTranslationFilter@45b7c97f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4ebd6fd6]
-2020-03-04 14:30:20.484 | INFO  | t.ExecutorConfigurationSupport::initialize                    :171   | Initializing ExecutorService 'taskScheduler'
-2020-03-04 14:30:20.720 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting ProtocolHandler ["http-nio-8080"]
-2020-03-04 14:30:20.742 | INFO  | mbedded.tomcat.TomcatWebServer::start                         :204   | Tomcat started on port(s): 8080 (http) with context path ''
-2020-03-04 14:30:20.744 | INFO  | amework.boot.StartupInfoLogger::logStarted                    :61    | Started TestBoardApplication in 2.176 seconds (JVM running for 3.145)
-2020-03-04 14:30:22.044 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-03-04 14:30:22.045 | INFO  | k.web.servlet.FrameworkServlet::initServletBean               :525   | Initializing Servlet 'dispatcherServlet'
-2020-03-04 14:30:22.051 | INFO  | k.web.servlet.FrameworkServlet::initServletBean               :547   | Completed initialization in 5 ms
-2020-03-04 14:30:22.188 | WARN  | ache.juli.logging.DirectJDKLog::log                           :173   | Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [112] milliseconds.
-2020-03-04 14:30:25.039 | INFO  | zaxxer.hikari.HikariDataSource::getConnection                 :110   | HikariPool-1 - Starting...
-2020-03-04 14:30:25.128 | INFO  | zaxxer.hikari.HikariDataSource::getConnection                 :123   | HikariPool-1 - Start completed.
-2020-03-04 14:30:25.292 | INFO  | ww.controller.MemberController::board                         :121   | welcome to board
-2020-03-04 14:30:28.640 | INFO  | ww.controller.MemberController::board                         :121   | welcome to board
-2020-03-04 14:30:34.487 | INFO  | ww.controller.MemberController::board                         :121   | welcome to board
-2020-03-04 14:39:32.663 | INFO  | gistrar$SpringApplicationAdmin::shutdown                      :159   | Application shutdown requested.
-2020-03-04 14:39:32.665 | INFO  | t.ExecutorConfigurationSupport::shutdown                      :208   | Shutting down ExecutorService 'taskScheduler'
-2020-03-04 14:39:32.666 | INFO  | zaxxer.hikari.HikariDataSource::close                         :350   | HikariPool-1 - Shutdown initiated...
-2020-03-04 14:39:32.675 | INFO  | zaxxer.hikari.HikariDataSource::close                         :352   | HikariPool-1 - Shutdown completed.
-2020-03-04 14:41:07.346 | INFO  | udy05.www.TestBoardApplication::main                          :16    | Start 인포
-2020-03-04 14:41:07.637 | INFO  | amework.boot.StartupInfoLogger::logStarting                   :55    | Starting TestBoardApplication on DESKTOP-R7G672U with PID 3252 (C:\Users\Admin\git\spring5\study05\target\classes started by Admin in C:\Users\Admin\git\spring5\study05)
-2020-03-04 14:41:07.639 | INFO  | amework.boot.SpringApplication::logStartupProfileInfo         :651   | No active profile set, falling back to default profiles: default
-2020-03-04 14:41:08.739 | INFO  | mbedded.tomcat.TomcatWebServer::initialize                    :92    | Tomcat initialized with port(s): 8080 (http)
-2020-03-04 14:41:08.746 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing ProtocolHandler ["http-nio-8080"]
-2020-03-04 14:41:08.747 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting service [Tomcat]
-2020-03-04 14:41:08.748 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting Servlet engine: [Apache Tomcat/9.0.30]
-2020-03-04 14:41:08.840 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing Spring embedded WebApplicationContext
-2020-03-04 14:41:08.840 | INFO  | letWebServerApplicationContext::prepareWebApplicationContext  :284   | Root WebApplicationContext: initialization completed in 1075 ms
-2020-03-04 14:41:09.042 | INFO  | web.DefaultSecurityFilterChain::<init>                        :43    | Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4c5406b, org.springframework.security.web.context.SecurityContextPersistenceFilter@41a16eb3, org.springframework.security.web.header.HeaderWriterFilter@6e807e2, org.springframework.security.web.authentication.logout.LogoutFilter@7272ee51, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@27df5806, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1b1252c8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@41f964f9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@66b0e207, org.springframework.security.web.session.SessionManagementFilter@203b953c, org.springframework.security.web.access.ExceptionTranslationFilter@bb8ead8, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@365cef67]
-2020-03-04 14:41:09.306 | INFO  | t.ExecutorConfigurationSupport::initialize                    :171   | Initializing ExecutorService 'taskScheduler'
-2020-03-04 14:41:09.509 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting ProtocolHandler ["http-nio-8080"]
-2020-03-04 14:41:09.527 | INFO  | mbedded.tomcat.TomcatWebServer::start                         :204   | Tomcat started on port(s): 8080 (http) with context path ''
-2020-03-04 14:41:09.529 | INFO  | amework.boot.StartupInfoLogger::logStarted                    :61    | Started TestBoardApplication in 2.134 seconds (JVM running for 3.085)
-2020-03-04 14:41:11.005 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-03-04 14:41:11.006 | INFO  | k.web.servlet.FrameworkServlet::initServletBean               :525   | Initializing Servlet 'dispatcherServlet'
-2020-03-04 14:41:11.012 | INFO  | k.web.servlet.FrameworkServlet::initServletBean               :547   | Completed initialization in 6 ms
-2020-03-04 14:41:11.152 | WARN  | ache.juli.logging.DirectJDKLog::log                           :173   | Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [114] milliseconds.
-2020-03-04 14:41:13.971 | INFO  | zaxxer.hikari.HikariDataSource::getConnection                 :110   | HikariPool-1 - Starting...
-2020-03-04 14:41:14.058 | INFO  | zaxxer.hikari.HikariDataSource::getConnection                 :123   | HikariPool-1 - Start completed.
-2020-03-04 14:41:14.225 | INFO  | ww.controller.MemberController::board                         :119   | welcome to board
-2020-03-04 14:41:18.293 | INFO  | ww.controller.MemberController::board                         :119   | welcome to board
-2020-03-04 14:41:21.167 | INFO  | ww.controller.MemberController::board                         :119   | welcome to board
-2020-03-04 14:41:25.015 | INFO  | ww.controller.MemberController::board                         :119   | welcome to board
-2020-03-04 14:42:19.023 | INFO  | gistrar$SpringApplicationAdmin::shutdown                      :159   | Application shutdown requested.
-2020-03-04 14:42:19.026 | INFO  | t.ExecutorConfigurationSupport::shutdown                      :208   | Shutting down ExecutorService 'taskScheduler'
-2020-03-04 14:42:19.028 | INFO  | zaxxer.hikari.HikariDataSource::close                         :350   | HikariPool-1 - Shutdown initiated...
-2020-03-04 14:42:19.037 | INFO  | zaxxer.hikari.HikariDataSource::close                         :352   | HikariPool-1 - Shutdown completed.
-2020-03-04 14:46:17.941 | INFO  | udy05.www.TestBoardApplication::main                          :16    | Start 인포
-2020-03-04 14:46:18.234 | INFO  | amework.boot.StartupInfoLogger::logStarting                   :55    | Starting TestBoardApplication on DESKTOP-R7G672U with PID 11888 (C:\Users\Admin\git\spring5\study05\target\classes started by Admin in C:\Users\Admin\git\spring5\study05)
-2020-03-04 14:46:18.236 | INFO  | amework.boot.SpringApplication::logStartupProfileInfo         :651   | No active profile set, falling back to default profiles: default
-2020-03-04 14:46:19.368 | INFO  | mbedded.tomcat.TomcatWebServer::initialize                    :92    | Tomcat initialized with port(s): 8080 (http)
-2020-03-04 14:46:19.376 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing ProtocolHandler ["http-nio-8080"]
-2020-03-04 14:46:19.376 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting service [Tomcat]
-2020-03-04 14:46:19.377 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting Servlet engine: [Apache Tomcat/9.0.30]
-2020-03-04 14:46:19.464 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing Spring embedded WebApplicationContext
-2020-03-04 14:46:19.464 | INFO  | letWebServerApplicationContext::prepareWebApplicationContext  :284   | Root WebApplicationContext: initialization completed in 1098 ms
-2020-03-04 14:46:19.658 | INFO  | web.DefaultSecurityFilterChain::<init>                        :43    | Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@62058742, org.springframework.security.web.context.SecurityContextPersistenceFilter@2a0963be, org.springframework.security.web.header.HeaderWriterFilter@25de8898, org.springframework.security.web.authentication.logout.LogoutFilter@2a1e57c6, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@11e834ad, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@49e7e8f1, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@334540a0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@aca2fc3, org.springframework.security.web.session.SessionManagementFilter@dd737ea, org.springframework.security.web.access.ExceptionTranslationFilter@7103745, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3ea48c37]
-2020-03-04 14:46:19.914 | INFO  | t.ExecutorConfigurationSupport::initialize                    :171   | Initializing ExecutorService 'taskScheduler'
-2020-03-04 14:46:20.122 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting ProtocolHandler ["http-nio-8080"]
-2020-03-04 14:46:20.140 | INFO  | mbedded.tomcat.TomcatWebServer::start                         :204   | Tomcat started on port(s): 8080 (http) with context path ''
-2020-03-04 14:46:20.142 | INFO  | amework.boot.StartupInfoLogger::logStarted                    :61    | Started TestBoardApplication in 2.152 seconds (JVM running for 3.129)
-2020-03-04 14:46:20.306 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-03-04 14:46:20.307 | INFO  | k.web.servlet.FrameworkServlet::initServletBean               :525   | Initializing Servlet 'dispatcherServlet'
-2020-03-04 14:46:20.312 | INFO  | k.web.servlet.FrameworkServlet::initServletBean               :547   | Completed initialization in 5 ms
-2020-03-04 14:46:20.447 | WARN  | ache.juli.logging.DirectJDKLog::log                           :173   | Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [109] milliseconds.
-2020-03-04 14:46:23.286 | INFO  | zaxxer.hikari.HikariDataSource::getConnection                 :110   | HikariPool-1 - Starting...
-2020-03-04 14:46:23.374 | INFO  | zaxxer.hikari.HikariDataSource::getConnection                 :123   | HikariPool-1 - Start completed.
-2020-03-04 14:46:23.539 | INFO  | ww.controller.MemberController::board                         :119   | welcome to board
-2020-03-04 14:46:29.790 | INFO  | ww.controller.MemberController::board                         :119   | welcome to board
-2020-03-04 14:46:35.431 | INFO  | gistrar$SpringApplicationAdmin::shutdown                      :159   | Application shutdown requested.
-2020-03-04 14:46:35.432 | INFO  | t.ExecutorConfigurationSupport::shutdown                      :208   | Shutting down ExecutorService 'taskScheduler'
-2020-03-04 14:46:35.433 | INFO  | zaxxer.hikari.HikariDataSource::close                         :350   | HikariPool-1 - Shutdown initiated...
-2020-03-04 14:46:35.441 | INFO  | zaxxer.hikari.HikariDataSource::close                         :352   | HikariPool-1 - Shutdown completed.
+2020-03-31 12:00:20.896 | WARN  | ache.juli.logging.DirectJDKLog::log                           :173   | Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [111] milliseconds.
+2020-03-31 12:00:20.922 | INFO  | ww.controller.MemberController::board                         :119   | welcome to board
+2020-03-31 12:00:22.495 | INFO  | ww.controller.MemberController::notice                        :175   | welcome to notice
+2020-03-31 12:00:23.107 | INFO  | ww.controller.MemberController::member                        :289   | welcome to member
+2020-03-31 12:00:23.639 | INFO  | ww.controller.MemberController::notice                        :175   | welcome to notice
+2020-03-31 12:00:25.903 | INFO  | ww.controller.MemberController::board                         :119   | welcome to board
+2020-03-31 12:00:26.470 | INFO  | ww.controller.MemberController::notice                        :175   | welcome to notice
+2020-03-31 12:00:27.432 | INFO  | ww.controller.MemberController::member                        :289   | welcome to member
+2020-03-31 12:00:27.870 | INFO  | ww.controller.MemberController::notice                        :175   | welcome to notice
+2020-03-31 12:00:28.287 | INFO  | ww.controller.MemberController::board                         :119   | welcome to board
+2020-03-31 12:00:32.819 | INFO  | gistrar$SpringApplicationAdmin::shutdown                      :159   | Application shutdown requested.
+2020-03-31 12:00:32.821 | INFO  | t.ExecutorConfigurationSupport::shutdown                      :208   | Shutting down ExecutorService 'taskScheduler'
+2020-03-31 12:00:32.822 | INFO  | zaxxer.hikari.HikariDataSource::close                         :350   | HikariPool-1 - Shutdown initiated...
+2020-03-31 12:00:32.831 | INFO  | zaxxer.hikari.HikariDataSource::close                         :352   | HikariPool-1 - Shutdown completed.
+2020-03-31 12:06:06.459 | INFO  | udy05.www.TestBoardApplication::main                          :16    | Start 인포
+2020-03-31 12:06:06.777 | INFO  | amework.boot.StartupInfoLogger::logStarting                   :55    | Starting TestBoardApplication on DESKTOP-R7G672U with PID 11448 (C:\Users\Admin\git\spring5\study05\target\classes started by Admin in C:\Users\Admin\git\spring5\study05)
+2020-03-31 12:06:06.779 | INFO  | amework.boot.SpringApplication::logStartupProfileInfo         :651   | No active profile set, falling back to default profiles: default
+2020-03-31 12:06:08.099 | INFO  | mbedded.tomcat.TomcatWebServer::initialize                    :92    | Tomcat initialized with port(s): 8080 (http)
+2020-03-31 12:06:08.108 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing ProtocolHandler ["http-nio-8080"]
+2020-03-31 12:06:08.109 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting service [Tomcat]
+2020-03-31 12:06:08.109 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-03-31 12:06:08.211 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing Spring embedded WebApplicationContext
+2020-03-31 12:06:08.211 | INFO  | letWebServerApplicationContext::prepareWebApplicationContext  :284   | Root WebApplicationContext: initialization completed in 1296 ms
+2020-03-31 12:06:08.428 | INFO  | web.DefaultSecurityFilterChain::<init>                        :43    | Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@52bba91a, org.springframework.security.web.context.SecurityContextPersistenceFilter@216f01, org.springframework.security.web.header.HeaderWriterFilter@55c50f52, org.springframework.security.web.authentication.logout.LogoutFilter@6e807e2, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@240a2619, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1e721583, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@48dff674, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1689527c, org.springframework.security.web.session.SessionManagementFilter@4044589a, org.springframework.security.web.access.ExceptionTranslationFilter@36ad5f2a, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2035d65b]
+2020-03-31 12:06:08.701 | INFO  | t.ExecutorConfigurationSupport::initialize                    :171   | Initializing ExecutorService 'taskScheduler'
+2020-03-31 12:06:08.904 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Starting ProtocolHandler ["http-nio-8080"]
+2020-03-31 12:06:08.923 | INFO  | mbedded.tomcat.TomcatWebServer::start                         :204   | Tomcat started on port(s): 8080 (http) with context path ''
+2020-03-31 12:06:08.925 | INFO  | amework.boot.StartupInfoLogger::logStarted                    :61    | Started TestBoardApplication in 2.416 seconds (JVM running for 3.559)
+2020-03-31 12:06:12.871 | INFO  | ache.juli.logging.DirectJDKLog::log                           :173   | Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-31 12:06:12.872 | INFO  | k.web.servlet.FrameworkServlet::initServletBean               :525   | Initializing Servlet 'dispatcherServlet'
+2020-03-31 12:06:12.878 | INFO  | k.web.servlet.FrameworkServlet::initServletBean               :547   | Completed initialization in 6 ms
+2020-03-31 12:06:21.810 | INFO  | gistrar$SpringApplicationAdmin::shutdown                      :159   | Application shutdown requested.
+2020-03-31 12:06:21.811 | INFO  | t.ExecutorConfigurationSupport::shutdown                      :208   | Shutting down ExecutorService 'taskScheduler'

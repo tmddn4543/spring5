@@ -143,13 +143,17 @@ public class CallController {
     		@RequestParam(value="start_talk_time", required=false, defaultValue="")String start_talk_time,
     		@RequestParam(value="end_talk_time", required=false, defaultValue="")String end_talk_time,
     		@RequestParam(value="caller_attr", required=false, defaultValue="")String caller_attr,
-    		@RequestParam(value="called_attr", required=false, defaultValue="")String called_attr
+    		@RequestParam(value="called_attr", required=false, defaultValue="")String called_attr,
+    		@RequestParam(value="startRow", required=false, defaultValue="0")int startRow,
+    		@RequestParam(value="pageSize", required=false, defaultValue="10")int pageSize
     		){ 
 		if(branch_cd.equals("전체")) {
 			branch_cd = "";
 		}
 		HashMap<String, Object> param = new HashMap<>();
-		
+//		param.put("startRow", startRow);
+//		param.put("pageSize", pageSize);
+//		System.out.println("startRow :"+startRow+" / pageSize :"+pageSize);
 		param.put("emp_id", emp);
 		param.put("emp_nm", emp);
 		param.put("branch_cd", branch_cd);
@@ -162,8 +166,11 @@ public class CallController {
 		param.put("rec_type", rec_type);
 		param.put("start_talk_time", start_talk_time);
 		param.put("end_talk_time", end_talk_time);
-		param.put("limit", statisticsLimit);
 		List<Call> call = cService.getView(param);
+		if(call.size()!=0) {
+			int total = cService.getListCount(param);
+			call.get(0).setTotal(total);
+		}
 		return call;
     }
 	

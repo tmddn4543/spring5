@@ -17,6 +17,8 @@ $(document).ready(
     	var xlsx_file = "";
     	var caller_attr = "";
     	var called_attr = "";
+    	var startRow = "";
+    	var pageSize = "";
         /* 반응형 */
         $(window).resize(function(){
         var width = parseInt($(this).width()); //parseint는 정수로 하기 위함
@@ -226,83 +228,114 @@ $(document).ready(
         
         function callSearch(){
         	
-//        	var source =
-//            {
-//                 datatype: "json",
-//                 datafields: [
-//					 { name: 'c_id'},
-//					 { name: 'emp_nm'},
-//					 { name: 'caller'},
-//					 { name: 'called'},
-//					 { name: 'auth_cd'},
-//					 { name: 'group_id'}
-//                ],
-//			    url: '/call/callSearch',
-//			    root: 'Rows',
-//                cache: false,
-//				beforeprocessing: function(data)
-//				{		
-//					console.log(data);
-//					source.totalrecords = data[0].TotalRows;
-//				}
-//            };		
-//			
-//		    var dataadapter = new $.jqx.dataAdapter(source);
-//
-//            // initialize jqxGrid
-//            $("#grid").jqxGrid(
-//            {
-//                width: 800,
-//			    source: dataadapter,
-//                
-//			    autoheight: true,
-//				pageable: true,
-//				virtualmode: true,
-//				rendergridrows: function(obj)
-//				{
-//						console.log(obj.data);
-//					  return obj.data;     
-//				},
-//                columns: [
-//                      { text: 'Company Name', datafield: 'c_id', width: 100 },
-//                      { text: 'Contact Name', datafield: 'emp_nm', width: 100 },
-//                      { text: 'Contact Title', datafield: 'caller', width: 100 },
-//                      { text: 'Address', datafield: 'called', width: 100 },
-//                      { text: 'City', datafield: 'auth_cd', width: 100 },
-//                      { text: 'Country', datafield: 'group_id', width:100}
-//                  ]
-//            });
-        	
-        	
-        	
-        	
-        	$.ajax({
-        		type : "POST",
-        		url : "/call/callSearch",
-				data : {emp : emp,
-					branch_cd : branch_cd,
-					auth_cd : auth_cd,
-					bday : bday,
-					eday : eday,
-					caller : caller,
-					called : called,
-					rec_type : rec_type,
-					end_talk_time : end_talk_time,
-					start_talk_time : start_talk_time,
-					caller_attr : caller_attr,
-					called_attr : called_attr},
-				success : function(call) {
-					gridJs(call);
-				},
-				error : function() {
-					alert("알수없는 오류가 발생하였습니다.");
-				},
-				complete : function() {
+        	var source =
+            {
+                 datatype: "json",
+                 datafields: [
+					 { name: 'c_id'},
+					 { name: 'emp_nm'},
+					 { name: 'caller'},
+					 { name: 'called'},
+					 { name: 'auth_cd'},
+					 { name: 'group_id'}
+                ],
+			    url: '/call/callSearch',
+			    root: 'Rows',
+                cache: false,
+				beforeprocessing: function(data)
+				{		
+					console.log(data[0].total);
+					source.totalrecords = data[0].total;
 				}
-        	});
+            };		
+			
+		    var dataadapter = new $.jqx.dataAdapter(source);
+
+            // initialize jqxGrid
+            $("#grid").jqxGrid(
+            {
+                width: 800,
+			    source: dataadapter,
+			    autoheight: true,
+				pageable: true,
+				virtualmode: true,
+				rendergridrows: function(obj)
+				{
+					console.log(obj.data);
+					  return obj.data;     
+				},
+                columns: [
+                      { text: 'c_id', datafield: 'c_id', width: 100 },
+                      { text: 'emp_nm', datafield: 'emp_nm', width: 100 },
+                      { text: 'caller', datafield: 'caller', width: 100 },
+                      { text: 'called', datafield: 'called', width: 100 },
+                      { text: 'auth_cd', datafield: 'auth_cd', width: 100 },
+                      { text: 'group_id', datafield: 'group_id', width:100}
+                  ]
+            });
+        	
+        	
+        	
+        	
+//        	$.ajax({
+//        		type : "POST",
+//        		url : "/call/callSearch",
+//				data : {emp : emp,
+//					branch_cd : branch_cd,
+//					auth_cd : auth_cd,
+//					bday : bday,
+//					eday : eday,
+//					caller : caller,
+//					called : called,
+//					rec_type : rec_type,
+//					end_talk_time : end_talk_time,
+//					start_talk_time : start_talk_time,
+//					caller_attr : caller_attr,
+//					called_attr : called_attr,
+//					startRow : startRow,
+//					pageSize : pageSize},
+//				success : function(call) {
+//					gridJs(call);
+//				},
+//				error : function() {
+//					alert("알수없는 오류가 발생하였습니다.");
+//				},
+//				complete : function() {
+//				}
+//        	});
         }
         
         
+//        function paging(startRow,pageSize){
+//        	startRow = startRow;
+//        	pageSize = pageSize - startRow;
+//        	$.ajax({
+//        		type : "POST",
+//        		url : "/call/callSearch",
+//				data : {emp : emp,
+//					branch_cd : branch_cd,
+//					auth_cd : auth_cd,
+//					bday : bday,
+//					eday : eday,
+//					caller : caller,
+//					called : called,
+//					rec_type : rec_type,
+//					end_talk_time : end_talk_time,
+//					start_talk_time : start_talk_time,
+//					caller_attr : caller_attr,
+//					called_attr : called_attr,
+//					startRow : startRow,
+//					pageSize : pageSize},
+//				success : function(call) {
+//					return call;
+//				},
+//				error : function() {
+//					alert("알수없는 오류가 발생하였습니다.");
+//				},
+//				complete : function() {
+//				}
+//        	});
+//        }
         
         function callSearch_YYYYMMDD(){
 
@@ -372,32 +405,79 @@ $(document).ready(
             // prepare the data
             var data = new Array();
 
-
+            var a = "";
             // generate sample data.
             var generatedata = function (startindex, endindex) {
-                var data = {};
-                for (var i = startindex; i < call.length; i++) {
-                    var row = {};
-                    row["num"] = i;
-                    row["groupname"] = call[i].branch_cd;
-                    row["userid"] = call[i].emp_id;
-                    row["name"] = call[i].emp_nm;
-                    row["send_num"] = call[i].caller;
-                    row["receive_num"] = call[i].called;
-                    row["call_date"] = dateFormat(call[i].btime);
-                    row["call_hour"] = hourFormat(call[i].btime,call[i].etime);
-                    row["call_time"] = timeFormat(call[i].btime,call[i].etime);
-                    row["call_type"] = recFormat(call[i].rec_type);
-                    row["listen"] = "<label class='check_label'><input type='checkbox' class='checkbox_name' value='"+call[i].dirname+""+call[i].fname+"'></label>";
-                    data[i] = row;
+                var res = {};
+                if(startindex==0){
+                	for (var i = startindex; i < call.length; i++) {
+                		var row = {};
+                		row["num"] = i;
+                		row["groupname"] = call[i].branch_cd;
+                		row["userid"] = call[i].emp_id;
+                		row["name"] = call[i].emp_nm;
+                		row["send_num"] = call[i].caller;
+                		row["receive_num"] = call[i].called;
+                		row["call_date"] = dateFormat(call[i].btime);
+                		row["call_hour"] = hourFormat(call[i].btime,call[i].etime);
+                		row["call_time"] = timeFormat(call[i].btime,call[i].etime);
+                		row["call_type"] = recFormat(call[i].rec_type);
+                		row["listen"] = "<label class='check_label'><input type='checkbox' class='checkbox_name' value='"+call[i].dirname+""+call[i].fname+"'></label>";
+                		res[i] = row;
+                	}
+                }else{
+                	startRow = startindex;
+                	pageSize = endindex;
+                	pageSize = pageSize - startRow;
+                	$.ajax({
+                		type : "POST",
+                		url : "/call/callSearch",
+        				data : {emp : emp,
+        					branch_cd : branch_cd,
+        					auth_cd : auth_cd,
+        					bday : bday,
+        					eday : eday,
+        					caller : caller,
+        					called : called,
+        					rec_type : rec_type,
+        					end_talk_time : end_talk_time,
+        					start_talk_time : start_talk_time,
+        					caller_attr : caller_attr,
+        					called_attr : called_attr,
+        					startRow : startRow,
+        					pageSize : pageSize},
+        				success : function(call_page) {
+        					for (var i = startindex; i < 20; i++) {
+                        		var row = {};
+                        		row["num"] = i;
+                        		row["groupname"] = call_page[i-startindex].branch_cd;
+                        		row["userid"] = call_page[i-startindex].emp_id;
+                        		row["name"] = call_page[i-startindex].emp_nm;
+                        		row["send_num"] = call_page[i-startindex].caller;
+                        		row["receive_num"] = call_page[i-startindex].called;
+                        		row["call_date"] = dateFormat(call_page[i-startindex].btime);
+                        		row["call_hour"] = hourFormat(call_page[i-startindex].btime,call[i-startindex].etime);
+                        		row["call_time"] = timeFormat(call_page[i-startindex].btime,call[i-startindex].etime);
+                        		row["call_type"] = recFormat(call_page[i-startindex].rec_type);
+                        		row["listen"] = "<label class='check_label'><input type='checkbox' class='checkbox_name' value='"+call_page[i-startindex].dirname+""+call_page[i-startindex].fname+"'></label>";
+                        		res[i] = row;
+                        	}
+        					a = "a";
+        					console.log("ajax안에");
+        				}
+                	});
                 }
-                return data;
+                console.log(a);
+                console.log(res);
+                return res;
             }
+            
+            
             var source =
             {
                 datatype: "array",
                 localdata: data,
-                totalrecords: call.length
+                totalrecords: call[0].total
             };
             
             
@@ -407,6 +487,7 @@ $(document).ready(
             //음 낫벳?
             //ajax는 따로뺀다 ㅇㅇ
             var rendergridrows = function (params) {
+            	//var call_page = paging(params.startindex, params.endindex);
                 var data = generatedata(params.startindex, params.endindex);
                 return data;
             }
@@ -461,11 +542,9 @@ $(document).ready(
 		                for (var i = startindex; i < users.length; i++) {
 		                    var row = {};
 		                    row["num"] = i;
-		                    
 		                    row["name"] = users[i].emp_nm;
 		                    row["userid"] = users[i].emp_id;
 		                    row["groupname"] = users[i].branch_cd;
-
 		                    row["phone_num"] = users[i].tel_no_070;
 		                    row["call_type"] = recFormat(users[i].rec_type);
 		                    data[i] = row;
