@@ -26,8 +26,10 @@ public class UsersDetailsService implements UserDetailsService{
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		HashMap<String, Object> param = new HashMap<>();
-		List<Users> users = mapper.getView(param);
+		param.put("pagesize", 10);
+		param.put("pagestart", 0);
 		param.put("emp_id", username);
+		List<Users> users = mapper.getView(param);
 		if (null == users) {
         	throw new UsernameNotFoundException("USER NOT FOUND OR NOT MATCH PASSWORD");
         }

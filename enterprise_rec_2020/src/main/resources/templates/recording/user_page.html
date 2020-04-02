@@ -135,7 +135,7 @@
                         <input type="text" class="form-control" placeholder="" id="emp_id">
                     </div>
                     <div class="col-lg-2">
-                        <button class="btn btn-default" type="button">중복체크</button>
+                        <button class="btn btn-default" type="button" id="id_check">중복체크</button>
                     </div>
                 </div>
 
@@ -145,7 +145,7 @@
                         <input type="text" class="form-control" placeholder="" id="tel_no_070">
                     </div>
                     <div class="col-lg-2">
-                        <button class="btn btn-default" type="button">중복체크</button>
+                        <button class="btn btn-default" type="button" id="tel_070_check">중복체크</button>
                     </div>
                 </div>
 
@@ -162,7 +162,7 @@
                         <input type="text" class="form-control" placeholder="" id="tel_no">
                     </div>
                     <div class="col-lg-2">
-                        <button class="btn btn-default" type="button">중복체크</button>
+                        <button class="btn btn-default" type="button" id="tel_check">중복체크</button>
                     </div>
                 </div>
 
@@ -179,19 +179,61 @@
                         <div class="group_btn_act"></div>
                     </div>
                     <div class="col-lg-2">
-                        <button class="btn btn-default" type="button">중복체크</button>
+                        <button type="button" class="btn btn-default groupSet_open" data-toggle="modal" data-target="#groupSet_modal">그룹관리</button>
                     </div>
 
                 </div>
+					<div class="modal fade" id="groupSet_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">그룹관리</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div id='groupSet_grid' class="show_group"></div>
+                                    <div class="add_group disno">
+                                        <div class="form-group">
+                                            <label class="col-lg-3">그룹 코드</label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control" placeholder="">
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <button class="btn btn-default" type="button">중복체크</button>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-lg-3">그룹 이름</label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control" placeholder="">
+                                            </div>
+                                        </div>                                        
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="show_group">
+                                        <button type="button" class="btn btn-default">삭제</button>
+                                        <button type="button" class="btn btn-primary next">등록</button>                                
+                                    </div>
+                                    <div class="add_group disno">
+                                        <button type="button" class="btn btn-primary">등록</button>
+                                        <button type="button" class="btn btn-default previous">닫기</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
 
                 <div class="form-group">
                     <label class="col-lg-2">녹취유형</label>
                     <div class="col-lg-8">
                         <label class="radio-inline">
-                          <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 전수녹취
+                          <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="B"> 전수녹취
                         </label>
                         <label class="radio-inline">
-                          <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" checked> 녹취정지
+                          <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="N" checked> 녹취정지
                         </label>
                     </div>
                 </div>
@@ -199,14 +241,14 @@
                 <div class="form-group">
                     <label class="col-lg-2">비밀번호</label>
                     <div class="col-lg-8">
-                        <input type="text" class="form-control" placeholder="" id="pass">                
+                        <input type="password" class="form-control" placeholder="" id="pass">                
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-lg-2">비밀번호 확인</label>
                     <div class="col-lg-8">
-                        <input type="text" class="form-control" placeholder="" id="pass_check">                
+                        <input type="password" class="form-control" placeholder="" id="pass_check">                
                     </div>
                 </div>
 
@@ -214,10 +256,10 @@
                     <label class="col-lg-2">다운로드 여부</label>
                     <div class="col-lg-8">
                         <label class="radio-inline">
-                          <input type="radio" name="download" id="inlineRadio1" value="down1"> 다운로드 OFF
+                          <input type="radio" name="download" id="inlineRadio1" value="N"> 다운로드 OFF
                         </label>
                         <label class="radio-inline">
-                          <input type="radio" name="download" id="inlineRadio2" value="down2" checked> 다운로드 ON
+                          <input type="radio" name="download" id="inlineRadio2" value="Y" checked> 다운로드 ON
                         </label>
                     </div>
                 </div>

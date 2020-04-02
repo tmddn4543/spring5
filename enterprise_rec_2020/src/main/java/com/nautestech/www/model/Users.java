@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class Users {
+	public int num;
 	public String tel_no;
 	public String branch_cd;
 	public String emp_id;
@@ -22,4 +23,7 @@ public class Users {
 	public String is_pass;
 	public String down_type;
 	public String group_id;
+	
+	
+	public String user_detail;
 }

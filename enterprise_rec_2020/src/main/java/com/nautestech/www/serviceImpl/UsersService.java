@@ -40,6 +40,6 @@ public class UsersService implements IInsert,ISelect<Users>{
 
 	@Override
 	public int getListCount(HashMap<String, Object> param) {
-		return 0;
+		return mapper.getListCount(param);
 	}
 }

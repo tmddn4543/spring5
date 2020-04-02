@@ -14,7 +14,6 @@ $(document).ready(
     	var rec_type = "";
     	var end_talk_time = "";
     	var start_talk_time = "";
-    	var xlsx_file = "";
     	var caller_attr = "";
     	var called_attr = "";
     	var startRow = "";
@@ -188,9 +187,7 @@ $(document).ready(
         
         
         $("#listBoxgridpagerlistgrid").on("click", "span", function(event){
-            console.log(event.target);
              var rows = event.target.innerText;
-             console.log(rows);
              if(rows>14){
                 $("#grid").jqxGrid({
                     height: 100 + "%",
@@ -231,273 +228,48 @@ $(document).ready(
         	var source =
             {
                  datatype: "json",
+                 data : {emp : emp,
+ 					branch_cd : branch_cd,
+ 					auth_cd : auth_cd,
+ 					bday : bday,
+ 					eday : eday,
+ 					caller : caller,
+ 					called : called,
+ 					rec_type : rec_type,
+ 					end_talk_time : end_talk_time,
+ 					start_talk_time : start_talk_time,
+ 					caller_attr : caller_attr,
+ 					called_attr : called_attr},
                  datafields: [
-					 { name: 'c_id'},
+					 { name: 'num'},
 					 { name: 'emp_nm'},
 					 { name: 'caller'},
 					 { name: 'called'},
 					 { name: 'auth_cd'},
-					 { name: 'group_id'}
+					 { name: 'emp_id'},
+					 { name: 'branch_cd'},
+					 { name: 'rec_type'},
+					 { name: 'call_date'},
+					 { name: 'call_hour'},
+					 { name: 'call_time'},
+					 { name: 'dirname'}
                 ],
 			    url: '/call/callSearch',
 			    root: 'Rows',
                 cache: false,
 				beforeprocessing: function(data)
 				{		
-					console.log(data[0].total);
-					source.totalrecords = data[0].total;
+					source.totalrecords = data.total;
 				}
             };		
 			
 		    var dataadapter = new $.jqx.dataAdapter(source);
 
             // initialize jqxGrid
-            $("#grid").jqxGrid(
-            {
-                width: 800,
-			    source: dataadapter,
-			    autoheight: true,
-				pageable: true,
-				virtualmode: true,
-				rendergridrows: function(obj)
-				{
-					console.log(obj.data);
-					  return obj.data;     
-				},
-                columns: [
-                      { text: 'c_id', datafield: 'c_id', width: 100 },
-                      { text: 'emp_nm', datafield: 'emp_nm', width: 100 },
-                      { text: 'caller', datafield: 'caller', width: 100 },
-                      { text: 'called', datafield: 'called', width: 100 },
-                      { text: 'auth_cd', datafield: 'auth_cd', width: 100 },
-                      { text: 'group_id', datafield: 'group_id', width:100}
-                  ]
-            });
-        	
-        	
-        	
-        	
-//        	$.ajax({
-//        		type : "POST",
-//        		url : "/call/callSearch",
-//				data : {emp : emp,
-//					branch_cd : branch_cd,
-//					auth_cd : auth_cd,
-//					bday : bday,
-//					eday : eday,
-//					caller : caller,
-//					called : called,
-//					rec_type : rec_type,
-//					end_talk_time : end_talk_time,
-//					start_talk_time : start_talk_time,
-//					caller_attr : caller_attr,
-//					called_attr : called_attr,
-//					startRow : startRow,
-//					pageSize : pageSize},
-//				success : function(call) {
-//					gridJs(call);
-//				},
-//				error : function() {
-//					alert("알수없는 오류가 발생하였습니다.");
-//				},
-//				complete : function() {
-//				}
-//        	});
-        }
-        
-        
-//        function paging(startRow,pageSize){
-//        	startRow = startRow;
-//        	pageSize = pageSize - startRow;
-//        	$.ajax({
-//        		type : "POST",
-//        		url : "/call/callSearch",
-//				data : {emp : emp,
-//					branch_cd : branch_cd,
-//					auth_cd : auth_cd,
-//					bday : bday,
-//					eday : eday,
-//					caller : caller,
-//					called : called,
-//					rec_type : rec_type,
-//					end_talk_time : end_talk_time,
-//					start_talk_time : start_talk_time,
-//					caller_attr : caller_attr,
-//					called_attr : called_attr,
-//					startRow : startRow,
-//					pageSize : pageSize},
-//				success : function(call) {
-//					return call;
-//				},
-//				error : function() {
-//					alert("알수없는 오류가 발생하였습니다.");
-//				},
-//				complete : function() {
-//				}
-//        	});
-//        }
-        
-        function callSearch_YYYYMMDD(){
-
-        	if(YYYYMM(bday, eday)=='false'){
-        		alert("2달 이상 검색은 불가합니다.");
-        		return false;
-        	}
-        	
-        	$.ajax({
-        		type : "POST",
-        		url : "/call/callSearch_YYYYMMDD",
-				data : {emp : emp,
-					branch_cd : branch_cd,
-					auth_cd : auth_cd,
-					bday : bday,
-					eday : eday,
-					caller : caller,
-					called : called,
-					rec_type : rec_type,
-					end_talk_time : end_talk_time,
-					start_talk_time : start_talk_time,
-					caller_attr : caller_attr,
-					called_attr : called_attr},
-				success : function(call) {
-					gridJs(call);
-				},
-				error : function() {
-					alert("알수없는 오류가 발생하였습니다.");
-				},
-				complete : function() {
-				}
-        	});
-        }
-        
-        
-        
-        function gridJs(call){
-        	/* 그리드 */
-			if(call.length==0){
-				alert("검색된게없습니다.");
-				return false;
-			}
-			xlsx_file = call;
-            
-             // custom comparer.
-            var compare = function (value1, value2) {
-                value1 = String(value1).toLowerCase();
-                value2 = String(value2).toLowerCase();
-                try {
-                    var tmpvalue1 = parseFloat(value1);
-                    if (isNaN(tmpvalue1)) {
-                        if (value1 < value2) { return -1; }
-                        if (value1 > value2) { return 1; }
-                    }
-                    else {
-                        var tmpvalue2 = parseFloat(value2);
-                        if (tmpvalue1 < tmpvalue2) { return -1; }
-                        if (tmpvalue1 > tmpvalue2) { return 1; }
-                    }
-                }
-                catch (error) {
-                    var er = error;
-                }
-                return 0;
-            };
-
-            // prepare the data
-            var data = new Array();
-
-            var a = "";
-            // generate sample data.
-            var generatedata = function (startindex, endindex) {
-                var res = {};
-                if(startindex==0){
-                	for (var i = startindex; i < call.length; i++) {
-                		var row = {};
-                		row["num"] = i;
-                		row["groupname"] = call[i].branch_cd;
-                		row["userid"] = call[i].emp_id;
-                		row["name"] = call[i].emp_nm;
-                		row["send_num"] = call[i].caller;
-                		row["receive_num"] = call[i].called;
-                		row["call_date"] = dateFormat(call[i].btime);
-                		row["call_hour"] = hourFormat(call[i].btime,call[i].etime);
-                		row["call_time"] = timeFormat(call[i].btime,call[i].etime);
-                		row["call_type"] = recFormat(call[i].rec_type);
-                		row["listen"] = "<label class='check_label'><input type='checkbox' class='checkbox_name' value='"+call[i].dirname+""+call[i].fname+"'></label>";
-                		res[i] = row;
-                	}
-                }else{
-                	startRow = startindex;
-                	pageSize = endindex;
-                	pageSize = pageSize - startRow;
-                	$.ajax({
-                		type : "POST",
-                		url : "/call/callSearch",
-        				data : {emp : emp,
-        					branch_cd : branch_cd,
-        					auth_cd : auth_cd,
-        					bday : bday,
-        					eday : eday,
-        					caller : caller,
-        					called : called,
-        					rec_type : rec_type,
-        					end_talk_time : end_talk_time,
-        					start_talk_time : start_talk_time,
-        					caller_attr : caller_attr,
-        					called_attr : called_attr,
-        					startRow : startRow,
-        					pageSize : pageSize},
-        				success : function(call_page) {
-        					for (var i = startindex; i < 20; i++) {
-                        		var row = {};
-                        		row["num"] = i;
-                        		row["groupname"] = call_page[i-startindex].branch_cd;
-                        		row["userid"] = call_page[i-startindex].emp_id;
-                        		row["name"] = call_page[i-startindex].emp_nm;
-                        		row["send_num"] = call_page[i-startindex].caller;
-                        		row["receive_num"] = call_page[i-startindex].called;
-                        		row["call_date"] = dateFormat(call_page[i-startindex].btime);
-                        		row["call_hour"] = hourFormat(call_page[i-startindex].btime,call[i-startindex].etime);
-                        		row["call_time"] = timeFormat(call_page[i-startindex].btime,call[i-startindex].etime);
-                        		row["call_type"] = recFormat(call_page[i-startindex].rec_type);
-                        		row["listen"] = "<label class='check_label'><input type='checkbox' class='checkbox_name' value='"+call_page[i-startindex].dirname+""+call_page[i-startindex].fname+"'></label>";
-                        		res[i] = row;
-                        	}
-        					a = "a";
-        					console.log("ajax안에");
-        				}
-                	});
-                }
-                console.log(a);
-                console.log(res);
-                return res;
-            }
-            
-            
-            var source =
-            {
-                datatype: "array",
-                localdata: data,
-                totalrecords: call[0].total
-            };
-            
-            
-            // load virtual data.
-            //ajax(params.startindex, params.endindex)해준다
-            //10개 20개 나온값들..을 generatedata(call)이런식을해준다 ㅇㅇ
-            //음 낫벳?
-            //ajax는 따로뺀다 ㅇㅇ
-            var rendergridrows = function (params) {
-            	//var call_page = paging(params.startindex, params.endindex);
-                var data = generatedata(params.startindex, params.endindex);
-                return data;
-            }
-            var totalcolumnrenderer = function (row, column, cellvalue) {
-                var cellvalue = $.jqx.dataFormat.formatnumber(cellvalue, "c2");
-                return "<span style="+"margin: 6px 3px; font-size: 12px; float: right; font-weight: bold;" + ">" + cellvalue + "</span>";
-            }
-            var dataAdapter = new $.jqx.dataAdapter(source);
-            $("#grid").jqxGrid(
+		    
+		    $("#grid").jqxGrid(//킵
                     {
+                    	source: dataadapter,
                         width: 100 + "%",
                         height:  + "%",
                         autoheight: true, 
@@ -507,26 +279,119 @@ $(document).ready(
                             rowdetails: "<div style='margin: 10px;'><div class='information'><audio autoplay controls><source src='/resource/assets/audio/sample.mp3' type='audio/mp3'></audio></div></div>",
                             rowdetailsheight: 100
                         },
-                        source: dataAdapter,                
                         virtualmode: true,
                         pageable: true,
-                        rendergridrows: rendergridrows,
+                        rendergridrows: function(obj)
+        				{
+        					  return obj.data;     
+        				},
                         columns: [
                             { text: "순번", datafield: "num", width: 5 + "%", minwidth: 50.9},
-                            { text: "그룹", datafield: "groupname", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "사용자ID", datafield: "userid", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "이름", datafield: "name", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "발신번호", datafield: "send_num", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "수신번호", datafield: "receive_num", width: 9.090909 + "%", minwidth: 91.7333},
+                            { text: "그룹", datafield: "branch_cd", width: 9.090909 + "%", minwidth: 91.7333},
+                            { text: "사용자ID", datafield: "emp_id", width: 9.090909 + "%", minwidth: 91.7333},
+                            { text: "이름", datafield: "emp_nm", width: 9.090909 + "%", minwidth: 91.7333},
+                            { text: "발신번호", datafield: "caller", width: 9.090909 + "%", minwidth: 91.7333},
+                            { text: "수신번호", datafield: "called", width: 9.090909 + "%", minwidth: 91.7333},
                             { text: "통화일자", datafield: "call_date", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "통화시각", datafield: "call_hour", width: 13.181818 + "%", minwidth: 132.55},
+                            { text: "통화시각", datafield: "call_hour", width: 9.090909 + "%", minwidth: 91.7333},
                             { text: "통화시간", datafield: "call_time", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "유형", datafield: "call_type", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "<button class='btn btn-default' id='zipDown_bt'>받기</button>", datafield: "listen", width: 9.090909 + "%", minwidth: 91.7333}
+                            { text: "유형", datafield: "rec_type", width: 9.090909 + "%", minwidth: 91.7333},//"+call[i].dirname+""+call[i].fname+"
+                            { text: "<button class='btn btn-default' id='zipDown_bt'>받기</button>", datafield: "dirname", width: 9.090909 + "%", minwidth: 91.7333}
+                        ]
+                });
+		    
+
+        }
+        
+        
+        
+        function callSearch_YYYYMMDD(){
+
+        	if(YYYYMM(bday, eday)=='false'){
+        		alert("2달 이상 검색은 불가합니다.");
+        		return false;
+        	}
+        	
+        	var source =
+            {
+                 datatype: "json",
+                 data : {emp : emp,
+ 					branch_cd : branch_cd,
+ 					auth_cd : auth_cd,
+ 					bday : bday,
+ 					eday : eday,
+ 					caller : caller,
+ 					called : called,
+ 					rec_type : rec_type,
+ 					end_talk_time : end_talk_time,
+ 					start_talk_time : start_talk_time,
+ 					caller_attr : caller_attr,
+ 					called_attr : called_attr},
+                 datafields: [
+					 { name: 'num'},
+					 { name: 'emp_nm'},
+					 { name: 'caller'},
+					 { name: 'called'},
+					 { name: 'auth_cd'},
+					 { name: 'emp_id'},
+					 { name: 'branch_cd'},
+					 { name: 'rec_type'},
+					 { name: 'call_date'},
+					 { name: 'call_hour'},
+					 { name: 'call_time'},
+					 { name: 'dirname'}
+                ],
+			    url: '/call/callSearch',
+			    root: 'Rows',
+                cache: false,
+				beforeprocessing: function(data)
+				{		
+					source.totalrecords = data.total;
+				}
+            };		
+			
+		    var dataadapter = new $.jqx.dataAdapter(source);
+
+            // initialize jqxGrid
+		    
+		    $("#grid").jqxGrid(//킵
+                    {
+                    	source: dataadapter,
+                        width: 100 + "%",
+                        height:  + "%",
+                        autoheight: true, 
+                        theme: 'material',
+                        rowdetails: true,
+                        rowdetailstemplate: {
+                            rowdetails: "<div style='margin: 10px;'><div class='information'><audio autoplay controls><source src='/resource/assets/audio/sample.mp3' type='audio/mp3'></audio></div></div>",
+                            rowdetailsheight: 100
+                        },
+                        virtualmode: true,
+                        pageable: true,
+                        rendergridrows: function(obj)
+        				{
+        					  return obj.data;     
+        				},
+                        columns: [
+                            { text: "순번", datafield: "num", width: 5 + "%", minwidth: 50.9},
+                            { text: "그룹", datafield: "branch_cd", width: 9.090909 + "%", minwidth: 91.7333},
+                            { text: "사용자ID", datafield: "emp_id", width: 9.090909 + "%", minwidth: 91.7333},
+                            { text: "이름", datafield: "emp_nm", width: 9.090909 + "%", minwidth: 91.7333},
+                            { text: "발신번호", datafield: "caller", width: 9.090909 + "%", minwidth: 91.7333},
+                            { text: "수신번호", datafield: "called", width: 9.090909 + "%", minwidth: 91.7333},
+                            { text: "통화일자", datafield: "call_date", width: 9.090909 + "%", minwidth: 91.7333},
+                            { text: "통화시각", datafield: "call_hour", width: 9.090909 + "%", minwidth: 91.7333},
+                            { text: "통화시간", datafield: "call_time", width: 9.090909 + "%", minwidth: 91.7333},
+                            { text: "유형", datafield: "rec_type", width: 9.090909 + "%", minwidth: 91.7333},//"+call[i].dirname+""+call[i].fname+"
+                            { text: "<button class='btn btn-default' id='zipDown_bt'>받기</button>", datafield: "dirname", width: 9.090909 + "%", minwidth: 91.7333}
                         ]
             });
-            alert("녹취를 검색했습니다.");
-        };
+        	
+        }
+        
+        
+        
+        
         
         function usersSearch(){
         	$.ajax({
@@ -634,7 +499,6 @@ $(document).ready(
         	$(".checkbox_name").each(function(){  // .each()는 forEach를 뜻한다.
     			if($(this).is(":checked")){
     				var res = $(this).val();
-    				console.log(res);
     				arr[count] = res;
     				count = count+1;
     			}  

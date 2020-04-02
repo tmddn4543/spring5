@@ -11,4 +11,5 @@ import com.nautestech.www.model.Users;
 public interface UsersMapper {
 	public List<Users> getView(HashMap<String, Object> param);
 	public void setInsert(HashMap<String, Object> param);
+	public int getListCount(HashMap<String, Object>param);
 }

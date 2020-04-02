@@ -1,5 +1,6 @@
 package com.nautestech.www.controller;
 
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -98,6 +99,9 @@ public class CallController {
 		param.put("rec_type", rec_type);
 		param.put("start_talk_time", start_talk_time);
 		param.put("end_talk_time", end_talk_time);
+		//엑셀다운할때는 전체를 다운해야되니까 즉 페이징은 10,20개씩보여줄려고 리미트를 거는데
+		//엑셀다운할때는 페이징된10,20개를다운할필요업으니까 xlsx가 값이있으면 전체다운 없으면 그냥검색이니 리미트걸어서 검색
+		param.put("xlsx", "true");
 		param.put("limit", statisticsLimit);
 		List<Call> call = cService.getView(param);
 		System.out.println(call.size());
@@ -131,7 +135,7 @@ public class CallController {
 	@Secured({"ROLE_ADMIN"})
 	@RequestMapping(value = "/callSearch", method= {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
-    public List<Call> callSearch(
+    public HashMap<String, Object> callSearch(
     		@RequestParam(value="emp", required=false, defaultValue="")String emp,
     		@RequestParam(value="branch_cd", required=false, defaultValue="")String branch_cd,
     		@RequestParam(value="auth_cd", required=false, defaultValue="")String auth_cd,
@@ -144,16 +148,15 @@ public class CallController {
     		@RequestParam(value="end_talk_time", required=false, defaultValue="")String end_talk_time,
     		@RequestParam(value="caller_attr", required=false, defaultValue="")String caller_attr,
     		@RequestParam(value="called_attr", required=false, defaultValue="")String called_attr,
-    		@RequestParam(value="startRow", required=false, defaultValue="0")int startRow,
-    		@RequestParam(value="pageSize", required=false, defaultValue="10")int pageSize
-    		){ 
+    		@RequestParam(value="pagenum", required=false, defaultValue="")int pagenum,
+    		@RequestParam(value="pagesize", required=false, defaultValue="")int pagesize,
+    		@RequestParam(value="recordstartindex", required=false, defaultValue="")int recordstartindex,
+    		@RequestParam(value="recordendindex", required=false, defaultValue="")int recordendindex
+    		) throws ParseException{ 
 		if(branch_cd.equals("전체")) {
 			branch_cd = "";
 		}
 		HashMap<String, Object> param = new HashMap<>();
-//		param.put("startRow", startRow);
-//		param.put("pageSize", pageSize);
-//		System.out.println("startRow :"+startRow+" / pageSize :"+pageSize);
 		param.put("emp_id", emp);
 		param.put("emp_nm", emp);
 		param.put("branch_cd", branch_cd);
@@ -166,12 +169,27 @@ public class CallController {
 		param.put("rec_type", rec_type);
 		param.put("start_talk_time", start_talk_time);
 		param.put("end_talk_time", end_talk_time);
+		param.put("pagesize", pagesize);
+		param.put("pagestart", recordstartindex);
+		param.put("xlsx", "false");
+		HashMap<String, Object> param1 = new HashMap<>();
 		List<Call> call = cService.getView(param);
+		
+		listExcelDownload format = new listExcelDownload();
 		if(call.size()!=0) {
 			int total = cService.getListCount(param);
-			call.get(0).setTotal(total);
+			param1.put("total", total);
+			for(int i=0; i<call.size(); i++) {
+				call.get(i).setDirname("<label class='check_label'><input type='checkbox' class='checkbox_name' value='"+call.get(i).getDirname()+""+call.get(i).getFname()+"'></label>");
+				call.get(i).setCall_date(format.dateFormat(call.get(i).getBtime()));
+				call.get(i).setCall_hour(format.hourFormat(call.get(i).getBtime(), call.get(i).getEtime()));
+				call.get(i).setCall_time(format.timeFormat(call.get(i).getBtime(), call.get(i).getEtime()));
+				call.get(i).setRec_type(format.recFormat(call.get(i).getRec_type()));
+				call.get(i).setNum(recordstartindex+i);
+			}
 		}
-		return call;
+		param1.put("Rows", call);
+		return param1;
     }
 	
 	
@@ -191,8 +209,12 @@ public class CallController {
     		@RequestParam(value="start_talk_time", required=false, defaultValue="")String start_talk_time,
     		@RequestParam(value="end_talk_time", required=false, defaultValue="")String end_talk_time,
     		@RequestParam(value="caller_attr", required=false, defaultValue="")String caller_attr,
-    		@RequestParam(value="called_attr", required=false, defaultValue="")String called_attr
-    		){ 
+    		@RequestParam(value="called_attr", required=false, defaultValue="")String called_attr,
+    		@RequestParam(value="pagenum", required=false, defaultValue="")int pagenum,
+    		@RequestParam(value="pagesize", required=false, defaultValue="")int pagesize,
+    		@RequestParam(value="recordstartindex", required=false, defaultValue="")int recordstartindex,
+    		@RequestParam(value="recordendindex", required=false, defaultValue="")int recordendindex
+    		) throws ParseException{ 
 		String startYYYYMM = bday.substring(0,7);
 		String endYYYYMM = eday.substring(0,7);
 		
@@ -205,6 +227,7 @@ public class CallController {
 			branch_cd = "";
 		}
 		HashMap<String, Object> param = new HashMap<>();
+		param.put("xlsx", "false");
 		param.put("emp_id", emp);
 		param.put("emp_nm", emp);
 		param.put("branch_cd", branch_cd);
@@ -219,8 +242,26 @@ public class CallController {
 		param.put("rec_type", rec_type);
 		param.put("start_talk_time", start_talk_time);
 		param.put("end_talk_time", end_talk_time);
-		param.put("limit", statisticsLimit);
+		param.put("pagesize", pagesize);
+		param.put("pagestart", recordstartindex);
+		param.put("xlsx", "false");
+		HashMap<String, Object> param1 = new HashMap<>();
 		List<Call> call = cService.getViewYYYYMM(param);
+		
+		listExcelDownload format = new listExcelDownload();
+		if(call.size()!=0) {
+			int total = cService.getListCount(param);
+			param1.put("total", total);
+			for(int i=0; i<call.size(); i++) {
+				call.get(i).setDirname("<label class='check_label'><input type='checkbox' class='checkbox_name' value='"+call.get(i).getDirname()+""+call.get(i).getFname()+"'></label>");
+				call.get(i).setCall_date(format.dateFormat(call.get(i).getBtime()));
+				call.get(i).setCall_hour(format.hourFormat(call.get(i).getBtime(), call.get(i).getEtime()));
+				call.get(i).setCall_time(format.timeFormat(call.get(i).getBtime(), call.get(i).getEtime()));
+				call.get(i).setRec_type(format.recFormat(call.get(i).getRec_type()));
+				call.get(i).setNum(recordstartindex+i);
+			}
+		}
+		param1.put("Rows", call);
 		return call;
     }
 	

@@ -5,178 +5,94 @@ $(document).ready(function(){
 	var tel_no_070 ="";
 	var pass = "";
 	var pass_check = "";
-	
-    	
-	$.ajax({
-		type : "POST",
-		url : "/user/user_page_ajax",
-		data : {},
-		success : function(users) {
-	
-        /* 반응형 */
-        $(window).resize(function(){
-        var width = parseInt($(this).width()); //parseint는 정수로 하기 위함
-
-            if (width > 1464 || width < 451){
-                $('body').removeClass('mini-navbar');
-            } else { 
-                $('body').addClass('mini-navbar');
-            }
-        }).resize();
-        
-        $(".hide_darkbg").click(
-            function(){
-                $("body").removeClass("mini-navbar");
-            }
-        );
-
-        /* 소스 */
-        var source = [
-            "전체",
-            "admin"
-        ];
-        // Create a jqxDropDownList
-        $(".group_btn_act").jqxDropDownList({ source: source, selectedIndex: 1, width: 100 + "%", height: 34, autoItemsHeight: true, theme: "bootstrap", autoDropDownHeight: true});
-      
-
-        var source = [
-            "전체",
-            "시스템관리자",
-            "운용사용자",
-            "그룹관리자",
-            "상담원",
-            "알람서비스등록"
-        ];
-        // Create a jqxDropDownList
-        $(".authority_num").jqxDropDownList({ source: source, selectedIndex: 1, width: 100 + "%", height: 34, autoItemsHeight: true, theme: "bootstrap", autoDropDownHeight: true});
-
-        /* 그리드 */
-        var customsortfunc = function (column, direction) {
-        var sortdata = new Array();
-        if (direction == 'ascending') direction = true;
-        if (direction == 'descending') direction = false;
-        if (direction != null) {
-            for (i = 0; i < data.length; i++) {
-                sortdata.push(data[i]);
-            }
-        }
-        else sortdata = data;
-        var tmpToString = Object.prototype.toString;
-        Object.prototype.toString = (typeof column == "function") ? column : function () { return this[column] };
-        if (direction != null) {
-            sortdata.sort(compare);
-            if (!direction) {
-                sortdata.reverse();
-            }
-        }
-        source.localdata = sortdata;
-        $("#grid").jqxGrid('updatebounddata', 'sort');
-        Object.prototype.toString = tmpToString;
-        }
-         // custom comparer.
-        var compare = function (value1, value2) {
-            value1 = String(value1).toLowerCase();
-            value2 = String(value2).toLowerCase();
-            try {
-                var tmpvalue1 = parseFloat(value1);
-                if (isNaN(tmpvalue1)) {
-                    if (value1 < value2) { return -1; }
-                    if (value1 > value2) { return 1; }
-                }
-                else {
-                    var tmpvalue2 = parseFloat(value2);
-                    if (tmpvalue1 < tmpvalue2) { return -1; }
-                    if (tmpvalue1 > tmpvalue2) { return 1; }
-                }
-            }
-            catch (error) {
-                var er = error;
-            }
-            return 0;
-        };
-
-        // prepare the data
-        var data = new Array();
-
-        // generate sample data.
-        var generatedata = function (startindex, endindex) {
-            var data = {};
-            for (var i = startindex; i < users.length; i++) {
-                var row = {};
-                row["num"] = i;
-                row["groupname"] = users[i].branch_cd;
-                row["authority_num"] = authFormat(users[i].auth_cd);
-                row["userid"] = users[i].emp_id;
-                row["phone_num"] = users[i].tel_no_070;
-                row["registration_data"] = users[i].rec_regdate;
-                row["change_data"] = users[i].rec_type_regdate;
-                row["call_type"] = recFormat(users[i].rec_type);
-                row["worker_data"] = users[i].work_emp_id;
-                row["showmore"] = "<button type= button class= 'btn btn-default' data-toggle= 'modal' data-target='#user_add' value='user_view'>상세보기</button>";
-                data[i] = row;
-            }
-            return data;
-        }
-        var source =
-        {
-            datatype: "array",
-            localdata: {},
-            totalrecords: users.length
-        };
-        // load virtual data.
-        var rendergridrows = function (params) {
-            var data = generatedata(params.startindex, params.endindex);
-            return data;
-        }
-        var totalcolumnrenderer = function (row, column, cellvalue) {
-            var cellvalue = $.jqx.dataFormat.formatnumber(cellvalue, "c2");
-            return "<span style="+"margin: 6px 3px; font-size: 12px; float: right; font-weight: bold;" + ">" + cellvalue + "</span>";
-        }
-        var dataAdapter = new $.jqx.dataAdapter(source);
-        $("#user_grid").jqxGrid(
-        {
-            width: 100 + "%",
-            height: 100 + "%",
-            autoheight: false, 
-            theme: 'material',
-            columnsresize: true,
-            pagermode: 'simple',
-            source: dataAdapter,                
-            virtualmode: true,
-            pageable: true,
-            selectionmode: 'checkbox',
-               
-            rendergridrows: rendergridrows,
-            columns: [
-                { text: "순번", datafield: "num", width: 7.8 + '%', minwidth: 52.55},
-                { text: "그룹", datafield: "groupname", width: 10 + "%", minwidth: 104.1},
-                { text: "권한등급", datafield: "authority_num", width: 10 + "%", minwidth: 104.1},
-                { text: "사용자ID", datafield: "userid", width: 10 + "%", minwidth: 104.1},
-                { text: "전화번호", datafield: "phone_num", width: 10 + "%", minwidth: 104.1},
-                { text: "녹취 등록일", datafield: "registration_data", width: 10 + "%", minwidth: 104.1},
-                { text: "녹취 변경일", datafield: "change_data", width: 10 + "%", minwidth: 104.1},
-                { text: "녹취 유형", datafield: "call_type", width: 10 + "%", minwidth: 104.1},
-                { text: "작업자", datafield: "worker_data", width: 10 + "%", minwidth: 104.1},
-                { text: "상세보기", datafield: "showmore", width: 10 + "%", minwidth: 104.1}
-            ]
-        });
-		},
-		error : function() {
-			alert("알수없는 오류가 발생하였습니다.");
-		},
-		complete : function() {
+	var auth_cd = "";
+    var branch_cd = "";	
+    var rec_type = "";
+    var down_type = "";
+    
+    
+    var source =
+    {
+         datatype: "json",
+         data : {},
+         datafields: [
+			 { name: 'num'},
+			 { name: 'branch_cd'},
+			 { name: 'auth_cd'},
+			 { name: 'emp_id'},
+			 { name: 'tel_no'},
+			 { name: 'rec_regdate'},
+			 { name: 'rec_type_regdate'},
+			 { name: 'rec_type'},
+			 { name: 'work_emp_id'},
+			 { name: 'user_detail'}
+        ],
+	    url: '/user/user_page_ajax',
+	    root: 'Rows',
+        cache: false,
+		beforeprocessing: function(data)
+		{		
+			console.log(data.total);
+			source.totalrecords = data.total;
 		}
-	});
+    };		
+	
+    var dataadapter = new $.jqx.dataAdapter(source);
+
+    // initialize jqxGrid
+    
+    $("#user_grid").jqxGrid(//킵
+            {
+            	source: dataadapter,
+                width: 100 + "%",
+                height:  + "%",
+                autoheight: true, 
+                theme: 'material',
+                virtualmode: true,
+                pageable: true,
+                rendergridrows: function(obj)
+				{
+					  return obj.data;     
+				},
+                columns: [
+                    { text: "순번", datafield: "num", width: 5 + "%", minwidth: 50.9},
+                    { text: "그룹", datafield: "branch_cd", width: 9.090909 + "%", minwidth: 91.7333},
+                    { text: "권한등급", datafield: "auth_cd", width: 9.090909 + "%", minwidth: 91.7333},
+                    { text: "사용자ID", datafield: "emp_id", width: 9.090909 + "%", minwidth: 91.7333},
+                    { text: "전화번호", datafield: "tel_no", width: 9.090909 + "%", minwidth: 91.7333},
+                    { text: "녹취 등록일", datafield: "rec_regdate", width: 9.090909 + "%", minwidth: 91.7333},
+                    { text: "녹취 변경일", datafield: "rec_type_regdate", width: 9.090909 + "%", minwidth: 91.7333},
+                    { text: "녹취 유형", datafield: "rec_type", width: 9.090909 + "%", minwidth: 91.7333},
+                    { text: "작업자", datafield: "work_emp_id", width: 9.090909 + "%", minwidth: 91.7333},
+                    { text: "상세보기", datafield: "user_detail", width: 9.090909 + "%", minwidth: 91.7333}
+                ]
+        });
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	$('#user_add').on('shown.bs.modal', function (event) {
 		var res = $(event.relatedTarget);
-		console.log($('#myModalLabel1').html());
 		if(res.context.value=="user_view"){
 			$('#myModalLabel1').html("사용자 상세보기");
 			alert("준비중ㅇㅅㅇ");
 		}else if(res.context.value=="user_insert"){
 			$('#myModalLabel1').html("사용자 등록");
 			emp_id = $("#emp_id").val("");
+			$("#emp_id").prop("readonly",false);
+			$("#tel_no").prop("readonly",false);
+			$("#tel_no_070").prop("readonly",false);
 			emp_nm = $("#emp_nm").val("");
 			tel_no = $("#tel_no").val("");
 			tel_no_070 = $("#tel_no_070").val("");
@@ -188,42 +104,255 @@ $(document).ready(function(){
 	$("#modal_ajax").click(function (){
 		
 		
-		emp_id = $("#emp_id").val();
-		emp_nm = $("#emp_nm").val();
-		tel_no = $("#tel_no").val();
-		tel_no_070 = $("#tel_no_070").val();
-		pass = $("#pass").val();
-		pass_check = $("#pass_check").val();
-		if(emp_id==null || emp_id==""){
-			alert("사용자 아이디를 입력해주세요.");
-			return false;
-		}else if(emp_nm==null || emp_nm==""){
-			alert("사용자 이름을 입력해주세요.");
-			return false;
-		}else if(tel_no==null || tel_no==""){
-			alert("녹취번호를 입력해주세요.");
-			return false;
-		}else if(tel_no_070==null || tel_no_070==""){
-			alert("070 녹취번호를 입력해주세요.");
-			return false;
-		}else if(pass==null || pass==""){
-			alert("비밀번호를 입력해주세요.");
-			return false;
-		}else if(pass_check==null || pass_check==""){
-			alert("비밀번호 확인을 입력해주세요.");
-			return false;
-		}else if(pass!=pass_check){
-			alert("비밀번호가 다릅니다.");
-			return false;
-		}
-		
 		if($('#myModalLabel1').html()=="사용자 등록"){
+			emp_id = $("#emp_id").val();
+			emp_nm = $("#emp_nm").val();
+			tel_no = $("#tel_no").val();
+			tel_no_070 = $("#tel_no_070").val();
+			pass = $("#pass").val();
+			pass_check = $("#pass_check").val();
+			
+			auth_cd = authFormat2($(".authority_num").val());
+			branch_cd = $(".group_btn_act").val();
+			rec_type = $("input[name=inlineRadioOptions]:checked").val();
+			down_type = $("input[name=download]:checked").val();
 		
+			
+			
+			if(emp_id==null || emp_id==""){
+				alert("사용자 아이디를 입력해주세요.");
+				return false;
+			}else if(emp_nm==null || emp_nm==""){
+				alert("사용자 이름을 입력해주세요.");
+				return false;
+			}else if(tel_no==null || tel_no==""){
+				alert("녹취번호를 입력해주세요.");
+				return false;
+			}else if(tel_no_070==null || tel_no_070==""){
+				alert("070 녹취번호를 입력해주세요.");
+				return false;
+			}else if(pass==null || pass==""){
+				alert("비밀번호를 입력해주세요.");
+				return false;
+			}else if(pass_check==null || pass_check==""){
+				alert("비밀번호 확인을 입력해주세요.");
+				return false;
+			}else if(pass!=pass_check){
+				alert("비밀번호가 다릅니다.");
+				return false;
+			}else if(auth_cd=="전체"){
+				alert("전체는 사용할 수 없습니다.");
+				return false;
+			}else if($("#emp_id").prop("readonly")==false){
+				alert("아이디 중복 확인을 해주세요");
+				return false;
+			}else if($("#tel_no").prop("readonly")==false){
+				alert("녹취번호 중복 확인을 해주세요");
+				return false;
+			}else if($("#tel_no_070").prop("readonly")==false){
+				alert("070녹취번호 중복 확인을 해주세요");
+				return false;
+			}
+			
+			$.ajax({
+				type : "POST",
+				url : "/user/user_Insert",
+				data : {
+					emp_id :emp_id,
+					emp_nm :emp_nm,
+					tel_no :tel_no,
+					tel_no_070 :tel_no_070,
+					pass :pass,
+					auth_cd :auth_cd,
+					branch_cd :branch_cd,
+					rec_type :rec_type,
+					down_type :down_type
+				},
+				success : function() {
+					alert("가입이 완료 되었습니다.");
+					$("#user_add").modal("hide");
+					location.href="/user/user_page";
+				},
+				error : function() {
+					alert("알수없는 오류가 발생하였습니다.");
+					$("#user_add").modal("hide");
+				},
+				complete : function() {
+				}
+			});
+			
 			
 		}else if($('#myModalLabel1').html()=="사용자 상세보기"){
 			alert("상세보기");
 		}
 	});
 	
+	
+	$("#id_check").click(function(){
+		emp_id = $("#emp_id").val();
+		$.ajax({
+			type : "POST",
+			url : "/user/user_Check",
+			data : {emp_id : emp_id},
+			success : function(result) {
+				if(result=="true"){
+					alert("사용가능한 아이디 입니다.");
+					$("#emp_id").prop("readonly",true);
+				}else if(result=="false"){
+					alert("이미 사용중인 아이디 입니다.");
+					return false;
+				}
+			},
+			error : function() {
+				alert("알수없는 오류가 발생하였습니다.");
+			},
+			complete : function() {
+			}
+		});
+	});
+	
+	$("#tel_check").click(function(){
+		tel_no = $("#tel_no").val();
+		$.ajax({
+			type : "POST",
+			url : "/user/user_Check",
+			data : {tel_no : tel_no},
+			success : function(result) {
+				if(result=="true"){
+					alert("사용가능한 아이디 입니다.");
+					$("#tel_no").prop("readonly",true);
+				}else if(result=="false"){
+					alert("이미 사용중인 아이디 입니다.");
+					return false;
+				}
+			},
+			error : function() {
+				alert("알수없는 오류가 발생하였습니다.");
+			},
+			complete : function() {
+			}
+		});
+	});
+	
+	$("#tel_070_check").click(function(){
+		tel_no_070 = $("#tel_no_070").val();
+		$.ajax({
+			type : "POST",
+			url : "/user/user_Check",
+			data : {tel_no_070 : tel_no_070},
+			success : function(result) {
+				if(result=="true"){
+					alert("사용가능한 아이디 입니다.");
+					$("#tel_no_070").prop("readonly",true);
+				}else if(result=="false"){
+					alert("이미 사용중인 아이디 입니다.");
+					return false;
+				}
+			},
+			error : function() {
+				alert("알수없는 오류가 발생하였습니다.");
+			},
+			complete : function() {
+			}
+		});
+	});
+	
+	/* 그룹관리 모달창 내 그리드 */
+    var data = new Array();
+   
+    var groupCode =
+    [
+        "admin", "evera01", "DNA", "DNA001", "RENTAL001"
+    ];
+    var groupNames =
+    [
+        "admin", "evera01", "DNA", "DNA001", "RENTAL001"
+    ];
+
+    // generate sample data.
+    var generatedata = function (startindex, endindex) {
+        var data = {};
+        for (var i = startindex; i < endindex; i++) {
+            var row = {};
+            row["num"] = i;
+            
+            row["groupcode"] = groupCode[Math.floor(Math.random() * groupCode.length)];
+            row["groupname"] = groupNames[Math.floor(Math.random() * groupNames.length)];
+            data[i] = row;
+        }
+        return data;
+    }
+    var source =
+    {
+        datatype: "array",
+        localdata: {},
+        totalrecords: 100
+    };
+    // load virtual data.
+    var rendergridrows = function (params) {
+        var data = generatedata(params.startindex, params.endindex);
+        return data;
+    }
+    var totalcolumnrenderer = function (row, column, cellvalue) {
+        var cellvalue = $.jqx.dataFormat.formatnumber(cellvalue, "c2");
+        return "<span style="+"margin: 6px 3px; font-size: 12px; float: right; font-weight: bold;" + ">" + cellvalue + "</span>";
+    }
+    var dataAdapter = new $.jqx.dataAdapter(source);
+    $("#groupSet_grid").jqxGrid(
+    {
+        width: 100 + "%",
+        height: 100 + "%",
+        autoheight: false, 
+        theme: 'material',
+        columnsresize: true,
+        pagermode: 'simple',
+        source: dataAdapter,                
+        virtualmode: true,
+        pageable: true,
+        selectionmode: 'checkbox',
+        rendergridrows: rendergridrows,
+        columns: [
+            { text: "그룹 코드", datafield: "groupcode", width: 129.5},
+            { text: "그룹 명", datafield: "groupname", width: 129.5},
+           
+        ]
+    });
+
+	$(".groupSet_open").click(
+	    function(){
+	        setTimeout(function(){
+	            if($("#groupSet_modal").hasClass("in")===true){
+	                $(".modal-backdrop").addClass("bg-z");
+	            }else{
+	                $(".modal-backdrop").removeClass("bg-z");
+	            }
+	        }, 300);
+	});
+	
+	 
+	$("#groupSet_modal").click(
+	    function(){
+	        setTimeout(function(){
+	            if($("#groupSet_modal").hasClass("in")===true){
+	                $(".modal-backdrop").addClass("bg-z");
+	            }else{
+	                $(".modal-backdrop").removeClass("bg-z");
+	            }
+	        }, 300);
+	});
+	
+	
+	$(".next").click(
+	    function(){
+	        $('.show_group').addClass('disno');
+	        $('.add_group').removeClass('disno');
+	    }
+	);
+	$(".previous").click(
+	    function(){
+	        $('.show_group').removeClass('disno');
+	        $('.add_group').addClass('disno');
+	    }
+	);
         
 });

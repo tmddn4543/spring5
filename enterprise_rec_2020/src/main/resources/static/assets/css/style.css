@@ -1,4 +1,18 @@
 @charset "utf-8";
+
+.modal-backdrop.in.fade.bg-z{
+	z-index: 1111111112 !important;
+}
+#groupSet_modal{
+	z-index: 111111111113 !important;
+	z-index: 11111111119 !important;
+}
+#pagergrid{
+	z-index: 1111 !important;
+}
+#pageruser_grid{
+	z-index: 1111 !important;
+}
 input[type="checkbox"] {
     display: inline-block;
 }
@@ -240,7 +254,7 @@ height: 100%;
 }
 
 div .jqx-calendar{
-z-index: 200000 !important;
+z-index: 20000000000 !important;
 }
 
 .ibox{
@@ -384,6 +398,7 @@ right: 50px;
 box-shadow: 0px 0px 8px -3px;
 border: 1px solid #ccc;
 border-radius: 4px;
+z-index: 1111111111 !important;
 }
 #search_filter .modal-dialog{
 margin: 0;
@@ -394,10 +409,10 @@ width: 100%;
 }
 .modal-backdrop.in.fade{
 	display: block;
-	z-index: 2051 !important;
+	z-index: 1111111111 !important;
 }
 #user_search{
-z-index: 20000000060 !important;
+z-index: 11111111111 !important
 }
 
 #search_filter .modal-header{
@@ -467,6 +482,9 @@ margin: 0;
 .check_label input{
 margin-top: 0px;
 }
+.disno{
+	display: none;
+}
 #listBoxContentinnerListBoxgridpagerlistgrid .jqx-listitem-state-normal{
 	width: 47px !important;
 }
@@ -483,6 +501,27 @@ input[type="radio"]{
 height: 26px;
 }
 /* 사용자관리 */
+#groupSet_modal .modal-dialog{
+	max-width: 313.4917px;
+}
+#groupSet_modal .modal-dialog .modal-body{
+	padding: 10px;
+}
+#groupSet_modal .modal-footer{
+	text-align: center;
+	padding: 10px;
+}
+#groupSet_modal .add_group .form-group .col-lg-3{
+padding: 0;
+}
+#groupSet_modal .add_group .form-group .col-lg-3 button{
+padding:0 5px;
+	height: 32px;
+}
+
+#groupSet_modal .modal-footer button{
+	height: 34px;
+}
 body.user_manage .modal .list_search .form-group > div:last-child{
 text-align: right;
 }
@@ -503,10 +542,11 @@ padding-top: 15px;
 	height: 34px;
 }
 .modal#user_add{
-z-index: 11111 !important;
+z-index: 1111111112 !important;
+overflow: auto;
 }
 .modal#user_add .modal-body{
-	padding: 10px 20px 5px;
+	padding: 10px 10px 5px;
 }
 .modal#user_add .modal-footer{
 	text-align: center;
@@ -518,13 +558,13 @@ z-index: 11111 !important;
 	padding: 0;
 }
 .modal#user_add .modal-body .form-group >div.col-lg-2 button{
-	height: 34px;
+	height: 32px;
 }
 .list_table .grid_height{
-	height: auto;
+height: calc(100% - 65px);
 }
 #user_more{
-	z-index: 11111 !important;
+	z-index: 1111111112 !important;
 }
 
 #user_more .modal-body .form-group > div.col-lg-8{
@@ -566,10 +606,19 @@ z-index: 11111 !important;
 }
 }
 @media (max-width: 1199px){
+
 .wrapper label {
     padding-right: 15px;
     padding-left: 15px;
-
+}
+#groupSet_modal .add_group .form-group .col-lg-3{
+	width: 25%;
+	float: left;
+}
+#groupSet_modal .add_group .form-group .col-lg-6{
+	width: 50%;
+	float: left;
+	padding: 0px 10px;
 }
 body.user_manage .modal .list_search .form-group > div:last-child{
 	margin-top: 32px;
@@ -584,6 +633,17 @@ body.user_manage .modal .list_search .form-group > div:last-child{
 #user_search .modal-body .col-sm-1 button{
 	margin-top: 32px;
 }
+#user_add .modal-body .form-group .col-lg-2, #user_more .modal-body .form-group .col-lg-2{
+width: 16.66666667%;
+float: left;
+padding: 0;
+}
+#user_add .modal-body .form-group .col-lg-8, #user_more .modal-body .form-group .col-lg-8{
+ width: 66.66666667%;
+ float: left;
+}
+
+
 }
 @media (max-width: 767px){
 body.user_manage .modal .list_search .form-group > div:last-child{
@@ -607,6 +667,13 @@ margin-top: 0;
 }
 body.user_manage .modal .list_search .form-group > div:last-child .col-lg-4{
 	display: none;
+}
+#user_add.modal .modal-body .form-group{
+	height: 34px;
+}
+.user_manage .checkbox-inline, .user_manage .radio-inline{
+margin: 0;
+line-height: 34px;	
 }
 
 #search_filter .list_search{
@@ -685,8 +752,36 @@ float: left;
 #search_filter::after{
 	right: 65.5px;
 }
+#user_add .modal-body .form-group .col-lg-8{
+	padding: 0px 10px;
 }
+#groupSet_modal .modal-dialog{
+	margin: 10px auto;
+}
+}
+@media (max-width: 510px){
+	#user_add.modal .modal-body .form-group, #user_more.modal .modal-body .form-group {
+		height: auto;
+	}
+	.modal#user_add .modal-body .form-group > label.col-lg-2:first-child, .modal#user_more .modal-body .form-group > label.col-lg-2:first-child{
+		width: 100%;
 
+text-align: left;
+
+padding-bottom: 5px;
+
+padding-left: 10px;
+	}
+	#user_add .modal-body .form-group .col-lg-8{
+		width: calc(100% - 82px);
+	}
+	 #user_more .modal-body .form-group .col-lg-8{
+	 	width: 100%;
+	 }
+	.modal#user_add .modal-body .form-group > div.col-lg-2, .modal#user_more .modal-body .form-group > div.col-lg-2{
+		width: 82px;
+	}
+}
 @media (max-width: 450px){
 	
 	.navbar-minimalize{

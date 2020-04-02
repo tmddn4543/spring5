@@ -11,6 +11,20 @@ function authFormat(auth_cd){
 		return "알람서비스등록";
 	}
 }
+function authFormat2(auth_cd){
+	if(auth_cd=="시스템관리자"){
+		return "00";
+	}else if(auth_cd=="그룹관리자"){
+		return "12";
+	}else if(auth_cd=="상담원"){
+		return "13";
+	}else if(auth_cd=="운용사용자"){
+		return "11";
+	}else if(auth_cd=="알람서비스등록"){
+		return "15";
+	}
+}
+
 
 function YYYYMM(bday, eday){
 	bday = bday.substr(0,7);

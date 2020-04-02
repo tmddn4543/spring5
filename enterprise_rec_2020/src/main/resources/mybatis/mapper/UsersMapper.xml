@@ -25,9 +25,28 @@
 		<result property="group_id" column="group_id"/>
 	</resultMap>
 	
+	<select id="getListCount" resultType="int" parameterType="hashmap">
+		select count(*)
+		from `web_recording`.`users`
+	</select>
+	
+	
 	<select id="getView" resultMap="getSelectMap" parameterType="hashmap">
-		select * from `web_recording`.`users`
+		select
+		tel_no,
+		branch_cd,
+		emp_id,
+		auth_cd,
+		emp_nm,
+		rec_type,
+		rec_regdate,
+		pass,
+		tel_no_070,
+		down_type
+		from `web_recording`.`users`
 		<include refid="where"/>
+		order by rec_regdate desc
+		limit ${pagestart},${pagesize}
 	</select>
 	
 	
@@ -57,21 +76,25 @@
 		#{emp_id},
 		#{auth_cd},
 		#{emp_nm},
-		#{rec_is_use},
+		'',<!--rec_is_use  -->
 		#{rec_type},
-		#{rec_type_regdate},
-		#{work_emp_id},
-		#{work_emp_nm},
+		'',<!--rec_type_regdate  -->
+		'',<!--work_emp_id  -->
+		'',<!--work_emp_nm  -->
 		#{rec_regdate},
-		#{login_date},
+		'',<!--login_date  -->
 		#{pass},
-		#{SERVERCODE},
+		'',<!--SERVERCODE  -->
 		#{tel_no_070},
-		#{is_pass},
+		'N',
 		#{down_type},
-		#{group_id})
+		'')<!--group_id  -->
 	</insert>
-<!-- 	and emp_nm like concat(concat('%', #{emp_nm}), '%') -->
+	
+	
+	
+	
+	
 	<sql id="where">
 		<where>
 			<if test='emp_id !=null and !emp_id.equals("")'>
@@ -91,6 +114,12 @@
 			</if>
 			<if test='branch_cd !=null and !branch_cd.equals("")'>
 				and branch_cd = #{branch_cd}
+			</if>
+			<if test='tel_no_070 !=null and !tel_no_070.equals("")'>
+				and tel_no = #{tel_no_070}
+			</if>
+			<if test='tel_no !=null and !tel_no.equals("")'>
+				and tel_no = #{tel_no}
 			</if>
 		</where>
 	</sql>
