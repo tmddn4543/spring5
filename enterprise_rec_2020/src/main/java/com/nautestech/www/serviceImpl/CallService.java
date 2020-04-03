@@ -35,5 +35,11 @@ public class CallService implements ISelect<Call>{
 	public int getListCount(HashMap<String, Object> param) {
 		return mapper.getListCount(param);
 	}
+
+	@Override
+	public List<?> getListBranch(HashMap<String, Object> param) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

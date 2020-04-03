@@ -7,7 +7,7 @@
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Recording</title>
-
+	
     <!-- jqwidgets 공용 -->
     <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxcore.js}"></script>
 
@@ -37,10 +37,11 @@
     <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxcheckbox.js}"></script>
 
     <!-- add script -->
+    
+    
     <script type="text/javascript" th:src="@{/resource/assets/js/user_search.js}"></script>
 	<script type="text/javascript" th:src="@{/resource/assets/js/format.js}"></script>
     <!-- option -->
-    <link rel="stylesheet" type="text/css" th:href="@{/resource/assets/css/style.css}">
 
 </head>
 <body class="user_manage">
@@ -196,17 +197,17 @@
                                         <div class="form-group">
                                             <label class="col-lg-3">그룹 코드</label>
                                             <div class="col-lg-6">
-                                                <input type="text" class="form-control" placeholder="">
+                                                <input type="text" class="form-control" placeholder="" id="branch_cd">
                                             </div>
                                             <div class="col-lg-3">
-                                                <button class="btn btn-default" type="button">중복체크</button>
+                                                <button class="btn btn-default" type="button" id="branch_check">중복체크</button>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-lg-3">그룹 이름</label>
                                             <div class="col-lg-6">
-                                                <input type="text" class="form-control" placeholder="">
+                                                <input type="text" class="form-control" id="branch_nm" placeholder="">
                                             </div>
                                         </div>                                        
                                     </div>
@@ -217,7 +218,7 @@
                                         <button type="button" class="btn btn-primary next">등록</button>                                
                                     </div>
                                     <div class="add_group disno">
-                                        <button type="button" class="btn btn-primary">등록</button>
+                                        <button type="button" class="btn btn-primary" id="branch_insert">등록</button>
                                         <button type="button" class="btn btn-default previous">닫기</button>
                                     </div>
                                 </div>

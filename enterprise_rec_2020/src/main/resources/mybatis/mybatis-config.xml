@@ -15,6 +15,7 @@
 	<typeAliases>
 		<typeAlias alias="users" type="com.nautestech.www.model.Users"/>
 		<typeAlias alias="call" type="com.nautestech.www.model.Call"/>
+		<typeAlias alias="batch" type="com.nautestech.www.model.Batch"/>
 	</typeAliases>
 
 </configuration>

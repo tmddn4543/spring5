@@ -25,6 +25,36 @@
 		<result property="group_id" column="group_id"/>
 	</resultMap>
 	
+	<resultMap type="batch" id="getBatchSelectMap">
+		<result property="branch_cd" column="branch_cd"/>
+		<result property="branch_nm" column="branch_nm"/>
+	</resultMap>
+	
+	
+	<select id="getListBranch" resultMap="getBatchSelectMap" parameterType="hashmap">
+		SELECT 
+		branch_cd,
+		branch_nm
+		FROM `web_recording`.`batch_jisa`
+		<if test='branch_cd !=null and !branch_cd.equals("")'>
+			where branch_cd = #{branch_cd}
+		</if>
+	</select>
+	
+	
+	<insert id="setInsertBranch" parameterType="hashmap">
+		insert into batch_jisa(
+		branch_cd,
+		branch_nm,
+		sort
+		)values(
+		#{branch_cd},
+		#{branch_nm},
+		'1'
+		)
+	</insert>
+	
+	
 	<select id="getListCount" resultType="int" parameterType="hashmap">
 		select count(*)
 		from `web_recording`.`users`

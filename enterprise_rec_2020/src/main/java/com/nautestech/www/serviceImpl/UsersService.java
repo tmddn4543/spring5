@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.nautestech.www.mapper.UsersMapper;
+import com.nautestech.www.model.Batch;
 import com.nautestech.www.model.Call;
 import com.nautestech.www.model.Users;
 import com.nautestech.www.service.IInsert;
@@ -41,5 +42,15 @@ public class UsersService implements IInsert,ISelect<Users>{
 	@Override
 	public int getListCount(HashMap<String, Object> param) {
 		return mapper.getListCount(param);
+	}
+
+	@Override
+	public List<Batch> getListBranch(HashMap<String, Object> param) {
+		return mapper.getListBranch(param);
+	}
+
+	@Override
+	public void setInsertBranch(HashMap<String, Object> param) {
+		mapper.setInsertBranch(param);
 	}
 }

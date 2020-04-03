@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.nautestech.www.model.Batch;
 import com.nautestech.www.model.Users;
 import com.nautestech.www.serviceImpl.UsersService;
 
@@ -37,6 +38,32 @@ public class UserController {
 		String active = "active page_open";
 		model.addAttribute("user_active", active);
 		return "recording/user_page";
+    }
+	
+	
+	
+	@Secured({"ROLE_ADMIN"})
+	@RequestMapping(value = "/user_branch_get", method= {RequestMethod.GET, RequestMethod.POST})
+	@ResponseBody
+    public List<Batch> user_branch_get(
+    		@RequestParam(value="branch_cd", required=false, defaultValue="")String branch_cd
+    		) throws JsonProcessingException{
+		HashMap<String, Object> param = new HashMap<>();
+		param.put("branch_cd", branch_cd);
+		return uService.getListBranch(param);
+    }
+	
+	@Secured({"ROLE_ADMIN"})
+	@RequestMapping(value = "/user_branch_insert", method= {RequestMethod.GET, RequestMethod.POST})
+	@ResponseBody
+    public void user_branch_insert(
+    		@RequestParam(value="branch_cd", required=false, defaultValue="")String branch_cd,
+    		@RequestParam(value="branch_nm", required=false, defaultValue="")String branch_nm
+    		) throws JsonProcessingException{
+		HashMap<String, Object> param = new HashMap<>();
+		param.put("branch_cd", branch_cd);
+		param.put("branch_nm", branch_nm);
+		uService.setInsert(param);
     }
 	
 	

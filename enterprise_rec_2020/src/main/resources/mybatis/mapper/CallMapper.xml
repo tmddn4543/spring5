@@ -27,6 +27,7 @@
 		<result property="group_id" column="group_id"/>
 	</resultMap>
 	
+	
 	<select id="setCreate" parameterType="hashmap">
 		${createQry}
 	</select>

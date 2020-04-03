@@ -9,6 +9,21 @@ $(document).ready(function(){
     var branch_cd = "";	
     var rec_type = "";
     var down_type = "";
+    var arr_batch = new Array();
+    var branch_nm = "";
+    
+    /* 반응형 */
+    $(window).resize(function(){
+    var width = parseInt($(this).width()); //parseint는 정수로 하기 위함
+        if (width > 1464 || width < 451){
+            $('body').removeClass('mini-navbar');
+        } else { 
+            $('body').addClass('mini-navbar');
+        }
+    }).resize();
+    
+    
+    
     
     
     var source =
@@ -32,11 +47,9 @@ $(document).ready(function(){
         cache: false,
 		beforeprocessing: function(data)
 		{		
-			console.log(data.total);
 			source.totalrecords = data.total;
 		}
     };		
-	
     var dataadapter = new $.jqx.dataAdapter(source);
 
     // initialize jqxGrid
@@ -68,6 +81,9 @@ $(document).ready(function(){
                 ]
         });
 	
+    	
+	
+    
 	
 	
 	
@@ -78,16 +94,27 @@ $(document).ready(function(){
 	
 	
 	
-	
-	
-	
-	
+    $(".authority_num").jqxDropDownList({ source: [ "전체","시스템관리자","운용사용자","그룹관리자","상담원"], selectedIndex: 1, width: 100 + "%", height: 34, autoItemsHeight: true, theme: "bootstrap", autoDropDownHeight: true});
 	$('#user_add').on('shown.bs.modal', function (event) {
 		var res = $(event.relatedTarget);
 		if(res.context.value=="user_view"){
 			$('#myModalLabel1').html("사용자 상세보기");
 			alert("준비중ㅇㅅㅇ");
 		}else if(res.context.value=="user_insert"){
+			
+			//branch_cd 그룹들 가져오기
+		    $.ajax({
+				type : "POST",
+				url : "/user/user_branch_get",
+				success : function(batch) {
+					for(var i=0; i<batch.length; i++){
+						arr_batch[i] = batch[i].branch_cd;
+					}
+					$(".group_btn_act").jqxDropDownList({ source: arr_batch, selectedIndex: 0, width: 100 + "%", height: 34, autoItemsHeight: true, theme: "bootstrap", autoDropDownHeight: true});
+				}
+			});
+			
+			
 			$('#myModalLabel1').html("사용자 등록");
 			emp_id = $("#emp_id").val("");
 			$("#emp_id").prop("readonly",false);
@@ -257,69 +284,87 @@ $(document).ready(function(){
 		});
 	});
 	
-	/* 그룹관리 모달창 내 그리드 */
-    var data = new Array();
-   
-    var groupCode =
-    [
-        "admin", "evera01", "DNA", "DNA001", "RENTAL001"
-    ];
-    var groupNames =
-    [
-        "admin", "evera01", "DNA", "DNA001", "RENTAL001"
-    ];
-
-    // generate sample data.
-    var generatedata = function (startindex, endindex) {
-        var data = {};
-        for (var i = startindex; i < endindex; i++) {
-            var row = {};
-            row["num"] = i;
-            
-            row["groupcode"] = groupCode[Math.floor(Math.random() * groupCode.length)];
-            row["groupname"] = groupNames[Math.floor(Math.random() * groupNames.length)];
-            data[i] = row;
-        }
-        return data;
-    }
-    var source =
-    {
-        datatype: "array",
-        localdata: {},
-        totalrecords: 100
-    };
-    // load virtual data.
-    var rendergridrows = function (params) {
-        var data = generatedata(params.startindex, params.endindex);
-        return data;
-    }
-    var totalcolumnrenderer = function (row, column, cellvalue) {
-        var cellvalue = $.jqx.dataFormat.formatnumber(cellvalue, "c2");
-        return "<span style="+"margin: 6px 3px; font-size: 12px; float: right; font-weight: bold;" + ">" + cellvalue + "</span>";
-    }
-    var dataAdapter = new $.jqx.dataAdapter(source);
-    $("#groupSet_grid").jqxGrid(
-    {
-        width: 100 + "%",
-        height: 100 + "%",
-        autoheight: false, 
-        theme: 'material',
-        columnsresize: true,
-        pagermode: 'simple',
-        source: dataAdapter,                
-        virtualmode: true,
-        pageable: true,
-        selectionmode: 'checkbox',
-        rendergridrows: rendergridrows,
-        columns: [
-            { text: "그룹 코드", datafield: "groupcode", width: 129.5},
-            { text: "그룹 명", datafield: "groupname", width: 129.5},
-           
-        ]
-    });
 
 	$(".groupSet_open").click(
 	    function(){
+	    	
+	    	
+	    	
+	    	
+	    	$.ajax({
+				type : "POST",
+				url : "/user/user_branch_get",
+				success : function(batch) {
+					
+					var data = new Array();
+					  
+				      // generate sample data.
+				      var generatedata = function (startindex, endindex) {
+				          var data = {};
+				          for (var i = startindex; i < batch.length; i++) {
+				              var row = {};
+				              row["num"] = i;
+				              row["groupcode"] = batch[i].branch_cd;
+				              row["groupname"] = batch[i].branch_nm;
+				              data[i] = row;
+				          }
+				          return data;
+				      }
+				      var source =
+				      {
+				          datatype: "array",
+				          localdata: {},
+				          totalrecords: batch.length
+				      };
+				      // load virtual data.
+				      var rendergridrows = function (params) {
+				          var data = generatedata(params.startindex, params.endindex);
+				          return data;
+				      }
+				      var totalcolumnrenderer = function (row, column, cellvalue) {
+				          var cellvalue = $.jqx.dataFormat.formatnumber(cellvalue, "c2");
+				          return "<span style="+"margin: 6px 3px; font-size: 12px; float: right; font-weight: bold;" + ">" + cellvalue + "</span>";
+				      }
+				      var dataAdapter = new $.jqx.dataAdapter(source);
+				      $("#groupSet_grid").jqxGrid(
+				      {
+				          width: 100 + "%",
+				          height: 100 + "%",
+				          autoheight: false, 
+				          theme: 'material',
+				          columnsresize: true,
+				          pagermode: 'simple',
+				          source: dataAdapter,                
+				          virtualmode: true,
+				          pageable: true,
+				          selectionmode: 'checkbox',
+				          rendergridrows: rendergridrows,
+				          columns: [
+				              { text: "그룹 코드", datafield: "groupcode", width: 129.5},
+				              { text: "그룹 명", datafield: "groupname", width: 129.5},
+				             
+				          ]
+				      });
+					
+				},
+				error : function() {
+					alert("알수없는 오류가 발생하였습니다.");
+				},
+				complete : function() {
+				}
+			});
+	    	
+	    	
+	    	
+	    	
+	    	/* 그룹관리 모달창 내 그리드 */
+	      
+	  
+	    	
+	    	
+	    	
+	    	
+	    	
 	        setTimeout(function(){
 	            if($("#groupSet_modal").hasClass("in")===true){
 	                $(".modal-backdrop").addClass("bg-z");
@@ -341,6 +386,47 @@ $(document).ready(function(){
 	        }, 300);
 	});
 	
+	$("#branch_insert").click(function(){
+		branch_nm = $("#branch_nm").val();
+		if($("#branch_cd").prop("readonly")==false){
+			alert("중복체크를 해주세요.");
+			return false;
+		}else if($("#branch_nm").val()==""){
+			alert("그룹 이름을 적어주세요.");
+			return false;
+		}else{
+			$.ajax({
+				type : "POST",
+				url : "/user/user_branch_insert",
+				data : {branch_cd : branch_cd,
+					branch_nm : branch_nm
+				},
+				success : function() {
+					alert("그룹이 등록 되었습니다.");
+					$("#groupSet_modal").modal("hide");
+				}
+			});
+		}
+	});
+	
+	$("#branch_check").click(function(){
+		branch_cd = $("#branch_cd").val();
+		$.ajax({
+			type : "POST",
+			url : "/user/user_branch_get",
+			data : {branch_cd : branch_cd},
+			success : function(result) {
+				if(result.length==0){
+					alert("사용가능한 그룹 코드 입니다.");
+					$("#branch_cd").prop("readonly",true);
+				}else{
+					alert("이미 사용중인 그룹 코드 입니다.");
+					return false;
+				}
+			}
+		});
+		
+	});
 	
 	$(".next").click(
 	    function(){
@@ -350,6 +436,9 @@ $(document).ready(function(){
 	);
 	$(".previous").click(
 	    function(){
+	    	$("#branch_cd").val("");
+	    	$("#branch_nm").val("");
+	    	$("#branch_cd").prop("readonly",false);
 	        $('.show_group').removeClass('disno');
 	        $('.add_group').addClass('disno');
 	    }
