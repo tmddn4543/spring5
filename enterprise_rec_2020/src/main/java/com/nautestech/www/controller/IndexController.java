@@ -14,6 +14,8 @@ public class IndexController {
 	@Value("${webLoginLogo}")
 	String webLoginLogo;
 	
+	
+	
 	@RequestMapping(value = "/", method= {RequestMethod.GET, RequestMethod.POST})
     public String loginPage(Model model){
 		model.addAttribute("webLoginLogo",webLoginLogo);

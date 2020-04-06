@@ -10,11 +10,12 @@ import com.nautestech.www.mapper.UsersMapper;
 import com.nautestech.www.model.Batch;
 import com.nautestech.www.model.Call;
 import com.nautestech.www.model.Users;
+import com.nautestech.www.service.IDelete;
 import com.nautestech.www.service.IInsert;
 import com.nautestech.www.service.ISelect;
 
 @Service
-public class UsersService implements IInsert,ISelect<Users>{
+public class UsersService implements IInsert,ISelect<Users>,IDelete{
 
 	
 	@Autowired
@@ -52,5 +53,15 @@ public class UsersService implements IInsert,ISelect<Users>{
 	@Override
 	public void setInsertBranch(HashMap<String, Object> param) {
 		mapper.setInsertBranch(param);
+	}
+
+	@Override
+	public void setDelete(HashMap<String, Object> param) {
+		mapper.setDelete(param);
+	}
+
+	@Override
+	public void setBranchDelete(HashMap<String, Object> param) {
+		mapper.setBranchDelete(param);
 	}
 }

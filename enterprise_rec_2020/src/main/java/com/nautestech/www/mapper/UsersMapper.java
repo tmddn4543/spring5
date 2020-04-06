@@ -15,4 +15,6 @@ public interface UsersMapper {
 	public int getListCount(HashMap<String, Object>param);
 	public List<Batch> getListBranch(HashMap<String, Object>param);
 	public void setInsertBranch(HashMap<String, Object>param);
+	public void setBranchDelete(HashMap<String, Object>param);
+	public void setDelete(HashMap<String, Object>param);
 }

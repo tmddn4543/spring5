@@ -1,4 +1,7 @@
 $(document).ready(function(){
+	
+	
+	
 	var emp_id = "";
 	var emp_nm = "";
 	var tel_no = "";
@@ -12,6 +15,8 @@ $(document).ready(function(){
     var arr_batch = new Array();
     var branch_nm = "";
     
+    
+    
     /* 반응형 */
     $(window).resize(function(){
     var width = parseInt($(this).width()); //parseint는 정수로 하기 위함
@@ -24,62 +29,68 @@ $(document).ready(function(){
     
     
     
+    main();
     
-    
-    var source =
-    {
-         datatype: "json",
-         data : {},
-         datafields: [
-			 { name: 'num'},
-			 { name: 'branch_cd'},
-			 { name: 'auth_cd'},
-			 { name: 'emp_id'},
-			 { name: 'tel_no'},
-			 { name: 'rec_regdate'},
-			 { name: 'rec_type_regdate'},
-			 { name: 'rec_type'},
-			 { name: 'work_emp_id'},
-			 { name: 'user_detail'}
-        ],
-	    url: '/user/user_page_ajax',
-	    root: 'Rows',
-        cache: false,
-		beforeprocessing: function(data)
-		{		
-			source.totalrecords = data.total;
-		}
-    };		
-    var dataadapter = new $.jqx.dataAdapter(source);
+    function main(){
+    	var source =
+        {
+             datatype: "json",
+             data : {},
+             datafields: [
+    			 { name: 'num'},
+    			 { name: 'branch_cd'},
+    			 { name: 'auth_cd'},
+    			 { name: 'emp_id'},
+    			 { name: 'tel_no'},
+    			 { name: 'rec_regdate'},
+    			 { name: 'rec_type_regdate'},
+    			 { name: 'rec_type'},
+    			 { name: 'work_emp_id'},
+    			 { name: 'user_detail'},
+    			 { name: 'user_checkbox'}
+            ],
+    	    url: '/user/user_page_ajax',
+    	    root: 'Rows',
+            cache: false,
+    		beforeprocessing: function(data)
+    		{		
+    			source.totalrecords = data.total;
+    		}
+        };		
+        var dataadapter = new $.jqx.dataAdapter(source);
 
-    // initialize jqxGrid
+        // initialize jqxGrid
+        
+        $("#user_grid").jqxGrid(
+                {
+                	source: dataadapter,
+                    width: 100 + "%",
+                    height:  + "%",
+                    autoheight: true, 
+                    theme: 'material',
+                    virtualmode: true,
+                    pageable: true,
+                    rendergridrows: function(obj)
+    				{
+    					  return obj.data;     
+    				},
+                    columns: [
+                    	{ text: "선택", datafield: "user_checkbox", width: 5 + "%", minwidth: 50.9},
+                        { text: "순번", datafield: "num", width: 5 + "%", minwidth: 50.9},
+                        { text: "그룹", datafield: "branch_cd", width: 9.090909 + "%", minwidth: 91.7333},
+                        { text: "권한등급", datafield: "auth_cd", width: 9.090909 + "%", minwidth: 91.7333},
+                        { text: "사용자ID", datafield: "emp_id", width: 9.090909 + "%", minwidth: 91.7333},
+                        { text: "전화번호", datafield: "tel_no", width: 9.090909 + "%", minwidth: 91.7333},
+                        { text: "녹취 등록일", datafield: "rec_regdate", width: 9.090909 + "%", minwidth: 91.7333},
+                        { text: "녹취 변경일", datafield: "rec_type_regdate", width: 9.090909 + "%", minwidth: 91.7333},
+                        { text: "녹취 유형", datafield: "rec_type", width: 9.090909 + "%", minwidth: 91.7333},
+                        { text: "작업자", datafield: "work_emp_id", width: 9.090909 + "%", minwidth: 91.7333},
+                        { text: "상세보기", datafield: "user_detail", width: 9.090909 + "%", minwidth: 91.7333}
+                    ]
+            });
+    };
     
-    $("#user_grid").jqxGrid(//킵
-            {
-            	source: dataadapter,
-                width: 100 + "%",
-                height:  + "%",
-                autoheight: true, 
-                theme: 'material',
-                virtualmode: true,
-                pageable: true,
-                rendergridrows: function(obj)
-				{
-					  return obj.data;     
-				},
-                columns: [
-                    { text: "순번", datafield: "num", width: 5 + "%", minwidth: 50.9},
-                    { text: "그룹", datafield: "branch_cd", width: 9.090909 + "%", minwidth: 91.7333},
-                    { text: "권한등급", datafield: "auth_cd", width: 9.090909 + "%", minwidth: 91.7333},
-                    { text: "사용자ID", datafield: "emp_id", width: 9.090909 + "%", minwidth: 91.7333},
-                    { text: "전화번호", datafield: "tel_no", width: 9.090909 + "%", minwidth: 91.7333},
-                    { text: "녹취 등록일", datafield: "rec_regdate", width: 9.090909 + "%", minwidth: 91.7333},
-                    { text: "녹취 변경일", datafield: "rec_type_regdate", width: 9.090909 + "%", minwidth: 91.7333},
-                    { text: "녹취 유형", datafield: "rec_type", width: 9.090909 + "%", minwidth: 91.7333},
-                    { text: "작업자", datafield: "work_emp_id", width: 9.090909 + "%", minwidth: 91.7333},
-                    { text: "상세보기", datafield: "user_detail", width: 9.090909 + "%", minwidth: 91.7333}
-                ]
-        });
+    
 	
     	
 	
@@ -97,9 +108,65 @@ $(document).ready(function(){
     $(".authority_num").jqxDropDownList({ source: [ "전체","시스템관리자","운용사용자","그룹관리자","상담원"], selectedIndex: 1, width: 100 + "%", height: 34, autoItemsHeight: true, theme: "bootstrap", autoDropDownHeight: true});
 	$('#user_add').on('shown.bs.modal', function (event) {
 		var res = $(event.relatedTarget);
+		
 		if(res.context.value=="user_view"){
 			$('#myModalLabel1').html("사용자 상세보기");
-			alert("준비중ㅇㅅㅇ");
+			//res.context.name
+			tel_no = res.context.name;
+			//사용자 상세보기가져오기
+			$.ajax({
+				type : "POST",
+				data : {tel_no : tel_no},
+				url : "/user/user_edit_get",
+				success : function(result) {
+					$("#emp_id").val(result.user_result.emp_id);
+					$("#emp_nm").val(result.user_result.emp_nm);
+					$("#tel_no").val(result.user_result.tel_no);
+					$("#tel_no_070").val(result.user_result.tel_no_070);
+					
+					var sum = "";
+					for(var i=0; i<result.batch.length; i++){
+						arr_batch[i] = result.batch[i].branch_cd;
+						if(result.user_result.branch_cd==result.batch[i].branch_cd){
+							sum = i;
+						}
+					}
+					
+					
+					//rec_type = $("input[name=inlineRadioOptions]:checked").val();
+					//down_type = $("input[name=download]:checked").val();
+					if(result.user_result.rec_type=="B"){
+						$("#rec_inlineRadio1").prop("checked","checked");
+					}else if(result.user_result.rec_type=="N"){
+						$("#rec_inlineRadio2").prop("checked","checked");
+					}
+					
+					if(result.user_result.rec_type=="N"){
+						$("#down_inlineRadio1").prop("checked","checked");
+					}else if(result.user_result.rec_type=="Y"){
+						$("#down_inlineRadio2").prop("checked","checked");
+					}
+					
+					if(result.user_result.auth_cd=="00"){//시스템
+						$(".authority_num").jqxDropDownList({selectedIndex: 1});
+					}else if(result.user_result.auth_cd=="12"){//그룹
+						$(".authority_num").jqxDropDownList({selectedIndex: 3});
+					}else if(result.user_result.auth_cd=="13"){//상담
+						$(".authority_num").jqxDropDownList({selectedIndex: 4});
+					}else if(result.user_result.auth_cd=="11"){//운용
+						$(".authority_num").jqxDropDownList({selectedIndex: 2});
+					}
+					
+					$("#emp_id").prop("readonly",true);
+					$("#tel_no").prop("readonly",true);
+					$("#tel_no_070").prop("readonly",true);
+					
+					
+					$(".group_btn_act").jqxDropDownList({ source: arr_batch, selectedIndex: sum, width: 100 + "%", height: 34, autoItemsHeight: true, theme: "bootstrap", autoDropDownHeight: true});
+					
+				}
+			});
+			
 		}else if(res.context.value=="user_insert"){
 			
 			//branch_cd 그룹들 가져오기
@@ -198,7 +265,7 @@ $(document).ready(function(){
 				success : function() {
 					alert("가입이 완료 되었습니다.");
 					$("#user_add").modal("hide");
-					location.href="/user/user_page";
+					main();
 				},
 				error : function() {
 					alert("알수없는 오류가 발생하였습니다.");
@@ -210,8 +277,105 @@ $(document).ready(function(){
 			
 			
 		}else if($('#myModalLabel1').html()=="사용자 상세보기"){
-			alert("상세보기");
+			emp_id = $("#emp_id").val();
+			emp_nm = $("#emp_nm").val();
+			tel_no = $("#tel_no").val();
+			tel_no_070 = $("#tel_no_070").val();
+			pass = $("#pass").val();
+			pass_check = $("#pass_check").val();
+			
+			auth_cd = authFormat2($(".authority_num").val());
+			branch_cd = $(".group_btn_act").val();
+			rec_type = $("input[name=inlineRadioOptions]:checked").val();
+			down_type = $("input[name=download]:checked").val();
+		
+			
+			
+			if(emp_id==null || emp_id==""){
+				alert("사용자 아이디를 입력해주세요.");
+				return false;
+			}else if(emp_nm==null || emp_nm==""){
+				alert("사용자 이름을 입력해주세요.");
+				return false;
+			}else if(tel_no==null || tel_no==""){
+				alert("녹취번호를 입력해주세요.");
+				return false;
+			}else if(tel_no_070==null || tel_no_070==""){
+				alert("070 녹취번호를 입력해주세요.");
+				return false;
+			}else if(pass==null || pass==""){
+				alert("비밀번호를 입력해주세요.");
+				return false;
+			}else if(pass_check==null || pass_check==""){
+				alert("비밀번호 확인을 입력해주세요.");
+				return false;
+			}else if(pass!=pass_check){
+				alert("비밀번호가 다릅니다.");
+				return false;
+			}else if(auth_cd=="전체"){
+				alert("전체는 사용할 수 없습니다.");
+				return false;
+			}else if($("#emp_id").prop("readonly")==false){
+				alert("아이디 중복 확인을 해주세요");
+				return false;
+			}else if($("#tel_no").prop("readonly")==false){
+				alert("녹취번호 중복 확인을 해주세요");
+				return false;
+			}else if($("#tel_no_070").prop("readonly")==false){
+				alert("070녹취번호 중복 확인을 해주세요");
+				return false;
+			}
+			
+			$.ajax({
+				type : "POST",
+				url : "/user/user_update",
+				data : {
+					emp_id :emp_id,
+					emp_nm :emp_nm,
+					tel_no :tel_no,
+					tel_no_070 :tel_no_070,
+					pass :pass,
+					auth_cd :auth_cd,
+					branch_cd :branch_cd,
+					rec_type :rec_type,
+					down_type :down_type
+				},
+				success : function() {
+					alert("가입이 완료 되었습니다.");
+					$("#user_add").modal("hide");
+					main();
+				},
+				error : function() {
+					alert("알수없는 오류가 발생하였습니다.");
+					$("#user_add").modal("hide");
+				},
+				complete : function() {
+				}
+			});
 		}
+	});
+	
+	
+	
+	$("#user_delete").click(function(){
+		var count = 0;
+    	var arr = new Array();
+    	$(".user_checkbox").each(function(){  // .each()는 forEach를 뜻한다.
+			if($(this).is(":checked")){
+				var res = $(this).val();
+				arr[count] = res;
+				count = count+1;
+			}  
+    	});
+    	$.ajax({
+			type : "POST",
+			url : "/user/user_delete",
+			data : {arr : arr},
+			success : function() {
+				alert("유저가 삭제가 되었습니다.");
+				main();
+			}
+		});
 	});
 	
 	
@@ -288,9 +452,6 @@ $(document).ready(function(){
 	$(".groupSet_open").click(
 	    function(){
 	    	
-	    	
-	    	
-	    	
 	    	$.ajax({
 				type : "POST",
 				url : "/user/user_branch_get",
@@ -304,6 +465,7 @@ $(document).ready(function(){
 				          for (var i = startindex; i < batch.length; i++) {
 				              var row = {};
 				              row["num"] = i;
+				              row["groupdelete"] = "<input type='checkbox' class='checkbox_name' value='"+batch[i].branch_cd+"'>"
 				              row["groupcode"] = batch[i].branch_cd;
 				              row["groupname"] = batch[i].branch_nm;
 				              data[i] = row;
@@ -337,11 +499,11 @@ $(document).ready(function(){
 				          source: dataAdapter,                
 				          virtualmode: true,
 				          pageable: true,
-				          selectionmode: 'checkbox',
 				          rendergridrows: rendergridrows,
 				          columns: [
-				              { text: "그룹 코드", datafield: "groupcode", width: 129.5},
-				              { text: "그룹 명", datafield: "groupname", width: 129.5},
+				        	  { text: "그룹 삭제", datafield: "groupdelete", width: 80},
+				              { text: "그룹 코드", datafield: "groupcode", width: 105},
+				              { text: "그룹 명", datafield: "groupname", width: 104.5}
 				             
 				          ]
 				      });
@@ -353,17 +515,6 @@ $(document).ready(function(){
 				complete : function() {
 				}
 			});
-	    	
-	    	
-	    	
-	    	
-	    	/* 그룹관리 모달창 내 그리드 */
-	      
-	  
-	    	
-	    	
-	    	
-	    	
 	    	
 	        setTimeout(function(){
 	            if($("#groupSet_modal").hasClass("in")===true){
@@ -443,5 +594,30 @@ $(document).ready(function(){
 	        $('.add_group').addClass('disno');
 	    }
 	);
-        
+	$("#branch_delete").click(function(){
+		var count = 0;
+    	var arr = new Array();
+    	$(".checkbox_name").each(function(){  // .each()는 forEach를 뜻한다.
+			if($(this).is(":checked")){
+				var res = $(this).val();
+				arr[count] = res;
+				count = count+1;
+			}  
+    	});
+    	
+    	
+    	$.ajax({
+			type : "POST",
+			url : "/user/user_branch_delete",
+			data : {arr : arr},
+			success : function() {
+				alert("그룹 삭제가 되었습니다.");
+				$("#user_add").modal("hide");
+				main();
+			}
+		});
+	
+	});
+	
+		
 });

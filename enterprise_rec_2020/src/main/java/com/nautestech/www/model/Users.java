@@ -26,4 +26,5 @@ public class Users {
 	
 	
 	public String user_detail;
+	public String user_checkbox;
 }

@@ -30,7 +30,30 @@
 		<result property="branch_nm" column="branch_nm"/>
 	</resultMap>
 	
+
+<!-- 	<update id=""> -->
 	
+<!-- 	</update> -->
+
+
+
+
+	<delete id="setDelete" parameterType="hashmap">
+		delete from `web_recording`.`users` where tel_no in
+		<foreach collection="tel_no" item="tel_no" open="(" close=")" separator="," index="index">
+			#{tel_no}
+		</foreach>
+	</delete>
+
+
+	<delete id="setBranchDelete" parameterType="hashmap">
+		delete from `web_recording`.`batch_jisa` where branch_cd in
+		<foreach collection="branch_cd" item="branch_cd" open="(" close=")" separator="," index="index">
+			#{branch_cd}
+		</foreach>
+	</delete>
+
+
 	<select id="getListBranch" resultMap="getBatchSelectMap" parameterType="hashmap">
 		SELECT 
 		branch_cd,
@@ -39,6 +62,7 @@
 		<if test='branch_cd !=null and !branch_cd.equals("")'>
 			where branch_cd = #{branch_cd}
 		</if>
+		
 	</select>
 	
 	

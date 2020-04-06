@@ -36,13 +36,11 @@
     <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxpanel.js}"></script>
     <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxcheckbox.js}"></script>
 
-    <!-- add script -->
     
     
     <script type="text/javascript" th:src="@{/resource/assets/js/user_search.js}"></script>
 	<script type="text/javascript" th:src="@{/resource/assets/js/format.js}"></script>
     <!-- option -->
-
 </head>
 <body class="user_manage">
 <div id="wrapper">
@@ -73,7 +71,7 @@
                             <div id="user_grid"></div>   
                         </div>
                         <div class="grid_bottom">
-                            <button class="btn btn-default" type="button">선택삭제</button>
+                            <button class="btn btn-default" type="button" id="user_delete">선택삭제</button>
                             <button class="btn btn-default" type="button" data-toggle="modal" data-target="#user_add" value="user_insert">사용자 등록</button>
                         </div>
                     </div>
@@ -98,7 +96,7 @@
                             <div class="col-sm-4">
                                 <label class="col-lg-4">그룹</label>
                                 <div class="col-lg-8">
-                                    <div class="group_btn_act"> </div>
+                                    <div class="group_btn_act_search"> </div>
                                 </div>
                             </div>
                         
@@ -214,7 +212,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <div class="show_group">
-                                        <button type="button" class="btn btn-default">삭제</button>
+                                        <button type="button" class="btn btn-default" id="branch_delete">삭제</button>
                                         <button type="button" class="btn btn-primary next">등록</button>                                
                                     </div>
                                     <div class="add_group disno">
@@ -231,10 +229,10 @@
                     <label class="col-lg-2">녹취유형</label>
                     <div class="col-lg-8">
                         <label class="radio-inline">
-                          <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="B"> 전수녹취
+                          <input type="radio" name="inlineRadioOptions" id="rec_inlineRadio1" value="B"> 전수녹취
                         </label>
                         <label class="radio-inline">
-                          <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="N" checked> 녹취정지
+                          <input type="radio" name="inlineRadioOptions" id="rec_inlineRadio2" value="N" checked> 녹취정지
                         </label>
                     </div>
                 </div>
@@ -257,10 +255,10 @@
                     <label class="col-lg-2">다운로드 여부</label>
                     <div class="col-lg-8">
                         <label class="radio-inline">
-                          <input type="radio" name="download" id="inlineRadio1" value="N"> 다운로드 OFF
+                          <input type="radio" name="download" id="down_inlineRadio1" value="N"> 다운로드 OFF
                         </label>
                         <label class="radio-inline">
-                          <input type="radio" name="download" id="inlineRadio2" value="Y" checked> 다운로드 ON
+                          <input type="radio" name="download" id="down_inlineRadio2" value="Y" checked> 다운로드 ON
                         </label>
                     </div>
                 </div>

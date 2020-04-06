@@ -1,0 +1,13 @@
+server:
+    tomcat:
+      max-threads: 500
+    port: 8090
+
+spring:
+  thymeleaf:    cache: false
+  datasource:
+    hikari:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://localhost:3308/web_recording?serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8
+      username: root
+      password: root
