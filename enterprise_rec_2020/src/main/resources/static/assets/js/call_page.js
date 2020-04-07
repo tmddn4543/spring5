@@ -18,6 +18,7 @@ $(document).ready(
     	var called_attr = "";
     	var startRow = "";
     	var pageSize = "";
+    	var arr_batch = new Array();
         /* 반응형 */
         $(window).resize(function(){
         var width = parseInt($(this).width()); //parseint는 정수로 하기 위함
@@ -36,13 +37,27 @@ $(document).ready(
         );
 
         /* 소스 */
-        var source = [
-            "전체",
-            "admin"
-        ];
-        // Create a jqxDropDownList
-        $(".group_btn_act").jqxDropDownList({ source: source, selectedIndex: 1, width: 100 + "%", height: 34, autoItemsHeight: true, theme: "bootstrap", autoDropDownHeight: true});
-      
+        
+        $.ajax({
+    		type : "POST",
+    		url : "/user/user_branch_get",
+    		success : function(batch) {
+    			for(var i=0; i<batch.length; i++){
+    				if(i==0){
+    					arr_batch[i] = "전체";
+    				}
+    				arr_batch[i+1] = batch[i].branch_cd;
+    			}
+    			$(".group_btn_act").jqxDropDownList({ source: arr_batch, selectedIndex: 0, width: 100 + "%", height: 34, autoItemsHeight: true, theme: "bootstrap", autoDropDownHeight: true});
+    		}
+    	});
+//        var source = [
+//            "전체",
+//            "admin"
+//        ];
+//        // Create a jqxDropDownList
+//        $(".group_btn_act").jqxDropDownList({ source: source, selectedIndex: 1, width: 100 + "%", height: 34, autoItemsHeight: true, theme: "bootstrap", autoDropDownHeight: true});
+//      
         var source = [
             "전체",
             "전수녹취",

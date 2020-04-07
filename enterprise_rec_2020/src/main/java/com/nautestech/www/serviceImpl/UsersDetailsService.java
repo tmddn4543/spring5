@@ -30,6 +30,8 @@ public class UsersDetailsService implements UserDetailsService{
 		param.put("pagestart", 0);
 		param.put("emp_id", username);
 		List<Users> users = mapper.getView(param);
+		
+		
 		if (null == users) {
         	throw new UsernameNotFoundException("USER NOT FOUND OR NOT MATCH PASSWORD");
         }
@@ -38,6 +40,7 @@ public class UsersDetailsService implements UserDetailsService{
 		session.setAuth_cd(users.get(0).getAuth_cd());
 		session.setEmp_id(users.get(0).getEmp_id());
 		session.setPassword(users.get(0).getPass());
+		session.setTel_no(users.get(0).getTel_no());
 		session.setAccountNonExpired(true);
 		session.setAccountNonLocked(true);
 		session.setCredentialsNonExpired(true);
@@ -60,5 +63,10 @@ public class UsersDetailsService implements UserDetailsService{
 		session.setAuthorities(grantedAuthorityList);
 		return session;
 	}
+	
+	public void setUpdate(HashMap<String, Object>param) {
+		mapper.setUpdate(param);
+	}
+	
 
 }

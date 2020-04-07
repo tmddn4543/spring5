@@ -16,6 +16,21 @@ $(document).ready(function(){
     var branch_nm = "";
     
     
+    //검색시 검색그룹 가져오기
+    $.ajax({
+		type : "POST",
+		url : "/user/user_branch_get",
+		success : function(batch) {
+			for(var i=0; i<batch.length; i++){
+				if(i==0){
+					arr_batch[i] = "전체";
+				}
+				arr_batch[i+1] = batch[i].branch_cd;
+			}
+			$(".group_btn_act_search").jqxDropDownList({ source: arr_batch, selectedIndex: 0, width: 100 + "%", height: 34, autoItemsHeight: true, theme: "bootstrap", autoDropDownHeight: true});
+		}
+	});
+    
     
     /* 반응형 */
     $(window).resize(function(){
@@ -29,13 +44,16 @@ $(document).ready(function(){
     
     
     
-    main();
+    main(null,null);
     
-    function main(){
+    function main(branch_cd, tel_no){
     	var source =
         {
              datatype: "json",
-             data : {},
+             data : {
+            	 branch_cd :branch_cd,
+            	 tel_no :tel_no
+             },
              datafields: [
     			 { name: 'num'},
     			 { name: 'branch_cd'},
@@ -92,19 +110,19 @@ $(document).ready(function(){
     
     
 	
-    	
-	
-    
-	
-	
-	
-	
-	
-	
-	
+	$("#user_search_bt").click(function(){
+		branch_cd = $(".group_btn_act_search").val();
+		tel_no = $("#tel_no_input").val();
+		if(branch_cd=="전체"){
+			branch_cd = "";
+		}
+		main(branch_cd, tel_no);
+	});
 	
 	
 	
+	
+    //$(".group_btn_act_search").jqxDropDownList({ source: , selectedIndex: 1, width: 100 + "%", height: 34, autoItemsHeight: true, theme: "bootstrap", autoDropDownHeight: true});
     $(".authority_num").jqxDropDownList({ source: [ "전체","시스템관리자","운용사용자","그룹관리자","상담원"], selectedIndex: 1, width: 100 + "%", height: 34, autoItemsHeight: true, theme: "bootstrap", autoDropDownHeight: true});
 	$('#user_add').on('shown.bs.modal', function (event) {
 		var res = $(event.relatedTarget);
@@ -114,6 +132,8 @@ $(document).ready(function(){
 			//res.context.name
 			tel_no = res.context.name;
 			//사용자 상세보기가져오기
+			$("#pass").val("");
+			$("#pass_check").val("");
 			$.ajax({
 				type : "POST",
 				data : {tel_no : tel_no},
@@ -451,6 +471,9 @@ $(document).ready(function(){
 
 	$(".groupSet_open").click(
 	    function(){
+	    	$("#branch_cd").prop("readonly",false);
+	    	$("#branch_nm").val("");
+	    	$("#branch_cd").val("");
 	    	
 	    	$.ajax({
 				type : "POST",
@@ -610,14 +633,19 @@ $(document).ready(function(){
 			type : "POST",
 			url : "/user/user_branch_delete",
 			data : {arr : arr},
-			success : function() {
-				alert("그룹 삭제가 되었습니다.");
-				$("#user_add").modal("hide");
-				main();
+			success : function(result) {
+				if(result=="true"){
+					$("#groupSet_modal").modal("hide");
+					alert("그룹 삭제가 되었습니다.");
+					main();
+				}else{
+					alert("사용자가 포함되어 있는 그룹이 있습니다. \n사용자 수정 or 제거후 삭제해주시기 바랍니다.");
+				}
 			}
 		});
 	
 	});
 	
-		
+	
+	
 });

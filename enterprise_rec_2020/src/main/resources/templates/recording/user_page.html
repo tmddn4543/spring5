@@ -38,7 +38,7 @@
 
     
     
-    <script type="text/javascript" th:src="@{/resource/assets/js/user_search.js}"></script>
+    <script type="text/javascript" th:src="@{/resource/assets/js/user_page.js}"></script>
 	<script type="text/javascript" th:src="@{/resource/assets/js/format.js}"></script>
     <!-- option -->
 </head>
@@ -103,11 +103,11 @@
                             <div class="col-sm-4">
                                 <label class="col-lg-4">번호조회</label>
                                 <div class="col-lg-8">
-                                    <input type="text" class="form-control receive_number" placeholder="">
+                                    <input type="text" class="form-control receive_number" id="tel_no_input" placeholder="">
                                 </div>
                             </div>
                             <div class="col-sm-4">
-                                <button type="button" class="btn btn-default">조회</button>
+                                <button type="button" class="btn btn-default" id="user_search_bt">조회</button>
                                 <button type="button" class="btn btn-default">CTI동기화</button>
 
                                 <label class="col-lg-4"></label>

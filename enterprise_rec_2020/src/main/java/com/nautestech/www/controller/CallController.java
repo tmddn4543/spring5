@@ -127,6 +127,8 @@ public class CallController {
 		param.put("emp_nm", emp);
 		param.put("branch_cd", branch_cd);
 		param.put("auth_cd", auth_cd);
+		param.put("pagesize", 100);
+		param.put("pagestart", 1);
 		List<Users> users = uService.getView(param);
 		return users;
     }

@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import lombok.Data;
 
-@Data
+@Data 
 public class Session implements UserDetails {
 	private String username;
     private String password;
@@ -19,4 +19,5 @@ public class Session implements UserDetails {
     
     private String emp_id;
     private String auth_cd;
+    private String tel_no;
 }

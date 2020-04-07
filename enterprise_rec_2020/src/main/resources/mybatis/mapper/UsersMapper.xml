@@ -31,9 +31,24 @@
 	</resultMap>
 	
 
-<!-- 	<update id=""> -->
-	
-<!-- 	</update> -->
+	<update id="setUpdate" parameterType="hashmap">
+		update `web_recording`.`users` set
+		<choose>
+			<when test='login_date.equals("")'>
+			emp_nm = #{emp_nm},
+			pass = #{pass},
+			auth_cd = #{auth_cd},
+			branch_cd = #{branch_cd},
+			rec_type = #{rec_type},
+			down_type = #{down_type},
+			rec_type_regdate = #{rec_type_regdate}
+			</when>
+			<otherwise>
+			login_date = #{login_date}
+			</otherwise>
+		</choose>
+		where tel_no = #{tel_no}
+	</update>
 
 
 
@@ -94,6 +109,7 @@
 		emp_nm,
 		rec_type,
 		rec_regdate,
+		rec_type_regdate,
 		pass,
 		tel_no_070,
 		down_type

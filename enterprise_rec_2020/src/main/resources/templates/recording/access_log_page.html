@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorate="~{layouts/default}">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Recording</title>
+
+    <!-- jqwidgets 공용 -->
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxcore.js}"></script>
+
+    <!-- jqwidgets calendar -->
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxdatetimeinput.js}"></script>
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxcalendar.js}"></script>
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxtooltip.js}"></script>
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/globalization/globalize.js}"></script>
+
+    <!-- DropDownList + Grid -->
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxbuttons.js}"></script>
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxscrollbar.js}"></script>
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxlistbox.js}"></script>
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxdropdownlist.js}"></script>
+
+    <!-- Grid -->
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxdata.js}"></script> 
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxmenu.js}"></script>
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxgrid.js}"></script>
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxgrid.sort.js}"></script> 
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxgrid.pager.js}"></script> 
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxgrid.columnsresize.js}"></script> 
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxgrid.selection.js}"></script> 
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/generatedata.js}"></script>
+
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxpanel.js}"></script>
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxcheckbox.js}"></script>
+
+    <!-- add script -->
+    <script type="text/javascript" th:inline="javascript" th:src="@{/resource/assets/js/access_log_page.js}"></script>
+
+
+</head>
+<body class="access_log">
+<div id="wrapper">
+    <!--  -->
+    <a class="hide_darkbg"></a>
+    
+    <div class="wrapper gray-bg" id="page-wrapper">
+        <div class="row border-bottom">
+           <div th:replace="fragments/navbar :: navbarFragment"></div>
+        </div>
+        <div class="ibox">
+            <div class="ibox-title">
+                <div class="title_wrap">
+                    <h2>
+                        <img th:src="@{/resource/assets/img/nautes_logo.png}" alt="company_logo"> <span>사용자관리</span>
+                    </h2>
+                </div>
+                <!-- Button trigger modal -->
+                <button  id="popbt" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#search_filter">
+                    <span>검색</span> <i class="fa fa-filter" aria-hidden="true"></i>
+                </button>
+
+            </div>
+            <div class="ibox-content">
+                
+                <div class="list">
+                    <div class="list_table">
+                        <div class="container grid_height">
+                            <div id="access_grid"></div>   
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- 서치 필터 -->
+<div class="modal" id="search_filter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-background="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">사용자관리 필터</h4>
+            </div>
+            <div class="modal-body">
+                <div class="list_search">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <label class="col-sm-2">그룹</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control">
+                                </div>
+                                <div class="col-sm-2">
+                                    <button type="button" class="btn btn-default">조회</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>  
+
+
+</body>
+
+</html>

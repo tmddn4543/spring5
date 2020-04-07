@@ -173,7 +173,7 @@ text-align: center;
 	color: #ddd;
 }
 
-#side-menu > li.page_open::after{
+#side-menu  li.page_open::after{
 content: ".";
 
 background-color: #eee;
@@ -403,6 +403,7 @@ z-index:  30000000 !important;
 #search_filter .modal-dialog{
 margin: 0;
 width: 100%;
+background-color: #fff;
 }
 .modal-backdrop.in{
 	display: none;
@@ -606,10 +607,39 @@ min-width: 340px;
 .access_log .modal .list_search .form-group > div > div:nth-child(3){
 	padding: 0;
 }
+
+/* state */
+body.state_wrap .modal .list_search .form-group > div:last-child{
+	text-align: right;
+}
+body.state_wrap .modal .list_search .form-group > div:last-child .col-lg-4{
+	float: right;
+}
+
+body.state_wrap .modal .list_search .form-group .checkbox label, body.state_wrap .modal .list_search .form-group .radio label{
+	padding-left: 20px;
+	margin-left: 10px;
+}
+
+body.state_wrap .modal .list_search .form-group .checkbox label input, body.state_wrap .modal .list_search .form-group .radio input{
+	height: 27px;
+}
+
+body.state_wrap .modal .list_search .form-group > div.radio:last-child{
+	text-align: left;
+}
+
+body.state_wrap .list_table .container{
+	height: calc(100% - 65px);
+}
+
 /* 반응형 */
 @media (max-width: 1464px){
 #search_filter{
 	left: 120px;
+}
+#side-menu li ul.nav-second-level li.page_open::after{
+display: none;
 }
 }
 @media (max-width: 1313px){
@@ -655,7 +685,9 @@ padding: 0;
  width: 66.66666667%;
  float: left;
 }
-
+body.state_wrap .modal .list_search .form-group:nth-child(3) > div:last-child{
+	margin-top: 32px;
+}
 
 }
 @media (max-width: 767px){
@@ -776,8 +808,25 @@ float: left;
 #groupSet_modal .modal-dialog{
 	margin: 10px auto;
 }
+
+body.state_wrap .modal .list_search .form-group:nth-child(3) > div:last-child{
+	text-align: center;
+
+margin-top: 10px;
+
+padding-top: 10px;
+
+border-top: 1px dashed #eee;
+	padding-bottom: 5px;
 }
-@media (max-width: 510px){
+body.state_wrap .modal .list_search .form-group .checkbox label input, body.state_wrap .modal .list_search .form-group .radio input {
+
+    bottom: 0;
+
+}
+
+}
+@media (max-width: 550px){
 	#user_add.modal .modal-body .form-group, #user_more.modal .modal-body .form-group {
 		height: auto;
 	}
@@ -799,8 +848,6 @@ padding-left: 10px;
 	.modal#user_add .modal-body .form-group > div.col-lg-2, .modal#user_more .modal-body .form-group > div.col-lg-2{
 		width: 82px;
 	}
-}
-@media (max-width: 450px){
 	
 	.navbar-minimalize{
 		display: block;
@@ -872,10 +919,23 @@ padding-left: 10px;
 	.ibox-title button span{
 		display: none;
 	}
+	body.state_wrap .modal .list_search .form-group .checkbox label, body.state_wrap .modal .list_search .form-group .radio label{
+	width: 100%;
+	text-align: left;	
+	line-height: 19px; 
+	margin-left: 0;
+	padding-left: 35px;
+	}
+	body.state_wrap .modal .list_search .form-group .checkbox label input, body.state_wrap .modal .list_search .form-group .radio input{
+		top: auto;
+		bottom: auto;
+		height: 0;
+
+	}
 }
 
 
-@media (max-width: 350px){
+@media (max-width: 450px){
 .ibox-title{
 	position: relative;
 	height: 102px;
@@ -894,6 +954,7 @@ margin-bottom: 5px;
 }
 .ibox-title h2 span{
 	display: inline-block;
+	font-size: 17px;
 }
 .ibox-title button{
 position: absolute;

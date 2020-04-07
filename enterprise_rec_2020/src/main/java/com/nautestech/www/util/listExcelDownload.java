@@ -25,6 +25,22 @@ import com.nautestech.www.model.Call;
 
 public class listExcelDownload extends AbstractXlsxView {
 
+	
+	public String authFormat(String auth_cd) {
+		if(auth_cd.equals("00")) {
+			return "시스템관리자";
+		}else if(auth_cd.equals("12")) {
+			return "그룹관리자";
+		}else if(auth_cd.equals("13")) {
+			return "상담원";
+		}else if(auth_cd.equals("11")) {
+			return "운용사용자";
+		}else if(auth_cd.equals("15")) {
+			return "알람서비스등록";
+		}
+		return "";
+	}
+	
 	public String recFormat(String rec_type) {
 		if (rec_type.equals("S")) {
 			return "인증녹취";
