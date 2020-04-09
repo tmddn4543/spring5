@@ -18,4 +18,5 @@ public interface UsersMapper {
 	public void setBranchDelete(HashMap<String, Object>param);
 	public void setDelete(HashMap<String, Object>param);
 	public void setUpdate(HashMap<String, Object>param);
+	public void setInsertListen_log(HashMap<String, Object>param);
 }

@@ -184,17 +184,17 @@ Globalize.cultures[ "default" ] = {
 			firstDay: 0,
 			days: {
 				// full day names
-				names: [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ],
+				names: [ "일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일" ],
 				// abbreviated day names
-				namesAbbr: [ "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" ],
+				namesAbbr: [ "일", "월", "화", "수", "목", "금", "토" ],
 				// shortest day names
-				namesShort: [ "Su", "Mo", "Tu", "We", "Th", "Fr", "Sa" ]
+				namesShort: [ "일", "월", "화", "수", "목", "금", "토" ]
 			},
 			months: {
 				// full month names (13 months for lunar calendards -- 13th month should be "" if not lunar)
-				names: [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December", "" ],
+				names: [ "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월", "" ],
 				// abbreviated month names
-				namesAbbr: [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "" ]
+				namesAbbr: [ "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월", "" ]
 			},
 			// AM and PM designators in one of these forms:
 			// The usual view, and the upper and lower case versions

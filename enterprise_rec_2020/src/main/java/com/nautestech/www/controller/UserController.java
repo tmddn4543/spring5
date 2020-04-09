@@ -8,6 +8,7 @@ import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,6 +33,13 @@ public class UserController {
 	@Autowired
 	UsersService uService;
 	
+	
+	
+	///user/user_logout
+	
+	
+	
+	
 	@Secured({"ROLE_ADMIN"})
 	@RequestMapping(value = "/user_page", method= {RequestMethod.GET, RequestMethod.POST})
     public String index(Model model) throws JsonProcessingException{
@@ -41,6 +49,15 @@ public class UserController {
 		return "recording/user_page";
     }
 	
+	@Secured({"ROLE_ADMIN"})
+	@RequestMapping(value = "/user_logout", method= {RequestMethod.GET, RequestMethod.POST})
+    public String user_logout(Authentication authentication) throws JsonProcessingException{
+		HashMap<String, Object> param = new HashMap<>();
+		param.put("emp_id", authentication.getName());
+		param.put("result", "logout");
+		uService.setInsertListen_log(param);
+		return "redirect:/logout";
+    }
 	
 	
 	@Secured({"ROLE_ADMIN"})

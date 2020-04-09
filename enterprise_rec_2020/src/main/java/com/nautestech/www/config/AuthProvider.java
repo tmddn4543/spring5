@@ -30,26 +30,28 @@ public class AuthProvider implements AuthenticationProvider {
 		String id = authentication.getName();
         String password = authentication.getCredentials().toString();
         Session users = (Session) uService.loadUserByUsername(id);
-        
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		
+        HashMap<String, Object> param;
         if (!passwordEncoder.matches(authentication.getCredentials().toString(), users.getPassword())) {
+        	param = new HashMap<String, Object>();
+        	param.put("emp_id", id);
+        	param.put("result", "fail");
+        	uService.setInsert(param);
 			throw new UsernameNotFoundException("USER NOT FOUND OR NOT MATCH PASSWORD");
 		}
         
-        
-        
-        
-        
-        
-        HashMap<String, Object> param = new HashMap<String, Object>();
         String login_date = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.KOREA).format(new Date());
         String tel_no = users.getTel_no();
+        param = new HashMap<String, Object>();
         param.put("tel_no", tel_no);
         param.put("emp_nm", "");
         param.put("login_date", login_date);
-        System.out.println(tel_no);
         uService.setUpdate(param);
+        param = new HashMap<String, Object>();
+        param.put("emp_id", id);
+        param.put("result", "login");
+        uService.setInsert(param);
         UsernamePasswordAuthenticationToken result = new UsernamePasswordAuthenticationToken(authentication.getPrincipal(), users.getPassword(), users.getAuthorities());
 		result.setDetails(users);
 		System.out.println(result.getDetails());

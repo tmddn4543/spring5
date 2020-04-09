@@ -7,7 +7,7 @@ public enum Constant {
 	public static final String RESULT_DATA = "resultdata";
 
 	// 프로젝트명
-	public static final String CONTEXT_ROOT = "edu_test";
+	public static final String CONTEXT_ROOT = "enterprise_rec_2020";
 
 	// 로그인
 	public static final String USER = "USER";

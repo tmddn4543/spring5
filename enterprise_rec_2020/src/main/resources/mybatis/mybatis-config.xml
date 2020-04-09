@@ -16,6 +16,8 @@
 		<typeAlias alias="users" type="com.nautestech.www.model.Users"/>
 		<typeAlias alias="call" type="com.nautestech.www.model.Call"/>
 		<typeAlias alias="batch" type="com.nautestech.www.model.Batch"/>
+		<typeAlias alias="log" type="com.nautestech.www.model.Callhistory_log"/>
+		<typeAlias alias="stat" type="com.nautestech.www.model.Stat"/>
 	</typeAliases>
 
 </configuration>

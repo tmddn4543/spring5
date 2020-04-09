@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorate="~{layouts/default}">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Recording</title>
+<script type="text/javascript" th:inline="javascript" th:src="@{/resource/assets/js/monitor_page.js}"></script>
+</head>
+<body class="monitering">
+<div id="wrapper">
+    <a class="hide_darkbg"></a>
+    
+    <div class="wrapper gray-bg" id="page-wrapper">
+        <div class="row border-bottom">
+        	<div th:replace="fragments/navbar :: navbarFragment"></div>
+        </div>
+        <div class="ibox">
+            <div class="ibox-title">
+                <div class="title_wrap">
+                    <h2>
+                        <img th:src="@{/resource/assets/img/nautes_logo.png}" alt="company_logo"> <span>모니터링</span>
+                    </h2>
+                </div>                  
+            </div>
+            <div class="ibox-content">
+                <div class="monitering_wrap">
+                    <div class="row">
+                        
+                        <div class="thumbnail ready">
+                            <div class="caption_head">
+                                <h3>No.1</h3>
+                            </div>
+                            <div class="caption">
+                                <div class="caption_con1">
+                                    <p>동희</p>
+                                    <p>01:22:14</p>
+                                </div>
+                                <div class="caption_con2">
+                                    <p>010-5111-1234</p>
+                                    <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                                    <p>010-1153-6974</p>
+                                </div>
+                            </div>
+                            <div class="caption_bottom">
+                                <button href="#" class="btn btn-primary" role="button" disabled="disabled">
+                                    <i class="fa fa-spinner" aria-hidden="true"></i>
+                                    청취준비
+                                </button>
+                            </div>
+                        </div>
+                        <div class="thumbnail standBy">
+                            <div class="caption_head">
+                                <h3>No.1</h3>
+                            </div>
+                            <div class="caption">
+                                <div class="caption_con1">
+                                    <p>동희</p>
+                                    <p>01:22:14</p>
+                                </div>
+                                <div class="caption_con2">
+                                    <p>010-5111-1234</p>
+                                    <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                                    <p>010-1153-6974</p>
+                                </div>
+                            </div>
+                            <div class="caption_bottom">
+                                <button href="#" class="btn btn-primary" role="button">
+                                    <i class="fa fa-volume-off" aria-hidden="true"></i>
+                                    청취가능
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="thumbnail doing">
+                            <div class="caption_head">
+                                <h3>No.1</h3>
+                            </div>
+                            <div class="caption">
+                                <div class="caption_con1">
+                                    <p>동희</p>
+                                    <p>01:22:14</p>
+                                </div>
+                                <div class="caption_con2">
+                                    <p>010-5111-1234</p>
+                                    <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                                    <p>010-1153-6974</p>
+                                </div>
+                            </div>
+                            <div class="caption_bottom">
+                                <button href="#" class="btn btn-primary" role="button">
+                                    <i class="fa fa-volume-up" aria-hidden="true"></i>
+                                    청취진행중
+                                </button>
+                            </div>
+                        </div>
+                        
+                    </div>  
+                </div>  
+                <div class="monitering_visualizer">
+                    <div>
+                        <canvas></canvas>
+                        <div class="stop_btn">
+                            <button class="btn" type="botton"><i class="fa fa-stop" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                </div>            
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+
+</html>

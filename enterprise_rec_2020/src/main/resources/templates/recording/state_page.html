@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorate="~{layouts/default}">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Recording</title>
+    <!-- jqwidgets 공용 -->
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxcore.js}"></script>
+
+    <!-- jqwidgets calendar -->
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxdatetimeinput.js}"></script>
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxcalendar.js}"></script>
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxtooltip.js}"></script>
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/globalization/globalize.js}"></script>
+
+    <!-- DropDownList + Grid -->
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxbuttons.js}"></script>
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxscrollbar.js}"></script>
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxlistbox.js}"></script>
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxdropdownlist.js}"></script>
+
+    <!-- Grid -->
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxdata.js}"></script> 
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxmenu.js}"></script>
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxgrid.js}"></script>
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxgrid.sort.js}"></script> 
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxgrid.pager.js}"></script> 
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxgrid.columnsresize.js}"></script> 
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxgrid.selection.js}"></script> 
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/generatedata.js}"></script>
+
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxpanel.js}"></script>
+
+    <!-- add script -->
+    <script type="text/javascript" th:src="@{/resource/assets/js/state_page.js}"></script>
+	<script type="text/javascript" th:src="@{/resource/assets/js/format.js}"></script>
+
+</head>
+<body class="state_wrap">
+<div id="wrapper">
+    <a class="hide_darkbg"></a>
+    
+    <div class="wrapper gray-bg" id="page-wrapper">
+        <div class="row border-bottom">
+        	<div th:replace="fragments/navbar :: navbarFragment"></div>
+        </div>
+        <div class="ibox">
+            <div class="ibox-title">
+                <div class="title_wrap">
+                    <h2>
+                        <img th:src="@{/resource/assets/img/nautes_logo.png}" alt="company_logo"> <span>통계</span>
+                    </h2>
+                </div>
+                <!-- Button trigger modal -->
+                <button id="popbt" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#search_filter">
+                    <span>검색</span> <i class="fa fa-filter" aria-hidden="true"></i>
+                </button>
+                                             
+            </div>
+            <div class="ibox-content">
+                <div class="list">
+                    <div class="list_table">
+                        <div class="container">
+                            <div id="state">
+                            </div>
+                        </div>
+                        <div class="grid_bottom">
+                            <button class="btn btn-default" type="button">액셀 다운로드</button>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- 서치 필터 -->
+<div class="modal" id="search_filter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-background="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">통계(지사) 필터</h4>
+                
+            </div>
+            <div class="modal-body">
+                <div class="list_search">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-lg-1"></div>
+                            <div class="radio">
+                              <label>
+                                <input type="radio" name="optionsRadios" id="state1" value="M" checked>
+                                월별통계
+                              </label>
+                              <label>
+                                <input type="radio" name="optionsRadios" id="state2" value="D">
+                                일별통계
+                              </label>
+                              <label>
+                                <input type="radio" name="optionsRadios" id="state3" value="H">
+                                시간대별통계
+                              </label>
+                            </div>
+                        </div>
+                        <div class="bottom_line"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <label class="col-lg-4">그룹</label>
+                                <div class="col-lg-8">
+                                    <div class="group_btn_act"></div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <label class="col-lg-4">사용자 ID</label>
+                                <div class="col-lg-8">
+                                    <div class="input-group">
+                                      <input type="text" class="form-control" placeholder="" id="emp_id">
+                                      <span placeholder="" class="input-group-btn user_name">
+                                        <button class="btn btn-default" data-toggle="modal" data-target="#user_search" type="button" id="state_user">사용자 검색</button>
+                                      </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <label class="col-lg-4">통화날짜</label>
+                                <div class="col-lg-8">
+                                    <div class="jqxcalendar_act">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bottom_line"></div>
+                        <div class="form-group btn_group">
+                            <button type="button" class="btn btn-default" id="state_select">통계 조회</button>
+                        </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>  
+    <!-- 사용자 검색 -->
+<div class="modal fade" id="user_search" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">녹취 사용자 선택</h4>
+        </div>
+        <div class="modal-body">
+
+        <div class="list_search">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-3">
+                        <label class="col-lg-4">그룹</label>
+                        <div class="col-lg-8">
+                            <div class="group_btn_act1"> </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <label class="col-lg-4">권한등급</label>
+                        <div class="col-lg-8">
+                            <div class="authority_num"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <label class="col-lg-4">사용자</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" placeholder="" id="emp_id_modal">
+                            
+                        </div>
+                    </div>
+                    <div class="col-sm-1">
+                        <input type="button" class="btn btn-primary" value="검색" id="id_user_search3">
+                    </div>
+                    <div class="col-sm-1"></div>
+                </div>
+            </form>
+        </div>
+        <div class="bottom_line"></div>
+        <div class="user_search_con">
+            <div class="user_search_grid">
+                
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+</body>
+
+</html>

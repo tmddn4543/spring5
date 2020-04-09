@@ -6,29 +6,29 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.nautestech.www.mapper.CallMapper;
-import com.nautestech.www.model.Call;
+import com.nautestech.www.mapper.StatMapper;
+import com.nautestech.www.model.Stat;
 import com.nautestech.www.service.ISelect;
 
 @Service
-public class CallService implements ISelect<Call>{
+public class StatService implements ISelect<Stat>{
 	
 	@Autowired
-	CallMapper mapper;
+	StatMapper mapper;
 
 	@Override
-	public List<Call> getView(HashMap<String, Object> param) {
+	public List<Stat> getView(HashMap<String, Object> param) {
 		return mapper.getView(param);
 	}
 
 	@Override
-	public List<Call> getViewYYYYMM(HashMap<String, Object> param) {
-		return mapper.getViewYYYYMM(param);
+	public List<?> getViewYYYYMM(HashMap<String, Object> param) {
+		return null;
 	}
 
 	@Override
 	public void setCreate(HashMap<String, Object> param) {
-		mapper.setCreate(param);
+		
 	}
 
 	@Override
@@ -38,14 +38,12 @@ public class CallService implements ISelect<Call>{
 
 	@Override
 	public List<?> getListBranch(HashMap<String, Object> param) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<?> getListStateCount(HashMap<String, Object> param) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Stat> getListStateCount(HashMap<String, Object> param) {
+		return mapper.getListStateCount(param);
 	}
-	
+
 }

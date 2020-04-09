@@ -30,21 +30,14 @@
                 <li th:class="${access_log_active}">
                     <a href="/access_log/access_log_page"><i class="fa fa-file-text-o" aria-hidden="true"></i> <span class="nav-label">접속로그</span></a>
                 </li>
-                <li>
-                    <a href="monitoring.html"><i class="fa fa-desktop" aria-hidden="true"></i> <span class="nav-label">모니터링</span></a>
+                <li th:class="${monitor_active}">
+                    <a href="/monitor/monitor_page"><i class="fa fa-desktop" aria-hidden="true"></i> <span class="nav-label">모니터링</span></a>
                 </li>
-                <li>
-                    <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">통계</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li><a href="month_group.html">그룹별 통계</a></li>
-                        <li><a href="day_group.html">사용자별 통계</a></li>
-                    </ul>
+                <li th:class="${state_active}">
+                    <a href="/state/state_page"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">통계</span><span class="nav-label"></span></a>
                 </li>
-               
             </ul>
-
         </div>
     </nav>
-    
 </div>
 </html>

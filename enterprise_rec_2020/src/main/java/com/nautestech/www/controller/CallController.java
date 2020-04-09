@@ -123,12 +123,16 @@ public class CallController {
 		}
 		auth_cd = Utils.authFormat(auth_cd);
 		HashMap<String, Object> param = new HashMap<>();
+		System.out.println(emp);
+		System.out.println(branch_cd);
+		System.out.println(auth_cd);
 		param.put("emp_id", emp);
 		param.put("emp_nm", emp);
 		param.put("branch_cd", branch_cd);
 		param.put("auth_cd", auth_cd);
 		param.put("pagesize", 100);
-		param.put("pagestart", 1);
+		param.put("pagestart", 0);
+		param.put("xlsx", "false");
 		List<Users> users = uService.getView(param);
 		return users;
     }

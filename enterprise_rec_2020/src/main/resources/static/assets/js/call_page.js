@@ -49,15 +49,9 @@ $(document).ready(
     				arr_batch[i+1] = batch[i].branch_cd;
     			}
     			$(".group_btn_act").jqxDropDownList({ source: arr_batch, selectedIndex: 0, width: 100 + "%", height: 34, autoItemsHeight: true, theme: "bootstrap", autoDropDownHeight: true});
+    			$(".group_btn_act1").jqxDropDownList({ source: arr_batch, selectedIndex: 0, width: 100 + "%", height: 34, autoItemsHeight: true, theme: "bootstrap", autoDropDownHeight: true});
     		}
     	});
-//        var source = [
-//            "전체",
-//            "admin"
-//        ];
-//        // Create a jqxDropDownList
-//        $(".group_btn_act").jqxDropDownList({ source: source, selectedIndex: 1, width: 100 + "%", height: 34, autoItemsHeight: true, theme: "bootstrap", autoDropDownHeight: true});
-//      
         var source = [
             "전체",
             "전수녹취",
@@ -483,7 +477,7 @@ $(document).ready(
         
         $("#id_user_search3").click(function(){
         	emp = $("#emp3").val();
-        	branch_cd = $(".group_btn_act").val();
+        	branch_cd = $(".group_btn_act1").val();
         	auth_cd = $(".authority_num").val();
         	usersSearch();
         });

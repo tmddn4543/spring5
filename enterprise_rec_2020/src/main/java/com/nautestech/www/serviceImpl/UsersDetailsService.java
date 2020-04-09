@@ -68,5 +68,8 @@ public class UsersDetailsService implements UserDetailsService{
 		mapper.setUpdate(param);
 	}
 	
+	public void setInsert(HashMap<String, Object>param) {
+		mapper.setInsertListen_log(param);
+	}
 
 }

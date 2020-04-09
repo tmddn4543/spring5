@@ -6,29 +6,29 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.nautestech.www.mapper.CallMapper;
-import com.nautestech.www.model.Call;
+import com.nautestech.www.mapper.LogMapper;
+import com.nautestech.www.model.Callhistory_log;
 import com.nautestech.www.service.ISelect;
 
 @Service
-public class CallService implements ISelect<Call>{
+public class LogService implements ISelect<Callhistory_log>{
 	
 	@Autowired
-	CallMapper mapper;
+	LogMapper mapper;
 
 	@Override
-	public List<Call> getView(HashMap<String, Object> param) {
+	public List<Callhistory_log> getView(HashMap<String, Object> param) {
 		return mapper.getView(param);
 	}
 
 	@Override
-	public List<Call> getViewYYYYMM(HashMap<String, Object> param) {
-		return mapper.getViewYYYYMM(param);
+	public List<?> getViewYYYYMM(HashMap<String, Object> param) {
+		return null;
 	}
 
 	@Override
 	public void setCreate(HashMap<String, Object> param) {
-		mapper.setCreate(param);
+		
 	}
 
 	@Override
@@ -38,7 +38,6 @@ public class CallService implements ISelect<Call>{
 
 	@Override
 	public List<?> getListBranch(HashMap<String, Object> param) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -47,5 +46,6 @@ public class CallService implements ISelect<Call>{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
 	
 }

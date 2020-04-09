@@ -80,6 +80,30 @@
 		
 	</select>
 	
+	<insert id="setInsertListen_log" parameterType="hashmap">
+		insert into callhistory_listen_log(
+			user_id,
+			filename,
+			dirname,
+			logtime,
+			operation
+		) values(
+			#{emp_id},
+			'',
+			'',
+			now(),
+			<if test="result.equals('login')">
+		    'Log_INSuccess'
+		    </if>
+		    <if test="result.equals('logout')">
+		    'Log_OUT'
+		    </if>
+		    <if test="result.equals('fail')">
+		    'Log_INFail'
+		    </if>
+		);
+	</insert>
+	
 	
 	<insert id="setInsertBranch" parameterType="hashmap">
 		insert into batch_jisa(

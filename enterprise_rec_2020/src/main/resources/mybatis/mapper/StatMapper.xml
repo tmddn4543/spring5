@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.nautestech.www.mapper.StatMapper">	
+	<resultMap type="stat" id="getSelectMap">
+		<result property="s_date" column="s_date"/>
+		<result property="s_caller_cnt" column="s_caller_cnt"/>
+		<result property="s_called_cnt" column="s_called_cnt"/>
+		<result property="s_caller_time" column="s_caller_time"/>
+		<result property="s_called_time" column="s_called_time"/>
+		<result property="emp_id" column="emp_id"/>
+		<result property="emp_nm" column="emp_nm"/>
+		<result property="branch_cd" column="branch_cd"/>
+		<result property="tel_no" column="tel_no"/>
+	</resultMap>
+	
+	
+	<select id="getView" resultMap="getSelectMap" parameterType="hashmap">
+		select 
+			left(s_date,6) as s_date,
+			sum(s_caller_cnt) as s_caller_cnt,
+			sum(s_called_cnt) as s_called_cnt,
+			sum(s_caller_time) as s_caller_time,
+			sum(s_called_time) as s_called_time,
+			emp_id,
+			branch_cd
+		from `web_recording`.`statistics`
+		group by 
+			left(s_date,6),
+			emp_id
+		order by left(s_date,6)
+		limit ${pagestart},${pagesize}
+	</select>
+	
+	<select id="getListStateCount" resultMap="getSelectMap" parameterType="hashmap">
+		select left(s_date,6) as s_date
+		from `web_recording`.`statistics`
+		<include refid="where"/>
+		group by left(s_date,6), emp_id
+	</select>
+	
+	<select id="getListCount" resultType="int" parameterType="hashmap">
+		select count(*)
+		from `web_recording`.`statistics`
+		<include refid="where"/>
+		group by left(s_date,6), emp_id
+		order by   left(s_date,6)
+	</select>
+	
+	
+	
+	<sql id="where">
+		<where>
+			<if test='emp_id !=null and !emp_id.equals("")'>
+				emp_id = #{emp_id}
+			</if>
+			<if test='branch_cd !=null and !branch_cd.equals("")'>
+				and branch_cd = #{branch_cd}
+			</if>
+			<!-- 나중에 시간넣을곳 -->
+<!-- 			<if test='bday !=null and !bday.equals("") and eday !=null and !eday.equals("")'> -->
+<!-- 				and btime between #{bday} and #{eday} -->
+<!-- 			</if> -->
+		</where>
+	</sql>
+	
+</mapper>

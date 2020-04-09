@@ -70,4 +70,16 @@ public class UsersService implements IInsert,ISelect<Users>,IDelete,IUpdate{
 	public void setUpdate(HashMap<String, Object> param) {
 		mapper.setUpdate(param);
 	}
+
+
+	@Override
+	public void setInsertListen_log(HashMap<String, Object> param) {
+		mapper.setInsertListen_log(param);
+	}
+
+	@Override
+	public List<?> getListStateCount(HashMap<String, Object> param) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
