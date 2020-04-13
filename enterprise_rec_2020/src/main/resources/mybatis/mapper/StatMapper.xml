@@ -19,7 +19,15 @@
 	
 	<select id="getView" resultMap="getSelectMap" parameterType="hashmap">
 		select 
+		<if test='res.equals("H")'>
+			left(s_date,10) as s_date,
+		</if>
+		<if test='res.equals("D")'>
+			left(s_date,8) as s_date,
+		</if>
+		<if test='res.equals("M")'>
 			left(s_date,6) as s_date,
+		</if>
 			sum(s_caller_cnt) as s_caller_cnt,
 			sum(s_called_cnt) as s_called_cnt,
 			sum(s_caller_time) as s_caller_time,
@@ -27,28 +35,55 @@
 			emp_id,
 			branch_cd
 		from `web_recording`.`statistics`
+		<include refid="where"/>
 		group by 
+		<if test='res.equals("H")'>
+			left(s_date,10),
+		</if>
+		<if test='res.equals("D")'>
+			left(s_date,8),
+		</if>
+		<if test='res.equals("M")'>
 			left(s_date,6),
+		</if>
 			emp_id
+		<if test='res.equals("H")'>
+		order by left(s_date,10)
+		</if>
+		<if test='res.equals("D")'>
+		order by left(s_date,8)
+		</if>
+		<if test='res.equals("M")'>
 		order by left(s_date,6)
+		</if>
 		limit ${pagestart},${pagesize}
 	</select>
 	
 	<select id="getListStateCount" resultMap="getSelectMap" parameterType="hashmap">
-		select left(s_date,6) as s_date
+	
+	<if test='res.equals("H")'>
+		select left(s_date,10)
+	</if>
+	<if test='res.equals("D")'>
+		select left(s_date,8)
+	</if>
+	<if test='res.equals("M")'>
+		select left(s_date,6)
+	</if>
+		 as s_date
 		from `web_recording`.`statistics`
 		<include refid="where"/>
-		group by left(s_date,6), emp_id
+		<if test='res.equals("H")'>
+		group by left(s_date,10)
+		</if>
+		<if test='res.equals("D")'>
+		group by left(s_date,8)
+		</if>
+		<if test='res.equals("M")'>
+		group by left(s_date,6)
+		</if>
+		, emp_id
 	</select>
-	
-	<select id="getListCount" resultType="int" parameterType="hashmap">
-		select count(*)
-		from `web_recording`.`statistics`
-		<include refid="where"/>
-		group by left(s_date,6), emp_id
-		order by   left(s_date,6)
-	</select>
-	
 	
 	
 	<sql id="where">
@@ -60,9 +95,9 @@
 				and branch_cd = #{branch_cd}
 			</if>
 			<!-- 나중에 시간넣을곳 -->
-<!-- 			<if test='bday !=null and !bday.equals("") and eday !=null and !eday.equals("")'> -->
-<!-- 				and btime between #{bday} and #{eday} -->
-<!-- 			</if> -->
+			<if test='bday !=null and !bday.equals("") and eday !=null and !eday.equals("")'>
+				and s_date between #{bday} and #{eday}
+			</if>
 		</where>
 	</sql>
 	

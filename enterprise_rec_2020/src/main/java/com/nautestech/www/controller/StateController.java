@@ -37,7 +37,7 @@ public class StateController {
 	@RequestMapping(value = "/state_page_ajax", method= {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
 	public HashMap<String, Object> state_page_ajax(Model model,
-    		@RequestParam(value="res", required=false, defaultValue="")String res,
+    		@RequestParam(value="res", required=false, defaultValue="M")String res,
     		@RequestParam(value="branch_cd", required=false, defaultValue="")String branch_cd,
     		@RequestParam(value="emp_id", required=false, defaultValue="")String emp_id,
     		@RequestParam(value="date", required=false, defaultValue="")String date,
@@ -53,16 +53,26 @@ public class StateController {
 		System.out.println(res);
 		System.out.println(branch_cd);
 		System.out.println(date);
-		System.out.println(emp_id);
 		
+		System.out.println(emp_id);
+		String[] day = null;
+		if(!date.equals("")) {
+			day = dateFormat(date);
+			param.put("bday", day[0]);
+			param.put("eday", day[1]);
+		}
 		param.put("pagesize", pagesize);
 		param.put("pagestart", recordstartindex);
+		param.put("res", res);
+		param.put("branch_cd", branch_cd);
+		param.put("emp_id", emp_id);
 		List<Stat> stat = sService.getView(param);
+		
 		if(stat.size()!=0) {
 			List<Stat> stat1 = sService.getListStateCount(param);
 			param1.put("total", stat1.size());
 			for(int i=0; i<stat.size(); i++) {
-				stat.get(i).setNum(recordstartindex+i);
+				stat.get(i).setNum(recordstartindex+i+1);
 				stat.get(i).setS_call_cnt_total(stat.get(i).getS_called_cnt()+stat.get(i).getS_caller_cnt());
 				stat.get(i).setS_call_time_total(stat.get(i).getS_called_time()+stat.get(i).getS_caller_time());
 			}
@@ -71,4 +81,14 @@ public class StateController {
 		return param1;
 	}
 	
+	
+	public String[] dateFormat(String date) {
+		String bday = date.substring(0, 10);
+		String eday = date.substring(13, 23);
+		bday = bday.replaceAll(":", "");
+		eday = eday.replaceAll(":",	"");
+		System.out.println(bday + "~" + eday);
+		String day[] = {bday,eday};
+		return day;
+	}
 }

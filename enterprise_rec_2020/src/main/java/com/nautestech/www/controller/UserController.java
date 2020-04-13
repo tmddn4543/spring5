@@ -168,7 +168,7 @@ public class UserController {
 			int total = uService.getListCount(param);
 			param1.put("total", total);
 			for(int i=0; i<users.size(); i++) {
-				users.get(i).setNum(recordstartindex+i);
+				users.get(i).setNum(recordstartindex+i+1);
 				users.get(i).setUser_detail("<button type='button' class= 'btn btn-default' data-toggle= 'modal' data-target='#user_add' name='"+users.get(i).getTel_no()+"' value='user_view'>상세보기</button>");
 				users.get(i).setRec_type(format.recFormat(users.get(i).getRec_type()));
 				users.get(i).setUser_checkbox("<input type='checkbox' class='user_checkbox' value='"+users.get(i).getTel_no()+"'>");

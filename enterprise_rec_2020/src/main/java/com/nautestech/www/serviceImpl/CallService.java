@@ -47,5 +47,10 @@ public class CallService implements ISelect<Call>{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public int getListCountYYYYMM(HashMap<String, Object> param) {
+		return mapper.getListCountYYYYMM(param);
+	}
 	
 }

@@ -82,4 +82,10 @@ public class UsersService implements IInsert,ISelect<Users>,IDelete,IUpdate{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public int getListCountYYYYMM(HashMap<String, Object> param) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

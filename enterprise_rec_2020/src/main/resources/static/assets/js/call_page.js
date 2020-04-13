@@ -18,6 +18,7 @@ $(document).ready(
     	var called_attr = "";
     	var startRow = "";
     	var pageSize = "";
+    	
     	var arr_batch = new Array();
         /* 반응형 */
         $(window).resize(function(){
@@ -350,7 +351,7 @@ $(document).ready(
 					 { name: 'call_time'},
 					 { name: 'dirname'}
                 ],
-			    url: '/call/callSearch',
+			    url: '/call/callSearch_YYYYMMDD',
 			    root: 'Rows',
                 cache: false,
 				beforeprocessing: function(data)

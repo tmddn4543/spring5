@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,13 +48,24 @@ public class CallController {
 	
 	
 	@RequestMapping(value = "/zip", method= {RequestMethod.GET, RequestMethod.POST})
-	public String zip(HttpServletRequest request, HttpServletResponse response) {
+	public String zip(HttpServletRequest request, HttpServletResponse response,
+			Authentication authentication) {
+		HashMap<String, Object> param1 = new HashMap<>();
+		param1.put("emp_id", authentication.getName());
+		param1.put("result", "zip");
+		uService.setInsertListen_log(param1);
+		
+		
+		
 		String arr = request.getParameter("arr");
 		String[] sp_arr = arr.split(",");
 		ZipDownload zip_class = new ZipDownload();
 		String active = "active page_open";
+		request.setAttribute("callhistoryYMD", callhistoryYMD);
 		request.setAttribute("call_active", active);
-		zip_class.down(request, response, sp_arr);
+		if(sp_arr.length>1) {
+			zip_class.down(request, response, sp_arr);
+		}
 		return "/recording/call_page";
 	}
 	
@@ -64,7 +76,7 @@ public class CallController {
 		String active = "active page_open";
 		model.addAttribute("call_active", active);
 		model.addAttribute("callhistoryYMD", callhistoryYMD);
-		
+		System.out.println(callhistoryYMD);
 		return "recording/call_page";
     }
 	
@@ -82,10 +94,16 @@ public class CallController {
     		@RequestParam(value="end_talk_time", required=false, defaultValue="")String end_talk_time,
     		@RequestParam(value="caller_attr", required=false, defaultValue="")String caller_attr,
     		@RequestParam(value="called_attr", required=false, defaultValue="")String called_attr
-    		,Model model) {
+    		,Model model,
+    		Authentication authentication) {
 		if(branch_cd.equals("전체")) {
 			branch_cd = "";
 		}
+		HashMap<String, Object> param1 = new HashMap<>();
+		param1.put("emp_id", authentication.getName());
+		param1.put("result", "xlsx");
+		uService.setInsertListen_log(param1);
+		
 		HashMap<String, Object> param = new HashMap<>();
 		param.put("emp_id", emp);
 		param.put("emp_nm", emp);
@@ -191,7 +209,7 @@ public class CallController {
 				call.get(i).setCall_hour(format.hourFormat(call.get(i).getBtime(), call.get(i).getEtime()));
 				call.get(i).setCall_time(format.timeFormat(call.get(i).getBtime(), call.get(i).getEtime()));
 				call.get(i).setRec_type(format.recFormat(call.get(i).getRec_type()));
-				call.get(i).setNum(recordstartindex+i);
+				call.get(i).setNum(recordstartindex+i+1);
 			}
 		}
 		param1.put("Rows", call);
@@ -203,7 +221,7 @@ public class CallController {
 	@Secured({"ROLE_ADMIN"})
 	@RequestMapping(value = "/callSearch_YYYYMMDD", method= {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
-    public List<Call> callSearch_YYYYMMDD(
+    public HashMap<String, Object> callSearch_YYYYMMDD(
     		@RequestParam(value="emp", required=false, defaultValue="")String emp,
     		@RequestParam(value="branch_cd", required=false, defaultValue="")String branch_cd,
     		@RequestParam(value="auth_cd", required=false, defaultValue="")String auth_cd,
@@ -227,8 +245,6 @@ public class CallController {
 		startYYYYMM = startYYYYMM.replace(":", "");
 		endYYYYMM = endYYYYMM.replace(":", "");
 		
-		System.out.println(startYYYYMM);
-		System.out.println(endYYYYMM);
 		if(branch_cd.equals("전체")) {
 			branch_cd = "";
 		}
@@ -251,12 +267,12 @@ public class CallController {
 		param.put("pagesize", pagesize);
 		param.put("pagestart", recordstartindex);
 		param.put("xlsx", "false");
+		System.out.println(bday +"~"+eday);
 		HashMap<String, Object> param1 = new HashMap<>();
 		List<Call> call = cService.getViewYYYYMM(param);
-		
 		listExcelDownload format = new listExcelDownload();
 		if(call.size()!=0) {
-			int total = cService.getListCount(param);
+			int total = cService.getListCountYYYYMM(param);
 			param1.put("total", total);
 			for(int i=0; i<call.size(); i++) {
 				call.get(i).setDirname("<label class='check_label'><input type='checkbox' class='checkbox_name' value='"+call.get(i).getDirname()+""+call.get(i).getFname()+"'></label>");
@@ -264,11 +280,11 @@ public class CallController {
 				call.get(i).setCall_hour(format.hourFormat(call.get(i).getBtime(), call.get(i).getEtime()));
 				call.get(i).setCall_time(format.timeFormat(call.get(i).getBtime(), call.get(i).getEtime()));
 				call.get(i).setRec_type(format.recFormat(call.get(i).getRec_type()));
-				call.get(i).setNum(recordstartindex+i);
+				call.get(i).setNum(recordstartindex+i+1);
 			}
 		}
 		param1.put("Rows", call);
-		return call;
+		return param1;
     }
 	
 }

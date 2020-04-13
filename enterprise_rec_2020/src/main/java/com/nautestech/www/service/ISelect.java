@@ -11,4 +11,5 @@ public interface ISelect<T1> {
 	public int getListCount(HashMap<String, Object>param);
 	public List<?> getListBranch(HashMap<String, Object>param);
 	public List<?>getListStateCount(HashMap<String, Object>param);
+	public int getListCountYYYYMM(HashMap<String, Object>param);
 }

@@ -62,7 +62,7 @@
 
 
 	<delete id="setBranchDelete" parameterType="hashmap">
-		delete from `web_recording`.`batch_jisa` where branch_cd in
+		delete from `web_recording`.`BATCH_JISA` where branch_cd in
 		<foreach collection="branch_cd" item="branch_cd" open="(" close=")" separator="," index="index">
 			#{branch_cd}
 		</foreach>
@@ -73,7 +73,7 @@
 		SELECT 
 		branch_cd,
 		branch_nm
-		FROM `web_recording`.`batch_jisa`
+		FROM `web_recording`.`BATCH_JISA`
 		<if test='branch_cd !=null and !branch_cd.equals("")'>
 			where branch_cd = #{branch_cd}
 		</if>
@@ -101,12 +101,18 @@
 		    <if test="result.equals('fail')">
 		    'Log_INFail'
 		    </if>
+		    <if test="result.equals('xlsx')">
+		    'Log_XlsxDown'
+		    </if>
+		    <if test="result.equals('zip')">
+		    'Log_ZipDown'
+		    </if>
 		);
 	</insert>
 	
 	
 	<insert id="setInsertBranch" parameterType="hashmap">
-		insert into batch_jisa(
+		insert into BATCH_JISA(
 		branch_cd,
 		branch_nm,
 		sort

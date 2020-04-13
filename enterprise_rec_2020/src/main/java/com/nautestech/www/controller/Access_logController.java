@@ -56,7 +56,7 @@ public class Access_logController {
 			int total = lService.getListCount(param);
 			param1.put("total", total);
 			for(int i=0; i<log.size(); i++) {
-				log.get(i).setNum(recordstartindex+i);
+				log.get(i).setNum(recordstartindex+i+1);
 			}
 		}
 		param1.put("Rows", log);

@@ -33,7 +33,7 @@ public class StatService implements ISelect<Stat>{
 
 	@Override
 	public int getListCount(HashMap<String, Object> param) {
-		return mapper.getListCount(param);
+		return 0;
 	}
 
 	@Override
@@ -44,6 +44,12 @@ public class StatService implements ISelect<Stat>{
 	@Override
 	public List<Stat> getListStateCount(HashMap<String, Object> param) {
 		return mapper.getListStateCount(param);
+	}
+
+	@Override
+	public int getListCountYYYYMM(HashMap<String, Object> param) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
