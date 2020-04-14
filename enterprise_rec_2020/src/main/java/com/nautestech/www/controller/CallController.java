@@ -121,7 +121,19 @@ public class CallController {
 		//엑셀다운할때는 페이징된10,20개를다운할필요업으니까 xlsx가 값이있으면 전체다운 없으면 그냥검색이니 리미트걸어서 검색
 		param.put("xlsx", "true");
 		param.put("limit", statisticsLimit);
-		List<Call> call = cService.getView(param);
+		List<Call> call = null;
+		if(callhistoryYMD) {
+			String startYYYYMM = bday.substring(0,7);
+			String endYYYYMM = eday.substring(0,7);
+			
+			startYYYYMM = startYYYYMM.replace(":", "");
+			endYYYYMM = endYYYYMM.replace(":", "");
+			param.put("startYYYYMM", startYYYYMM);
+			param.put("endYYYYMM", endYYYYMM);
+			call = cService.getViewYYYYMM(param);
+		}else {
+			call = cService.getView(param);
+		}
 		System.out.println(call.size());
 		model.addAttribute("list", call);
 		return new listExcelDownload();
