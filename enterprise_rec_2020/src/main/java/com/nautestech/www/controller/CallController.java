@@ -1,5 +1,6 @@
 package com.nautestech.www.controller;
 
+import java.io.File;
 import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
@@ -23,6 +24,7 @@ import com.nautestech.www.model.Call;
 import com.nautestech.www.model.Users;
 import com.nautestech.www.serviceImpl.CallService;
 import com.nautestech.www.serviceImpl.UsersService;
+import com.nautestech.www.util.Command;
 import com.nautestech.www.util.ZipDownload;
 import com.nautestech.www.util.listExcelDownload;
 
@@ -45,6 +47,9 @@ public class CallController {
 	@Autowired
 	CallService cService;
 	
+	
+	@Value("${isMxxMode}")
+	String isMxxMode;
 	
 	
 	@RequestMapping(value = "/zip", method= {RequestMethod.GET, RequestMethod.POST})
@@ -76,7 +81,6 @@ public class CallController {
 		String active = "active page_open";
 		model.addAttribute("call_active", active);
 		model.addAttribute("callhistoryYMD", callhistoryYMD);
-		System.out.println(callhistoryYMD);
 		return "recording/call_page";
     }
 	
@@ -250,7 +254,7 @@ public class CallController {
     		@RequestParam(value="pagesize", required=false, defaultValue="")int pagesize,
     		@RequestParam(value="recordstartindex", required=false, defaultValue="")int recordstartindex,
     		@RequestParam(value="recordendindex", required=false, defaultValue="")int recordendindex
-    		) throws ParseException{ 
+    		) throws Exception{ 
 		String startYYYYMM = bday.substring(0,7);
 		String endYYYYMM = eday.substring(0,7);
 		
@@ -283,10 +287,20 @@ public class CallController {
 		HashMap<String, Object> param1 = new HashMap<>();
 		List<Call> call = cService.getViewYYYYMM(param);
 		listExcelDownload format = new listExcelDownload();
+		Command cmd = new Command();
 		if(call.size()!=0) {
 			int total = cService.getListCountYYYYMM(param);
 			param1.put("total", total);
 			for(int i=0; i<call.size(); i++) {
+				//폴더 존재여부를 먼저 체크한다.
+				File checkF = new File(call.get(i).getDirname());
+				
+				if(!checkF.exists())
+				{
+					cmd.chkFolder(call.get(i).getDirname());
+				}
+				cmd.CopyMXX(call.get(i).getFname(), call.get(i).getDirname());
+				cmd.ConvertMXX(call.get(i).getFname(), call.get(i).getDirname(),"0");
 				call.get(i).setDirname("<label class='check_label'><input type='checkbox' class='checkbox_name' value='"+call.get(i).getDirname()+""+call.get(i).getFname()+"'></label>");
 				call.get(i).setCall_date(format.dateFormat(call.get(i).getBtime()));
 				call.get(i).setCall_hour(format.hourFormat(call.get(i).getBtime(), call.get(i).getEtime()));
