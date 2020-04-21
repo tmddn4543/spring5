@@ -29,4 +29,5 @@ public class Call {
 	public String call_date;
 	public String call_hour;
 	public String call_time;
+	public String YYYYMM;
 }

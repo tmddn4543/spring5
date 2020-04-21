@@ -110,7 +110,6 @@
 			<when test="!startYYYYMM.equals(endYYYYMM)">
 			</when>
 			<otherwise>
-			order by c_id desc
 			<if test='xlsx.equals("false")'>
 			limit ${pagestart},${pagesize}
 			</if>
@@ -201,6 +200,9 @@
 			</if>
 			<if test='branch_cd !=null and !branch_cd.equals("")'>
 				and branch_cd = #{branch_cd}
+			</if>
+			<if test='c_id !=null and !c_id.equals("")'>
+				and c_id = #{c_id}
 			</if>
 			<if test='caller_attr != null and !caller_attr.equals("")'>
 			<choose>

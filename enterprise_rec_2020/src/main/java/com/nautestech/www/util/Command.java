@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import org.springframework.beans.factory.annotation.Value;
 
 
+
 public class Command {
 	
 	
@@ -67,8 +68,25 @@ public class Command {
 		
 		runCommand(createCommand);
 	}
+	 
 	
-	
+	public void dencMp3(String FileName, String dirName, String mode) throws Exception 
+	{
+		String format = "";
+		if(mode.equals("0")) { //wav
+			format = "wav";
+		} else if(mode.equals("1")) { //mp3
+			format = "mp3";
+		} else if(mode.equals("2")) { //wav.enc
+			format = "wav";
+		} else if(mode.equals("3")) { //mp3.enc
+			format = "mp3";
+		}
+		
+		String createCommand = "cd /home/recording/bin; ./dencfile.sh \""+dirName+File.separator+FileName.replace("mxx",format)+"\"";
+		
+		runCommand(createCommand);
+	}
 	
 	private String runCommand(String createCommand) {
 		System.out.println(createCommand);

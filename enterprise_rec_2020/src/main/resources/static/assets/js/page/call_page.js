@@ -20,6 +20,8 @@ $(document).ready(
     	var pageSize = "";
     	
     	var arr_batch = new Array();
+    	var arr_c_id = new Array();
+    	var arr_YYYYMM = new Array();
         /* 반응형 */
         $(window).resize(function(){
         var width = parseInt($(this).width()); //parseint는 정수로 하기 위함
@@ -285,9 +287,12 @@ $(document).ready(
                         autoheight: true, 
                         theme: 'material',
                         rowdetails: true,
-                        rowdetailstemplate: {
+                        rowdetailstemplate: function(index){
+                        	var details = {
                             rowdetails: "<div style='margin: 10px;'><div class='information'><audio autoplay controls><source src='/resource/assets/audio/sample.mp3' type='audio/mp3'></audio></div></div>",
                             rowdetailsheight: 100
+                        	};
+                        	return details;
                         },
                         virtualmode: true,
                         pageable: true,
@@ -349,13 +354,20 @@ $(document).ready(
 					 { name: 'call_date'},
 					 { name: 'call_hour'},
 					 { name: 'call_time'},
-					 { name: 'dirname'}
+					 { name: 'dirname'},
+					 { name: 'YYYYMM'},
+					 { name: 'c_id'}
                 ],
 			    url: '/call/callSearch_YYYYMMDD',
 			    root: 'Rows',
                 cache: false,
 				beforeprocessing: function(data)
 				{		
+					//console.log(data.Rows[0].dirname);
+					for(var i=0; i<data.Rows.length; i++){
+						arr_c_id[i] = data.Rows[i].c_id;
+						arr_YYYYMM[i] = data.Rows[i].YYYYMM;
+					}
 					source.totalrecords = data.total;
 				}
             };		
@@ -372,9 +384,12 @@ $(document).ready(
                         autoheight: true, 
                         theme: 'material',
                         rowdetails: true,
-                        rowdetailstemplate: {
-                            rowdetails: "<div style='margin: 10px;'><div class='information'><audio autoplay controls><source src='/resource/assets/audio/sample.mp3' type='audio/mp3'></audio></div></div>",
+                        rowdetailstemplate: function(index){
+                        	var details = {
+                            rowdetails: "<div style='margin: 10px;'><div class='information'><audio autoplay controls><source src='http://192.168.2.205:8080/call/media/"+arr_YYYYMM[index]+"/"+arr_c_id[index]+"' type='audio/wav'></audio></div></div>",
                             rowdetailsheight: 100
+                        	};
+                        	return details;
                         },
                         virtualmode: true,
                         pageable: true,

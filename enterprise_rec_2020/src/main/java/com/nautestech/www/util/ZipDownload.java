@@ -25,7 +25,7 @@ public class ZipDownload {
 		String day = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA).format(new Date());
 		
 		//다운받을위치
-		String zipFile = "C:/home/zip/call_history_"+day+".zip";
+		String zipFile = "/home/zip/call_history_"+day+".zip";
 		String downloadFileName = "call_history_"+day;
 		List<String> sourceFiles = new ArrayList<String>();
 //		sourceFiles.add("C:/home/zip/file1.txt");
@@ -35,8 +35,7 @@ public class ZipDownload {
 		//파일위치+파일이름
 		//경로와파일이름적는것
 		for(int i=0; i<sp_arr.length; i++){
-			System.out.println(sp_arr[i]);
-			sourceFiles.add(sp_arr[i]);
+			sourceFiles.add(sp_arr[i].replace("mxx", "wav"));
 		}
 		try{
 		    // ZipOutputStream을 FileOutputStream 으로 감쌈
