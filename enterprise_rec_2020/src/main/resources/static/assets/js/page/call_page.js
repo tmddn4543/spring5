@@ -18,7 +18,7 @@ $(document).ready(
     	var called_attr = "";
     	var startRow = "";
     	var pageSize = "";
-    	
+    	var recordstartindex = 0;
     	var arr_batch = new Array();
     	var arr_c_id = new Array();
     	var arr_YYYYMM = new Array();
@@ -363,11 +363,7 @@ $(document).ready(
                 cache: false,
 				beforeprocessing: function(data)
 				{		
-					//console.log(data.Rows[0].dirname);
-					for(var i=0; i<data.Rows.length; i++){
-						arr_c_id[i] = data.Rows[i].c_id;
-						arr_YYYYMM[i] = data.Rows[i].YYYYMM;
-					}
+					recordstartindex = data.recordstartindex;
 					source.totalrecords = data.total;
 				}
             };		
@@ -375,6 +371,11 @@ $(document).ready(
 		    var dataadapter = new $.jqx.dataAdapter(source);
 
             // initialize jqxGrid
+		    
+		    var initrowdetails = function (index, parentElement, gridElement, datarecord) {
+		        var details = $($(parentElement).children()[0]);
+		        details.html("<div class='information'><audio controls><source src='http://192.168.2.205:8080/call/media/"+arr_YYYYMM[index-recordstartindex]+"/"+arr_c_id[index-recordstartindex]+"' type='audio/wav'></audio></div>");
+		    }
 		    
 		    $("#grid").jqxGrid(//킵
                     {
@@ -384,19 +385,21 @@ $(document).ready(
                         autoheight: true, 
                         theme: 'material',
                         rowdetails: true,
-                        rowdetailstemplate: function(index){
-                        	var details = {
-                            rowdetails: "<div style='margin: 10px;'><div class='information'><audio autoplay controls><source src='http://192.168.2.205:8080/call/media/"+arr_YYYYMM[index]+"/"+arr_c_id[index]+"' type='audio/wav'></audio></div></div>",
+                        rowdetailstemplate: {
+                            rowdetails: "<div style='margin: 20px !important;'>Row Details</div>",
                             rowdetailsheight: 100
-                        	};
-                        	return details;
                         },
                         virtualmode: true,
                         pageable: true,
                         rendergridrows: function(obj)
         				{
-        					  return obj.data;     
+                        	for(var i=0; i<obj.data.length-recordstartindex; i++){
+                        		arr_c_id[i] = obj.data[i+recordstartindex].c_id;
+                        		arr_YYYYMM[i] = obj.data[i+recordstartindex].YYYYMM;
+        					}
+        					return obj.data;     
         				},
+        				initrowdetails: initrowdetails,
                         columns: [
                             { text: "순번", datafield: "num", width: 5 + "%", minwidth: 50.9},
                             { text: "그룹", datafield: "branch_cd", width: 9.090909 + "%", minwidth: 91.7333},

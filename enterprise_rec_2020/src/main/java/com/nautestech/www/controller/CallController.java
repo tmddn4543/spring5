@@ -1,7 +1,6 @@
 package com.nautestech.www.controller;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.RandomAccessFile;
@@ -11,7 +10,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.annotation.Secured;
@@ -25,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.View;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nautestech.www.model.Call;
 import com.nautestech.www.model.Users;
 import com.nautestech.www.serviceImpl.CallService;
@@ -60,7 +57,7 @@ public class CallController {
 	
 	@RequestMapping(value = "/zip", method= {RequestMethod.GET, RequestMethod.POST})
 	public String zip(HttpServletRequest request, HttpServletResponse response,
-			Authentication authentication) {
+			Authentication authentication) throws Exception {
 		HashMap<String, Object> param1 = new HashMap<>();
 		param1.put("emp_id", authentication.getName());
 		param1.put("result", "zip");
@@ -74,7 +71,49 @@ public class CallController {
 		String active = "active page_open";
 		request.setAttribute("callhistoryYMD", callhistoryYMD);
 		request.setAttribute("call_active", active);
+		
+		
+		
+		
+		//폴더 존재여부를 먼저 체크한다.
+//				checkF = new File(call.get(0).getDirname());
+//				f_mxx = new File(call.get(0).getDirname()+call.get(0).getFname());
+//				if(!checkF.exists()){
+//					cmd.chkFolder(call.get(0).getDirname());
+//				}
+//				if(!f_mxx.exists()) {
+//					cmd.CopyMXX(call.get(0).getFname(), call.get(0).getDirname());
+//					cmd.ConvertMXX(call.get(0).getFname(), call.get(0).getDirname(),isMxxMode);
+//					cmd.dencMp3(call.get(0).getFname(), call.get(0).getDirname(),isMxxMode);
+//				}
+		
+		
+		
+		
+		
+		
+		
+		File checkF = null;
+		File f_mxx = null;
+		Command cmd = new Command();
+		String dirname = "";
+		String[] fname = null;
 		if(sp_arr.length>1) {
+			for(int i=0; i<sp_arr.length; i++) {
+				sp_arr[i] = sp_arr[i].replace("mxx", isMxxMode);
+				dirname = sp_arr[i].substring(0,32);
+				checkF = new File(dirname);
+				f_mxx = new File(sp_arr[i]);
+				if(!checkF.exists()){
+					cmd.chkFolder(dirname);
+				}
+				if(!f_mxx.exists()) {
+					fname = sp_arr[i].split("/");
+					cmd.CopyMXX(fname[5], dirname);
+					cmd.ConvertMXX(fname[5], dirname,isMxxMode);
+					cmd.dencMp3(fname[5], dirname,isMxxMode);
+				}
+			}
 			zip_class.down(request, response, sp_arr);
 		}
 		return "/recording/call_page";
@@ -177,7 +216,7 @@ public class CallController {
 		return users;
     }
 	
-	@Secured({"ROLE_ADMIN"})
+	//@Secured({"ROLE_ADMIN"})
 	@RequestMapping(value = "/media/{YYYYMM}/{c_id}", method= {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
     public String media(
@@ -185,12 +224,11 @@ public class CallController {
     		@PathVariable("c_id") String c_id,
     		HttpServletRequest request,
     		HttpServletResponse response
-    		) throws IOException{
+    		) throws Exception{
 		System.out.println(YYYYMM);
 		System.out.println(c_id);
 		HashMap<String, Object> param = new HashMap<>();
-		param.put("startYYYYMM", YYYYMM);
-		param.put("endYYYYMM", YYYYMM);
+		
 		param.put("c_id", c_id);
 		param.put("xlsx","true");
 		param.put("emp_id", "");
@@ -205,12 +243,32 @@ public class CallController {
 		param.put("rec_type", "");
 		param.put("start_talk_time", "");
 		param.put("end_talk_time", "");
-		List<Call> call = cService.getViewYYYYMM(param);
-		System.out.println(call.get(0).getDirname()+call.get(0).getFname().replace("mxx", "wav"));
-		File file = new File(call.get(0).getDirname()+call.get(0).getFname().replace("mxx", "wav"));
+		List<Call> call = null;
+		if(YYYYMM.equals(null)) {
+			call = cService.getView(param);
+		}else {
+			param.put("startYYYYMM", YYYYMM);
+			param.put("endYYYYMM", YYYYMM);
+			call = cService.getViewYYYYMM(param);
+		}
+		Command cmd = new Command();
+		File checkF = null;
+		File f_mxx = null;
+		//폴더 존재여부를 먼저 체크한다.
+		checkF = new File(call.get(0).getDirname());
+		f_mxx = new File(call.get(0).getDirname()+call.get(0).getFname());
+		if(!checkF.exists()){
+			cmd.chkFolder(call.get(0).getDirname());
+		}
+		if(!f_mxx.exists()) {
+			cmd.CopyMXX(call.get(0).getFname(), call.get(0).getDirname());
+			cmd.ConvertMXX(call.get(0).getFname(), call.get(0).getDirname(),isMxxMode);
+			cmd.dencMp3(call.get(0).getFname(), call.get(0).getDirname(),isMxxMode);
+		}
+		System.out.println(call.get(0).getDirname()+call.get(0).getFname().replace("mxx", isMxxMode));
+		File file = new File(call.get(0).getDirname()+call.get(0).getFname().replace("mxx", isMxxMode));
 
 		RandomAccessFile randomFile = new RandomAccessFile(file, "r");
-
 		long rangeStart = 0; //요청 범위의 시작 위치 
 		long rangeEnd = 0; //요청 범위의 끝 위치 
 		boolean isPart=false;
@@ -232,7 +290,7 @@ public class CallController {
 			long partSize = rangeEnd - rangeStart + 1; //전송시작 
 			response.reset(); //전체 요청일 경우 200, 부분 요청일 경우 206을 반환상태 코드로 지정
 			response.setStatus(isPart ? 206 : 200); //mime type 지정 
-			response.setContentType("audio/wav"); //전송 내용을 헤드에 넣어준다. 마지막에 파일 전체 크기를 넣는다.
+			response.setContentType("audio/"+isMxxMode); //전송 내용을 헤드에 넣어준다. 마지막에 파일 전체 크기를 넣는다.
 			response.setHeader("Content-Range", "bytes "+rangeStart+"-"+rangeEnd+"/"+movieSize);
 			response.setHeader("Accept-Ranges", "bytes");
 			response.setHeader("Content-Length", ""+partSize);
@@ -250,8 +308,8 @@ public class CallController {
 				out.write(buf, 0, len); partSize -= block;
 				}while(partSize > 0);
 			}catch(IOException e){ //전송 중에 브라우저를 닫거나, 화면을 전환한 경우 종료해야 하므로 전송취소. // progressBar를 클릭한 경우에는 클릭한 위치값으로 재요청이 들어오므로 전송 취소. 
-				
-			}finally{ randomFile.close(); 
+			}finally{
+				randomFile.close(); 
 			}
 		return null;
     }
@@ -318,7 +376,7 @@ public class CallController {
 	
 	
 	
-	@Secured({"ROLE_ADMIN"})
+	//@Secured({"ROLE_ADMIN"})
 	@RequestMapping(value = "/callSearch_YYYYMMDD", method= {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
     public HashMap<String, Object> callSearch_YYYYMMDD(
@@ -371,24 +429,10 @@ public class CallController {
 		HashMap<String, Object> param1 = new HashMap<>();
 		List<Call> call = cService.getViewYYYYMM(param);
 		listExcelDownload format = new listExcelDownload();
-		Command cmd = new Command();
-		File checkF = null;
-		File f_mxx = null;
 		if(call.size()!=0) {
 			int total = cService.getListCountYYYYMM(param);
 			param1.put("total", total);
 			for(int i=0; i<call.size(); i++) {
-				//폴더 존재여부를 먼저 체크한다.
-				checkF = new File(call.get(i).getDirname());
-				f_mxx = new File(call.get(i).getDirname()+call.get(i).getFname());
-				if(!checkF.exists()){
-					cmd.chkFolder(call.get(i).getDirname());
-				}
-				if(!f_mxx.exists()) {
-					cmd.CopyMXX(call.get(i).getFname(), call.get(i).getDirname());
-					cmd.ConvertMXX(call.get(i).getFname(), call.get(i).getDirname(),isMxxMode);
-					cmd.dencMp3(call.get(i).getFname(), call.get(i).getDirname(),isMxxMode);
-				}
 				call.get(i).setYYYYMM(startYYYYMM);
 				call.get(i).setDirname("<label class='check_label'><input type='checkbox' class='checkbox_name' value='"+call.get(i).getDirname()+""+call.get(i).getFname()+"'></label>");
 				call.get(i).setCall_date(format.dateFormat(call.get(i).getBtime()));
@@ -398,6 +442,7 @@ public class CallController {
 				call.get(i).setNum(recordstartindex+i+1);
 			}
 		}
+		param1.put("recordstartindex", recordstartindex);
 		param1.put("Rows", call);
 		return param1;
     }

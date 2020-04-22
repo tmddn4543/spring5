@@ -28,14 +28,11 @@ public class ZipDownload {
 		String zipFile = "/home/zip/call_history_"+day+".zip";
 		String downloadFileName = "call_history_"+day;
 		List<String> sourceFiles = new ArrayList<String>();
-//		sourceFiles.add("C:/home/zip/file1.txt");
-//		sourceFiles.add("C:/home/zip/file2.txt");
-//		sourceFiles.add("C:/home/zip/file3.txt");
 		
 		//파일위치+파일이름
 		//경로와파일이름적는것
 		for(int i=0; i<sp_arr.length; i++){
-			sourceFiles.add(sp_arr[i].replace("mxx", "wav"));
+			sourceFiles.add(sp_arr[i]);
 		}
 		try{
 		    // ZipOutputStream을 FileOutputStream 으로 감쌈

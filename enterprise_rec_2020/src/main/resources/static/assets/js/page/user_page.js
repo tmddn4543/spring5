@@ -13,6 +13,7 @@ $(document).ready(function(){
     var rec_type = "";
     var down_type = "";
     var arr_batch = new Array();
+    var arr_batch1 = new Array();
     var branch_nm = "";
     
     
@@ -146,7 +147,7 @@ $(document).ready(function(){
 					
 					var sum = "";
 					for(var i=0; i<result.batch.length; i++){
-						arr_batch[i] = result.batch[i].branch_cd;
+						arr_batch1[i] = result.batch[i].branch_cd;
 						if(result.user_result.branch_cd==result.batch[i].branch_cd){
 							sum = i;
 						}
@@ -182,7 +183,7 @@ $(document).ready(function(){
 					$("#tel_no_070").prop("readonly",true);
 					
 					
-					$(".group_btn_act").jqxDropDownList({ source: arr_batch, selectedIndex: sum, width: 100 + "%", height: 34, autoItemsHeight: true, theme: "bootstrap", autoDropDownHeight: true});
+					$(".group_btn_act").jqxDropDownList({ source: arr_batch1, selectedIndex: sum, width: 100 + "%", height: 34, autoItemsHeight: true, theme: "bootstrap", autoDropDownHeight: true});
 					
 				}
 			});
@@ -195,9 +196,10 @@ $(document).ready(function(){
 				url : "/user/user_branch_get",
 				success : function(batch) {
 					for(var i=0; i<batch.length; i++){
-						arr_batch[i] = batch[i].branch_cd;
+						arr_batch1[i] = batch[i].branch_cd;
+						
 					}
-					$(".group_btn_act").jqxDropDownList({ source: arr_batch, selectedIndex: 0, width: 100 + "%", height: 34, autoItemsHeight: true, theme: "bootstrap", autoDropDownHeight: true});
+					$(".group_btn_act").jqxDropDownList({ source: arr_batch1, selectedIndex: 0, width: 100 + "%", height: 34, autoItemsHeight: true, theme: "bootstrap", autoDropDownHeight: true});
 				}
 			});
 			

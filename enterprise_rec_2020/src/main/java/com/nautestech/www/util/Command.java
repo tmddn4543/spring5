@@ -47,43 +47,28 @@ public class Command {
 	public void ConvertMXX(String FileName, String dirName,String isMxxMode) throws Exception 
 	{
 		String createCommand = "";
-		String format = "";
 		String runFile = "";
 		
-		if(isMxxMode.equals("0")) { //wav
-			format = "wav";
+		if(isMxxMode.equals("wav")) { //wav
 			runFile = "./mReaderBin/mReader0";
-		} else if(isMxxMode.equals("1")) { //mp3
-			format = "mp3";
+		} else if(isMxxMode.equals("mp3")) { //mp3
 			runFile = "";
-		} else if(isMxxMode.equals("2")) { //wav.enc
-			format = "wav";
+		} else if(isMxxMode.equals("mp3")) { //wav.enc
 			runFile = "mxx2wav";
 		} else if(isMxxMode.equals("3")) { //mp3.enc
-			format = "mp3";
 			runFile = "mxx2mp3";
 		}
 		
-		createCommand = "cd /home/recording/bin; "+runFile+".sh \"" + dirName + FileName.replace("wav", "mxx").replace("mp3", "mxx") + "\" \"" + dirName + FileName.replace("mxx", format)+"\"";
+		createCommand = "cd /home/recording/bin; "+runFile+".sh \"" + dirName + FileName.replace("wav", "mxx").replace("mp3", "mxx") + "\" \"" + dirName + FileName.replace("mxx", isMxxMode)+"\"";
 		
 		runCommand(createCommand);
 	}
 	 
 	
-	public void dencMp3(String FileName, String dirName, String mode) throws Exception 
+	public void dencMp3(String FileName, String dirName, String isMxxMode) throws Exception 
 	{
-		String format = "";
-		if(mode.equals("0")) { //wav
-			format = "wav";
-		} else if(mode.equals("1")) { //mp3
-			format = "mp3";
-		} else if(mode.equals("2")) { //wav.enc
-			format = "wav";
-		} else if(mode.equals("3")) { //mp3.enc
-			format = "mp3";
-		}
 		
-		String createCommand = "cd /home/recording/bin; ./dencfile.sh \""+dirName+File.separator+FileName.replace("mxx",format)+"\"";
+		String createCommand = "cd /home/recording/bin; ./dencfile.sh \""+dirName+File.separator+FileName.replace("mxx",isMxxMode)+"\"";
 		
 		runCommand(createCommand);
 	}

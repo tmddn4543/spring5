@@ -25,6 +25,7 @@ public class Call {
 	public String rec_type;
 	public String group_id;
 	
+	public int recordstartindex;
 	public int num;
 	public String call_date;
 	public String call_hour;
