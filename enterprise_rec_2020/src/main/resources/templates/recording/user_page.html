@@ -46,6 +46,8 @@
 <div id="wrapper">
     <a class="hide_darkbg"></a>
     
+    
+    <input type="hidden" th:value="${#authentication.details.auth_cd}" id="u_auth_cd">
     <div class="wrapper gray-bg" id="page-wrapper">
         <div class="row border-bottom">
             <div th:replace="fragments/navbar :: navbarFragment"></div>
@@ -58,7 +60,8 @@
                     </h2>
                 </div>
                 <!-- Button trigger modal -->
-                <button  id="popbt" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#search_filter">
+<!--                 th:if="${#authentication.details.auth_cd eq'00'}" -->
+                <button th:if="${#authentication.details.auth_cd} eq'00' or ${#authentication.details.auth_cd} eq'11' or ${#authentication.details.auth_cd} eq'12'"  id="popbt" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#search_filter">
                     <span>검색</span> <i class="fa fa-filter" aria-hidden="true"></i>
                 </button>
 
@@ -70,7 +73,7 @@
                         <div class="container grid_height">
                             <div id="user_grid"></div>   
                         </div>
-                        <div class="grid_bottom">
+                        <div class="grid_bottom" th:if="${#authentication.details.auth_cd} eq'00'">
                             <button class="btn btn-default" type="button" id="user_delete">선택삭제</button>
                             <button class="btn btn-default" type="button" data-toggle="modal" data-target="#user_add" value="user_insert">사용자 등록</button>
                         </div>
@@ -93,7 +96,7 @@
                 <div class="list_search">
                     <form class="form-horizontal">
                         <div class="form-group">
-                            <div class="col-sm-4">
+                            <div class="col-sm-4" th:if="${#authentication.details.auth_cd} eq'00'">
                                 <label class="col-lg-4">그룹</label>
                                 <div class="col-lg-8">
                                     <div class="group_btn_act_search"> </div>

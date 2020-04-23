@@ -22,6 +22,9 @@ $(document).ready(
     	var arr_batch = new Array();
     	var arr_c_id = new Array();
     	var arr_YYYYMM = new Array();
+
+    	var u_auth_cd = $("#u_auth_cd").val();
+    	var u_down_type = $("#u_down_type").val();    	
         /* 반응형 */
         $(window).resize(function(){
         var width = parseInt($(this).width()); //parseint는 정수로 하기 위함
@@ -377,43 +380,85 @@ $(document).ready(
 		        details.html("<div class='information'><audio controls><source src='http://192.168.2.205:8080/call/media/"+arr_YYYYMM[index-recordstartindex]+"/"+arr_c_id[index-recordstartindex]+"' type='audio/wav'></audio></div>");
 		    }
 		    
-		    $("#grid").jqxGrid(//킵
-                    {
-                    	source: dataadapter,
-                        width: 100 + "%",
-                        height:  + "%",
-                        autoheight: true, 
-                        theme: 'material',
-                        rowdetails: true,
-                        rowdetailstemplate: {
-                            rowdetails: "<div style='margin: 20px !important;'>Row Details</div>",
-                            rowdetailsheight: 100
-                        },
-                        virtualmode: true,
-                        pageable: true,
-                        rendergridrows: function(obj)
-        				{
-                        	for(var i=0; i<obj.data.length-recordstartindex; i++){
-                        		arr_c_id[i] = obj.data[i+recordstartindex].c_id;
-                        		arr_YYYYMM[i] = obj.data[i+recordstartindex].YYYYMM;
-        					}
-        					return obj.data;     
-        				},
-        				initrowdetails: initrowdetails,
-                        columns: [
-                            { text: "순번", datafield: "num", width: 5 + "%", minwidth: 50.9},
-                            { text: "그룹", datafield: "branch_cd", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "사용자ID", datafield: "emp_id", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "이름", datafield: "emp_nm", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "발신번호", datafield: "caller", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "수신번호", datafield: "called", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "통화일자", datafield: "call_date", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "통화시각", datafield: "call_hour", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "통화시간", datafield: "call_time", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "유형", datafield: "rec_type", width: 9.090909 + "%", minwidth: 91.7333},//"+call[i].dirname+""+call[i].fname+"
-                            { text: "<button class='btn btn-default' id='zipDown_bt'>받기</button>", datafield: "dirname", width: 9.090909 + "%", minwidth: 91.7333}
-                        ]
-            });
+		    
+		    
+		    if(u_auth_cd!="13" && (u_down_type=="Y" || u_down_type=="")){
+		    	$("#grid").jqxGrid(//킵
+	                    {
+	                    	source: dataadapter,
+	                        width: 100 + "%",
+	                        height:  + "%",
+	                        autoheight: true, 
+	                        theme: 'material',
+	                        rowdetails: true,
+	                        rowdetailstemplate: {
+	                            rowdetails: "<div style='margin: 20px !important;'>Row Details</div>",
+	                            rowdetailsheight: 100
+	                        },
+	                        virtualmode: true,
+	                        pageable: true,
+	                        rendergridrows: function(obj)
+	        				{
+	                        	for(var i=0; i<obj.data.length-recordstartindex; i++){
+	                        		arr_c_id[i] = obj.data[i+recordstartindex].c_id;
+	                        		arr_YYYYMM[i] = obj.data[i+recordstartindex].YYYYMM;
+	        					}
+	        					return obj.data;     
+	        				},
+	        				initrowdetails: initrowdetails,
+	                        columns: [
+	                            { text: "순번", datafield: "num", width: 5 + "%", minwidth: 50.9},
+	                            { text: "그룹", datafield: "branch_cd", width: 9.090909 + "%", minwidth: 91.7333},
+	                            { text: "사용자ID", datafield: "emp_id", width: 9.090909 + "%", minwidth: 91.7333},
+	                            { text: "이름", datafield: "emp_nm", width: 9.090909 + "%", minwidth: 91.7333},
+	                            { text: "발신번호", datafield: "caller", width: 9.090909 + "%", minwidth: 91.7333},
+	                            { text: "수신번호", datafield: "called", width: 9.090909 + "%", minwidth: 91.7333},
+	                            { text: "통화일자", datafield: "call_date", width: 9.090909 + "%", minwidth: 91.7333},
+	                            { text: "통화시각", datafield: "call_hour", width: 9.090909 + "%", minwidth: 91.7333},
+	                            { text: "통화시간", datafield: "call_time", width: 9.090909 + "%", minwidth: 91.7333},
+	                            { text: "유형", datafield: "rec_type", width: 9.090909 + "%", minwidth: 91.7333},//"+call[i].dirname+""+call[i].fname+"
+	                            { text: "<button class='btn btn-default' id='zipDown_bt'>받기</button>", datafield: "dirname", width: 9.090909 + "%", minwidth: 91.7333}
+	                        ]
+	            });
+		    }else{
+		    	$("#grid").jqxGrid(//킵
+	                    {
+	                    	source: dataadapter,
+	                        width: 100 + "%",
+	                        height:  + "%",
+	                        autoheight: true, 
+	                        theme: 'material',
+	                        rowdetails: true,
+	                        rowdetailstemplate: {
+	                            rowdetails: "<div style='margin: 20px !important;'>Row Details</div>",
+	                            rowdetailsheight: 100
+	                        },
+	                        virtualmode: true,
+	                        pageable: true,
+	                        rendergridrows: function(obj)
+	        				{
+	                        	for(var i=0; i<obj.data.length-recordstartindex; i++){
+	                        		arr_c_id[i] = obj.data[i+recordstartindex].c_id;
+	                        		arr_YYYYMM[i] = obj.data[i+recordstartindex].YYYYMM;
+	        					}
+	        					return obj.data;     
+	        				},
+	        				initrowdetails: initrowdetails,
+	                        columns: [
+	                            { text: "순번", datafield: "num", width: 5 + "%", minwidth: 50.9},
+	                            { text: "그룹", datafield: "branch_cd", width: 9.090909 + "%", minwidth: 91.7333},
+	                            { text: "사용자ID", datafield: "emp_id", width: 9.090909 + "%", minwidth: 91.7333},
+	                            { text: "이름", datafield: "emp_nm", width: 9.090909 + "%", minwidth: 91.7333},
+	                            { text: "발신번호", datafield: "caller", width: 9.090909 + "%", minwidth: 91.7333},
+	                            { text: "수신번호", datafield: "called", width: 9.090909 + "%", minwidth: 91.7333},
+	                            { text: "통화일자", datafield: "call_date", width: 9.090909 + "%", minwidth: 91.7333},
+	                            { text: "통화시각", datafield: "call_hour", width: 9.090909 + "%", minwidth: 91.7333},
+	                            { text: "통화시간", datafield: "call_time", width: 9.090909 + "%", minwidth: 91.7333},
+	                            { text: "유형", datafield: "rec_type", width: 9.090909 + "%", minwidth: 91.7333},//"+call[i].dirname+""+call[i].fname+"
+	                        ]
+	            });
+		    }
+		    
         	
         }
         

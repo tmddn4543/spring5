@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -34,8 +35,8 @@ public class UserController {
 	UsersService uService;
 	
 	
-	
-	///user/user_logout
+	@Value("${RecCount}")
+	int RecCount;
 	
 	
 	
@@ -60,7 +61,7 @@ public class UserController {
     }
 	
 	
-	@Secured({"ROLE_ADMIN"})
+	@Secured({"ROLE_ADMIN","ROLE_ENDUSER"})
 	@RequestMapping(value = "/user_branch_get", method= {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
     public List<Batch> user_branch_get(
@@ -140,6 +141,40 @@ public class UserController {
 		param1.put("batch", batch);
 		return param1;
 	}
+	
+	
+	
+	
+	@Secured({"ROLE_ADMIN"})
+	@RequestMapping(value = "/user_rec_Check", method= {RequestMethod.GET, RequestMethod.POST})
+	@ResponseBody
+    public String user_rec_check(
+    		) {
+		HashMap<String, Object> param = new HashMap<>();
+		param.put("pagesize", 1000);
+		param.put("pagestart", 0);
+		List<Users> users = uService.getView(param);
+		int count1 = 0;
+		int count2 = 0;
+		for(int i=0; i<users.size(); i++) {
+			if(!users.get(i).getRec_type().equals("N")) {
+				count1++;
+			}
+			if(users.get(i).getAuth_cd().equals("15")) {
+				count2++;
+			}
+		}
+		if(count1>=RecCount) {
+			return "false";
+		}else if(count2>=2) {
+			return "false";
+		}
+		return "true";
+	}
+	
+	
+	
+	
 	
 	
 	@Secured({"ROLE_ADMIN"})

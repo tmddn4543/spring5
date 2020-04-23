@@ -15,8 +15,8 @@ $(document).ready(function(){
     var arr_batch = new Array();
     var arr_batch1 = new Array();
     var branch_nm = "";
-    
-    
+    var results = "";
+    var u_auth_cd = $("#u_auth_cd").val();
     //검색시 검색그룹 가져오기
     $.ajax({
 		type : "POST",
@@ -80,33 +80,63 @@ $(document).ready(function(){
 
         // initialize jqxGrid
         
-        $("#user_grid").jqxGrid(
-                {
-                	source: dataadapter,
-                    width: 100 + "%",
-                    height:  + "%",
-                    autoheight: true, 
-                    theme: 'material',
-                    virtualmode: true,
-                    pageable: true,
-                    rendergridrows: function(obj)
-    				{
-    					  return obj.data;     
-    				},
-                    columns: [
-                    	{ text: "선택", datafield: "user_checkbox", width: 5 + "%", minwidth: 50.9},
-                        { text: "순번", datafield: "num", width: 5 + "%", minwidth: 50.9},
-                        { text: "그룹", datafield: "branch_cd", width: 9.090909 + "%", minwidth: 91.7333},
-                        { text: "권한등급", datafield: "auth_cd", width: 9.090909 + "%", minwidth: 91.7333},
-                        { text: "사용자ID", datafield: "emp_id", width: 9.090909 + "%", minwidth: 91.7333},
-                        { text: "전화번호", datafield: "tel_no", width: 9.090909 + "%", minwidth: 91.7333},
-                        { text: "녹취 등록일", datafield: "rec_regdate", width: 9.090909 + "%", minwidth: 91.7333},
-                        { text: "녹취 변경일", datafield: "rec_type_regdate", width: 9.090909 + "%", minwidth: 91.7333},
-                        { text: "녹취 유형", datafield: "rec_type", width: 9.090909 + "%", minwidth: 91.7333},
-                        { text: "작업자", datafield: "work_emp_id", width: 9.090909 + "%", minwidth: 91.7333},
-                        { text: "상세보기", datafield: "user_detail", width: 9.090909 + "%", minwidth: 91.7333}
-                    ]
-            });
+        
+        if(u_auth_cd=="00" || u_auth_cd=="12" || u_auth_cd=="13"){
+        	$("#user_grid").jqxGrid(
+                    {
+                    	source: dataadapter,
+                        width: 100 + "%",
+                        height:  + "%",
+                        autoheight: true, 
+                        theme: 'material',
+                        virtualmode: true,
+                        pageable: true,
+                        rendergridrows: function(obj)
+        				{
+        					  return obj.data;     
+        				},
+                        columns: [
+                        	{ text: "선택", datafield: "user_checkbox", width: 5 + "%", minwidth: 50.9},
+                            { text: "순번", datafield: "num", width: 5 + "%", minwidth: 50.9},
+                            { text: "그룹", datafield: "branch_cd", width: 9.090909 + "%", minwidth: 91.7333},
+                            { text: "권한등급", datafield: "auth_cd", width: 9.090909 + "%", minwidth: 91.7333},
+                            { text: "사용자ID", datafield: "emp_id", width: 9.090909 + "%", minwidth: 91.7333},
+                            { text: "전화번호", datafield: "tel_no", width: 9.090909 + "%", minwidth: 91.7333},
+                            { text: "녹취 등록일", datafield: "rec_regdate", width: 9.090909 + "%", minwidth: 91.7333},
+                            { text: "녹취 변경일", datafield: "rec_type_regdate", width: 9.090909 + "%", minwidth: 91.7333},
+                            { text: "녹취 유형", datafield: "rec_type", width: 9.090909 + "%", minwidth: 91.7333},
+                            { text: "작업자", datafield: "work_emp_id", width: 9.090909 + "%", minwidth: 91.7333},
+                            { text: "상세보기", datafield: "user_detail", width: 9.090909 + "%", minwidth: 91.7333}
+                        ]
+                });
+        }else{
+        	$("#user_grid").jqxGrid(
+                    {
+                    	source: dataadapter,
+                        width: 100 + "%",
+                        height:  + "%",
+                        autoheight: true, 
+                        theme: 'material',
+                        virtualmode: true,
+                        pageable: true,
+                        rendergridrows: function(obj)
+        				{
+        					  return obj.data;     
+        				},
+                        columns: [
+                            { text: "순번", datafield: "num", width: 5 + "%", minwidth: 50.9},
+                            { text: "그룹", datafield: "branch_cd", width: 9.090909 + "%", minwidth: 91.7333},
+                            { text: "권한등급", datafield: "auth_cd", width: 9.090909 + "%", minwidth: 91.7333},
+                            { text: "사용자ID", datafield: "emp_id", width: 9.090909 + "%", minwidth: 91.7333},
+                            { text: "전화번호", datafield: "tel_no", width: 9.090909 + "%", minwidth: 91.7333},
+                            { text: "녹취 등록일", datafield: "rec_regdate", width: 9.090909 + "%", minwidth: 91.7333},
+                            { text: "녹취 변경일", datafield: "rec_type_regdate", width: 9.090909 + "%", minwidth: 91.7333},
+                            { text: "녹취 유형", datafield: "rec_type", width: 9.090909 + "%", minwidth: 91.7333},
+                            { text: "작업자", datafield: "work_emp_id", width: 9.090909 + "%", minwidth: 91.7333}
+                        ]
+                });
+        }
+        
     };
     
     
@@ -188,6 +218,14 @@ $(document).ready(function(){
 				}
 			});
 			
+			
+			$.ajax({
+				type : "POST",
+				url : "/user/user_rec_Check",
+				success : function(result) {
+					results = result;
+				}
+			});
 		}else if(res.context.value=="user_insert"){
 			
 			//branch_cd 그룹들 가져오기
@@ -204,6 +242,16 @@ $(document).ready(function(){
 			});
 			
 			
+		    $.ajax({
+				type : "POST",
+				url : "/user/user_rec_Check",
+				success : function(result) {
+					results = result;
+				}
+			});
+		    
+		    
+		    
 			$('#myModalLabel1').html("사용자 등록");
 			emp_id = $("#emp_id").val("");
 			$("#emp_id").prop("readonly",false);
@@ -233,7 +281,10 @@ $(document).ready(function(){
 			rec_type = $("input[name=inlineRadioOptions]:checked").val();
 			down_type = $("input[name=download]:checked").val();
 		
-			
+			if(auth_cd!="13" && rec_type!="N"){
+				alert("상담원 등급만 녹취가 가능합니다. 이외의 등급은 녹취가 되지 않습니다.");
+				return false;
+			}
 			
 			if(emp_id==null || emp_id==""){
 				alert("사용자 아이디를 입력해주세요.");
@@ -268,7 +319,17 @@ $(document).ready(function(){
 			}else if($("#tel_no_070").prop("readonly")==false){
 				alert("070녹취번호 중복 확인을 해주세요");
 				return false;
+			}else if(rec_type!="N" && results=="false"){
+				alert("허용 가능한 녹취 라이센스 에 의해 수정 및 등록이 취소 되었거나 \n 허용 가능한 알람서비스 등록 갯수에의해 등록 취소 되었습니다.\n사용자를 미리 등록하시기 위해서는 녹취사용안함으로 미리 등록 후\n라이센스 추가 문의는 콜센터 1877-9907로 문의해주세요. ")
+				results = "";
+				return false;
+			}else if(auth_cd=="15" && results=="false"){
+				alert("허용 가능한 녹취 라이센스 에 의해 수정 및 등록이 취소 되었거나 \n 허용 가능한 알람서비스 등록 갯수에의해 등록 취소 되었습니다.\n사용자를 미리 등록하시기 위해서는 녹취사용안함으로 미리 등록 후\n라이센스 추가 문의는 콜센터 1877-9907로 문의해주세요. ")
+				results = "";
+				return false;
 			}
+			
+			
 			
 			$.ajax({
 				type : "POST",
@@ -311,6 +372,14 @@ $(document).ready(function(){
 			rec_type = $("input[name=inlineRadioOptions]:checked").val();
 			down_type = $("input[name=download]:checked").val();
 		
+		
+			
+			
+			if(auth_cd!="13" && rec_type!="N"){
+				alert("상담원 등급만 녹취가 가능합니다. 이외의 등급은 녹취가 되지 않습니다.");
+				return false;
+			}
+			
 			
 			
 			if(emp_id==null || emp_id==""){
@@ -345,6 +414,14 @@ $(document).ready(function(){
 				return false;
 			}else if($("#tel_no_070").prop("readonly")==false){
 				alert("070녹취번호 중복 확인을 해주세요");
+				return false;
+			}else if(rec_type!="N" && results=="false"){
+				alert("허용 가능한 녹취 라이센스 에 의해 수정 및 등록이 취소 되었거나 \n 허용 가능한 알람서비스 등록 갯수에의해 등록 취소 되었습니다.\n사용자를 미리 등록하시기 위해서는 녹취사용안함으로 미리 등록 후\n라이센스 추가 문의는 콜센터 1877-9907로 문의해주세요. ")
+				results = "";
+				return false;
+			}else if(auth_cd=="15" && results=="false"){
+				alert("허용 가능한 녹취 라이센스 에 의해 수정 및 등록이 취소 되었거나 \n 허용 가능한 알람서비스 등록 갯수에의해 등록 취소 되었습니다.\n사용자를 미리 등록하시기 위해서는 녹취사용안함으로 미리 등록 후\n라이센스 추가 문의는 콜센터 1877-9907로 문의해주세요. ")
+				results = "";
 				return false;
 			}
 			

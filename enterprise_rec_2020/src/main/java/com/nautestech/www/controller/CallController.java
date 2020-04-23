@@ -54,6 +54,9 @@ public class CallController {
 	@Value("${isMxxMode}")
 	String isMxxMode;
 	
+	@Value("${RecCount}")
+	int RecCount;
+	
 	
 	@RequestMapping(value = "/zip", method= {RequestMethod.GET, RequestMethod.POST})
 	public String zip(HttpServletRequest request, HttpServletResponse response,
@@ -71,27 +74,6 @@ public class CallController {
 		String active = "active page_open";
 		request.setAttribute("callhistoryYMD", callhistoryYMD);
 		request.setAttribute("call_active", active);
-		
-		
-		
-		
-		//폴더 존재여부를 먼저 체크한다.
-//				checkF = new File(call.get(0).getDirname());
-//				f_mxx = new File(call.get(0).getDirname()+call.get(0).getFname());
-//				if(!checkF.exists()){
-//					cmd.chkFolder(call.get(0).getDirname());
-//				}
-//				if(!f_mxx.exists()) {
-//					cmd.CopyMXX(call.get(0).getFname(), call.get(0).getDirname());
-//					cmd.ConvertMXX(call.get(0).getFname(), call.get(0).getDirname(),isMxxMode);
-//					cmd.dencMp3(call.get(0).getFname(), call.get(0).getDirname(),isMxxMode);
-//				}
-		
-		
-		
-		
-		
-		
 		
 		File checkF = null;
 		File f_mxx = null;
@@ -120,7 +102,7 @@ public class CallController {
 	}
 	
 	
-	@Secured({"ROLE_ADMIN"})
+	@Secured({"ROLE_ADMIN","ROLE_ENDUSER"})
 	@RequestMapping(value = "/call_page", method= {RequestMethod.GET, RequestMethod.POST})
     public String index(Model model){
 		String active = "active page_open";
@@ -216,7 +198,7 @@ public class CallController {
 		return users;
     }
 	
-	//@Secured({"ROLE_ADMIN"})
+	@Secured({"ROLE_ADMIN"})
 	@RequestMapping(value = "/media/{YYYYMM}/{c_id}", method= {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
     public String media(
@@ -376,7 +358,7 @@ public class CallController {
 	
 	
 	
-	//@Secured({"ROLE_ADMIN"})
+	@Secured({"ROLE_ADMIN"})
 	@RequestMapping(value = "/callSearch_YYYYMMDD", method= {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
     public HashMap<String, Object> callSearch_YYYYMMDD(
@@ -395,14 +377,14 @@ public class CallController {
     		@RequestParam(value="pagenum", required=false, defaultValue="")int pagenum,
     		@RequestParam(value="pagesize", required=false, defaultValue="")int pagesize,
     		@RequestParam(value="recordstartindex", required=false, defaultValue="")int recordstartindex,
-    		@RequestParam(value="recordendindex", required=false, defaultValue="")int recordendindex
-    		) throws Exception{ 
+    		@RequestParam(value="recordendindex", required=false, defaultValue="")int recordendindex,
+    		Authentication authentication) throws Exception{ 
 		String startYYYYMM = bday.substring(0,7);
 		String endYYYYMM = eday.substring(0,7);
 		
 		startYYYYMM = startYYYYMM.replace(":", "");
 		endYYYYMM = endYYYYMM.replace(":", "");
-		
+		System.out.println(authentication.getDetails().toString());
 		if(branch_cd.equals("전체")) {
 			branch_cd = "";
 		}

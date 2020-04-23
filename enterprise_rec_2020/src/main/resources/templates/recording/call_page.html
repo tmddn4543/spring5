@@ -49,6 +49,9 @@
     	<div th:replace="fragments/navbar :: navbarFragment"></div>
         </div>
         <input type="hidden" th:value="${callhistoryYMD}" id="callhistoryYMD">
+        <input type="hidden" th:value="${#authentication.details.auth_cd}" id="u_auth_cd">
+        <input type="hidden" th:value="${#authentication.details.down_type}" id="u_down_type">
+        
         <div class="ibox">
             <div class="ibox-title">
                 <div class="title_wrap">
@@ -82,9 +85,9 @@
                                 <div class="col-lg-8">
                                     <div class="input-group">
                                       <input type="text" class="form-control user_name" placeholder="" id="emp1">
-                                      <span type="text" placeholder="" class="input-group-btn">
-<!--                                       data-toggle="modal" data-target="#user_search" -->
+                                      <span type="text" placeholder="" class="input-group-btn" th:if="${#authentication.details.auth_cd eq'00'}">
                                         <button class="btn btn-default" type="button" id="id_user_search1">사용자 검색</button>
+<!--                                         th:if="${#authentication.principal} eq''" -->
                                       </span>
                                     </div>
                                 </div>
@@ -213,7 +216,7 @@
                                 <div class="col-lg-8">
                                     <div class="input-group">
                                       <input type="text" class="form-control" placeholder="" id="emp2">
-                                      <span type="text" placeholder="" class="input-group-btn user_name">
+                                      <span type="text" placeholder="" class="input-group-btn user_name" th:if="${#authentication.details.auth_cd eq'00'}">
                                         <button class="btn btn-default" id="id_user_search2" type="button">사용자 검색</button>
                                       </span>
                                     </div>
