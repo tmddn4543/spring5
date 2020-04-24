@@ -41,7 +41,7 @@ public class UserController {
 	
 	
 	
-	@Secured({"ROLE_ADMIN"})
+	@Secured({"ROLE_ADMIN","ROLE_OPERATIONADMIN","ROLE_GROUPADMIN","ROLE_LISTENUSER","ROLE_SMSUSER"})
 	@RequestMapping(value = "/user_page", method= {RequestMethod.GET, RequestMethod.POST})
     public String index(Model model) throws JsonProcessingException{
 		HashMap<String, Object> param = new HashMap<>();
@@ -50,7 +50,7 @@ public class UserController {
 		return "recording/user_page";
     }
 	
-	@Secured({"ROLE_ADMIN"})
+	@Secured({"ROLE_ADMIN","ROLE_OPERATIONADMIN","ROLE_GROUPADMIN","ROLE_LISTENUSER","ROLE_SMSUSER","ROLE_ENDUSER"})
 	@RequestMapping(value = "/user_logout", method= {RequestMethod.GET, RequestMethod.POST})
     public String user_logout(Authentication authentication) throws JsonProcessingException{
 		HashMap<String, Object> param = new HashMap<>();
@@ -61,7 +61,7 @@ public class UserController {
     }
 	
 	
-	@Secured({"ROLE_ADMIN","ROLE_ENDUSER"})
+	@Secured({"ROLE_ADMIN","ROLE_OPERATIONADMIN","ROLE_GROUPADMIN","ROLE_LISTENUSER","ROLE_SMSUSER","ROLE_ENDUSER"})
 	@RequestMapping(value = "/user_branch_get", method= {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
     public List<Batch> user_branch_get(
@@ -72,7 +72,7 @@ public class UserController {
 		return uService.getListBranch(param);
     }
 	
-	@Secured({"ROLE_ADMIN"})
+	@Secured({"ROLE_ADMIN","ROLE_OPERATIONADMIN","ROLE_GROUPADMIN","ROLE_LISTENUSER","ROLE_SMSUSER"})
 	@RequestMapping(value = "/user_branch_insert", method= {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
     public void user_branch_insert(
@@ -86,7 +86,7 @@ public class UserController {
     }
 	
 	
-	@Secured({"ROLE_ADMIN"})
+	@Secured({"ROLE_ADMIN","ROLE_OPERATIONADMIN","ROLE_GROUPADMIN","ROLE_LISTENUSER","ROLE_SMSUSER"})
 	@RequestMapping(value = "/user_branch_delete", method= {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
     public String user_branch_delete(
@@ -123,7 +123,7 @@ public class UserController {
 	}
 	
 	
-	@Secured({"ROLE_ADMIN"})
+	@Secured({"ROLE_ADMIN","ROLE_OPERATIONADMIN","ROLE_GROUPADMIN","ROLE_LISTENUSER","ROLE_SMSUSER"})
 	@RequestMapping(value = "/user_edit_get", method= {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
     public HashMap<String, Object> user_edit_get(
@@ -145,7 +145,7 @@ public class UserController {
 	
 	
 	
-	@Secured({"ROLE_ADMIN"})
+	@Secured({"ROLE_ADMIN","ROLE_OPERATIONADMIN","ROLE_GROUPADMIN","ROLE_LISTENUSER","ROLE_SMSUSER"})
 	@RequestMapping(value = "/user_rec_Check", method= {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
     public String user_rec_check(
@@ -177,7 +177,7 @@ public class UserController {
 	
 	
 	
-	@Secured({"ROLE_ADMIN"})
+	@Secured({"ROLE_ADMIN","ROLE_OPERATIONADMIN","ROLE_GROUPADMIN"})
 	@RequestMapping(value = "/user_page_ajax", method= {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
 	public HashMap<String, Object> user_page_ajax(Model model,
@@ -271,7 +271,7 @@ public class UserController {
     }
 	
 	
-	@Secured({"ROLE_ADMIN"})
+	@Secured({"ROLE_ADMIN","ROLE_GROUPADMIN","ROLE_LISTENUSER"})
 	@RequestMapping(value = "/user_update", method= {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
 	public void user_update(

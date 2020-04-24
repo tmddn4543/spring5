@@ -57,7 +57,7 @@ public class CallController {
 	@Value("${RecCount}")
 	int RecCount;
 	
-	
+	@Secured({"ROLE_ADMIN","ROLE_OPERATIONADMIN","ROLE_GROUPADMIN","ROLE_LISTENUSER","ROLE_SMSUSER"})
 	@RequestMapping(value = "/zip", method= {RequestMethod.GET, RequestMethod.POST})
 	public String zip(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws Exception {
@@ -65,9 +65,6 @@ public class CallController {
 		param1.put("emp_id", authentication.getName());
 		param1.put("result", "zip");
 		uService.setInsertListen_log(param1);
-		
-		
-		
 		String arr = request.getParameter("arr");
 		String[] sp_arr = arr.split(",");
 		ZipDownload zip_class = new ZipDownload();
@@ -102,7 +99,7 @@ public class CallController {
 	}
 	
 	
-	@Secured({"ROLE_ADMIN","ROLE_ENDUSER"})
+	@Secured({"ROLE_ADMIN","ROLE_ENDUSER","ROLE_OPERATIONADMIN","ROLE_GROUPADMIN","ROLE_LISTENUSER","ROLE_SMSUSER"})
 	@RequestMapping(value = "/call_page", method= {RequestMethod.GET, RequestMethod.POST})
     public String index(Model model){
 		String active = "active page_open";
@@ -111,7 +108,7 @@ public class CallController {
 		return "recording/call_page";
     }
 	
-	@Secured({"ROLE_ADMIN"})
+	@Secured({"ROLE_ADMIN","ROLE_ENDUSER","ROLE_OPERATIONADMIN","ROLE_GROUPADMIN","ROLE_LISTENUSER","ROLE_SMSUSER"})
 	@RequestMapping(value = "/xlsxDownload", method= {RequestMethod.GET, RequestMethod.POST})
 	public View down(@RequestParam(value="emp", required=false, defaultValue="")String emp,
     		@RequestParam(value="branch_cd", required=false, defaultValue="")String branch_cd,
@@ -171,7 +168,7 @@ public class CallController {
 	}
 	
 	
-	@Secured({"ROLE_ADMIN"})
+	@Secured({"ROLE_ADMIN","ROLE_ENDUSER","ROLE_OPERATIONADMIN","ROLE_GROUPADMIN","ROLE_LISTENUSER","ROLE_SMSUSER"})
 	@RequestMapping(value = "/usersSearch", method= {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
     public List<Users> usersSearch(
@@ -198,7 +195,7 @@ public class CallController {
 		return users;
     }
 	
-	@Secured({"ROLE_ADMIN"})
+	@Secured({"ROLE_ADMIN","ROLE_ENDUSER","ROLE_OPERATIONADMIN","ROLE_GROUPADMIN","ROLE_LISTENUSER","ROLE_SMSUSER"})
 	@RequestMapping(value = "/media/{YYYYMM}/{c_id}", method= {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
     public String media(
@@ -296,7 +293,7 @@ public class CallController {
 		return null;
     }
 	
-	@Secured({"ROLE_ADMIN"})
+	@Secured({"ROLE_ADMIN","ROLE_ENDUSER","ROLE_OPERATIONADMIN","ROLE_GROUPADMIN","ROLE_LISTENUSER","ROLE_SMSUSER"})
 	@RequestMapping(value = "/callSearch", method= {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
     public HashMap<String, Object> callSearch(
@@ -358,7 +355,7 @@ public class CallController {
 	
 	
 	
-	@Secured({"ROLE_ADMIN"})
+	@Secured({"ROLE_ADMIN","ROLE_ENDUSER","ROLE_OPERATIONADMIN","ROLE_GROUPADMIN","ROLE_LISTENUSER","ROLE_SMSUSER"})
 	@RequestMapping(value = "/callSearch_YYYYMMDD", method= {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
     public HashMap<String, Object> callSearch_YYYYMMDD(

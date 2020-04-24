@@ -25,7 +25,7 @@ public class StateController {
 	
 	
 	
-	@Secured({"ROLE_ADMIN"})
+	@Secured({"ROLE_ADMIN","ROLE_OPERATIONADMIN","ROLE_GROUPADMIN","ROLE_LISTENUSER","ROLE_SMSUSER"})
 	@RequestMapping(value = "/state_page", method= {RequestMethod.GET, RequestMethod.POST})
     public String index(Model model){
 		String active = "active page_open";
@@ -33,7 +33,7 @@ public class StateController {
 		return "recording/state_page";
     }
 	
-	@Secured({"ROLE_ADMIN"})
+	@Secured({"ROLE_ADMIN","ROLE_OPERATIONADMIN","ROLE_GROUPADMIN","ROLE_LISTENUSER","ROLE_SMSUSER"})
 	@RequestMapping(value = "/state_page_ajax", method= {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
 	public HashMap<String, Object> state_page_ajax(Model model,

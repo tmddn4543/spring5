@@ -1,0 +1,80 @@
+@charset "utf-8";
+.error_wrap{
+	text-align: center;
+	margin: 20px auto;
+}
+.error_wrap .page_words img{
+max-width: 100%;
+}
+
+.error_wrap .btn-group a i{
+	color: #fff;
+}
+.error_wrap .btn-group a#email i{
+	color: #2fa0d0;
+}
+.error_wrap .btn-group a#email{
+	color:  #666;
+}
+.error_wrap .page_words p{
+	font-size: 16px;
+	color: #666;
+}
+.error_wrap .page_words h2{
+
+	color: #2f365e;
+}
+.error_wrap .page_words h2 span{
+	
+	color: #484f75;
+}
+.hr_line{
+	border-top: 1px dashed #eee;
+	max-width: 1200px;
+	margin: 20px auto;
+}
+.btn-info {
+    background-color: #34aadc;
+    border-color: #1991c4;
+    color: #FFFFFF;
+}
+.btn-info:hover, .btn-info:focus, .btn-info:active, .btn-info.active, .open .dropdown-toggle.btn-info {
+    background-color: #298fbb;
+    border-color: #2286b0;
+    color: #FFFFFF;
+}
+
+
+/* 반응형 */
+@media(max-width: 1200px){
+	body{
+		padding: 0px 15px;
+	}
+}
+@media(max-width: 400px){
+	.error_wrap .page_words p{
+		font-size: 14px;
+	}
+	.error_wrap .page_words h2{
+		font-size: 20px;
+	}
+	.error_wrap .btn-group a{
+		width: 100%;
+		border-radius: 4px !important;
+		margin-bottom: 5px;
+	}
+}
+
+@media(max-width: 330px){
+	.error_wrap .page_words p br{
+		display: none;
+	}
+	.error_wrap .page_words p {
+		text-align: left;
+	}
+}
+@media(max-height: 600px){
+	.error_wrap .page_words img{
+max-height: 250px;
+}
+}

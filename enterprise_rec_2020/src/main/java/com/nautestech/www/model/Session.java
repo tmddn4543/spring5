@@ -18,6 +18,7 @@ public class Session implements UserDetails {
     private Collection<? extends GrantedAuthority> authorities;
     
     private String emp_id;
+    private String emp_nm;
     private String auth_cd;
     private String tel_no;
     private String down_type;

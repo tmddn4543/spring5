@@ -26,7 +26,7 @@ public class Access_logController {
 	
 	
 	
-	@Secured({"ROLE_ADMIN"})
+	@Secured({"ROLE_ADMIN","ROLE_OPERATIONADMIN","ROLE_GROUPADMIN","ROLE_LISTENUSER","ROLE_SMSUSER"})
 	@RequestMapping(value = "/access_log_page", method= {RequestMethod.GET, RequestMethod.POST})
     public String index(Model model){
 		String active = "active page_open";
@@ -35,7 +35,7 @@ public class Access_logController {
     }
 	
 	
-	@Secured({"ROLE_ADMIN"})
+	@Secured({"ROLE_ADMIN","ROLE_OPERATIONADMIN","ROLE_GROUPADMIN","ROLE_LISTENUSER","ROLE_SMSUSER"})
 	@RequestMapping(value = "/access_log_page_ajax", method= {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
 	public HashMap<String, Object> user_page_ajax(Model model,

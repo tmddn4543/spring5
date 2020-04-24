@@ -13,8 +13,8 @@
                             <img alt="image" class="img-circle" src="/resource/assets/img/admin.png" />
                         </span>
                         <a href="#">
-                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">admintest</strong>
-                             </span> <span class="text-muted text-xs block">admin </span> </span> </a>
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold" th:text="${#authentication.details.emp_nm}"></strong>
+                             </span> <span class="text-muted text-xs block" th:text="${#authentication.details.emp_id}"></span> </span> </a>
                         
                     </div>
                     <div class="logo-element">
