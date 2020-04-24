@@ -10,6 +10,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.annotation.Secured;
@@ -56,6 +58,15 @@ public class CallController {
 	
 	@Value("${RecCount}")
 	int RecCount;
+	
+	
+	
+	private static Logger main_logger = LogManager.getLogger(CallController.class);
+	private static Logger call_logger = LogManager.getLogger("call_log");
+	
+	
+	
+	
 	
 	@Secured({"ROLE_ADMIN","ROLE_OPERATIONADMIN","ROLE_GROUPADMIN","ROLE_LISTENUSER","ROLE_SMSUSER"})
 	@RequestMapping(value = "/zip", method= {RequestMethod.GET, RequestMethod.POST})
