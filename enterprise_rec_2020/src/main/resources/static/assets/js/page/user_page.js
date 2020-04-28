@@ -45,15 +45,17 @@ $(document).ready(function(){
     
     
     
-    main(null,null);
+    main(null,null,null,null);
     
-    function main(branch_cd, tel_no){
+    function main(branch_cd, tel_no,rec_type,auth_cd){
     	var source =
         {
              datatype: "json",
              data : {
             	 branch_cd :branch_cd,
-            	 tel_no :tel_no
+            	 tel_no :tel_no,
+            	 rec_type :rec_type,
+            	 auth_cd :auth_cd
              },
              datafields: [
     			 { name: 'num'},
@@ -144,17 +146,21 @@ $(document).ready(function(){
 	$("#user_search_bt").click(function(){
 		branch_cd = $(".group_btn_act_search").val();
 		tel_no = $("#tel_no_input").val();
+		//$("input[name=inlineRadioOptions-add]:checked").val();
+		//
+		rec_type = $("input[name=inlineRadioOptions-add]:checked").val();
+		auth_cd = $(".authority_num1").val();
 		if(branch_cd=="전체"){
 			branch_cd = "";
 		}
-		main(branch_cd, tel_no);
+		main(branch_cd, tel_no,rec_type,auth_cd);
 	});
 	
 	
 	
 	
     //$(".group_btn_act_search").jqxDropDownList({ source: , selectedIndex: 1, width: 100 + "%", height: 34, autoItemsHeight: true, theme: "bootstrap", autoDropDownHeight: true});
-    $(".authority_num").jqxDropDownList({ source: [ "전체","시스템관리자","운용사용자","그룹관리자","상담원"], selectedIndex: 1, width: 100 + "%", height: 34, autoItemsHeight: true, theme: "bootstrap", autoDropDownHeight: true});
+    $(".authority_num1").jqxDropDownList({ source: [ "전체","시스템관리자","운용사용자","그룹관리자","상담원"], selectedIndex: 1, width: 100 + "%", height: 34, autoItemsHeight: true, theme: "bootstrap", autoDropDownHeight: true});
 	$('#user_add').on('shown.bs.modal', function (event) {
 		var res = $(event.relatedTarget);
 		
@@ -182,6 +188,7 @@ $(document).ready(function(){
 							sum = i;
 						}
 					}
+					$(".authority_num").jqxDropDownList({disabled: true,  source: [ "전체","시스템관리자","운용사용자","그룹관리자","상담원"], selectedIndex: 1, width: 100 + "%", height: 34, autoItemsHeight: true, theme: "bootstrap", autoDropDownHeight: true});
 					
 					
 					//rec_type = $("input[name=inlineRadioOptions]:checked").val();
@@ -213,8 +220,7 @@ $(document).ready(function(){
 					$("#tel_no_070").prop("readonly",true);
 					
 					
-					$(".group_btn_act").jqxDropDownList({ source: arr_batch1, selectedIndex: sum, width: 100 + "%", height: 34, autoItemsHeight: true, theme: "bootstrap", autoDropDownHeight: true});
-					
+					$(".group_btn_act").jqxDropDownList({source: arr_batch1, selectedIndex: sum, width: 100 + "%", height: 34, autoItemsHeight: true, theme: "bootstrap", autoDropDownHeight: true});
 				}
 			});
 			
@@ -237,18 +243,12 @@ $(document).ready(function(){
 						arr_batch1[i] = batch[i].branch_cd;
 						
 					}
-					$(".group_btn_act").jqxDropDownList({ source: arr_batch1, selectedIndex: 0, width: 100 + "%", height: 34, autoItemsHeight: true, theme: "bootstrap", autoDropDownHeight: true});
+					$(".group_btn_act").jqxDropDownList({source: arr_batch1, selectedIndex: 0, width: 100 + "%", height: 34, autoItemsHeight: true, theme: "bootstrap", autoDropDownHeight: true});
 				}
 			});
 			
+		    $(".authority_num").jqxDropDownList({disabled: false,  source: [ "전체","시스템관리자","운용사용자","그룹관리자","상담원"], selectedIndex: 1, width: 100 + "%", height: 34, autoItemsHeight: true, theme: "bootstrap", autoDropDownHeight: true});
 			
-		    $.ajax({
-				type : "POST",
-				url : "/user/user_rec_Check",
-				success : function(result) {
-					results = result;
-				}
-			});
 		    
 		    
 		    
@@ -288,24 +288,31 @@ $(document).ready(function(){
 			
 			if(emp_id==null || emp_id==""){
 				alert("사용자 아이디를 입력해주세요.");
+				$("#emp_id").focus();
 				return false;
 			}else if(emp_nm==null || emp_nm==""){
 				alert("사용자 이름을 입력해주세요.");
+				$("#emp_nm").focus();
 				return false;
 			}else if(tel_no==null || tel_no==""){
 				alert("녹취번호를 입력해주세요.");
+				$("#tel_no").focus();
 				return false;
 			}else if(tel_no_070==null || tel_no_070==""){
 				alert("070 녹취번호를 입력해주세요.");
+				$("#tel_no_070").focus();
 				return false;
 			}else if(pass==null || pass==""){
 				alert("비밀번호를 입력해주세요.");
+				$("#pass").focus();
 				return false;
 			}else if(pass_check==null || pass_check==""){
 				alert("비밀번호 확인을 입력해주세요.");
+				$("#pass_check").focus();
 				return false;
 			}else if(pass!=pass_check){
 				alert("비밀번호가 다릅니다.");
+				$("#pass").focus();
 				return false;
 			}else if(auth_cd=="전체"){
 				alert("전체는 사용할 수 없습니다.");
@@ -319,15 +326,18 @@ $(document).ready(function(){
 			}else if($("#tel_no_070").prop("readonly")==false){
 				alert("070녹취번호 중복 확인을 해주세요");
 				return false;
-			}else if(rec_type!="N" && results=="false"){
-				alert("허용 가능한 녹취 라이센스 에 의해 수정 및 등록이 취소 되었거나 \n 허용 가능한 알람서비스 등록 갯수에의해 등록 취소 되었습니다.\n사용자를 미리 등록하시기 위해서는 녹취사용안함으로 미리 등록 후\n라이센스 추가 문의는 콜센터 1877-9907로 문의해주세요. ")
-				results = "";
-				return false;
-			}else if(auth_cd=="15" && results=="false"){
-				alert("허용 가능한 녹취 라이센스 에 의해 수정 및 등록이 취소 되었거나 \n 허용 가능한 알람서비스 등록 갯수에의해 등록 취소 되었습니다.\n사용자를 미리 등록하시기 위해서는 녹취사용안함으로 미리 등록 후\n라이센스 추가 문의는 콜센터 1877-9907로 문의해주세요. ")
-				results = "";
-				return false;
 			}
+			
+			
+//			else if(rec_type!="N" && results=="false"){
+//				alert("허용 가능한 녹취 라이센스 에 의해 수정 및 등록이 취소 되었거나 \n 허용 가능한 알람서비스 등록 갯수에의해 등록 취소 되었습니다.\n사용자를 미리 등록하시기 위해서는 녹취사용안함으로 미리 등록 후\n라이센스 추가 문의는 콜센터 1877-9907로 문의해주세요. ")
+//				results = "";
+//				return false;
+//			}else if(auth_cd=="15" && results=="false"){
+//				alert("허용 가능한 녹취 라이센스 에 의해 수정 및 등록이 취소 되었거나 \n 허용 가능한 알람서비스 등록 갯수에의해 등록 취소 되었습니다.\n사용자를 미리 등록하시기 위해서는 녹취사용안함으로 미리 등록 후\n라이센스 추가 문의는 콜센터 1877-9907로 문의해주세요. ")
+//				results = "";
+//				return false;
+//			}
 			
 			
 			
@@ -345,10 +355,15 @@ $(document).ready(function(){
 					rec_type :rec_type,
 					down_type :down_type
 				},
-				success : function() {
-					alert("가입이 완료 되었습니다.");
-					$("#user_add").modal("hide");
-					main();
+				success : function(result) {
+					if(result=="true"){
+						alert("가입이 완료 되었습니다.");
+						$("#user_add").modal("hide");
+						main();
+					}else{
+						alert("허용 가능한 녹취 라이센스 에 의해 수정 및 등록이 취소 되었거나 \n 허용 가능한 알람서비스 등록 갯수에의해 등록 취소 되었습니다.\n사용자를 미리 등록하시기 위해서는 녹취사용안함으로 미리 등록 후\n라이센스 추가 문의는 콜센터 1877-9907로 문의해주세요. ");
+						return false;
+					}
 				},
 				error : function() {
 					alert("알수없는 오류가 발생하였습니다.");
@@ -384,24 +399,19 @@ $(document).ready(function(){
 			
 			if(emp_id==null || emp_id==""){
 				alert("사용자 아이디를 입력해주세요.");
+				$("#emp_id").focus();
 				return false;
 			}else if(emp_nm==null || emp_nm==""){
 				alert("사용자 이름을 입력해주세요.");
+				$("#emp_nm").focus();
 				return false;
 			}else if(tel_no==null || tel_no==""){
 				alert("녹취번호를 입력해주세요.");
+				$("#tel_no").focus();
 				return false;
 			}else if(tel_no_070==null || tel_no_070==""){
 				alert("070 녹취번호를 입력해주세요.");
-				return false;
-			}else if(pass==null || pass==""){
-				alert("비밀번호를 입력해주세요.");
-				return false;
-			}else if(pass_check==null || pass_check==""){
-				alert("비밀번호 확인을 입력해주세요.");
-				return false;
-			}else if(pass!=pass_check){
-				alert("비밀번호가 다릅니다.");
+				$("#tel_no_070").focus();
 				return false;
 			}else if(auth_cd=="전체"){
 				alert("전체는 사용할 수 없습니다.");
@@ -415,15 +425,14 @@ $(document).ready(function(){
 			}else if($("#tel_no_070").prop("readonly")==false){
 				alert("070녹취번호 중복 확인을 해주세요");
 				return false;
-			}else if(rec_type!="N" && results=="false"){
-				alert("허용 가능한 녹취 라이센스 에 의해 수정 및 등록이 취소 되었거나 \n 허용 가능한 알람서비스 등록 갯수에의해 등록 취소 되었습니다.\n사용자를 미리 등록하시기 위해서는 녹취사용안함으로 미리 등록 후\n라이센스 추가 문의는 콜센터 1877-9907로 문의해주세요. ")
-				results = "";
-				return false;
-			}else if(auth_cd=="15" && results=="false"){
-				alert("허용 가능한 녹취 라이센스 에 의해 수정 및 등록이 취소 되었거나 \n 허용 가능한 알람서비스 등록 갯수에의해 등록 취소 되었습니다.\n사용자를 미리 등록하시기 위해서는 녹취사용안함으로 미리 등록 후\n라이센스 추가 문의는 콜센터 1877-9907로 문의해주세요. ")
-				results = "";
-				return false;
+			}else if(pass!=null || pass!="" || pass_check!=null || pass_check!=""){
+				if(pass!=pass_check){
+					alert("비밀번호가 다릅니다.");
+					$("#pass").focus();
+					return false;
+				}
 			}
+			
 			
 			$.ajax({
 				type : "POST",
@@ -439,10 +448,16 @@ $(document).ready(function(){
 					rec_type :rec_type,
 					down_type :down_type
 				},
-				success : function() {
-					alert("가입이 완료 되었습니다.");
-					$("#user_add").modal("hide");
-					main();
+				success : function(result) {
+					if(result=="true"){
+						alert("수정되었습니다.");
+						$("#user_add").modal("hide");
+						main();
+					}else{
+						alert("허용 가능한 녹취 라이센스 에 의해 수정 및 등록이 취소 되었거나 \n 허용 가능한 알람서비스 등록 갯수에의해 등록 취소 되었습니다.\n사용자를 미리 등록하시기 위해서는 녹취사용안함으로 미리 등록 후\n라이센스 추가 문의는 콜센터 1877-9907로 문의해주세요. ");
+						return false;
+					}
+					
 				},
 				error : function() {
 					alert("알수없는 오류가 발생하였습니다.");
@@ -659,6 +674,9 @@ $(document).ready(function(){
 					$("#groupSet_modal").modal("hide");
 				}
 			});
+			//branch_cd
+			$(".group_btn_act").jqxDropDownList('addItem',branch_cd);
+			$(".group_btn_act_search").jqxDropDownList('addItem',branch_cd);
 		}
 	});
 	
@@ -714,16 +732,23 @@ $(document).ready(function(){
 			data : {arr : arr},
 			success : function(result) {
 				if(result=="true"){
+					for(var i=0; i<arr.length; i++){
+						$(".group_btn_act").jqxDropDownList('removeItem',arr[i]);
+						$(".group_btn_act_search").jqxDropDownList('removeItem',arr[i]);
+					}
 					$("#groupSet_modal").modal("hide");
 					alert("그룹 삭제가 되었습니다.");
 					main();
 				}else{
 					alert("사용자가 포함되어 있는 그룹이 있습니다. \n사용자 수정 or 제거후 삭제해주시기 바랍니다.");
 				}
+				
 			}
 		});
 	
 	});
+	
+	
 	
 	
 	

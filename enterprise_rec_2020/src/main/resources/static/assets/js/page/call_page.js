@@ -128,11 +128,13 @@ $(document).ready(
         	eday = edayFormat(selectday,selectetime);
         	if($("#caller1_bt").text()=="선택 " && caller!=""){
         		alert("선택여부 확인해주세요.");
+        		$("#caller1_bt").focus();
             	return false;
         	}
         	
         	if($("#called1_bt").text()=="선택 " && called!=""){
         		alert("선택여부 확인해주세요.");
+        		$("#called1_bt").focus();
         		return false;
         	}
         	
@@ -617,6 +619,11 @@ $(document).ready(
     				count = count+1;
     			}  
         	});
+        	if(arr[0]==null){
+        		alert("다운받으실 목록을 체크 해주세요.");
+        		return false;
+        	}
+        	
         	$("#hidden_arr").val(arr);
         	$("#form_arr").submit();
        });

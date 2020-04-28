@@ -3,21 +3,61 @@
         <properties>
                 <property name="main">main-webapp</property>
                 <property name="call">call-webapp</property>
+                <property name="user">user-webapp</property>
+                <property name="monitor">monitor-webapp</property>
+                <property name="state">state-webapp</property>
+                <property name="access">access-webapp</property>
+                <property name="error">error-webapp</property>
                 <property name="pattern">%d{yyyy-MM-dd HH:mm:ss.SSS} | %-5.5p | %-30.30C::%-30.30M:%-5.5L | %msg%n</property>
         </properties> 
         <appenders>
                 <Console name="console" target="SYSTEM_OUT">
                         <PatternLayout pattern="${pattern}"/>
                 </Console>
-                <RollingFile name="main-file" fileName="home/log/${main}.log"
-                                 filePattern="home/log/bak/$${date:yyyy}-$${date:MM}/$${date:yyyy}-$${date:MM}-$${date:dd}/%d{yyyyMMddHH}.log">
+                <RollingFile name="main-file" fileName="/home/enterpriseweb/log/${main}.log"
+                                 filePattern="/home/enterpriseweb/log/bak/$${date:yyyy}-$${date:MM}/$${date:yyyy}-$${date:MM}-$${date:dd}/%d{yyyyMMddHH}.log">
                        <PatternLayout pattern="${pattern}"/>
                         <Policies>
                                 <TimeBasedTriggeringPolicy /><!-- Rotated everyday -->
                         </Policies>
                 </RollingFile>
-                <RollingFile name="call-file" fileName="home/log/call/${call}.log"
-                                 filePattern="home/log/call/bak/$${date:yyyy}-$${date:MM}/$${date:yyyy}-$${date:MM}-$${date:dd}/%d{yyyyMMddHH}.log">
+                <RollingFile name="call-file" fileName="/home/enterpriseweb/log/call/${call}.log"
+                                 filePattern="/home/enterpriseweb/log/call/bak/$${date:yyyy}-$${date:MM}/$${date:yyyy}-$${date:MM}-$${date:dd}/%d{yyyyMMddHH}.log">
+                        <PatternLayout pattern="${pattern}"/>
+                        <Policies>
+                                <TimeBasedTriggeringPolicy /><!-- Rotated everyday -->
+                        </Policies>
+                </RollingFile>
+                <RollingFile name="user-file" fileName="/home/enterpriseweb/log/user/${user}.log"
+                                 filePattern="/home/enterpriseweb/log/user/bak/$${date:yyyy}-$${date:MM}/$${date:yyyy}-$${date:MM}-$${date:dd}/%d{yyyyMMddHH}.log">
+                        <PatternLayout pattern="${pattern}"/>
+                        <Policies>
+                                <TimeBasedTriggeringPolicy /><!-- Rotated everyday -->
+                        </Policies>
+                </RollingFile>
+                <RollingFile name="monitor-file" fileName="/home/enterpriseweb/log/monitor/${monitor}.log"
+                                 filePattern="/home/enterpriseweb/log/monitor/bak/$${date:yyyy}-$${date:MM}/$${date:yyyy}-$${date:MM}-$${date:dd}/%d{yyyyMMddHH}.log">
+                        <PatternLayout pattern="${pattern}"/>
+                        <Policies>
+                                <TimeBasedTriggeringPolicy /><!-- Rotated everyday -->
+                        </Policies>
+                </RollingFile>
+                <RollingFile name="state-file" fileName="/home/enterpriseweb/log/state/${state}.log"
+                                 filePattern="/home/enterpriseweb/log/state/bak/$${date:yyyy}-$${date:MM}/$${date:yyyy}-$${date:MM}-$${date:dd}/%d{yyyyMMddHH}.log">
+                        <PatternLayout pattern="${pattern}"/>
+                        <Policies>
+                                <TimeBasedTriggeringPolicy /><!-- Rotated everyday -->
+                        </Policies>
+                </RollingFile>
+                <RollingFile name="access-file" fileName="/home/enterpriseweb/log/access/${access}.log"
+                                 filePattern="/home/enterpriseweb/log/access/bak/$${date:yyyy}-$${date:MM}/$${date:yyyy}-$${date:MM}-$${date:dd}/%d{yyyyMMddHH}.log">
+                        <PatternLayout pattern="${pattern}"/>
+                        <Policies>
+                                <TimeBasedTriggeringPolicy /><!-- Rotated everyday -->
+                        </Policies>
+                </RollingFile>
+                <RollingFile name="error-file" fileName="/home/enterpriseweb/log/error/${error}.log"
+                                 filePattern="/home/enterpriseweb/log/error/bak/$${date:yyyy}-$${date:MM}/$${date:yyyy}-$${date:MM}-$${date:dd}/%d{yyyyMMddHH}.log">
                         <PatternLayout pattern="${pattern}"/>
                         <Policies>
                                 <TimeBasedTriggeringPolicy /><!-- Rotated everyday -->
@@ -28,6 +68,26 @@
         	<Logger name="call_log" level="info" additivity="false">
 		      	<AppenderRef ref="console" />
 		      	<AppenderRef ref="call-file" />
+		    </Logger>
+		    <Logger name="user_log" level="info" additivity="false">
+		      	<AppenderRef ref="console" />
+		      	<AppenderRef ref="user-file" />
+		    </Logger>
+		    <Logger name="monitor_log" level="info" additivity="false">
+		      	<AppenderRef ref="console" />
+		      	<AppenderRef ref="monitor-file" />
+		    </Logger>
+		    <Logger name="state_log" level="info" additivity="false">
+		      	<AppenderRef ref="console" />
+		      	<AppenderRef ref="state-file" />
+		    </Logger>
+		    <Logger name="access_log" level="info" additivity="false">
+		      	<AppenderRef ref="console" />
+		      	<AppenderRef ref="access-file" />
+		    </Logger>
+		    <Logger name="error_log" level="info" additivity="false">
+		      	<AppenderRef ref="console" />
+		      	<AppenderRef ref="error-file" />
 		    </Logger>
             <root level="info">
             	<appender-ref ref="console"/>

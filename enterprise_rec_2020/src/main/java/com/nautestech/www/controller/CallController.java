@@ -76,6 +76,7 @@ public class CallController {
 		param1.put("emp_id", authentication.getName());
 		param1.put("result", "zip");
 		uService.setInsertListen_log(param1);
+		call_logger.info("zip ->"+authentication.getDetails()+" : "+param1.toString());
 		String arr = request.getParameter("arr");
 		String[] sp_arr = arr.split(",");
 		ZipDownload zip_class = new ZipDownload();
@@ -113,8 +114,7 @@ public class CallController {
 	@Secured({"ROLE_ADMIN","ROLE_ENDUSER","ROLE_OPERATIONADMIN","ROLE_GROUPADMIN","ROLE_LISTENUSER","ROLE_SMSUSER"})
 	@RequestMapping(value = "/call_page", method= {RequestMethod.GET, RequestMethod.POST})
     public String index(Model model){
-		String active = "active page_open";
-		model.addAttribute("call_active", active);
+		main_logger.info("welcome to CallPage");
 		model.addAttribute("callhistoryYMD", callhistoryYMD);
 		return "recording/call_page";
     }
@@ -161,6 +161,7 @@ public class CallController {
 		param.put("xlsx", "true");
 		param.put("limit", statisticsLimit);
 		List<Call> call = null;
+		call_logger.info("xlsxDownload -> "+authentication.getName()+":"+param.toString());
 		if(callhistoryYMD) {
 			String startYYYYMM = bday.substring(0,7);
 			String endYYYYMM = eday.substring(0,7);
@@ -185,7 +186,8 @@ public class CallController {
     public List<Users> usersSearch(
     		@RequestParam(value="emp", required=false, defaultValue="")String emp,
     		@RequestParam(value="branch_cd", required=false, defaultValue="")String branch_cd,
-    		@RequestParam(value="auth_cd", required=false, defaultValue="")String auth_cd
+    		@RequestParam(value="auth_cd", required=false, defaultValue="")String auth_cd,
+    		Authentication authentication
     		){
 		if(branch_cd.equals("전체")) {
 			branch_cd = "";
@@ -202,6 +204,7 @@ public class CallController {
 		param.put("pagesize", 100);
 		param.put("pagestart", 0);
 		param.put("xlsx", "false");
+		call_logger.info("usersSearch -> "+authentication.getName()+" : "+param.toString());
 		List<Users> users = uService.getView(param);
 		return users;
     }
@@ -213,7 +216,8 @@ public class CallController {
     		@PathVariable("YYYYMM") String YYYYMM,
     		@PathVariable("c_id") String c_id,
     		HttpServletRequest request,
-    		HttpServletResponse response
+    		HttpServletResponse response,
+    		Authentication authentication
     		) throws Exception{
 		System.out.println(YYYYMM);
 		System.out.println(c_id);
@@ -233,6 +237,7 @@ public class CallController {
 		param.put("rec_type", "");
 		param.put("start_talk_time", "");
 		param.put("end_talk_time", "");
+		call_logger.info("media/{YYYYMM}/{c_id} -> "+authentication.getName()+" : "+param.toString());
 		List<Call> call = null;
 		if(YYYYMM.equals(null)) {
 			call = cService.getView(param);
@@ -258,6 +263,17 @@ public class CallController {
 		System.out.println(call.get(0).getDirname()+call.get(0).getFname().replace("mxx", isMxxMode));
 		File file = new File(call.get(0).getDirname()+call.get(0).getFname().replace("mxx", isMxxMode));
 
+		
+		
+		//듣기로그 넣기
+		HashMap<String, Object>param1 = new HashMap<>();
+		param1.put("emp_id", authentication.getName());
+		param1.put("result", "listen");
+		param1.put("dirname", call.get(0).getDirname());
+		param1.put("filename", call.get(0).getFname().replace("mxx", isMxxMode));
+		uService.setInsertListen_log(param1);
+		
+		
 		RandomAccessFile randomFile = new RandomAccessFile(file, "r");
 		long rangeStart = 0; //요청 범위의 시작 위치 
 		long rangeEnd = 0; //요청 범위의 끝 위치 
@@ -324,7 +340,7 @@ public class CallController {
     		@RequestParam(value="pagesize", required=false, defaultValue="")int pagesize,
     		@RequestParam(value="recordstartindex", required=false, defaultValue="")int recordstartindex,
     		@RequestParam(value="recordendindex", required=false, defaultValue="")int recordendindex
-    		) throws ParseException{ 
+    		,Authentication authentication) throws ParseException{ 
 		if(branch_cd.equals("전체")) {
 			branch_cd = "";
 		}
@@ -346,7 +362,7 @@ public class CallController {
 		param.put("xlsx", "false");
 		HashMap<String, Object> param1 = new HashMap<>();
 		List<Call> call = cService.getView(param);
-		
+		call_logger.info(authentication.getName()+" : "+param.toString());
 		listExcelDownload format = new listExcelDownload();
 		if(call.size()!=0) {
 			int total = cService.getListCount(param);
@@ -418,6 +434,7 @@ public class CallController {
 		System.out.println(bday +"~"+eday);
 		HashMap<String, Object> param1 = new HashMap<>();
 		List<Call> call = cService.getViewYYYYMM(param);
+		call_logger.info("callSearch_YYYYMMDD ->"+authentication.getName()+" : "+param.toString());
 		listExcelDownload format = new listExcelDownload();
 		if(call.size()!=0) {
 			int total = cService.getListCountYYYYMM(param);

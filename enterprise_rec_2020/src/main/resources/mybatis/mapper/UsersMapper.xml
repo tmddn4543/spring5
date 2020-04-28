@@ -36,7 +36,9 @@
 		<choose>
 			<when test='login_date.equals("")'>
 			emp_nm = #{emp_nm},
+			<if test="!pass.equals('') || pass!=''">
 			pass = #{pass},
+			</if>
 			auth_cd = #{auth_cd},
 			branch_cd = #{branch_cd},
 			rec_type = #{rec_type},
@@ -83,29 +85,42 @@
 	<insert id="setInsertListen_log" parameterType="hashmap">
 		insert into callhistory_listen_log(
 			user_id,
-			filename,
-			dirname,
 			logtime,
-			operation
+			operation,
+			dirname,
+			filename
 		) values(
 			#{emp_id},
-			'',
-			'',
 			now(),
 			<if test="result.equals('login')">
-		    'Log_INSuccess'
+		    'Log_INSuccess',
+		    '',
+		    ''
 		    </if>
 		    <if test="result.equals('logout')">
-		    'Log_OUT'
+		    'Log_OUT',
+		    '',
+		    ''
 		    </if>
 		    <if test="result.equals('fail')">
-		    'Log_INFail'
+		    'Log_INFail',
+		    '',
+		    ''
 		    </if>
 		    <if test="result.equals('xlsx')">
-		    'Log_XlsxDown'
+		    'Log_XlsxDown',
+		    '',
+		    ''
 		    </if>
 		    <if test="result.equals('zip')">
-		    'Log_ZipDown'
+		    'Log_ZipDown',
+		    '',
+		    ''
+		    </if>
+		    <if test="result.equals('listen')">
+		    'Log_Listen',
+		    #{dirname},
+		    #{filename}
 		    </if>
 		);
 	</insert>
@@ -145,7 +160,7 @@
 		down_type
 		from `web_recording`.`users`
 		<include refid="where"/>
-		order by rec_regdate desc
+		order by emp_id desc
 		limit ${pagestart},${pagesize}
 	</select>
 	

@@ -3,8 +3,11 @@ package com.nautestech.www.controller;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,12 +27,14 @@ public class StateController {
 	StatService sService;
 	
 	
+	private static Logger main_logger = LogManager.getLogger(StateController.class);
+	private static Logger state_logger = LogManager.getLogger("state_log");
+	
 	
 	@Secured({"ROLE_ADMIN","ROLE_OPERATIONADMIN","ROLE_GROUPADMIN","ROLE_LISTENUSER","ROLE_SMSUSER"})
 	@RequestMapping(value = "/state_page", method= {RequestMethod.GET, RequestMethod.POST})
     public String index(Model model){
-		String active = "active page_open";
-		model.addAttribute("state_active", active);
+		main_logger.info("welcome to State_Page");
 		return "recording/state_page";
     }
 	
@@ -44,17 +49,13 @@ public class StateController {
     		@RequestParam(value="pagenum", required=false, defaultValue="")int pagenum,
     		@RequestParam(value="pagesize", required=false, defaultValue="")int pagesize,
     		@RequestParam(value="recordstartindex", required=false, defaultValue="")int recordstartindex,
-    		@RequestParam(value="recordendindex", required=false, defaultValue="")int recordendindex) throws JsonProcessingException{
+    		@RequestParam(value="recordendindex", required=false, defaultValue="")int recordendindex,
+    		Authentication authentication) throws JsonProcessingException{
 		String active = "active page_open";
 		model.addAttribute("state_active", active);
 		HashMap<String, Object> param = new HashMap<>();
 		HashMap<String, Object> param1 = new HashMap<>();
 		
-		System.out.println(res);
-		System.out.println(branch_cd);
-		System.out.println(date);
-		
-		System.out.println(emp_id);
 		String[] day = null;
 		if(!date.equals("")) {
 			day = dateFormat(date);
@@ -67,7 +68,7 @@ public class StateController {
 		param.put("branch_cd", branch_cd);
 		param.put("emp_id", emp_id);
 		List<Stat> stat = sService.getView(param);
-		
+		state_logger.info("state_page_ajax -> "+authentication.getName()+" : "+param.toString());
 		if(stat.size()!=0) {
 			List<Stat> stat1 = sService.getListStateCount(param);
 			param1.put("total", stat1.size());
@@ -87,7 +88,6 @@ public class StateController {
 		String eday = date.substring(13, 23);
 		bday = bday.replaceAll(":", "");
 		eday = eday.replaceAll(":",	"");
-		System.out.println(bday + "~" + eday);
 		String day[] = {bday,eday};
 		return day;
 	}

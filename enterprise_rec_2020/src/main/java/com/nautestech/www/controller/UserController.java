@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.annotation.Secured;
@@ -25,6 +27,8 @@ import com.nautestech.www.model.Users;
 import com.nautestech.www.serviceImpl.UsersService;
 import com.nautestech.www.util.listExcelDownload;
 
+import utils.Utils;
+
 
 
 @Controller
@@ -39,14 +43,17 @@ public class UserController {
 	int RecCount;
 	
 	
+	private static Logger main_logger = LogManager.getLogger(UserController.class);
+	private static Logger user_logger = LogManager.getLogger("user_log");
+	
+	
 	
 	
 	@Secured({"ROLE_ADMIN","ROLE_OPERATIONADMIN","ROLE_GROUPADMIN","ROLE_LISTENUSER","ROLE_SMSUSER"})
 	@RequestMapping(value = "/user_page", method= {RequestMethod.GET, RequestMethod.POST})
     public String index(Model model) throws JsonProcessingException{
 		HashMap<String, Object> param = new HashMap<>();
-		String active = "active page_open";
-		model.addAttribute("user_active", active);
+		main_logger.info("welcome to UserPage");
 		return "recording/user_page";
     }
 	
@@ -56,6 +63,7 @@ public class UserController {
 		HashMap<String, Object> param = new HashMap<>();
 		param.put("emp_id", authentication.getName());
 		param.put("result", "logout");
+		user_logger.info("user_logout -> "+authentication.getName()+" : "+param.toString());
 		uService.setInsertListen_log(param);
 		return "redirect:/logout";
     }
@@ -66,9 +74,10 @@ public class UserController {
 	@ResponseBody
     public List<Batch> user_branch_get(
     		@RequestParam(value="branch_cd", required=false, defaultValue="")String branch_cd
-    		) throws JsonProcessingException{
+    		,Authentication authentication) throws JsonProcessingException{
 		HashMap<String, Object> param = new HashMap<>();
 		param.put("branch_cd", branch_cd);
+		user_logger.info("user_branch_get -> "+authentication.getName()+" : "+param.toString());
 		return uService.getListBranch(param);
     }
 	
@@ -77,11 +86,13 @@ public class UserController {
 	@ResponseBody
     public void user_branch_insert(
     		@RequestParam(value="branch_cd", required=false, defaultValue="")String branch_cd,
-    		@RequestParam(value="branch_nm", required=false, defaultValue="")String branch_nm
+    		@RequestParam(value="branch_nm", required=false, defaultValue="")String branch_nm,
+    		Authentication authentication
     		) throws JsonProcessingException{
 		HashMap<String, Object> param = new HashMap<>();
 		param.put("branch_cd", branch_cd);
 		param.put("branch_nm", branch_nm);
+		user_logger.info("user_branch_insert -> "+authentication.getName()+" : "+param.toString());
 		uService.setInsertBranch(param);
     }
 	
@@ -90,7 +101,8 @@ public class UserController {
 	@RequestMapping(value = "/user_branch_delete", method= {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
     public String user_branch_delete(
-    		@RequestParam(value="arr[]", required=false, defaultValue="")String[] arr
+    		@RequestParam(value="arr[]", required=false, defaultValue="")String[] arr,
+    		Authentication authentication
     		) throws JsonProcessingException{
 		HashMap<String, Object> param;
 		List<Users> users;
@@ -106,6 +118,7 @@ public class UserController {
 		}
 		param = new HashMap<>();
 		param.put("branch_cd", arr);
+		user_logger.info("user_branch_delete -> "+authentication.getName()+" : "+param.toString());
 		uService.setBranchDelete(param);
 		return "true";
 	}
@@ -115,10 +128,12 @@ public class UserController {
 	@RequestMapping(value = "/user_delete", method= {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
     public void user_delete(
-    		@RequestParam(value="arr[]", required=false, defaultValue="")String[] arr
+    		@RequestParam(value="arr[]", required=false, defaultValue="")String[] arr,
+    		Authentication authentication
     		) throws JsonProcessingException{
 		HashMap<String, Object> param = new HashMap<>();
 		param.put("tel_no", arr);
+		user_logger.info("user_delete -> "+authentication.getName()+" : "+param.toString());
 		uService.setDelete(param);
 	}
 	
@@ -127,7 +142,8 @@ public class UserController {
 	@RequestMapping(value = "/user_edit_get", method= {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
     public HashMap<String, Object> user_edit_get(
-    		@RequestParam(value="tel_no", required=false, defaultValue="")String tel_no
+    		@RequestParam(value="tel_no", required=false, defaultValue="")String tel_no,
+    		Authentication authentication
     		) throws JsonProcessingException{
 		HashMap<String, Object> param = new HashMap<>();
 		HashMap<String, Object> param1 = new HashMap<>();
@@ -139,38 +155,41 @@ public class UserController {
 		Users u = users.get(0);
 		param1.put("user_result", u);
 		param1.put("batch", batch);
+		user_logger.info("user_edit_get -> "+authentication.getName()+" : "+param.toString());
 		return param1;
 	}
 	
 	
 	
 	
-	@Secured({"ROLE_ADMIN","ROLE_OPERATIONADMIN","ROLE_GROUPADMIN","ROLE_LISTENUSER","ROLE_SMSUSER"})
-	@RequestMapping(value = "/user_rec_Check", method= {RequestMethod.GET, RequestMethod.POST})
-	@ResponseBody
-    public String user_rec_check(
-    		) {
-		HashMap<String, Object> param = new HashMap<>();
-		param.put("pagesize", 1000);
-		param.put("pagestart", 0);
-		List<Users> users = uService.getView(param);
-		int count1 = 0;
-		int count2 = 0;
-		for(int i=0; i<users.size(); i++) {
-			if(!users.get(i).getRec_type().equals("N")) {
-				count1++;
-			}
-			if(users.get(i).getAuth_cd().equals("15")) {
-				count2++;
-			}
-		}
-		if(count1>=RecCount) {
-			return "false";
-		}else if(count2>=2) {
-			return "false";
-		}
-		return "true";
-	}
+//	@Secured({"ROLE_ADMIN","ROLE_OPERATIONADMIN","ROLE_GROUPADMIN","ROLE_LISTENUSER","ROLE_SMSUSER"})
+//	@RequestMapping(value = "/user_rec_Check", method= {RequestMethod.GET, RequestMethod.POST})
+//	@ResponseBody
+//    public String user_rec_check(
+//    		Authentication authentication
+//    		) {
+//		HashMap<String, Object> param = new HashMap<>();
+//		param.put("pagesize", 1000);
+//		param.put("pagestart", 0);
+//		List<Users> users = uService.getView(param);
+//		user_logger.info("user_rec_Check -> "+authentication.getName()+" : "+param.toString());
+//		int count1 = 0;
+//		int count2 = 0;
+//		for(int i=0; i<users.size(); i++) {
+//			if(!users.get(i).getRec_type().equals("N")) {
+//				count1++;
+//			}
+//			if(users.get(i).getAuth_cd().equals("15")) {
+//				count2++;
+//			}
+//		}
+//		if(count1>=RecCount) {
+//			return "false";
+//		}else if(count2>=2) {
+//			return "false";
+//		}
+//		return "true";
+//	}
 	
 	
 	
@@ -183,21 +202,29 @@ public class UserController {
 	public HashMap<String, Object> user_page_ajax(Model model,
 			@RequestParam(value="tel_no", required=false, defaultValue="")String tel_no,
 			@RequestParam(value="branch_cd", required=false, defaultValue="")String branch_cd,
+			@RequestParam(value="rec_type", required=false, defaultValue="")String rec_type,
+			@RequestParam(value="auth_cd", required=false, defaultValue="")String auth_cd,
     		@RequestParam(value="pagenum", required=false, defaultValue="")int pagenum,
     		@RequestParam(value="pagesize", required=false, defaultValue="")int pagesize,
     		@RequestParam(value="recordstartindex", required=false, defaultValue="")int recordstartindex,
-    		@RequestParam(value="recordendindex", required=false, defaultValue="")int recordendindex) throws JsonProcessingException{
+    		@RequestParam(value="recordendindex", required=false, defaultValue="")int recordendindex,
+    		Authentication authentication) throws JsonProcessingException{
 		String active = "active page_open";
 		model.addAttribute("user_active", active);
 		listExcelDownload format = new listExcelDownload();
-		
+		if(branch_cd.equals("전체")) {
+			branch_cd = "";
+		}
+		auth_cd = Utils.authFormat(auth_cd);
 		HashMap<String, Object> param = new HashMap<>();
 		HashMap<String, Object> param1 = new HashMap<>();
 		param.put("pagesize", pagesize);
 		param.put("pagestart", recordstartindex);
 		param.put("tel_no", tel_no);
 		param.put("branch_cd", branch_cd);
-		
+		param.put("rec_type", rec_type);
+		param.put("auth_cd", auth_cd);
+		user_logger.info("user_page_ajax -> "+authentication.getName()+" : "+param.toString());
 		List<Users> users = uService.getView(param);
 		if(users.size()!=0) {
 			int total = uService.getListCount(param);
@@ -222,7 +249,8 @@ public class UserController {
 	public String user_idCheck(
 			@RequestParam(value="emp_id", required=false, defaultValue="")String emp_id,
 			@RequestParam(value="tel_no", required=false, defaultValue="")String tel_no,
-			@RequestParam(value="tel_no_070", required=false, defaultValue="")String tel_no_070
+			@RequestParam(value="tel_no_070", required=false, defaultValue="")String tel_no_070,
+			Authentication authentication
 			) throws JsonProcessingException{
 		HashMap<String, Object> param = new HashMap<>();
 		param.put("emp_id", emp_id);
@@ -230,6 +258,7 @@ public class UserController {
 		param.put("tel_no_070", tel_no_070);
 		param.put("pagesize", 100);
 		param.put("pagestart", 0);
+		user_logger.info("user_Check -> "+authentication.getName()+" : "+param.toString());
 		List<Users> user = uService.getView(param);
 		if(user.size()==0) {
 			return "true";
@@ -243,7 +272,7 @@ public class UserController {
 	@Secured({"ROLE_ADMIN"})
 	@RequestMapping(value = "/user_Insert", method= {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
-	public void user_Insert(
+	public String user_Insert(
 			@RequestParam(value="emp_id", required=false, defaultValue="")String emp_id,
 			@RequestParam(value="tel_no", required=false, defaultValue="")String tel_no,
 			@RequestParam(value="tel_no_070", required=false, defaultValue="")String tel_no_070,
@@ -252,8 +281,48 @@ public class UserController {
 			@RequestParam(value="auth_cd", required=false, defaultValue="")String auth_cd,
 			@RequestParam(value="branch_cd", required=false, defaultValue="")String branch_cd,
 			@RequestParam(value="rec_type", required=false, defaultValue="")String rec_type,
-			@RequestParam(value="down_type", required=false, defaultValue="")String down_type
+			@RequestParam(value="down_type", required=false, defaultValue="")String down_type,
+			Authentication authentication
 			) throws JsonProcessingException{
+		
+		
+		if(!rec_type.equals("N") && auth_cd.equals("13")) {
+			HashMap<String, Object> param1 = new HashMap<>();
+			param1.put("pagesize", 1000);
+			param1.put("pagestart", 0);
+			param1.put("auth_cd", "13");
+			List<Users> users = uService.getView(param1);
+			int count1 = 0;
+			for(int i=0; i<users.size(); i++) {
+				if(!users.get(i).getRec_type().equals("N")) {
+					count1++;
+				}
+			}
+			if(count1>=RecCount) {
+				return "false";
+			}
+		}
+		if(auth_cd.equals("15")) {
+			HashMap<String, Object> param1 = new HashMap<>();
+			param1.put("pagesize", 1000);
+			param1.put("pagestart", 0);
+			param1.put("auth_cd", "15");
+			List<Users> users = uService.getView(param1);
+			int count1 = 0;
+			for(int i=0; i<users.size(); i++) {
+				if(users.get(i).getAuth_cd().equals("15")) {
+					count1++;
+				}
+			}
+			if(count1>=2) {
+				return "false";
+			}
+		}
+		
+		
+		
+		
+		
 		String rec_regdate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.KOREA).format(new Date());
 		HashMap<String, Object> param = new HashMap<>();
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -267,14 +336,16 @@ public class UserController {
 		param.put("rec_type", rec_type);
 		param.put("down_type", down_type);
 		param.put("rec_regdate", rec_regdate);
+		user_logger.info("user_Insert ->"+authentication.getName()+" : "+param.toString());
 		uService.setInsert(param);
+		return "true";
     }
 	
 	
 	@Secured({"ROLE_ADMIN","ROLE_GROUPADMIN","ROLE_LISTENUSER"})
 	@RequestMapping(value = "/user_update", method= {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
-	public void user_update(
+	public String user_update(
 			@RequestParam(value="emp_id", required=false, defaultValue="")String emp_id,
 			@RequestParam(value="tel_no", required=false, defaultValue="")String tel_no,
 			@RequestParam(value="tel_no_070", required=false, defaultValue="")String tel_no_070,
@@ -283,8 +354,69 @@ public class UserController {
 			@RequestParam(value="auth_cd", required=false, defaultValue="")String auth_cd,
 			@RequestParam(value="branch_cd", required=false, defaultValue="")String branch_cd,
 			@RequestParam(value="rec_type", required=false, defaultValue="")String rec_type,
-			@RequestParam(value="down_type", required=false, defaultValue="")String down_type
+			@RequestParam(value="down_type", required=false, defaultValue="")String down_type,
+			Authentication authentication
 			) throws JsonProcessingException{
+		
+		
+		
+		if(!rec_type.equals("N") && auth_cd.equals("13")) {
+			HashMap<String, Object> param1 = new HashMap<>();
+			param1.put("pagesize", 1000);
+			param1.put("pagestart", 0);
+			param1.put("auth_cd", "13");
+			List<Users> users = uService.getView(param1);
+			HashMap<String, Object> param2 = new HashMap<>();
+			param2.put("pagesize", 1000);
+			param2.put("pagestart", 0);
+			param2.put("tel_no", tel_no);
+			List<Users> users_check = uService.getView(param2);
+			
+			
+			int count1 = 0;
+			for(int i=0; i<users.size(); i++) {
+				if(!users.get(i).getRec_type().equals("N")) {
+					count1++;
+				}
+			}
+			if(!users_check.get(0).getRec_type().equals("N")) {
+				count1--;
+			}
+			if(count1>=RecCount) {
+				return "false";
+			}
+		}
+		if(auth_cd.equals("15")) {
+			HashMap<String, Object> param1 = new HashMap<>();
+			param1.put("pagesize", 1000);
+			param1.put("pagestart", 0);
+			param1.put("auth_cd", "15");
+			List<Users> users = uService.getView(param1);
+			HashMap<String, Object> param2 = new HashMap<>();
+			param2.put("pagesize", 1000);
+			param2.put("pagestart", 0);
+			param2.put("tel_no", tel_no);
+			List<Users> users_check = uService.getView(param2);
+			int count1 = 0;
+			for(int i=0; i<users.size(); i++) {
+				if(users.get(i).getAuth_cd().equals("15")) {
+					count1++;
+				}
+			}
+			if(!users_check.get(0).getAuth_cd().equals("15")) {
+				count1--;
+			}
+			if(count1>=2) {
+				return "false";
+			}
+		}
+		
+		
+		
+		
+		
+		
+		
 		String rec_type_regdate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.KOREA).format(new Date());
 		HashMap<String, Object> param = new HashMap<>();
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -292,13 +424,19 @@ public class UserController {
 		param.put("tel_no", tel_no);
 		param.put("login_date", "");
 		param.put("emp_nm", emp_nm);
-		param.put("pass", passwordEncoder.encode(pass));
+		if(pass.equals("")) {
+			param.put("pass", "");
+		}else {
+			param.put("pass", passwordEncoder.encode(pass));
+		}
 		param.put("auth_cd", auth_cd);
 		param.put("branch_cd", branch_cd);
 		param.put("rec_type", rec_type);
 		param.put("down_type", down_type);
 		param.put("rec_type_regdate", rec_type_regdate);
+		user_logger.info("user_update -> "+authentication.getName()+" : "+param.toString());
 		uService.setUpdate(param);
+		return "true";
     }
 	
 	

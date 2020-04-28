@@ -25,10 +25,31 @@
 
 	<script>
 	$(document).ready(function() {
+		$("input[name=param1]").focus();
 		var autoAccount = setTimeout(function() {
 			$("input[name=param1]").val("admin");
 			$("input[name=param2]").val("admin");
 		}, 1000);
+		
+		$("#id").keydown(function(key) {
+            if (key.keyCode == 13) {
+                if($("input[name=param2]").val() != ""){
+                	login();
+                }else{
+                	alert("비밀번호를 입력해주세요.");
+                	$("input[name=param2]").focus();
+                	return false;
+                }
+            }
+        });
+
+		$("#pw").keydown(function(key) {
+			 if (key.keyCode == 13) {
+				 login();
+			 }
+		});
+		
+
 		
 		$("#login").click(function(event) {
 			if ($("input[name=param1]").val() == "") {
@@ -39,6 +60,11 @@
 				alert("비밀번호를 입력해주세요.");
 				return;
 			}
+			login();
+		});
+		
+		
+		function login(){
 			$.ajax({
 				type : "POST",
 				url : "/doLogin",
@@ -54,7 +80,7 @@
 					alert("계정정보를 확인해주세요.");
 				}
 			});
-		});
+		}
 	});
 	</script>
 </head>
@@ -68,11 +94,11 @@
         <p class="login-img"><img th:src="${webLoginLogo}" alt="logo_270*85" data-toggle="tooltip" data-placement="right" title="270*85"></p>
         <div class="input-group">
           <span class="input-group-addon"><i class="icon_profile"></i></span>
-          <input type="text" class="form-control" name="param1" placeholder="Username" autofocus required="">
+          <input type="text" class="form-control" id="id" name="param1" placeholder="Username" autofocus required="">
         </div>
         <div class="input-group">
           <span class="input-group-addon"><i class="icon_key_alt"></i></span>
-          <input type="password" class="form-control" placeholder="Password" required="" name="param2">
+          <input type="password" class="form-control" id="pw" placeholder="Password" required="" name="param2">
         </div>
         <a class="btn btn-info btn-lg btn-block" type="submit" id="login" alt="login button">Login</a>
       </div>

@@ -31,8 +31,11 @@ public class UsersDetailsService implements UserDetailsService{
 		param.put("emp_id", username);
 		List<Users> users = mapper.getView(param);
 		
-		
-		if (null == users) {
+		if (users.size()<=0) {
+			HashMap<String, Object> param1 = new HashMap<>();
+			param1.put("emp_id", username);
+			param1.put("result", "fail");
+			mapper.setInsertListen_log(param1);
         	throw new UsernameNotFoundException("USER NOT FOUND OR NOT MATCH PASSWORD");
         }
 		Session session = new Session();

@@ -1,5 +1,7 @@
 package com.nautestech.www.controller;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,11 +12,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value = "/monitor")
 public class MonitorController {
 	
+	
+	private static Logger main_logger = LogManager.getLogger(MonitorController.class);
+	private static Logger monitor_logger = LogManager.getLogger("monitor_log");
+	
 	@Secured({"ROLE_ADMIN","ROLE_OPERATIONADMIN","ROLE_GROUPADMIN","ROLE_LISTENUSER","ROLE_SMSUSER"})
 	@RequestMapping(value = "/monitor_page", method= {RequestMethod.GET, RequestMethod.POST})
     public String index(Model model){
-		String active = "active page_open";
-		model.addAttribute("monitor_active", active);
+		main_logger.info("welcome to Monitor_Page");
 		return "recording/monitor_page";
     }
 
