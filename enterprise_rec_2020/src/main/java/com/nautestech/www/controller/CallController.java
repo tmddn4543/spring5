@@ -444,7 +444,7 @@ public class CallController {
 		}
 		call_logger.info("callSearch_YYYYMMDD ->"+authentication.getName()+" : "+param.toString());
 		listExcelDownload format = new listExcelDownload();
-		if(call.size()!=0) {
+		if(call.size()!=0) { 
 			int total = cService.getListCountYYYYMM(param);
 			param1.put("total", total);
 			for(int i=0; i<call.size(); i++) {
