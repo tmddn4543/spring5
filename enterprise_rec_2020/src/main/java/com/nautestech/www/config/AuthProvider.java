@@ -27,12 +27,13 @@ public class AuthProvider implements AuthenticationProvider {
 	
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+		
 		String id = authentication.getName();
         String password = authentication.getCredentials().toString();
         Session users = (Session) uService.loadUserByUsername(id);
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		
         HashMap<String, Object> param;
+        
         if (!passwordEncoder.matches(authentication.getCredentials().toString(), users.getPassword())) {
         	param = new HashMap<String, Object>();
         	param.put("emp_id", id);
@@ -42,6 +43,7 @@ public class AuthProvider implements AuthenticationProvider {
 		}
         
         String login_date = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.KOREA).format(new Date());
+
         String tel_no = users.getTel_no();
         param = new HashMap<String, Object>();
         param.put("tel_no", tel_no);

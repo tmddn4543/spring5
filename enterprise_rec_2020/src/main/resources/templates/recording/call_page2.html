@@ -13,6 +13,7 @@
     <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxcore.js}"></script>
     <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxdatetimeinput.js}"></script>
     <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxcalendar.js}"></script>
+    <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxtooltip.js}"></script>
     <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/globalization/globalize.js}"></script>
 
     <!-- DropDownList -->
@@ -64,6 +65,9 @@ $(document).ready(
 	    	var arr_c_id = new Array();
 	    	var arr_YYYYMM = new Array();
 
+	    	var u_auth_cd = $("#u_auth_cd").val();
+	    	var u_down_type = $("#u_down_type").val();    	
+	        /* 반응형 */
 
 	        /* 소스 */
 	        var source = [
@@ -132,6 +136,17 @@ $(document).ready(
 	        	selectetime = $("#selEndTime1").val();
 	        	bday = bdayFormat(selectday,selectstime);
 	        	eday = edayFormat(selectday,selectetime);
+	        	if($("#caller1_bt").text()=="선택 " && caller!=""){
+	        		alert("선택여부 확인해주세요.");
+	        		$("#caller1_bt").focus();
+	            	return false;
+	        	}
+	        	
+	        	if($("#called1_bt").text()=="선택 " && called!=""){
+	        		alert("선택여부 확인해주세요.");
+	        		$("#called1_bt").focus();
+	        		return false;
+	        	}
 	        	
 	        	$("#caller2").val(caller);
 	        	$("#called2").val(called);
@@ -160,11 +175,23 @@ $(document).ready(
 	        	emp = $("#emp2").val();
 	        	end_talk_time = $("#end_talk_time2").val();
 	        	start_talk_time = $("#start_talk_time2").val();
+	        	if($("#caller2_bt").text()=="선택 " && caller!=""){
+	        		alert("선택여부 확인해주세요.");
+	        		return false;
+	        	}
+	        	if($("#called2_bt").text()=="선택 " && called!=""){
+	        		alert("선택여부 확인해주세요.");
+	        		return false;
+	        	}
 	        	callSearch();
 	        });
 
 
 	        function callSearch(){
+	        	if(YYYYMM(bday, eday)=='false'){
+	        		alert("2달 이상 검색은 불가합니다.");
+	        		return false;
+	        	}
 	        	
 	        	var source =
 	            {
@@ -220,6 +247,7 @@ $(document).ready(
 			    
 			    
 			    
+			    if(u_auth_cd!="13" && (u_down_type=="Y" || u_down_type=="")){
 			    	$("#grid").jqxGrid(//킵
 		                    {
 		                    	source: dataadapter,
@@ -257,8 +285,55 @@ $(document).ready(
 		                            { text: "<button class='btn btn-default' id='zipDown_bt'>받기</button>", datafield: "dirname", width: 9.090909 + "%", minwidth: 91.7333}
 		                        ]
 		            });
+			    }else{
+			    	$("#grid").jqxGrid(//킵
+		                    {
+		                    	source: dataadapter,
+		                        width: 100 + "%",
+		                        height:  + "%",
+		                        autoheight: true, 
+		                        theme: 'material',
+		                        rowdetails: true,
+		                        rowdetailstemplate: {
+		                            rowdetails: "<div style='margin: 20px !important;'>Row Details</div>",
+		                            rowdetailsheight: 100
+		                        },
+		                        virtualmode: true,
+		                        pageable: true,
+		                        rendergridrows: function(obj)
+		        				{
+		                        	for(var i=0; i<obj.data.length-recordstartindex; i++){
+		                        		arr_c_id[i] = obj.data[i+recordstartindex].c_id;
+		                        		arr_YYYYMM[i] = obj.data[i+recordstartindex].YYYYMM;
+		        					}
+		        					return obj.data;     
+		        				},
+		        				initrowdetails: initrowdetails,
+		                        columns: [
+		                            { text: "순번", datafield: "num", width: 5 + "%", minwidth: 50.9},
+		                            { text: "그룹", datafield: "branch_cd", width: 9.090909 + "%", minwidth: 91.7333},
+		                            { text: "사용자ID", datafield: "emp_id", width: 9.090909 + "%", minwidth: 91.7333},
+		                            { text: "이름", datafield: "emp_nm", width: 9.090909 + "%", minwidth: 91.7333},
+		                            { text: "발신번호", datafield: "caller", width: 9.090909 + "%", minwidth: 91.7333},
+		                            { text: "수신번호", datafield: "called", width: 9.090909 + "%", minwidth: 91.7333},
+		                            { text: "통화일자", datafield: "call_date", width: 9.090909 + "%", minwidth: 91.7333},
+		                            { text: "통화시각", datafield: "call_hour", width: 9.090909 + "%", minwidth: 91.7333},
+		                            { text: "통화시간", datafield: "call_time", width: 9.090909 + "%", minwidth: 91.7333},
+		                            { text: "유형", datafield: "rec_type", width: 9.090909 + "%", minwidth: 91.7333},//"+call[i].dirname+""+call[i].fname+"
+		                        ]
+		            });
+			    }
+			    
 	        	
 	        }
+	        
+	        
+	  
+	    
+	        
+	        
+	        
+	        
 	        
 	});
 
@@ -272,6 +347,11 @@ $(document).ready(
 </head>
 <body>
     <div class="wrapper gray-bg" id="page-wrapper">
+       <div class="row border-bottom">
+    	<div th:replace="fragments/navbar :: navbarFragment"></div>
+        </div>
+        <input type="hidden" th:value="${#authentication.details.auth_cd}" id="u_auth_cd">
+        <input type="hidden" th:value="${#authentication.details.down_type}" id="u_down_type">
         
         <div class="ibox">
             <div class="ibox-title">
@@ -285,6 +365,11 @@ $(document).ready(
                 <button  id="popbt" type="button" class="btn btn-primary btn-lg hide" data-toggle="modal" data-target="#search_filter">
                     <span>검색</span> <i class="fa fa-filter" aria-hidden="true"></i>
                 </button>
+
+                
+
+                
+                                             
 
             </div>
             <div class="ibox-content">
@@ -304,6 +389,7 @@ $(document).ready(
                                       <input type="text" class="form-control user_name" placeholder="" id="emp1">
                                       <span type="text" placeholder="" class="input-group-btn" th:if="${#authentication.details.auth_cd eq'00'}">
                                         <button class="btn btn-default" type="button" id="id_user_search1">사용자 검색</button>
+<!--                                         th:if="${#authentication.principal} eq''" -->
                                       </span>
                                     </div>
                                 </div>
@@ -405,6 +491,129 @@ $(document).ready(
             </div>
         </div>
     </div>
+
+<form action="/call/zip" method="post" id="form_arr">
+	<input type="hidden" id="hidden_arr" name="arr">
+</form>
+<!-- 서치 필터 -->
+<div class="modal" id="search_filter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-background="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">검색·청취 필터</h4>
+                
+            </div>
+            <div class="modal-body">
+                <div class="list_search">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <label class="col-lg-4">그룹</label>
+                                <div class="col-lg-8">
+                                    <div class="group_btn_act" id="group_btn_act2"></div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <label class="col-lg-4">사용자 ID 또는 이름</label>
+                                <div class="col-lg-8">
+                                    <div class="input-group">
+                                      <input type="text" class="form-control" placeholder="" id="emp2">
+                                      <span type="text" placeholder="" class="input-group-btn user_name" th:if="${#authentication.details.auth_cd eq'00'}">
+                                        <button class="btn btn-default" id="id_user_search2" type="button">사용자 검색</button>
+                                      </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <label class="col-lg-4">업체명</label>
+                                <div class="col-lg-8">
+                                    <input type="text" class="form-control" placeholder="" id="">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bottom_line"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <label class="col-lg-4">통화날짜</label>
+                                <div class="col-lg-8">
+                                    <div class="jqxcalendar_act" id="jqxcalendar_act2">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <label class="col-lg-4">통화시각</label>
+                                <div class="col-lg-8">
+                                    <div class="col-sm-5">
+                                        <select class="selStartTime form-control" name="selStartTime" id="selStartTime2">
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-2">~</div>
+                                        
+                                    <div class="col-sm-5">
+                                        <select class="selEndTime form-control" name="selEndTime" id="selEndTime2"></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <label class="col-lg-4">통화시간</label>
+                                <div class="col-lg-8">
+                                    <div class="dropdown col-sm-5">
+                                        <input type="text" class="form-control time_start col-lg-10" id="start_talk_time2" placeholder="03">
+                                    </div>
+                                    <div class="col-sm-2">~</div>
+                                    <div class="dropdown col-sm-5">
+                                        <input type="text" class="time_end form-control col-lg-10" id="end_talk_time2" placeholder="sec">
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <label class="col-lg-4">수신전화번호</label>
+                                <div class="col-lg-8 input-group">
+                                    <input type="text" class="form-control receive_number" placeholder="" id="called2">
+                                	<div class="input-group-btn">
+                                        <button type="button" id="called2_bt" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">선택 <span class="caret"></span></button>
+                                        <ul class="dropdown-menu" role="menu" id="called2_ul">
+                                          <li><a href="#">포함</a></li>
+                                          <li><a href="#">정확</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <label class="col-lg-4">발신전화번호</label>
+                                <div class="col-lg-8 input-group">
+                                    <input type="text" class="form-control col-lg-8 send_number" placeholder="" id="caller2">
+                                	<div class="input-group-btn">
+                                        <button type="button" id="caller2_bt" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">선택 <span class="caret"></span></button>
+                                        <ul class="dropdown-menu" role="menu" id="caller2_ul">
+                                          <li><a href="#">포함</a></li>
+                                          <li><a href="#">정확</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <label class="col-lg-4">녹취유형</label>
+                                <div class="col-lg-8">
+                                    <div class="record_type" id="record_type2"> </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bottom_line"></div>
+                        <div class="form-group btn_group">
+                            <button type="button" class="btn btn-default next_action" id="next_action2">조회</button>
+                            <button type="button" class="btn btn-default" id="excelExport">액셀 다운로드</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>  
 
 
 

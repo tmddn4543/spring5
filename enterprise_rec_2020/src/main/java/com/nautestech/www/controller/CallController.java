@@ -1,12 +1,24 @@
 package com.nautestech.www.controller;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.RandomAccessFile;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
+
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -30,7 +42,6 @@ import com.nautestech.www.model.Users;
 import com.nautestech.www.serviceImpl.CallService;
 import com.nautestech.www.serviceImpl.UsersService;
 import com.nautestech.www.util.Command;
-import com.nautestech.www.util.ZipDownload;
 import com.nautestech.www.util.listExcelDownload;
 
 import utils.Utils;
@@ -39,7 +50,9 @@ import utils.Utils;
 @RequestMapping(value = "/call")
 public class CallController {
  
-		
+	
+	
+	
 	@Value("${statisticsLimit}")
 	int statisticsLimit;
 	
@@ -70,7 +83,7 @@ public class CallController {
 	
 	@Secured({"ROLE_ADMIN","ROLE_OPERATIONADMIN","ROLE_GROUPADMIN","ROLE_LISTENUSER","ROLE_SMSUSER"})
 	@RequestMapping(value = "/zip", method= {RequestMethod.GET, RequestMethod.POST})
-	public String zip(HttpServletRequest request, HttpServletResponse response,
+	public void zip(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws Exception {
 		HashMap<String, Object> param1 = new HashMap<>();
 		param1.put("emp_id", authentication.getName());
@@ -79,7 +92,6 @@ public class CallController {
 		call_logger.info("zip ->"+authentication.getDetails()+" : "+param1.toString());
 		String arr = request.getParameter("arr");
 		String[] sp_arr = arr.split(",");
-		ZipDownload zip_class = new ZipDownload();
 		String active = "active page_open";
 		request.setAttribute("callhistoryYMD", callhistoryYMD);
 		request.setAttribute("call_active", active);
@@ -89,10 +101,10 @@ public class CallController {
 		Command cmd = new Command();
 		String dirname = "";
 		String[] fname = null;
-		if(sp_arr.length>1) {
+		if(sp_arr.length>0) {
 			for(int i=0; i<sp_arr.length; i++) {
 				sp_arr[i] = sp_arr[i].replace("mxx", isMxxMode);
-				dirname = sp_arr[i].substring(0,32);
+				dirname = sp_arr[i].substring(0,33);
 				checkF = new File(dirname);
 				f_mxx = new File(sp_arr[i]);
 				if(!checkF.exists()){
@@ -105,9 +117,65 @@ public class CallController {
 					cmd.dencMp3(fname[5], dirname,isMxxMode);
 				}
 			}
-			zip_class.down(request, response, sp_arr);
+			
+			String day = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA).format(new Date());
+			
+			//다운받을위치
+			String zipFile = "/home/zip/call_history_"+day+".zip";
+			String downloadFileName = "call_history_"+day;
+			List<String> sourceFiles = new ArrayList<String>();
+			
+			//파일위치+파일이름
+			//경로와파일이름적는것
+			for(int i=0; i<sp_arr.length; i++){
+				sourceFiles.add(sp_arr[i]);
+			}
+			
+			try{
+				
+			    // ZipOutputStream을 FileOutputStream 으로 감쌈
+			    FileOutputStream fout = new FileOutputStream(zipFile);
+			    ZipOutputStream zout = new ZipOutputStream(fout);
+			    for(int i=0; i < sourceFiles.size(); i++){
+
+			        //본래 파일명 유지, 경로제외 파일압축을 위해 new File로 
+			        ZipEntry zipEntry = new ZipEntry(new File(sourceFiles.get(i)).getName());
+			        zout.putNextEntry(zipEntry);
+
+			        //경로포함 압축
+			        //zout.putNextEntry(new ZipEntry(sourceFiles.get(i)));
+
+			        FileInputStream fin = new FileInputStream(sourceFiles.get(i));
+			        byte[] buffer = new byte[1024];
+			        int length;
+
+			        // input file을 1024바이트로 읽음, zip stream에 읽은 바이트를 씀
+			        while((length = fin.read(buffer)) > 0){
+			            zout.write(buffer, 0, length);
+			        }
+			        zout.closeEntry();
+			        fin.close();
+			    }
+			    zout.close();
+			    response.setContentType("application/zip");
+			    response.addHeader("Content-Disposition", "attachment; filename=" + downloadFileName + ".zip");
+			    FileInputStream fis=new FileInputStream(zipFile);
+			    BufferedInputStream bis=new BufferedInputStream(fis);
+			    ServletOutputStream so=response.getOutputStream();
+			    BufferedOutputStream bos=new BufferedOutputStream(so);
+			    byte[] data=new byte[2048];
+			    int input=0;
+			    while((input=bis.read(data))!=-1){
+			        bos.write(data,0,input);
+			        bos.flush();
+			    }
+			    if(bos!=null) bos.close();
+			    if(bis!=null) bis.close();
+			    if(so!=null) so.close();
+			    if(fis!=null) fis.close();
+
+			    } catch(IOException ioe){System.out.println(ioe); }
 		}
-		return "/recording/call_page";
 	}
 	
 	
@@ -115,7 +183,6 @@ public class CallController {
 	@RequestMapping(value = "/call_page", method= {RequestMethod.GET, RequestMethod.POST})
     public String index(Model model){
 		main_logger.info("welcome to CallPage");
-		model.addAttribute("callhistoryYMD", callhistoryYMD);
 		return "recording/call_page";
     }
 	
@@ -174,7 +241,6 @@ public class CallController {
 		}else {
 			call = cService.getView(param);
 		}
-		System.out.println(call.size());
 		model.addAttribute("list", call);
 		return new listExcelDownload();
 	}
@@ -194,9 +260,6 @@ public class CallController {
 		}
 		auth_cd = Utils.authFormat(auth_cd);
 		HashMap<String, Object> param = new HashMap<>();
-		System.out.println(emp);
-		System.out.println(branch_cd);
-		System.out.println(auth_cd);
 		param.put("emp_id", emp);
 		param.put("emp_nm", emp);
 		param.put("branch_cd", branch_cd);
@@ -209,7 +272,8 @@ public class CallController {
 		return users;
     }
 	
-	@Secured({"ROLE_ADMIN","ROLE_ENDUSER","ROLE_OPERATIONADMIN","ROLE_GROUPADMIN","ROLE_LISTENUSER","ROLE_SMSUSER"})
+	
+	//@Secured({"ROLE_ADMIN","ROLE_ENDUSER","ROLE_OPERATIONADMIN","ROLE_GROUPADMIN","ROLE_LISTENUSER","ROLE_SMSUSER"})
 	@RequestMapping(value = "/media/{YYYYMM}/{c_id}", method= {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
     public String media(
@@ -237,7 +301,7 @@ public class CallController {
 		param.put("rec_type", "");
 		param.put("start_talk_time", "");
 		param.put("end_talk_time", "");
-		call_logger.info("media/{YYYYMM}/{c_id} -> "+authentication.getName()+" : "+param.toString());
+		//call_logger.info("media/{YYYYMM}/{c_id} -> "+authentication.getName()+" : "+param.toString());
 		List<Call> call = null;
 		if(YYYYMM.equals(null)) {
 			call = cService.getView(param);
@@ -260,14 +324,13 @@ public class CallController {
 			cmd.ConvertMXX(call.get(0).getFname(), call.get(0).getDirname(),isMxxMode);
 			cmd.dencMp3(call.get(0).getFname(), call.get(0).getDirname(),isMxxMode);
 		}
-		System.out.println(call.get(0).getDirname()+call.get(0).getFname().replace("mxx", isMxxMode));
 		File file = new File(call.get(0).getDirname()+call.get(0).getFname().replace("mxx", isMxxMode));
 
 		
 		
 		//듣기로그 넣기
 		HashMap<String, Object>param1 = new HashMap<>();
-		param1.put("emp_id", authentication.getName());
+		//param1.put("emp_id", authentication.getName());
 		param1.put("result", "listen");
 		param1.put("dirname", call.get(0).getDirname());
 		param1.put("filename", call.get(0).getFname().replace("mxx", isMxxMode));
@@ -320,66 +383,7 @@ public class CallController {
 		return null;
     }
 	
-	@Secured({"ROLE_ADMIN","ROLE_ENDUSER","ROLE_OPERATIONADMIN","ROLE_GROUPADMIN","ROLE_LISTENUSER","ROLE_SMSUSER"})
-	@RequestMapping(value = "/callSearch", method= {RequestMethod.GET, RequestMethod.POST})
-	@ResponseBody
-    public HashMap<String, Object> callSearch(
-    		@RequestParam(value="emp", required=false, defaultValue="")String emp,
-    		@RequestParam(value="branch_cd", required=false, defaultValue="")String branch_cd,
-    		@RequestParam(value="auth_cd", required=false, defaultValue="")String auth_cd,
-    		@RequestParam(value="bday", required=false, defaultValue="")String bday,
-    		@RequestParam(value="eday", required=false, defaultValue="")String eday,
-    		@RequestParam(value="caller", required=false, defaultValue="")String caller,
-    		@RequestParam(value="called", required=false, defaultValue="")String called,
-    		@RequestParam(value="rec_type", required=false, defaultValue="")String rec_type,
-    		@RequestParam(value="start_talk_time", required=false, defaultValue="")String start_talk_time,
-    		@RequestParam(value="end_talk_time", required=false, defaultValue="")String end_talk_time,
-    		@RequestParam(value="caller_attr", required=false, defaultValue="")String caller_attr,
-    		@RequestParam(value="called_attr", required=false, defaultValue="")String called_attr,
-    		@RequestParam(value="pagenum", required=false, defaultValue="")int pagenum,
-    		@RequestParam(value="pagesize", required=false, defaultValue="")int pagesize,
-    		@RequestParam(value="recordstartindex", required=false, defaultValue="")int recordstartindex,
-    		@RequestParam(value="recordendindex", required=false, defaultValue="")int recordendindex
-    		,Authentication authentication) throws ParseException{ 
-		if(branch_cd.equals("전체")) {
-			branch_cd = "";
-		}
-		HashMap<String, Object> param = new HashMap<>();
-		param.put("emp_id", emp);
-		param.put("emp_nm", emp);
-		param.put("branch_cd", branch_cd);
-		param.put("bday", bday);
-		param.put("eday", eday);
-		param.put("caller", caller);
-		param.put("called", called);
-		param.put("caller_attr", caller_attr);
-		param.put("called_attr", called_attr);
-		param.put("rec_type", rec_type);
-		param.put("start_talk_time", start_talk_time);
-		param.put("end_talk_time", end_talk_time);
-		param.put("pagesize", pagesize);
-		param.put("pagestart", recordstartindex);
-		param.put("xlsx", "false");
-		HashMap<String, Object> param1 = new HashMap<>();
-		List<Call> call = cService.getView(param);
-		call_logger.info(authentication.getName()+" : "+param.toString());
-		listExcelDownload format = new listExcelDownload();
-		if(call.size()!=0) {
-			int total = cService.getListCount(param);
-			param1.put("total", total);
-			for(int i=0; i<call.size(); i++) {
-				call.get(i).setDirname("<label class='check_label'><input type='checkbox' class='checkbox_name' value='"+call.get(i).getDirname()+""+call.get(i).getFname()+"'></label>");
-				call.get(i).setCall_date(format.dateFormat(call.get(i).getBtime()));
-				call.get(i).setCall_hour(format.hourFormat(call.get(i).getBtime(), call.get(i).getEtime()));
-				call.get(i).setCall_time(format.timeFormat(call.get(i).getBtime(), call.get(i).getEtime()));
-				call.get(i).setRec_type(format.recFormat(call.get(i).getRec_type()));
-				call.get(i).setNum(recordstartindex+i+1);
-			}
-		}
-		param1.put("Rows", call);
-		return param1;
-    }
-	
+
 	
 	
 	@Secured({"ROLE_ADMIN","ROLE_ENDUSER","ROLE_OPERATIONADMIN","ROLE_GROUPADMIN","ROLE_LISTENUSER","ROLE_SMSUSER"})
@@ -405,7 +409,6 @@ public class CallController {
     		Authentication authentication) throws Exception{ 
 		String startYYYYMM = bday.substring(0,7);
 		String endYYYYMM = eday.substring(0,7);
-		
 		startYYYYMM = startYYYYMM.replace(":", "");
 		endYYYYMM = endYYYYMM.replace(":", "");
 		System.out.println(authentication.getDetails().toString());
@@ -433,7 +436,12 @@ public class CallController {
 		param.put("xlsx", "false");
 		System.out.println(bday +"~"+eday);
 		HashMap<String, Object> param1 = new HashMap<>();
-		List<Call> call = cService.getViewYYYYMM(param);
+		List<Call> call = null;
+		if(callhistoryYMD) {
+			call = cService.getViewYYYYMM(param);
+		}else {
+			call = cService.getView(param);
+		}
 		call_logger.info("callSearch_YYYYMMDD ->"+authentication.getName()+" : "+param.toString());
 		listExcelDownload format = new listExcelDownload();
 		if(call.size()!=0) {
@@ -441,7 +449,7 @@ public class CallController {
 			param1.put("total", total);
 			for(int i=0; i<call.size(); i++) {
 				call.get(i).setYYYYMM(startYYYYMM);
-				call.get(i).setDirname("<label class='check_label'><input type='checkbox' class='checkbox_name' value='"+call.get(i).getDirname()+""+call.get(i).getFname()+"'></label>");
+				call.get(i).setDirname("<label class='check_label'><input type='checkbox' class='checkbox_name' id='asdasd' value='"+call.get(i).getDirname()+""+call.get(i).getFname()+"'></label>");
 				call.get(i).setCall_date(format.dateFormat(call.get(i).getBtime()));
 				call.get(i).setCall_hour(format.hourFormat(call.get(i).getBtime(), call.get(i).getEtime()));
 				call.get(i).setCall_time(format.timeFormat(call.get(i).getBtime(), call.get(i).getEtime()));

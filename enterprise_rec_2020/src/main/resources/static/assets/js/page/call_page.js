@@ -1,6 +1,5 @@
 $(document).ready(
     function(){
-    	var callhistoryYMD = $("#callhistoryYMD").val();
     	var emp = "";
         var branch_cd = "";
         var auth_cd = "";
@@ -116,8 +115,6 @@ $(document).ready(
 
         /* 조회클릭 */
         $("#next_action1").click(function(){
-        	
-        	
         	branch_cd = $("#group_btn_act1").val();
         	caller = $("#caller1").val();
         	called = $("#called1").val();
@@ -145,17 +142,7 @@ $(document).ready(
         	emp = $("#emp1").val();
         	end_talk_time = $("#end_talk_time1").val();
         	start_talk_time = $("#start_talk_time1").val();
-        	
-        	
-        	//콜이력 월별 테이블 사용구분
-        	if(callhistoryYMD=='true'){
-        		callSearch_YYYYMMDD();
-        	}else if(callhistoryYMD=='false'){
-        		callSearch();
-        	}else{
-        		alert("콜이력 월별 사용구분 설정파일 오류.");
-        		return false;
-        	}
+        	callSearch();
         	
             $(".hide").removeClass("hide");
             $(".first_page").css({"display" : "none"});
@@ -183,191 +170,11 @@ $(document).ready(
         		alert("선택여부 확인해주세요.");
         		return false;
         	}
-        	//콜이력 월별 테이블 사용구분
-        	if(callhistoryYMD=='true'){
-        		callSearch_YYYYMMDD();
-        	}else if(callhistoryYMD=='false'){
-        		callSearch();
-        	}else{
-        		alert("콜이력 월별 사용구분 설정파일 오류.");
-        		return false;
-        	}
+        	callSearch();
         });
 
-        
 
-
-       
-        
-        
-        
-        
-        
-        $("#listBoxgridpagerlistgrid").on("click", "span", function(event){
-             var rows = event.target.innerText;
-             if(rows>14){
-                $("#grid").jqxGrid({
-                    height: 100 + "%",
-                    autoheight: false
-                });
-                
-             }else{
-                $("#grid").jqxGrid({
-                    height:  + "%",
-                    autoheight: true
-                });
-             }
-        });
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         function callSearch(){
-        	
-        	var source =
-            {
-                 datatype: "json",
-                 data : {emp : emp,
- 					branch_cd : branch_cd,
- 					auth_cd : auth_cd,
- 					bday : bday,
- 					eday : eday,
- 					caller : caller,
- 					called : called,
- 					rec_type : rec_type,
- 					end_talk_time : end_talk_time,
- 					start_talk_time : start_talk_time,
- 					caller_attr : caller_attr,
- 					called_attr : called_attr},
-                 datafields: [
-					 { name: 'num'},
-					 { name: 'emp_nm'},
-					 { name: 'caller'},
-					 { name: 'called'},
-					 { name: 'auth_cd'},
-					 { name: 'emp_id'},
-					 { name: 'branch_cd'},
-					 { name: 'rec_type'},
-					 { name: 'call_date'},
-					 { name: 'call_hour'},
-					 { name: 'call_time'},
-					 { name: 'dirname'}
-                ],
-			    url: '/call/callSearch',
-			    root: 'Rows',
-                cache: false,
-				beforeprocessing: function(data)
-				{		
-					source.totalrecords = data.total;
-				}
-            };		
-			
-		    var dataadapter = new $.jqx.dataAdapter(source);
-
-            // initialize jqxGrid
-		    
-		    if(u_auth_cd!="13" && (u_down_type=="Y" || u_down_type=="")){
-		    	$("#grid").jqxGrid(//킵
-	                    {
-	                    	source: dataadapter,
-	                        width: 100 + "%",
-	                        height:  + "%",
-	                        autoheight: true, 
-	                        theme: 'material',
-	                        rowdetails: true,
-	                        rowdetailstemplate: {
-	                            rowdetails: "<div style='margin: 20px !important;'>Row Details</div>",
-	                            rowdetailsheight: 100
-	                        },
-	                        virtualmode: true,
-	                        pageable: true,
-	                        rendergridrows: function(obj)
-	        				{
-	                        	for(var i=0; i<obj.data.length-recordstartindex; i++){
-	                        		arr_c_id[i] = obj.data[i+recordstartindex].c_id;
-	                        		arr_YYYYMM[i] = obj.data[i+recordstartindex].YYYYMM;
-	        					}
-	        					return obj.data;     
-	        				},
-	        				initrowdetails: initrowdetails,
-	                        columns: [
-	                            { text: "순번", datafield: "num", width: 5 + "%", minwidth: 50.9},
-	                            { text: "그룹", datafield: "branch_cd", width: 9.090909 + "%", minwidth: 91.7333},
-	                            { text: "사용자ID", datafield: "emp_id", width: 9.090909 + "%", minwidth: 91.7333},
-	                            { text: "이름", datafield: "emp_nm", width: 9.090909 + "%", minwidth: 91.7333},
-	                            { text: "발신번호", datafield: "caller", width: 9.090909 + "%", minwidth: 91.7333},
-	                            { text: "수신번호", datafield: "called", width: 9.090909 + "%", minwidth: 91.7333},
-	                            { text: "통화일자", datafield: "call_date", width: 9.090909 + "%", minwidth: 91.7333},
-	                            { text: "통화시각", datafield: "call_hour", width: 9.090909 + "%", minwidth: 91.7333},
-	                            { text: "통화시간", datafield: "call_time", width: 9.090909 + "%", minwidth: 91.7333},
-	                            { text: "유형", datafield: "rec_type", width: 9.090909 + "%", minwidth: 91.7333},//"+call[i].dirname+""+call[i].fname+"
-	                            { text: "<button class='btn btn-default' id='zipDown_bt'>받기</button>", datafield: "dirname", width: 9.090909 + "%", minwidth: 91.7333}
-	                        ]
-	            });
-		    }else{
-		    	$("#grid").jqxGrid(//킵
-	                    {
-	                    	source: dataadapter,
-	                        width: 100 + "%",
-	                        height:  + "%",
-	                        autoheight: true, 
-	                        theme: 'material',
-	                        rowdetails: true,
-	                        rowdetailstemplate: {
-	                            rowdetails: "<div style='margin: 20px !important;'>Row Details</div>",
-	                            rowdetailsheight: 100
-	                        },
-	                        virtualmode: true,
-	                        pageable: true,
-	                        rendergridrows: function(obj)
-	        				{
-	                        	for(var i=0; i<obj.data.length-recordstartindex; i++){
-	                        		arr_c_id[i] = obj.data[i+recordstartindex].c_id;
-	                        		arr_YYYYMM[i] = obj.data[i+recordstartindex].YYYYMM;
-	        					}
-	        					return obj.data;     
-	        				},
-	        				initrowdetails: initrowdetails,
-	                        columns: [
-	                            { text: "순번", datafield: "num", width: 5 + "%", minwidth: 50.9},
-	                            { text: "그룹", datafield: "branch_cd", width: 9.090909 + "%", minwidth: 91.7333},
-	                            { text: "사용자ID", datafield: "emp_id", width: 9.090909 + "%", minwidth: 91.7333},
-	                            { text: "이름", datafield: "emp_nm", width: 9.090909 + "%", minwidth: 91.7333},
-	                            { text: "발신번호", datafield: "caller", width: 9.090909 + "%", minwidth: 91.7333},
-	                            { text: "수신번호", datafield: "called", width: 9.090909 + "%", minwidth: 91.7333},
-	                            { text: "통화일자", datafield: "call_date", width: 9.090909 + "%", minwidth: 91.7333},
-	                            { text: "통화시각", datafield: "call_hour", width: 9.090909 + "%", minwidth: 91.7333},
-	                            { text: "통화시간", datafield: "call_time", width: 9.090909 + "%", minwidth: 91.7333},
-	                            { text: "유형", datafield: "rec_type", width: 9.090909 + "%", minwidth: 91.7333},//"+call[i].dirname+""+call[i].fname+"
-	                        ]
-	            });
-		    }
-		    
-
-        }
-        
-        
-        
-        function callSearch_YYYYMMDD(){
-
         	if(YYYYMM(bday, eday)=='false'){
         		alert("2달 이상 검색은 불가합니다.");
         		return false;
@@ -409,7 +216,7 @@ $(document).ready(
                 cache: false,
 				beforeprocessing: function(data)
 				{		
-					recordstartindex = data.recordstartindex;
+					//recordstartindex = data.recordstartindex;
 					source.totalrecords = data.total;
 				}
             };		
@@ -420,7 +227,9 @@ $(document).ready(
 		    
 		    var initrowdetails = function (index, parentElement, gridElement, datarecord) {
 		        var details = $($(parentElement).children()[0]);
-		        details.html("<div class='information'><audio controls><source src='http://192.168.2.205:8080/call/media/"+arr_YYYYMM[index-recordstartindex]+"/"+arr_c_id[index-recordstartindex]+"' type='audio/wav'></audio></div>");
+		        details.html("Details: " + index);
+		        
+		        //details.html("<div class='information'><audio controls><source src='/call/media/"+arr_YYYYMM[index-recordstartindex]+"/"+arr_c_id[index-recordstartindex]+"' type='audio/wav'></audio></div>");
 		    }
 		    
 		    
@@ -442,10 +251,10 @@ $(document).ready(
 	                        pageable: true,
 	                        rendergridrows: function(obj)
 	        				{
-	                        	for(var i=0; i<obj.data.length-recordstartindex; i++){
-	                        		arr_c_id[i] = obj.data[i+recordstartindex].c_id;
-	                        		arr_YYYYMM[i] = obj.data[i+recordstartindex].YYYYMM;
-	        					}
+//	                        	for(var i=0; i<obj.data.length-recordstartindex; i++){
+//	                        		arr_c_id[i] = obj.data[i+recordstartindex].c_id;
+//	                        		arr_YYYYMM[i] = obj.data[i+recordstartindex].YYYYMM;
+//	        					}
 	        					return obj.data;     
 	        				},
 	        				initrowdetails: initrowdetails,
@@ -506,6 +315,17 @@ $(document).ready(
         }
         
         
+  
+        $('#grid').on('rowexpand', function (event) 
+        		{
+        		    // event arguments.
+        		    var args = event.args;
+        		    // row details.
+        		    var details = args.details;
+        		    // row's bound index.
+        		    var rowBoundIndex = args.rowindex;
+        		    console.log(event);
+        		});
         
         
         
@@ -628,7 +448,19 @@ $(document).ready(
         	$("#form_arr").submit();
        });
         
-        
+        $("#testid").click(function(){
+        	var count = 0;
+        	var arr = new Array();
+        	$(".checkbox_name").each(function(){  // .each()는 forEach를 뜻한다.
+    			if($(this).is(":checked")){
+    				var res = $(this).val();
+    				arr[count] = res;
+    				count = count+1;
+    			}  
+        	});
+        	
+        	alert(count+"체크된개수");
+        });
         
         $("#called1_ul").on("click", "li", function(){
         	var res = $(this).text();

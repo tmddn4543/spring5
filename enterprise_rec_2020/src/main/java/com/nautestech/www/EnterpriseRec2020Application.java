@@ -11,7 +11,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 @SpringBootApplication
 @EnableConfigurationProperties
-@PropertySource("classpath:RecWeb.properties")
 public class EnterpriseRec2020Application {
 
 	private static Logger logger = LogManager.getLogger(EnterpriseRec2020Application.class);

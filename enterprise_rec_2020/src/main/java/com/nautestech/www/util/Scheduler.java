@@ -21,13 +21,18 @@ public class Scheduler {
 
 	
 	//(cron="0 1 0 * * *")
-	//매월 1일  0시 1분 실행되는 메서드
+	//매월 매일  0시 1분 실행되는 메서드
 	//10초마다실행되는메서드
 	//@Scheduled(cron="*/10 * * * * *")
 	@Scheduled(cron="0 1 0 * * *")
 	public void createTable() {
 		String YYYYMM = new SimpleDateFormat("yyyyMM", Locale.KOREA).format(new Date());
 		HashMap<String, Object> param = new HashMap<>();
+		if(YYYYMM.substring(4).equals("12")) {
+			YYYYMM = String.valueOf(Integer.parseInt(YYYYMM)+89);
+		}else {
+			YYYYMM = String.valueOf(Integer.parseInt(YYYYMM)+1);
+		}
 		String createQry = "";
 		createQry+="CREATE TABLE if not exists `call_history_"+YYYYMM+"` (         ";
 		createQry+="		  `c_id` int(11) NOT NULL AUTO_INCREMENT,              ";
