@@ -65,7 +65,6 @@ public class MemberController {
 		param.put("seq", seq.toArray(new String[seq.size()]));
 		bService.setDelete(param);
 		result.setResult(true);
-		
         return result;
     }
 	

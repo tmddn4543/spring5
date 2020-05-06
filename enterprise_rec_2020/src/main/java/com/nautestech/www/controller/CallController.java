@@ -449,7 +449,7 @@ public class CallController {
 			param1.put("total", total);
 			for(int i=0; i<call.size(); i++) {
 				call.get(i).setYYYYMM(startYYYYMM);
-				call.get(i).setDirname("<label class='check_label'><input type='checkbox' class='checkbox_name' id='asdasd' value='"+call.get(i).getDirname()+""+call.get(i).getFname()+"'></label>");
+				call.get(i).setDirname("<label class='check_label'><input type='checkbox' class='checkbox_name' value=''></label>");
 				call.get(i).setCall_date(format.dateFormat(call.get(i).getBtime()));
 				call.get(i).setCall_hour(format.hourFormat(call.get(i).getBtime(), call.get(i).getEtime()));
 				call.get(i).setCall_time(format.timeFormat(call.get(i).getBtime(), call.get(i).getEtime()));

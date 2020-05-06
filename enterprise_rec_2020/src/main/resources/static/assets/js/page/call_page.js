@@ -315,17 +315,6 @@ $(document).ready(
         }
         
         
-  
-        $('#grid').on('rowexpand', function (event) 
-        		{
-        		    // event arguments.
-        		    var args = event.args;
-        		    // row details.
-        		    var details = args.details;
-        		    // row's bound index.
-        		    var rowBoundIndex = args.rowindex;
-        		    console.log(event);
-        		});
         
         
         
