@@ -216,7 +216,7 @@ $(document).ready(
                 cache: false,
 				beforeprocessing: function(data)
 				{		
-					//recordstartindex = data.recordstartindex;
+					recordstartindex = data.recordstartindex;
 					source.totalrecords = data.total;
 				}
             };		
@@ -227,9 +227,7 @@ $(document).ready(
 		    
 		    var initrowdetails = function (index, parentElement, gridElement, datarecord) {
 		        var details = $($(parentElement).children()[0]);
-		        details.html("Details: " + index);
-		        
-		        //details.html("<div class='information'><audio controls><source src='/call/media/"+arr_YYYYMM[index-recordstartindex]+"/"+arr_c_id[index-recordstartindex]+"' type='audio/wav'></audio></div>");
+		        details.html("<div class='information'><audio controls><source src='/call/media/"+arr_YYYYMM[index-recordstartindex]+"/"+arr_c_id[index-recordstartindex]+"' type='audio/wav'></audio></div>");
 		    }
 		    
 		    
@@ -251,10 +249,10 @@ $(document).ready(
 	                        pageable: true,
 	                        rendergridrows: function(obj)
 	        				{
-//	                        	for(var i=0; i<obj.data.length-recordstartindex; i++){
-//	                        		arr_c_id[i] = obj.data[i+recordstartindex].c_id;
-//	                        		arr_YYYYMM[i] = obj.data[i+recordstartindex].YYYYMM;
-//	        					}
+	                        	for(var i=0; i<obj.data.length-recordstartindex; i++){
+	                        		arr_c_id[i] = obj.data[i+recordstartindex].c_id;
+	                        		arr_YYYYMM[i] = obj.data[i+recordstartindex].YYYYMM;
+	        					}
 	        					return obj.data;     
 	        				},
 	        				initrowdetails: initrowdetails,
@@ -424,6 +422,8 @@ $(document).ready(
         	$(".checkbox_name").each(function(){  // .each()는 forEach를 뜻한다.
     			if($(this).is(":checked")){
     				var res = $(this).val();
+    				//var res = $(this).parent();
+    				console.log(res);
     				arr[count] = res;
     				count = count+1;
     			}  
@@ -434,23 +434,10 @@ $(document).ready(
         	}
         	
         	$("#hidden_arr").val(arr);
-        	$("#form_arr").submit();
+        	//$("#form_arr").submit();
        });
-        
-        $("#testid").click(function(){
-        	var count = 0;
-        	var arr = new Array();
-        	$(".checkbox_name").each(function(){  // .each()는 forEach를 뜻한다.
-    			if($(this).is(":checked")){
-    				var res = $(this).val();
-    				arr[count] = res;
-    				count = count+1;
-    			}  
-        	});
-        	
-        	alert(count+"체크된개수");
-        });
-        
+       
+       
         $("#called1_ul").on("click", "li", function(){
         	var res = $(this).text();
         	$("#called1_bt").html(res+" <span class='caret'></span>");

@@ -442,14 +442,27 @@ public class CallController {
 		}else {
 			call = cService.getView(param);
 		}
+		String a = "";
 		call_logger.info("callSearch_YYYYMMDD ->"+authentication.getName()+" : "+param.toString());
 		listExcelDownload format = new listExcelDownload();
-		if(call.size()!=0) { 
+		if(call.size()!=0) {//"+call.get(i).getDirname()+""+call.get(i).getFname()+"
 			int total = cService.getListCountYYYYMM(param);
 			param1.put("total", total);
 			for(int i=0; i<call.size(); i++) {
+				if(i==0) {
+					a = "a";
+				}else if(i==1){
+					a = "b";
+				}else if(i==2) {
+					a = "c";
+				}else if(i==3) {
+					a = "d";
+				}else if(i==4) {
+					a = "e";
+				}
+				
 				call.get(i).setYYYYMM(startYYYYMM);
-				call.get(i).setDirname("<label class='check_label'><input type='checkbox' class='checkbox_name' value=''></label>");
+				call.get(i).setDirname("<label class='check_label''><input type='checkbox' class='checkbox_name'' value='"+a+"'></label>");
 				call.get(i).setCall_date(format.dateFormat(call.get(i).getBtime()));
 				call.get(i).setCall_hour(format.hourFormat(call.get(i).getBtime(), call.get(i).getEtime()));
 				call.get(i).setCall_time(format.timeFormat(call.get(i).getBtime(), call.get(i).getEtime()));
