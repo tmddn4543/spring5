@@ -21,9 +21,14 @@ $(document).ready(
     	var arr_batch = new Array();
     	var arr_c_id = new Array();
     	var arr_YYYYMM = new Array();
-
+    	
+    	
+    	
+    	
+    	var check_listen = "";
+    	var label ="";
     	var u_auth_cd = $("#u_auth_cd").val();
-    	var u_down_type = $("#u_down_type").val();    	
+    	var u_down_type = $("#u_down_type").val();
         /* 반응형 */
         $(window).resize(function(){
         var width = parseInt($(this).width()); //parseint는 정수로 하기 위함
@@ -157,6 +162,7 @@ $(document).ready(
 			beforeprocessing: function(data)
 			{		
 				recordstartindex = data.recordstartindex;
+				console.log(recordstartindex);
 				source.totalrecords = data.total;
 			}
         };		
@@ -185,6 +191,48 @@ $(document).ready(
                             rowdetails: "<div style='margin: 20px !important;'>Row Details</div>",
                             rowdetailsheight: 100
                         },
+                        showtoolbar: true,
+                        rendertoolbar: function (statusbar) {
+                            // appends buttons to the status bar.
+                            var container = $("<div style='overflow: hidden; position: relative; margin: 5px;'></div>");
+                            var addButton = $("<div style='float: right; margin-left: 5px;'><img style='position: relative; margin-top: 2px;' ><span style='margin-left: 4px; position: relative; top: -3px;'>받기</span></div>");
+                            var xlsButton = $("<div style='float: right; margin-left: 5px;'><img style='position: relative; margin-top: 2px;' ><span style='margin-left: -2px; position: relative; top: -3px;'>엑셀다운</span></div>");
+                            
+                            container.append(addButton);
+                            container.append(xlsButton);
+                            
+                            statusbar.append(container);
+                            addButton.jqxButton({  width: 60, height: 20 });
+                            xlsButton.jqxButton({  width: 60, height: 20 });
+                            // add new row.
+                            addButton.click(function (event) {
+                            	var count = 0;
+                            	var arr = new Array();
+                            	
+                            	console.log(source.records);
+                            	
+                            	$(".check_label").each(function(){  // .each()는 forEach를 뜻한다.
+                        			if($(this).val()==true){
+                        				var str = $(this).parents()[2].id;
+                        				str = str.substring(3,4);
+                        				str = Number(str);
+                        				str = (recordstartindex+str);
+                        				arr[count] = source.records[str].dirname;
+                        				console.log(arr[count]);
+                        				count = count+1;
+                        			}
+                            	});
+                            	$("#hidden_arr").val(arr);
+                            	if(count==0){
+                            		alert("알집다운 체크를 해주시기 바랍니다.");
+                            		return false;
+                            	}
+                            	form_arr.submit();
+                            });
+                            xlsButton.click(function (event) {
+                            	location.href="/call/xlsxDownload?emp="+emp+"&branch_cd="+branch_cd+"&auth_cd="+auth_cd+"&bday="+bday+"&eday="+eday+"&caller="+caller+"&called="+called+"&rec_type="+rec_type+"&end_talk_time="+end_talk_time+"&start_talk_time="+start_talk_time+"&called_attr="+called_attr+"&caller_attr="+caller_attr;
+                            });
+                        },
                         virtualmode: true,
                         pageable: true,
                         rendergridrows: function(obj)
@@ -207,17 +255,16 @@ $(document).ready(
                             { text: "통화시각", datafield: "call_hour", width: 9.090909 + "%", minwidth: 91.7333},
                             { text: "통화시간", datafield: "call_time", width: 9.090909 + "%", minwidth: 91.7333},
                             { text: "유형", datafield: "rec_type", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "<button class='btn btn-default' id='zipDown_bt'>받기</button>", datafield: "dirname", cellsalign: 'center', width: 9.090909 + "%", minwidth: 91.7333,
+                            //"<button class='btn btn-default' id='zipDown_bt'>받기</button>"
+                            { text: "알집다운", datafield: "dirname", cellsalign: 'center', width: 9.090909 + "%", minwidth: 91.7333,
+                            	
                                createwidget : function (row, column, value, cellElement){
-                                  var label = $("<label class='check_label'></label>");
-                                    $(cellElement).append(label);
-                                    console.log(row);
-                                    label.jqxCheckBox({ width: 120, height: 25 });
+                            	   label = $("<label class='check_label'></label>");
+                            	   $(cellElement).append(label);
+                            	   label.jqxCheckBox({ width: 120, height: 25 });
                                 },
                                initwidget: function (row, column, value, htmlElement) {
-//                            	   var label = $("<label class='check_label'></label>");
-//                            	   label.jqxCheckBox({ width: 120, height: 25 });
-//                            	   console.log(row);
+                            	   $(htmlElement).children(0).jqxCheckBox('uncheck');
                                }
                             }
                         ]
@@ -276,6 +323,21 @@ $(document).ready(
         	source.data.emp = $("#emp2").val();
         	source.data.end_talk_time = $("#end_talk_time2").val();
         	source.data.start_talk_time = $("#start_talk_time2").val();
+        	
+        	branch_cd = $("#group_btn_act2").val();
+        	caller = $("#caller2").val();
+        	called = $("#called2").val();
+        	selectday = $("#jqxcalendar_act2").val();
+        	selectstime = $("#selStartTime2").val();
+        	selectetime = $("#selEndTime2").val();
+        	bday = bdayFormat(selectday,selectstime);
+        	eday = edayFormat(selectday,selectetime);
+        	rec_type = recFormat2($("#record_type2").val());
+        	emp = $("#emp2").val();
+        	end_talk_time = $("#end_talk_time2").val();
+        	start_talk_time = $("#start_talk_time2").val();
+        	
+        	
         	if($("#caller2_bt").text()=="선택 " && caller!=""){
         		alert("선택여부 확인해주세요.");
         		return false;
@@ -386,33 +448,13 @@ $(document).ready(
         	$("#user_search").modal("show");
         });
         
-        $("#excelExport").click(function(){
-        	location.href="/call/xlsxDownload?emp="+emp+"&branch_cd="+branch_cd+"&auth_cd="+auth_cd+"&bday="+bday+"&eday="+eday+"&caller="+caller+"&called="+called+"&rec_type="+rec_type+"&end_talk_time="+end_talk_time+"&start_talk_time="+start_talk_time+"&called_attr="+called_attr+"&caller_attr="+caller_attr;
-        });
+//        $("#excelExport").click(function(){
+//        	location.href="/call/xlsxDownload?emp="+emp+"&branch_cd="+branch_cd+"&auth_cd="+auth_cd+"&bday="+bday+"&eday="+eday+"&caller="+caller+"&called="+called+"&rec_type="+rec_type+"&end_talk_time="+end_talk_time+"&start_talk_time="+start_talk_time+"&called_attr="+called_attr+"&caller_attr="+caller_attr;
+//        });
         
         
         
 
-       $("#grid").on("click","button",function(){
-        	var count = 0;
-        	var arr = new Array();
-        	$(".checkbox_name").each(function(){  // .each()는 forEach를 뜻한다.
-    			if($(this).is(":checked")){
-    				var res = $(this).val();
-    				//var res = $(this).parent();
-    				console.log(res);
-    				arr[count] = res;
-    				count = count+1;
-    			}  
-        	});
-        	if(arr[0]==null){
-        		alert("다운받으실 목록을 체크 해주세요.");
-        		return false;
-        	}
-        	
-        	$("#hidden_arr").val(arr);
-        	//$("#form_arr").submit();
-       });
        
        
         $("#called1_ul").on("click", "li", function(){

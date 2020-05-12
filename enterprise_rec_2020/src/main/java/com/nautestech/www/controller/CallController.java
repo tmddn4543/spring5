@@ -451,7 +451,7 @@ public class CallController {
 			for(int i=0; i<call.size(); i++) {
 				
 				call.get(i).setYYYYMM(startYYYYMM);
-				call.get(i).setDirname("<label class='check_label'></label>");
+				call.get(i).setDirname(call.get(i).getDirname()+call.get(i).getFname());
 				call.get(i).setCall_date(format.dateFormat(call.get(i).getBtime()));
 				call.get(i).setCall_hour(format.hourFormat(call.get(i).getBtime(), call.get(i).getEtime()));
 				call.get(i).setCall_time(format.timeFormat(call.get(i).getBtime(), call.get(i).getEtime()));
