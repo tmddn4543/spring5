@@ -52,4 +52,10 @@ public class StatService implements ISelect<Stat>{
 		return 0;
 	}
 
+	@Override
+	public List<?> setSelect(HashMap<String, Object> param) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

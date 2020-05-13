@@ -25,7 +25,6 @@ $(document).ready(
     	
     	
     	
-    	var check_listen = "";
     	var label ="";
     	var u_auth_cd = $("#u_auth_cd").val();
     	var u_down_type = $("#u_down_type").val();
@@ -123,7 +122,11 @@ $(document).ready(
         $(".selEndTime").val("23").prop("selected",true);
 
         
-        
+        selectday = $("#jqxcalendar_act2").val();
+        selectstime = "00";
+        selectetime = "23";
+        bday = bdayFormat(selectday,selectstime);
+        eday = edayFormat(selectday,selectetime);
         
         var source =
         {
@@ -324,6 +327,9 @@ $(document).ready(
         	source.data.end_talk_time = $("#end_talk_time2").val();
         	source.data.start_talk_time = $("#start_talk_time2").val();
         	
+        	
+        	
+        	
         	branch_cd = $("#group_btn_act2").val();
         	caller = $("#caller2").val();
         	called = $("#called2").val();
@@ -448,14 +454,6 @@ $(document).ready(
         	$("#user_search").modal("show");
         });
         
-//        $("#excelExport").click(function(){
-//        	location.href="/call/xlsxDownload?emp="+emp+"&branch_cd="+branch_cd+"&auth_cd="+auth_cd+"&bday="+bday+"&eday="+eday+"&caller="+caller+"&called="+called+"&rec_type="+rec_type+"&end_talk_time="+end_talk_time+"&start_talk_time="+start_talk_time+"&called_attr="+called_attr+"&caller_attr="+caller_attr;
-//        });
-        
-        
-        
-
-       
        
         $("#called1_ul").on("click", "li", function(){
         	var res = $(this).text();

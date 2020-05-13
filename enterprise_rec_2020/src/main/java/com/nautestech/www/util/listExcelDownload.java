@@ -22,6 +22,7 @@ import org.apache.poi.ss.util.CellRangeAddress;
 import org.springframework.web.servlet.view.document.AbstractXlsxView;
 
 import com.nautestech.www.model.Call;
+import com.nautestech.www.model.Stat;
 
 public class listExcelDownload extends AbstractXlsxView {
 
@@ -102,7 +103,6 @@ public class listExcelDownload extends AbstractXlsxView {
 		String sCurTime = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA).format(new Date());
 
 		// String excelName = sCurTime + ".xlsx";
-		String excelName = "CallHistory_"+sCurTime+".xlsx";
 		Sheet worksheet = null;
 		Row row = null;
 		Cell cell = null;
@@ -122,91 +122,188 @@ public class listExcelDownload extends AbstractXlsxView {
 		font1.setBoldweight(Font.BOLDWEIGHT_BOLD);
 		style.setFont(font);
 		style1.setFont(font1);
-		
-		
-		
-		
-		List<Call> listExcel = (List) modelMap.get("list");
 		// 새로운 sheet를 생성한다.
 		worksheet = workbook.createSheet("엑셀 목록");
 
 		// 가장 첫번째 줄에 제목을 만든다.
 		row = worksheet.createRow(0);
-
-		// 칼럼 길이 설정
-		int columnIndex = 0;
-		while (columnIndex < 7) {
-			if (columnIndex == 0) {
-				worksheet.setColumnWidth(columnIndex, 3000);
-			} else if (columnIndex == 1) {
-				worksheet.setColumnWidth(columnIndex, 4000);
-			} else if (columnIndex == 2) {
-				worksheet.setColumnWidth(columnIndex, 4000);
-			} else if (columnIndex == 3) {
-				worksheet.setColumnWidth(columnIndex, 4000);
-			} else if (columnIndex == 4) {
-				worksheet.setColumnWidth(columnIndex, 4000);
-			} else if (columnIndex == 5) {
-				worksheet.setColumnWidth(columnIndex, 3000);
-			} else if (columnIndex == 6) {
-				worksheet.setColumnWidth(columnIndex, 5000);
-			} else if (columnIndex == 7) {
-				worksheet.setColumnWidth(columnIndex, 2000);
-			} else if (columnIndex == 8) {
-				worksheet.setColumnWidth(columnIndex, 2000);
-			}
-			columnIndex++;
-		}
-
-		// 셀 병합 CellRangeAddress(시작 행, 끝 행, 시작 열, 끝 열)
-		cell = row.createCell(2);
-		worksheet.addMergedRegion( new CellRangeAddress(0, 2, 2, 6));
-		cell.setCellStyle(style);
-		cell.setCellValue("[녹취 이력 : "+sCurTime+"]");
 		
-		// 헤더 설정
-		row = worksheet.createRow(3);
-		for(int i=0; i<9; i++) {
-			cell = row.createCell(i);
-			cell.setCellStyle(style1);
-			if(i==0) {
-				cell.setCellValue("그룹");
-			}else if(i==1) {
-				cell.setCellValue("사용자ID");
-			}else if(i==2) {
-				cell.setCellValue("이름");
-			}else if(i==3) {
-				cell.setCellValue("발신번호");
-			}else if(i==4) {
-				cell.setCellValue("수신번호");
-			}else if(i==5) {
-				cell.setCellValue("통화일자");
-			}else if(i==6) {
-				cell.setCellValue("통화시각");
-			}else if(i==7) {
-				cell.setCellValue("통화시간");
-			}else if(i==8) {
-				cell.setCellValue("유형");
+		String excelName="";
+		String option = (String)modelMap.get("option");
+		
+		
+		if(option.equals("call")) {
+			excelName = "CallHistory_"+sCurTime+".xlsx";
+			List<Call> listExcel = (List) modelMap.get("list");
+			
+			
+
+			// 칼럼 길이 설정
+			int columnIndex = 0;
+			while (columnIndex < 9) {
+				if (columnIndex == 0) {
+					worksheet.setColumnWidth(columnIndex, 3000);
+				} else if (columnIndex == 1) {
+					worksheet.setColumnWidth(columnIndex, 4000);
+				} else if (columnIndex == 2) {
+					worksheet.setColumnWidth(columnIndex, 4000);
+				} else if (columnIndex == 3) {
+					worksheet.setColumnWidth(columnIndex, 4000);
+				} else if (columnIndex == 4) {
+					worksheet.setColumnWidth(columnIndex, 4000);
+				} else if (columnIndex == 5) {
+					worksheet.setColumnWidth(columnIndex, 3000);
+				} else if (columnIndex == 6) {
+					worksheet.setColumnWidth(columnIndex, 5000);
+				} else if (columnIndex == 7) {
+					worksheet.setColumnWidth(columnIndex, 2000);
+				} else if (columnIndex == 8) {
+					worksheet.setColumnWidth(columnIndex, 2500);
+				}
+				columnIndex++;
 			}
-		}
-		int rowIndex = 4;
 
-		// 각 해당하는 셀에 값과 스타일을 넣음
-		for (Call call : listExcel) {
-			row = worksheet.createRow(rowIndex);
-			row.createCell(0).setCellValue(call.getBranch_cd());
-			row.createCell(1).setCellValue(call.getEmp_id());
-			row.createCell(2).setCellValue(call.getEmp_nm());
-			row.createCell(3).setCellValue(call.getCaller());
-			row.createCell(4).setCellValue(call.getCalled());
-			row.createCell(5).setCellValue(dateFormat(call.getBtime()));
-			row.createCell(6).setCellValue(hourFormat(call.getBtime(), call.getEtime()));
-			row.createCell(7).setCellValue(timeFormat(call.getBtime(), call.getEtime()));
-			row.createCell(8).setCellValue(recFormat(call.getRec_type()));
-			rowIndex++;
-		}
+			// 셀 병합 CellRangeAddress(시작 행, 끝 행, 시작 열, 끝 열)
+			cell = row.createCell(2);
+			worksheet.addMergedRegion( new CellRangeAddress(0, 2, 2, 6));
+			cell.setCellStyle(style);
+			cell.setCellValue("[녹취 이력 : "+sCurTime+"]");
+			
+			// 헤더 설정
+			row = worksheet.createRow(3);
+			for(int i=0; i<9; i++) {
+				cell = row.createCell(i);
+				cell.setCellStyle(style1);
+				if(i==0) {
+					cell.setCellValue("그룹");
+				}else if(i==1) {
+					cell.setCellValue("사용자ID");
+				}else if(i==2) {
+					cell.setCellValue("이름");
+				}else if(i==3) {
+					cell.setCellValue("발신번호");
+				}else if(i==4) {
+					cell.setCellValue("수신번호");
+				}else if(i==5) {
+					cell.setCellValue("통화일자");
+				}else if(i==6) {
+					cell.setCellValue("통화시각");
+				}else if(i==7) {
+					cell.setCellValue("통화시간");
+				}else if(i==8) {
+					cell.setCellValue("유형");
+				}
+			}
+			int rowIndex = 4;
 
-		worksheet.createFreezePane(1, 4);
+			// 각 해당하는 셀에 값과 스타일을 넣음
+			for (Call call : listExcel) {
+				row = worksheet.createRow(rowIndex);
+				row.createCell(0).setCellValue(call.getBranch_cd());
+				row.createCell(1).setCellValue(call.getEmp_id());
+				row.createCell(2).setCellValue(call.getEmp_nm());
+				row.createCell(3).setCellValue(call.getCaller());
+				row.createCell(4).setCellValue(call.getCalled());
+				row.createCell(5).setCellValue(dateFormat(call.getBtime()));
+				row.createCell(6).setCellValue(hourFormat(call.getBtime(), call.getEtime()));
+				row.createCell(7).setCellValue(timeFormat(call.getBtime(), call.getEtime()));
+				row.createCell(8).setCellValue(recFormat(call.getRec_type()));
+				rowIndex++;
+			}
+
+			worksheet.createFreezePane(1, 4);
+			
+			
+			
+			
+			
+			
+		}else if(option.equals("state")) {
+			excelName = "State_"+sCurTime+".xlsx";
+			List<Stat> listExcel = (List) modelMap.get("list");
+			
+			
+			// 칼럼 길이 설정
+			int columnIndex = 0;
+			while (columnIndex < 9) {
+				if (columnIndex == 0) {
+					worksheet.setColumnWidth(columnIndex, 3000);
+				} else if (columnIndex == 1) {
+					worksheet.setColumnWidth(columnIndex, 4000);
+				} else if (columnIndex == 2) {
+					worksheet.setColumnWidth(columnIndex, 4000);
+				} else if (columnIndex == 3) {
+					worksheet.setColumnWidth(columnIndex, 4000);
+				} else if (columnIndex == 4) {
+					worksheet.setColumnWidth(columnIndex, 4000);
+				} else if (columnIndex == 5) {
+					worksheet.setColumnWidth(columnIndex, 3000);
+				} else if (columnIndex == 6) {
+					worksheet.setColumnWidth(columnIndex, 5000);
+				} else if (columnIndex == 7) {
+					worksheet.setColumnWidth(columnIndex, 5000);
+				} else if (columnIndex == 8) {
+					worksheet.setColumnWidth(columnIndex, 5000);
+				}
+				columnIndex++;
+			}
+
+			// 셀 병합 CellRangeAddress(시작 행, 끝 행, 시작 열, 끝 열)
+			cell = row.createCell(2);
+			worksheet.addMergedRegion( new CellRangeAddress(0, 2, 2, 6));
+			cell.setCellStyle(style);
+			cell.setCellValue("[통계 이력 : "+sCurTime+"]");
+			
+			// 헤더 설정
+			row = worksheet.createRow(3);
+			for(int i=0; i<9; i++) {
+				cell = row.createCell(i);
+				cell.setCellStyle(style1);
+				if(i==0) {
+					cell.setCellValue("조회기간");
+				}else if(i==1) {
+					cell.setCellValue("그룹");
+				}else if(i==2) {
+					cell.setCellValue("사용자");
+				}else if(i==3) {
+					cell.setCellValue("착신");
+				}else if(i==4) {
+					cell.setCellValue("발신");
+				}else if(i==5) {
+					cell.setCellValue("합계");
+				}else if(i==6) {
+					cell.setCellValue("착신 통화시간");
+				}else if(i==7) {
+					cell.setCellValue("발신 통화시간");
+				}else if(i==8) {
+					cell.setCellValue("통화시간 소계");
+				}
+			}
+			int rowIndex = 4;
+
+			// 각 해당하는 셀에 값과 스타일을 넣음
+			for (Stat stat : listExcel) {
+				row = worksheet.createRow(rowIndex);
+				row.createCell(0).setCellValue(stat.getS_date());
+				row.createCell(1).setCellValue(stat.getBranch_cd());
+				row.createCell(2).setCellValue(stat.getEmp_id());
+				row.createCell(3).setCellValue(stat.getS_called_cnt());
+				row.createCell(4).setCellValue(stat.getS_caller_cnt());
+				row.createCell(5).setCellValue(stat.getS_call_cnt_total());
+				row.createCell(6).setCellValue(stat.getS_called_time());
+				row.createCell(7).setCellValue(stat.getS_caller_time());
+				row.createCell(8).setCellValue(stat.getS_call_time_total());
+				rowIndex++;
+			}
+
+			worksheet.createFreezePane(1, 4);
+			
+			
+			
+			
+			
+		}
+			
 		try {
 			response.setHeader("Content-Disposition", "attachement; filename=\""
 					+ java.net.URLEncoder.encode(excelName, "UTF-8") + "\";charset=\"UTF-8\"");
@@ -214,6 +311,7 @@ public class listExcelDownload extends AbstractXlsxView {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 
 	}
 }

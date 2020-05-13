@@ -88,4 +88,10 @@ public class UsersService implements IInsert,ISelect<Users>,IDelete,IUpdate{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public List<?> setSelect(HashMap<String, Object> param) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

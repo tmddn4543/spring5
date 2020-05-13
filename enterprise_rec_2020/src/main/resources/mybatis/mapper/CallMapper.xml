@@ -27,9 +27,24 @@
 		<result property="group_id" column="group_id"/>
 	</resultMap>
 	
+	<resultMap type="callJoin" id="getJoinMap">
+		<result property="c_id" column="c_id"/>
+		<result property="emp_id" column="emp_id"/>
+		<result property="emp_nm" column="emp_nm"/>
+		<result property="branch_cd" column="branch_cd"/>
+		<result property="tel_no" column="tel_no"/>
+		<result property="CALLTYPE" column="CALLTYPE"/>
+		<result property="calltime" column="calltime"/>
+		<result property="s_date" column="s_date"/>
+	</resultMap>
+	
 	
 	<select id="setCreate" parameterType="hashmap">
 		${createQry}
+	</select>
+	
+	<select id="setSelect" parameterType="hashmap" resultMap="getJoinMap">
+		${query}
 	</select>
 	
 	

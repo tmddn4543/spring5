@@ -56,7 +56,9 @@
 		<if test='res.equals("M")'>
 		order by left(s_date,6)
 		</if>
+		<if test='xlsx.equals("false")'>
 		limit ${pagestart},${pagesize}
+		</if>
 	</select>
 	
 	<select id="getListStateCount" resultMap="getSelectMap" parameterType="hashmap">

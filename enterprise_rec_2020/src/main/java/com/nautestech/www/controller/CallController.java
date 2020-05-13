@@ -242,6 +242,7 @@ public class CallController {
 			call = cService.getView(param);
 		}
 		model.addAttribute("list", call);
+		model.addAttribute("option", "call");
 		return new listExcelDownload();
 	}
 	
@@ -449,14 +450,13 @@ public class CallController {
 			int total = cService.getListCountYYYYMM(param);
 			param1.put("total", total);
 			for(int i=0; i<call.size(); i++) {
-				
 				call.get(i).setYYYYMM(startYYYYMM);
 				call.get(i).setDirname(call.get(i).getDirname()+call.get(i).getFname());
 				call.get(i).setCall_date(format.dateFormat(call.get(i).getBtime()));
 				call.get(i).setCall_hour(format.hourFormat(call.get(i).getBtime(), call.get(i).getEtime()));
 				call.get(i).setCall_time(format.timeFormat(call.get(i).getBtime(), call.get(i).getEtime()));
 				call.get(i).setRec_type(format.recFormat(call.get(i).getRec_type()));
-				call.get(i).setNum(recordstartindex+i+1);
+				call.get(i).setNum(total-i-recordstartindex);
 			}
 		}
 		param1.put("recordstartindex", recordstartindex);

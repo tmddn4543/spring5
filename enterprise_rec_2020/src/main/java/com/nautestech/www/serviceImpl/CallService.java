@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.nautestech.www.mapper.CallMapper;
 import com.nautestech.www.model.Call;
+import com.nautestech.www.model.CallJoin;
 import com.nautestech.www.service.ISelect;
 
 @Service
@@ -51,6 +52,11 @@ public class CallService implements ISelect<Call>{
 	@Override
 	public int getListCountYYYYMM(HashMap<String, Object> param) {
 		return mapper.getListCountYYYYMM(param);
+	}
+
+	@Override
+	public List<CallJoin> setSelect(HashMap<String, Object> param) {
+		return mapper.setSelect(param);
 	}
 	
 }

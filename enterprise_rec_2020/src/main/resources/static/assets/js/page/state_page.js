@@ -229,5 +229,10 @@ $(document).ready(
         var cal_date = new Date();
         $(".jqxcalendar_act").jqxDateTimeInput("setRange", cal_date, cal_date);
 
+        
+        
+        $("#down_bt").click(function(){
+        	location.href="/state/xlsxDownload?res="+res+"&branch_cd="+branch_cd+"&date="+date+"&emp_id="+emp_id;
+        });
 
 });
