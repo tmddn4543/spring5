@@ -78,19 +78,19 @@
 		use index(called)
 		<include refid="where"/>
 		<if test='!startYYYYMM.equals(endYYYYMM)'>
-		union all
-		select 
-		count(*)
-		from web_recording.call_history_${endYYYYMM}
-		use index(emp_id)
-		use index(emp_nm)
-		use index(group_id)
-		use index(rec_type)
-		use index(auth_cd)
-		use index(branch_cd)
-		use index(caller)
-		use index(called)
-		<include refid="where"/>
+			union all
+			select 
+			count(*)
+			from web_recording.call_history_${endYYYYMM}
+			use index(emp_id)
+			use index(emp_nm)
+			use index(group_id)
+			use index(rec_type)
+			use index(auth_cd)
+			use index(branch_cd)
+			use index(caller)
+			use index(called)
+			<include refid="where"/>
 		</if>
 	</select>
 	
@@ -123,13 +123,12 @@
 		<include refid="where"/>
 		<choose>
 			<when test="!startYYYYMM.equals(endYYYYMM)">
-			
 			</when>
 			<otherwise>
 			order by c_id desc
-			<if test='xlsx.equals("false")'>
-			limit ${pagestart},${pagesize}
-			</if>
+				<if test='xlsx.equals("false")'>
+				limit ${pagestart},${pagesize}
+				</if>
 			</otherwise>
 		</choose>
 		<if test='!startYYYYMM.equals(endYYYYMM)'>
@@ -158,9 +157,9 @@
 		use index(called)
 		<include refid="where"/>
 		order by c_id desc
-		<if test='xlsx.equals("false")'>
-		limit ${pagestart},${pagesize}
-		</if>
+			<if test='xlsx.equals("false")'>
+			limit ${pagestart},${pagesize}
+			</if>
 		</if>
 		
 	</select>

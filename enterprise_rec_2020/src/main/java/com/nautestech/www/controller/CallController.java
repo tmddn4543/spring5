@@ -416,6 +416,9 @@ public class CallController {
 		if(branch_cd.equals("전체")) {
 			branch_cd = "";
 		}
+		
+		System.out.println(startYYYYMM);
+		System.out.println(endYYYYMM);
 		HashMap<String, Object> param = new HashMap<>();
 		param.put("xlsx", "false");
 		param.put("emp_id", emp);
