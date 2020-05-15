@@ -65,9 +65,13 @@
 	
 	
 	<select id="getListCountYYYYMM" resultType="int" parameterType="hashmap">
+	
+		<if test='!startYYYYMM.equals(endYYYYMM)'>
+		select sum(count) from (
+		</if>
 		select 
-		count(*)
-		from web_recording.call_history_${startYYYYMM}
+		count(*) as count
+		from web_recording.call_history_${endYYYYMM}
 		use index(emp_id)
 		use index(emp_nm)
 		use index(group_id)
@@ -80,8 +84,8 @@
 		<if test='!startYYYYMM.equals(endYYYYMM)'>
 			union all
 			select 
-			count(*)
-			from web_recording.call_history_${endYYYYMM}
+			count(*) as count
+			from web_recording.call_history_${startYYYYMM}
 			use index(emp_id)
 			use index(emp_nm)
 			use index(group_id)
@@ -91,6 +95,7 @@
 			use index(caller)
 			use index(called)
 			<include refid="where"/>
+			) as a
 		</if>
 	</select>
 	
@@ -125,7 +130,7 @@
 			<when test="!startYYYYMM.equals(endYYYYMM)">
 			</when>
 			<otherwise>
-			order by c_id desc
+			order by btime desc
 				<if test='xlsx.equals("false")'>
 				limit ${pagestart},${pagesize}
 				</if>
@@ -156,7 +161,7 @@
 		use index(caller)
 		use index(called)
 		<include refid="where"/>
-		order by c_id desc
+		order by btime desc
 			<if test='xlsx.equals("false")'>
 			limit ${pagestart},${pagesize}
 			</if>

@@ -112,6 +112,11 @@
 		    '',
 		    ''
 		    </if>
+		    <if test="result.equals('s_xlsx')">
+		    'Log_State_XlsxDown',
+		    '',
+		    ''
+		    </if>
 		    <if test="result.equals('zip')">
 		    'Log_ZipDown',
 		    '',
@@ -142,6 +147,7 @@
 	<select id="getListCount" resultType="int" parameterType="hashmap">
 		select count(*)
 		from `web_recording`.`users`
+		<include refid="where"/>
 	</select>
 	
 	

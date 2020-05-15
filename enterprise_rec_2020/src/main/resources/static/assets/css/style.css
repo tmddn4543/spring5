@@ -51,6 +51,16 @@ outline: unset !important;
 	margin: 0;
 	padding: 0;
 }
+
+#window label{
+	text-align: right;
+	line-height: 32px;
+	margin: 0;
+	padding: 0;
+	font-size: 12px;
+}
+
+
 .modal label{
 	text-align: right;
 	line-height: 32px;
@@ -58,6 +68,16 @@ outline: unset !important;
 	padding: 0;
 	font-size: 12px;
 }
+
+#window label{
+	text-align: right;
+	line-height: 32px;
+	margin: 0;
+	padding: 0;
+	font-size: 12px;
+}
+
+
 .bottom_line{
 	border-top: 1px dashed #e7eaec;
 color: #ffffff;
@@ -71,7 +91,9 @@ margin: 0px 0 5px;
 .modal input{
 	height: 32px;
 }
-
+#window input{
+	height: 32px;
+}
 .wrapper button{
 	height: 26px;
 	padding: 0px 12px;
@@ -93,6 +115,11 @@ margin: 0px 0 5px;
 	margin: 5px 0px;
 }
 .modal .form-group{
+	display: inline-block;
+	width: 100%;
+	margin: 5px 0px;
+}
+#window .form-group{
 	display: inline-block;
 	width: 100%;
 	margin: 5px 0px;
@@ -365,7 +392,7 @@ fieldset[disabled] .btn-default:hover {
 .wrapper .list_search .form-group > div{
 padding: 0;
 }
-.modal .list_search .form-group > div{
+.list_search .form-group > div{
 padding: 0;
 padding-top: 5px;
 }
@@ -405,6 +432,38 @@ border: 1px solid #ccc;
 border-radius: 4px;
 z-index:  30000000 !important;
 }
+/* window filter */
+#window {
+top: 145px !important;
+bottom: auto;
+left: 270px !important;
+right: 50px;
+box-shadow: 0px 0px 8px -3px;
+border: 1px solid #ccc;
+border-radius: 4px;
+z-index: 111111 !important;
+}
+.user_manage #window{
+max-height: 205px !important;
+}
+.state_wrap #window{
+max-height: 205px !important;
+}
+.access_log #window{
+max-height: 105px !important;
+}
+#window #windowContent{
+padding: 5px 15px;
+}
+#window .form-horizontal .form-group{
+	margin-left: 0;
+	margin-right: 0;
+}
+#window .form-group{
+	display: inline-block;
+width: 100%;
+margin: 5px 0px;
+}
 #search_filter .modal-dialog{
 margin: 0;
 width: 100%;
@@ -426,8 +485,22 @@ background-color: #f4f4f4;
 border-bottom-color: rgba(0,0,0,.1);
 padding: 9px 15px;
 }
+
+#window #windowHeader.jqx-widget-header{
+	background-color: #f4f4f4;
+padding: 9px 15px;
+min-height:16.43px;
+ border-bottom:1px solid rgba(0,0,0,.1);
+	cursor: default !important;
+}
+	
 #search_filter .modal-header h4{
 	font-size: 15px;
+}
+#window #windowHeader.jqx-widget-header h4{
+	font-size: 15px;
+	margin: 0;
+	line-height: 1.42857143;
 }
 #search_filter .modal-body{
 	padding: 5px 15px;
@@ -436,6 +509,27 @@ padding: 9px 15px;
 padding: 6px 3px;
 }
 #search_filter::after{
+content: ".";
+
+color: #f4f4f4;
+
+background-color: #f4f4f4;
+
+top: 137.5px;
+
+right: 78.5px;
+
+width: 15px;
+
+height: 15px;
+
+transform: rotate( 45deg );
+
+position: fixed;
+
+border: 1px solid #ddd;
+}
+#window::after{
 content: ".";
 
 color: #f4f4f4;
@@ -520,9 +614,26 @@ input[type="radio"]{
 .user_manage #search_filter .radio-inline{
 	padding-top: 0px;
 }
+.user_manage #window .radio-inline{
+	padding-top: 0px;
+	/*! margin-left: 10px; */
+}
+.user_manage #window .checkbox-inline:last-child, .user_manage #window .radio-inline:last-child{
+margin-left: 10px;
+}
+
+.user_manage #window .checkbox-inline, .user_manage #window .radio-inline{
+	padding-left: 20px;
+}
 .user_manage .checkbox-inline input, .user_manage .radio-inline input{
 height: 26px;
 }
+
+.user_manage #window .checkbox-inline input, .user_manage #window .radio-inline input{
+height: 26px;
+}
+
+
 /* 사용자관리 */
 #groupSet_modal .modal-dialog{
 	max-width: 313.4917px;
@@ -621,7 +732,20 @@ margin: 0 auto;
 
 min-width: 340px;
 }
+
+.access_log #window .list_search .form-group > div{
+	float: unset;
+
+margin: 0 auto;
+
+min-width: 340px;
+}
+
 .access_log .modal .list_search .form-group > div > div:nth-child(3){
+	padding: 0;
+}
+
+.access_log #window .list_search .form-group > div > div:nth-child(3){
 	padding: 0;
 }
 
@@ -631,12 +755,21 @@ body.state_wrap .modal .list_search .form-group .checkbox label, body.state_wrap
 	padding-left: 20px;
 	margin-left: 10px;
 }
-
+body.state_wrap #window .list_search .form-group .checkbox label, body.state_wrap #window .list_search .form-group .radio label{
+	padding-left: 20px;
+	margin-left: 10px;
+}
 body.state_wrap .modal .list_search .form-group .checkbox label input, body.state_wrap .modal .list_search .form-group .radio input{
 	height: 27px;
 }
-
+body.state_wrap #window .list_search .form-group .checkbox label input, body.state_wrap #window .list_search .form-group .radio input{
+	height: 27px;
+}
 body.state_wrap .modal .list_search .form-group > div.radio:last-child{
+	text-align: left;
+}
+
+body.state_wrap #window .list_search .form-group > div.radio:last-child{
 	text-align: left;
 }
 
@@ -836,6 +969,9 @@ color: #FFFFFF;
 #search_filter{
 	left: 120px;
 }
+#window{
+	left: 120px !important;
+}
 #side-menu li ul.nav-second-level li.page_open::after{
 display: none;
 }
@@ -862,6 +998,10 @@ display: none;
 	padding: 0px 10px;
 }
 .modal label {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+#window label {
     padding-right: 15px;
     padding-left: 15px;
 }
@@ -895,12 +1035,18 @@ padding: 0;
 }
 
 @media (max-width: 767px){
-
+.access_log #window{
+max-height: 180px !important;
+}
 .monitering_wrap > .row .thumbnail{
 	width: calc(33.333333% - 15px);
 }
 
 .access_log .modal .list_search .form-group > div{
+	min-width: auto;
+}
+
+.access_log #window .list_search .form-group > div{
 	min-width: auto;
 }
 .access_log .modal .list_search .form-group > div > div:nth-child(3){
@@ -910,7 +1056,13 @@ padding: 0;
 	padding-top:  10px;
 	padding-bottom: 10px;
 }
-
+.access_log #window .list_search .form-group > div > div:nth-child(3){
+	text-align: center;
+	margin-top: 10px;
+	border-top: 1px dashed #ccc;
+	padding-top:  10px;
+	padding-bottom: 10px;
+}
 .user_manage #search_filter .list_search .form-horizontal .form-group > div:nth-child(1) label{
 margin-top: 0;
 }
@@ -939,12 +1091,21 @@ margin-top: 10px;
 	left: 105px;
 	right: 35px;
 }
+#window{
+	left: 105px !important;
+	right: 35px !important;
+}
 .wrapper label{
 height: auto;
 line-height: 1;
 margin-top: 10px;	
 }
 .modal label{
+height: auto;
+line-height: 1;
+margin-top: 10px;	
+}
+#window label{
 height: auto;
 line-height: 1;
 margin-top: 10px;	
@@ -992,10 +1153,14 @@ float: left;
 	float: right;
 }
 .navbar-top-links li:last-child{
-	margin-right: 15px;
+	right: 65.5px;
 }
 
 #search_filter::after{
+	right: 65.5px;
+}
+
+#window::after{
 	right: 65.5px;
 }
 #user_add .modal-body .form-group .col-lg-8{
@@ -1010,7 +1175,11 @@ body.state_wrap .modal .list_search .form-group .checkbox label input, body.stat
     bottom: 0;
 
 }
+body.state_wrap #window .list_search .form-group .checkbox label input, body.state_wrap #window .list_search .form-group .radio input {
 
+    bottom: 0;
+
+}
 }
 
 @media (max-width: 630px){
@@ -1050,6 +1219,9 @@ padding-left: 10px;
 	#search_filter{
 		left: 35px;
 	}
+	#window{
+		left: 35px !important;
+	}
 	.body-small.mini-navbar .navbar-static-side{
 		height: 100%;
 		background-color: #353535;
@@ -1059,11 +1231,14 @@ padding-left: 10px;
 	#search_filter::after{
 		right: 46.5px;
 	}
+	#window::after{
+		right: 46.5px;
+	}
 	body.mini-navbar #page-wrapper{
 		margin: 0;
 	}
 	.ibox-title button{
-		width: 38px;
+		width: 38px !important;
 	}
 	body.mini-navbar .profile-element, body.mini-navbar .profile-element a, body.mini-navbar .profile-element a span.clear .block{
 		display: block;
@@ -1118,12 +1293,27 @@ padding-left: 10px;
 	margin-left: 0;
 	padding-left: 35px;
 	}
+	body.state_wrap #window .list_search .form-group .checkbox label, body.state_wrap #window .list_search .form-group .radio label{
+	width: 100%;
+	text-align: left;	
+	line-height: 19px; 
+	margin-left: 0;
+	padding-left: 35px;
+	}
+	
 	body.state_wrap .modal .list_search .form-group .checkbox label input, body.state_wrap .modal .list_search .form-group .radio input{
 		top: auto;
 		bottom: auto;
 		height: 0;
 
 	}
+	body.state_wrap #window .list_search .form-group .checkbox label input, body.state_wrap #window .list_search .form-group .radio input{
+		top: auto;
+		bottom: auto;
+		height: 0;
+
+	}
+	
 }
 
 
@@ -1163,10 +1353,19 @@ transform: translateY(-50%);
     right: 42.5px;
     top: 152.5px;
 }
+#window::after {
+    right: 42.5px;
+    top: 152.5px;
+}
 #search_filter{
 top: 160px;
 left: 15px;
 right: 15px;
+}
+#window{
+top: 160px !important;
+left: 15px !important;
+right: 15px !important;
 }
 .grid_bottom{
 	padding-top: 10px;
@@ -1202,5 +1401,8 @@ right: 15px;
 	height: 25vh;
 	overflow-y: auto;
 }
-
+#window{
+	height: 50vh !important;
+	overflow-y: auto;
+}
 }

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.View;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.nautestech.www.model.Session;
 import com.nautestech.www.model.Stat;
 import com.nautestech.www.serviceImpl.StatService;
 import com.nautestech.www.serviceImpl.UsersService;
@@ -58,7 +59,7 @@ public class StateController {
 		}
 		HashMap<String, Object> param1 = new HashMap<>();
 		param1.put("emp_id", authentication.getName());
-		param1.put("result", "xlsx");
+		param1.put("result", "s_xlsx");
 		uService.setInsertListen_log(param1);
 		
 		
@@ -111,7 +112,7 @@ public class StateController {
     		Authentication authentication) throws JsonProcessingException{
 		HashMap<String, Object> param = new HashMap<>();
 		HashMap<String, Object> param1 = new HashMap<>();
-		
+		Session user = (Session) authentication.getDetails();
 		String[] day = null;
 		if(!date.equals("")) {
 			day = dateFormat(date);
@@ -128,7 +129,13 @@ public class StateController {
 		param.put("pagesize", pagesize);
 		param.put("pagestart", recordstartindex);
 		param.put("res", res);
-		param.put("branch_cd", branch_cd);
+		
+		if(user.getAuth_cd().equals("12") || user.getAuth_cd().equals("13")) {
+			param.put("branch_cd", user.getBranch_cd());
+		}else {
+			param.put("branch_cd", branch_cd);
+		}
+
 		param.put("emp_id", emp_id);
 		List<Stat> stat = sService.getView(param);
 		state_logger.info("state_page_ajax -> "+authentication.getName()+" : "+param.toString());

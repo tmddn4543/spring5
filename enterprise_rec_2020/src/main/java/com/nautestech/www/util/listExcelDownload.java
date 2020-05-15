@@ -3,10 +3,12 @@ package com.nautestech.www.util;
 import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -69,29 +71,14 @@ public class listExcelDownload extends AbstractXlsxView {
 		btime = btime.substring(11, 19);
 		etime = etime.substring(11, 19);
 
+		Calendar cal = Calendar.getInstance();
+		
 		SimpleDateFormat f = new SimpleDateFormat("HH:mm:ss", Locale.KOREA);
 		Date d1 = f.parse(etime);
 		Date d2 = f.parse(btime);
 		Date diff = new Date(d1.getTime() - d2.getTime());
-		int sec = diff.getSeconds();
-		int min = diff.getMinutes();
-		String str_sec = "";
-		String str_min = "";
-		if (sec < 10) {
-			str_sec = String.valueOf(sec);
-			str_sec = "0" + str_sec;
-		} else {
-			str_sec = String.valueOf(sec);
-		}
-
-		if (min < 10) {
-			str_min = String.valueOf(min);
-			str_min = "0" + str_min;
-		} else {
-			str_min = String.valueOf(min);
-		}
-
-		return str_min + ":" + str_sec;
+		String str_diff = String.valueOf(diff).substring(14,19);
+		return str_diff;
 
 	}
 
@@ -136,8 +123,9 @@ public class listExcelDownload extends AbstractXlsxView {
 			excelName = "CallHistory_"+sCurTime+".xlsx";
 			List<Call> listExcel = (List) modelMap.get("list");
 			
+			//List<Call> listExcel = modelMap.entrySet().stream().map(e -> new Call()).collect(Collectors.toList());
 			
-
+			
 			// 칼럼 길이 설정
 			int columnIndex = 0;
 			while (columnIndex < 9) {

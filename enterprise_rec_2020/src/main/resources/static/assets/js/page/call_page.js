@@ -19,8 +19,6 @@ $(document).ready(
     	var pageSize = "";
     	var recordstartindex = 0;
     	var arr_batch = new Array();
-    	var arr_c_id = new Array();
-    	var arr_YYYYMM = new Array();
     	
     	
     	
@@ -176,7 +174,7 @@ $(document).ready(
 	    
 	    var initrowdetails = function (index, parentElement, gridElement, datarecord) {
 	        var details = $($(parentElement).children()[0]);
-	        details.html("<div class='information'><audio controls><source src='/call/media/"+arr_YYYYMM[index-recordstartindex]+"/"+arr_c_id[index-recordstartindex]+"' type='audio/wav'></audio></div>");
+	        details.html("<div class='information'><audio controls><source src='/call/media/"+datarecord.YYYYMM+"/"+datarecord.c_id+"' type='audio/wav'></audio></div>");
 	    }
 	    
 	    
@@ -240,10 +238,6 @@ $(document).ready(
                         pageable: true,
                         rendergridrows: function(obj)
         				{
-                        	for(var i=0; i<obj.data.length-recordstartindex; i++){
-                        		arr_c_id[i] = obj.data[i+recordstartindex].c_id;
-                        		arr_YYYYMM[i] = obj.data[i+recordstartindex].YYYYMM;
-        					}
         					return obj.data;     
         				},
         				initrowdetails: initrowdetails,
@@ -266,9 +260,11 @@ $(document).ready(
                             	   $(cellElement).append(label);
                             	   label.jqxCheckBox({ width: 120, height: 25 });
                                 },
-                               initwidget: function (row, column, value, htmlElement) {
-                            	   $(htmlElement).children(0).jqxCheckBox('uncheck');
-                               }
+	                            initwidget: function (row, column, value, htmlElement) {
+	                                $("#grid").on("pagechanged", function (event) {
+	                                   $(htmlElement).children(0).jqxCheckBox('uncheck');
+	                                  });
+	                            }
                             }
                         ]
             });
@@ -289,10 +285,6 @@ $(document).ready(
                         pageable: true,
                         rendergridrows: function(obj)
         				{
-                        	for(var i=0; i<obj.data.length-recordstartindex; i++){
-                        		arr_c_id[i] = obj.data[i+recordstartindex].c_id;
-                        		arr_YYYYMM[i] = obj.data[i+recordstartindex].YYYYMM;
-        					}
         					return obj.data;     
         				},
         				initrowdetails: initrowdetails,

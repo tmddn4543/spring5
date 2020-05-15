@@ -1,5 +1,6 @@
 package com.nautestech.www.controller;
 
+import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nautestech.www.model.Batch;
+import com.nautestech.www.model.Session;
 import com.nautestech.www.model.Users;
 import com.nautestech.www.serviceImpl.UsersService;
 import com.nautestech.www.util.listExcelDownload;
@@ -76,7 +79,14 @@ public class UserController {
     		@RequestParam(value="branch_cd", required=false, defaultValue="")String branch_cd
     		,Authentication authentication) throws JsonProcessingException{
 		HashMap<String, Object> param = new HashMap<>();
-		param.put("branch_cd", branch_cd);
+		Session user = (Session) authentication.getDetails();
+		if(user.getEmp_id().equals("admin")) {//어드민일때 
+			param.put("branch_cd", branch_cd);
+		}else if(user.getAuth_cd().equals("12") || user.getAuth_cd().equals("13")) {
+			param.put("branch_cd", user.getBranch_cd());
+		}else {
+			param.put("branch_cd", branch_cd);
+		}
 		user_logger.info("user_branch_get -> "+authentication.getName()+" : "+param.toString());
 		return uService.getListBranch(param);
     }
@@ -147,10 +157,18 @@ public class UserController {
     		) throws JsonProcessingException{
 		HashMap<String, Object> param = new HashMap<>();
 		HashMap<String, Object> param1 = new HashMap<>();
+		
 		param.put("tel_no", tel_no);
 		param.put("pagesize", 1);
 		param.put("pagestart", 0);
 		List<Users> users = uService.getView(param);
+		Session user = (Session) authentication.getDetails();
+		param = new HashMap<>();
+		
+		if(user.getAuth_cd().equals("12") || user.getAuth_cd().equals("13")) {
+			param.put("branch_cd", user.getBranch_cd());
+		}
+
 		List<Batch> batch = uService.getListBranch(param);
 		Users u = users.get(0);
 		param1.put("user_result", u);
@@ -162,34 +180,6 @@ public class UserController {
 	
 	
 	
-//	@Secured({"ROLE_ADMIN","ROLE_OPERATIONADMIN","ROLE_GROUPADMIN","ROLE_LISTENUSER","ROLE_SMSUSER"})
-//	@RequestMapping(value = "/user_rec_Check", method= {RequestMethod.GET, RequestMethod.POST})
-//	@ResponseBody
-//    public String user_rec_check(
-//    		Authentication authentication
-//    		) {
-//		HashMap<String, Object> param = new HashMap<>();
-//		param.put("pagesize", 1000);
-//		param.put("pagestart", 0);
-//		List<Users> users = uService.getView(param);
-//		user_logger.info("user_rec_Check -> "+authentication.getName()+" : "+param.toString());
-//		int count1 = 0;
-//		int count2 = 0;
-//		for(int i=0; i<users.size(); i++) {
-//			if(!users.get(i).getRec_type().equals("N")) {
-//				count1++;
-//			}
-//			if(users.get(i).getAuth_cd().equals("15")) {
-//				count2++;
-//			}
-//		}
-//		if(count1>=RecCount) {
-//			return "false";
-//		}else if(count2>=2) {
-//			return "false";
-//		}
-//		return "true";
-//	}
 	
 	
 	
@@ -209,8 +199,8 @@ public class UserController {
     		@RequestParam(value="recordstartindex", required=false, defaultValue="")int recordstartindex,
     		@RequestParam(value="recordendindex", required=false, defaultValue="")int recordendindex,
     		Authentication authentication) throws JsonProcessingException{
-		String active = "active page_open";
-		model.addAttribute("user_active", active);
+		Session user = (Session) authentication.getDetails();
+		
 		listExcelDownload format = new listExcelDownload();
 		if(branch_cd.equals("전체")) {
 			branch_cd = "";
@@ -221,7 +211,13 @@ public class UserController {
 		param.put("pagesize", pagesize);
 		param.put("pagestart", recordstartindex);
 		param.put("tel_no", tel_no);
-		param.put("branch_cd", branch_cd);
+		
+		if(user.getAuth_cd().equals("12")) {
+			param.put("branch_cd", user.getBranch_cd());
+		}else if(user.getAuth_cd().equals("13")) {
+			param.put("branch_cd", user.getBranch_cd());
+			param.put("emp_id", user.getEmp_id());
+		}
 		param.put("rec_type", rec_type);
 		param.put("auth_cd", auth_cd);
 		user_logger.info("user_page_ajax -> "+authentication.getName()+" : "+param.toString());
@@ -308,13 +304,7 @@ public class UserController {
 			param1.put("pagestart", 0);
 			param1.put("auth_cd", "15");
 			List<Users> users = uService.getView(param1);
-			int count1 = 0;
-			for(int i=0; i<users.size(); i++) {
-				if(users.get(i).getAuth_cd().equals("15")) {
-					count1++;
-				}
-			}
-			if(count1>=2) {
+			if(users.size()>=2) {
 				return "false";
 			}
 		}

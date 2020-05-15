@@ -22,4 +22,5 @@ public class Session implements UserDetails {
     private String auth_cd;
     private String tel_no;
     private String down_type;
+    private String branch_cd;
 }

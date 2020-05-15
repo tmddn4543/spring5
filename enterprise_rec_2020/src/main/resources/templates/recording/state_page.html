@@ -35,6 +35,7 @@
 
     <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxpanel.js}"></script>
 
+	<script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxwindow.js}"></script>
     <!-- add script -->
     <script type="text/javascript" th:src="@{/resource/assets/js/page/state_page.js}"></script>
 	<script type="text/javascript" th:src="@{/resource/assets/js/util/format.js}"></script>
@@ -56,9 +57,9 @@
                     </h2>
                 </div>
                 <!-- Button trigger modal -->
-                <button id="popbt" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#search_filter">
-                    <span>검색</span> <i class="fa fa-filter" aria-hidden="true"></i>
-                </button>
+                <button id="showWindowButton" type="button" class="btn btn-primary btn-lg">
+		             <span>검색</span> <i class="fa fa-filter" aria-hidden="true"></i>
+		        </button>
                                              
             </div>
             <div class="ibox-content">
@@ -80,14 +81,14 @@
 
 </div>
 <!-- 서치 필터 -->
-<div class="modal" id="search_filter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-background="false">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">통계(지사) 필터</h4>
+<div id="jqxWidget">
+    <div id="mainDemoContainer">
+        <div id="window">
+            <div id="windowHeader">
+                <h4>통계(지사) 필터</h4>
                 
             </div>
-            <div class="modal-body">
+            <div id="windowContent">
                 <div class="list_search">
                     <form class="form-horizontal">
                         <div class="form-group">

@@ -46,6 +46,7 @@ public class UsersDetailsService implements UserDetailsService{
 		session.setTel_no(users.get(0).getTel_no());
 		session.setDown_type(users.get(0).getDown_type());
 		session.setEmp_nm(users.get(0).getEmp_nm());
+		session.setBranch_cd(users.get(0).getBranch_cd());
 		session.setAccountNonExpired(true);
 		session.setAccountNonLocked(true);
 		session.setCredentialsNonExpired(true);

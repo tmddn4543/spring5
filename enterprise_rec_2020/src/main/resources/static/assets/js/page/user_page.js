@@ -474,13 +474,21 @@ $(document).ready(function(){
 	$("#user_delete").click(function(){
 		var count = 0;
     	var arr = new Array();
+    	var admin_check = "false";
     	$(".user_checkbox").each(function(){  // .each()는 forEach를 뜻한다.
 			if($(this).is(":checked")){
 				var res = $(this).val();
 				arr[count] = res;
 				count = count+1;
+				if(res=="0000000000"){
+					admin_check = "true";
+				}
 			}  
     	});
+    	if(admin_check=="true"){
+    		alert("관리자는 삭제하실수 없습니다.");
+    		return false;
+    	}
     	$.ajax({
 			type : "POST",
 			url : "/user/user_delete",

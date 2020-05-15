@@ -38,6 +38,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.View;
 
 import com.nautestech.www.model.Call;
+import com.nautestech.www.model.Session;
 import com.nautestech.www.model.Users;
 import com.nautestech.www.serviceImpl.CallService;
 import com.nautestech.www.serviceImpl.UsersService;
@@ -89,7 +90,7 @@ public class CallController {
 		param1.put("emp_id", authentication.getName());
 		param1.put("result", "zip");
 		uService.setInsertListen_log(param1);
-		call_logger.info("zip ->"+authentication.getDetails()+" : "+param1.toString());
+		call_logger.info("zip ->"+authentication.getName()+" : "+param1.toString());
 		String arr = request.getParameter("arr");
 		String[] sp_arr = arr.split(",");
 		String active = "active page_open";
@@ -408,6 +409,7 @@ public class CallController {
     		@RequestParam(value="recordstartindex", required=false, defaultValue="")int recordstartindex,
     		@RequestParam(value="recordendindex", required=false, defaultValue="")int recordendindex,
     		Authentication authentication) throws Exception{ 
+		Session user = (Session) authentication.getDetails();
 		String startYYYYMM = bday.substring(0,7);
 		String endYYYYMM = eday.substring(0,7);
 		startYYYYMM = startYYYYMM.replace(":", "");
@@ -417,13 +419,17 @@ public class CallController {
 			branch_cd = "";
 		}
 		
-		System.out.println(startYYYYMM);
-		System.out.println(endYYYYMM);
+		
 		HashMap<String, Object> param = new HashMap<>();
 		param.put("xlsx", "false");
 		param.put("emp_id", emp);
 		param.put("emp_nm", emp);
-		param.put("branch_cd", branch_cd);
+		if(user.getAuth_cd().equals("12")) {
+			param.put("branch_cd", user.getBranch_cd());
+		}else if(user.getAuth_cd().equals("13")) {
+			param.put("emp_id", user.getEmp_id());
+			param.put("branch_cd", user.getBranch_cd());
+		}
 		param.put("bday", bday);
 		param.put("eday", eday);
 		param.put("startYYYYMM",startYYYYMM);
