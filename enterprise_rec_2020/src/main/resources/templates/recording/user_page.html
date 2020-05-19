@@ -37,7 +37,7 @@
     <script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxcheckbox.js}"></script>
 
     
-    
+    <script type="text/javascript" th:src="@{/resource/assets/js/window_filter.js}"></script>
 	<script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxwindow.js}"></script>
     <script type="text/javascript" th:src="@{/resource/assets/js/page/user_page.js}"></script>
 	<script type="text/javascript" th:src="@{/resource/assets/js/util/format.js}"></script>
@@ -111,7 +111,7 @@
                             <div class="col-sm-4">
                                 <label class="col-lg-4">번호조회</label>
                                 <div class="col-lg-8">
-                                    <input type="text" class="form-control receive_number" placeholder="">
+                                    <input type="text" class="form-control receive_number" id="tel_no_id" placeholder="">
                                 </div>
                             </div>
                             <div class="col-sm-4">
@@ -160,7 +160,6 @@
                         <input type="text" class="form-control" placeholder="" id="emp_id">
                     </div>
                     <div class="col-lg-2">
-                        <button class="btn btn-default" type="button" id="id_check">중복체크</button>
                     </div>
                 </div>
 
@@ -170,7 +169,6 @@
                         <input type="text" class="form-control" placeholder="" id="tel_no_070">
                     </div>
                     <div class="col-lg-2">
-                        <button class="btn btn-default" type="button" id="tel_070_check">중복체크</button>
                     </div>
                 </div>
 
@@ -187,7 +185,6 @@
                         <input type="text" class="form-control" placeholder="" id="tel_no">
                     </div>
                     <div class="col-lg-2">
-                        <button class="btn btn-default" type="button" id="tel_check">중복체크</button>
                     </div>
                 </div>
 
@@ -281,7 +278,7 @@
                     <label class="col-lg-2">다운로드 여부</label>
                     <div class="col-lg-8">
                         <label class="radio-inline">
-                          <input type="radio" name="download" id="down_inlineRadio1" value="N"> 다운로드 OFF
+                          <input type="radio" name="download" id="down_inlineRadio1"  value="N"> 다운로드 OFF
                         </label>
                         <label class="radio-inline">
                           <input type="radio" name="download" id="down_inlineRadio2" value="Y" checked> 다운로드 ON

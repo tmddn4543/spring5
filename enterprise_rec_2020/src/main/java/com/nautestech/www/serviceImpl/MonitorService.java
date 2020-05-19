@@ -3,14 +3,23 @@ package com.nautestech.www.serviceImpl;
 import java.util.HashMap;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.nautestech.www.mapper.MonitorMapper;
 import com.nautestech.www.model.Monitor;
 import com.nautestech.www.service.ISelect;
 
+@Service
 public class MonitorService implements ISelect<Monitor>{
+	
+	@Autowired
+	MonitorMapper mapper;
+	
 
 	@Override
-	public List<?> getView(HashMap<String, Object> param) {
-		return null;
+	public List<Monitor> getView(HashMap<String, Object> param) {
+		return mapper.getView(param);
 	}
 
 	@Override

@@ -88,7 +88,6 @@ $(document).ready(function(){
                     {
                     	source: dataadapter,
                         width: 100 + "%",
-                        height:  + "%",
                         autoheight: true, 
                         theme: 'material',
                         virtualmode: true,
@@ -116,7 +115,6 @@ $(document).ready(function(){
                     {
                     	source: dataadapter,
                         width: 100 + "%",
-                        height:  + "%",
                         autoheight: true, 
                         theme: 'material',
                         virtualmode: true,
@@ -145,7 +143,7 @@ $(document).ready(function(){
 	
 	$("#user_search_bt").click(function(){
 		branch_cd = $(".group_btn_act_search").val();
-		tel_no = $("#tel_no_input").val();
+		tel_no = $("#tel_no_id").val();
 		//$("input[name=inlineRadioOptions-add]:checked").val();
 		//
 		rec_type = $("input[name=inlineRadioOptions-add]:checked").val();
@@ -153,6 +151,7 @@ $(document).ready(function(){
 		if(branch_cd=="전체"){
 			branch_cd = "";
 		}
+		$('#window').jqxWindow('close');
 		main(branch_cd, tel_no,rec_type,auth_cd);
 	});
 	
@@ -160,13 +159,14 @@ $(document).ready(function(){
 	
 	
     //$(".group_btn_act_search").jqxDropDownList({ source: , selectedIndex: 1, width: 100 + "%", height: 34, autoItemsHeight: true, theme: "bootstrap", autoDropDownHeight: true});
-    $(".authority_num1").jqxDropDownList({ source: [ "전체","시스템관리자","운용사용자","그룹관리자","상담원"], selectedIndex: 1, width: 100 + "%", height: 34, autoItemsHeight: true, theme: "bootstrap", autoDropDownHeight: true});
+    $(".authority_num1").jqxDropDownList({ source: [ "전체","시스템관리자","운용사용자","그룹관리자","상담원"], selectedIndex: 0, width: 100 + "%", height: 34, autoItemsHeight: true, theme: "bootstrap", autoDropDownHeight: true});
 	$('#user_add').on('shown.bs.modal', function (event) {
 		var res = $(event.relatedTarget);
 		
 		if(res.context.value=="user_view"){
 			$('#myModalLabel1').html("사용자 상세보기");
 			//res.context.name
+			$("#modal_ajax").html("수정");
 			tel_no = res.context.name;
 			//사용자 상세보기가져오기
 			$("#pass").val("");
@@ -193,15 +193,26 @@ $(document).ready(function(){
 					
 					//rec_type = $("input[name=inlineRadioOptions]:checked").val();
 					//down_type = $("input[name=download]:checked").val();
+					
+//					if(rec_type=="B"){
+//						$("input:radio[name='download']").prop("disabled",false);
+//					}else if(rec_type=="N"){
+//						$("#down_inlineRadio1").prop("checked",true);
+//						$("input:radio[name='download']").prop("disabled",true);
+//					}
+					
 					if(result.user_result.rec_type=="B"){
 						$("#rec_inlineRadio1").prop("checked","checked");
+						$("input:radio[name='download']").prop("disabled",false);
 					}else if(result.user_result.rec_type=="N"){
 						$("#rec_inlineRadio2").prop("checked","checked");
+						$("#down_inlineRadio1").prop("checked",true);
+						$("input:radio[name='download']").prop("disabled",true);
 					}
 					
-					if(result.user_result.rec_type=="N"){
+					if(result.user_result.down_type=="N"){
 						$("#down_inlineRadio1").prop("checked","checked");
-					}else if(result.user_result.rec_type=="Y"){
+					}else if(result.user_result.down_type=="Y"){
 						$("#down_inlineRadio2").prop("checked","checked");
 					}
 					
@@ -232,6 +243,8 @@ $(document).ready(function(){
 					results = result;
 				}
 			});
+			
+			
 		}else if(res.context.value=="user_insert"){
 			
 			//branch_cd 그룹들 가져오기
@@ -251,8 +264,10 @@ $(document).ready(function(){
 			
 		    
 		    
-		    
+		    $("#down_inlineRadio1").prop("checked",true);
+		    $("input:radio[name=download]").prop("disabled",true);
 			$('#myModalLabel1').html("사용자 등록");
+			$("#modal_ajax").html("등록");
 			emp_id = $("#emp_id").val("");
 			$("#emp_id").prop("readonly",false);
 			$("#tel_no").prop("readonly",false);
@@ -262,6 +277,7 @@ $(document).ready(function(){
 			tel_no_070 = $("#tel_no_070").val("");
 			pass = $("#pass").val("");
 			pass_check = $("#pass_check").val("");
+			$("#rec_inlineRadio2").prop("checked","checked");
 		}
 	});
 	
@@ -269,6 +285,7 @@ $(document).ready(function(){
 		
 		
 		if($('#myModalLabel1').html()=="사용자 등록"){
+			
 			emp_id = $("#emp_id").val();
 			emp_nm = $("#emp_nm").val();
 			tel_no = $("#tel_no").val();
@@ -317,27 +334,19 @@ $(document).ready(function(){
 			}else if(auth_cd=="전체"){
 				alert("전체는 사용할 수 없습니다.");
 				return false;
-			}else if($("#emp_id").prop("readonly")==false){
-				alert("아이디 중복 확인을 해주세요");
-				return false;
-			}else if($("#tel_no").prop("readonly")==false){
-				alert("녹취번호 중복 확인을 해주세요");
-				return false;
-			}else if($("#tel_no_070").prop("readonly")==false){
-				alert("070녹취번호 중복 확인을 해주세요");
-				return false;
+
 			}
 			
 			
-//			else if(rec_type!="N" && results=="false"){
-//				alert("허용 가능한 녹취 라이센스 에 의해 수정 및 등록이 취소 되었거나 \n 허용 가능한 알람서비스 등록 갯수에의해 등록 취소 되었습니다.\n사용자를 미리 등록하시기 위해서는 녹취사용안함으로 미리 등록 후\n라이센스 추가 문의는 콜센터 1877-9907로 문의해주세요. ")
-//				results = "";
-//				return false;
-//			}else if(auth_cd=="15" && results=="false"){
-//				alert("허용 가능한 녹취 라이센스 에 의해 수정 및 등록이 취소 되었거나 \n 허용 가능한 알람서비스 등록 갯수에의해 등록 취소 되었습니다.\n사용자를 미리 등록하시기 위해서는 녹취사용안함으로 미리 등록 후\n라이센스 추가 문의는 콜센터 1877-9907로 문의해주세요. ")
-//				results = "";
-//				return false;
-//			}
+			
+				
+			
+			
+			
+			
+			
+			
+			
 			
 			
 			
@@ -357,11 +366,20 @@ $(document).ready(function(){
 				},
 				success : function(result) {
 					if(result=="true"){
-						alert("가입이 완료 되었습니다.");
+						alert("사용자 등록이 완료되었습니다.");
 						$("#user_add").modal("hide");
 						main();
-					}else{
-						alert("허용 가능한 녹취 라이센스 에 의해 수정 및 등록이 취소 되었거나 \n 허용 가능한 알람서비스 등록 갯수에의해 등록 취소 되었습니다.\n사용자를 미리 등록하시기 위해서는 녹취사용안함으로 미리 등록 후\n라이센스 추가 문의는 콜센터 1877-9907로 문의해주세요. ");
+					}else if(result=="return 4"){
+						alert("허용 가능한 녹취 라이센스 에 의해 수정 및 등록이 취소 되었거나 \n 허용 가능한 알람서비스 등록 갯수에의해 등록 취소 되었습니다.\n사용자를 미리 등록하시기 위해서는 녹취사용안함으로 미리 등록 후\n라이센스 추가 문의는 콜센터 1877-9907로 문의해주세요.");
+						return false;
+					}else if(result=="return 1"){
+						alert("아이디가 중복 되었습니다.");
+						return false;
+					}else if(result=="return 2"){
+						alert("녹취번호가 중복 되었습니다.");
+						return false;
+					}else if(result=="return 3"){
+						alert("070녹취번호가 중복 되었습니다.")
 						return false;
 					}
 				},
@@ -416,15 +434,6 @@ $(document).ready(function(){
 			}else if(auth_cd=="전체"){
 				alert("전체는 사용할 수 없습니다.");
 				return false;
-			}else if($("#emp_id").prop("readonly")==false){
-				alert("아이디 중복 확인을 해주세요");
-				return false;
-			}else if($("#tel_no").prop("readonly")==false){
-				alert("녹취번호 중복 확인을 해주세요");
-				return false;
-			}else if($("#tel_no_070").prop("readonly")==false){
-				alert("070녹취번호 중복 확인을 해주세요");
-				return false;
 			}else if(pass!=null || pass!="" || pass_check!=null || pass_check!=""){
 				if(pass!=pass_check){
 					alert("비밀번호가 다릅니다.");
@@ -470,6 +479,14 @@ $(document).ready(function(){
 	});
 	
 	
+	$("input:radio[name=inlineRadioOptions]").click(function(){
+		if($(this).val()=="B"){
+			$("input:radio[name='download']").prop("disabled",false);
+		}else if($(this).val()=="N"){
+			$("#down_inlineRadio1").prop("checked",true);
+			$("input:radio[name='download']").prop("disabled",true);
+		}
+	});
 	
 	$("#user_delete").click(function(){
 		var count = 0;
@@ -489,86 +506,21 @@ $(document).ready(function(){
     		alert("관리자는 삭제하실수 없습니다.");
     		return false;
     	}
-    	$.ajax({
-			type : "POST",
-			url : "/user/user_delete",
-			data : {arr : arr},
-			success : function() {
-				alert("유저가 삭제가 되었습니다.");
-				main();
-			}
-		});
+    	var check = confirm("정말 삭제 하시겠습니까?");
+    	if(check){
+    		$.ajax({
+    			type : "POST",
+    			url : "/user/user_delete",
+    			data : {arr : arr},
+    			success : function() {
+    				alert("유저가 삭제가 되었습니다.");
+    				main();
+    			}
+    		});
+    	}
 	});
 	
 	
-	$("#id_check").click(function(){
-		emp_id = $("#emp_id").val();
-		$.ajax({
-			type : "POST",
-			url : "/user/user_Check",
-			data : {emp_id : emp_id},
-			success : function(result) {
-				if(result=="true"){
-					alert("사용가능한 아이디 입니다.");
-					$("#emp_id").prop("readonly",true);
-				}else if(result=="false"){
-					alert("이미 사용중인 아이디 입니다.");
-					return false;
-				}
-			},
-			error : function() {
-				alert("알수없는 오류가 발생하였습니다.");
-			},
-			complete : function() {
-			}
-		});
-	});
-	
-	$("#tel_check").click(function(){
-		tel_no = $("#tel_no").val();
-		$.ajax({
-			type : "POST",
-			url : "/user/user_Check",
-			data : {tel_no : tel_no},
-			success : function(result) {
-				if(result=="true"){
-					alert("사용가능한 아이디 입니다.");
-					$("#tel_no").prop("readonly",true);
-				}else if(result=="false"){
-					alert("이미 사용중인 아이디 입니다.");
-					return false;
-				}
-			},
-			error : function() {
-				alert("알수없는 오류가 발생하였습니다.");
-			},
-			complete : function() {
-			}
-		});
-	});
-	
-	$("#tel_070_check").click(function(){
-		tel_no_070 = $("#tel_no_070").val();
-		$.ajax({
-			type : "POST",
-			url : "/user/user_Check",
-			data : {tel_no_070 : tel_no_070},
-			success : function(result) {
-				if(result=="true"){
-					alert("사용가능한 아이디 입니다.");
-					$("#tel_no_070").prop("readonly",true);
-				}else if(result=="false"){
-					alert("이미 사용중인 아이디 입니다.");
-					return false;
-				}
-			},
-			error : function() {
-				alert("알수없는 오류가 발생하였습니다.");
-			},
-			complete : function() {
-			}
-		});
-	});
 	
 
 	$(".groupSet_open").click(
@@ -733,26 +685,28 @@ $(document).ready(function(){
 			}  
     	});
     	
-    	
-    	$.ajax({
-			type : "POST",
-			url : "/user/user_branch_delete",
-			data : {arr : arr},
-			success : function(result) {
-				if(result=="true"){
-					for(var i=0; i<arr.length; i++){
-						$(".group_btn_act").jqxDropDownList('removeItem',arr[i]);
-						$(".group_btn_act_search").jqxDropDownList('removeItem',arr[i]);
-					}
-					$("#groupSet_modal").modal("hide");
-					alert("그룹 삭제가 되었습니다.");
-					main();
-				}else{
-					alert("사용자가 포함되어 있는 그룹이 있습니다. \n사용자 수정 or 제거후 삭제해주시기 바랍니다.");
-				}
-				
-			}
-		});
+    	var check = confirm("정말 삭제 하시겠습니까?");
+    	if(check){
+    		$.ajax({
+    			type : "POST",
+    			url : "/user/user_branch_delete",
+    			data : {arr : arr},
+    			success : function(result) {
+    				if(result=="true"){
+    					for(var i=0; i<arr.length; i++){
+    						$(".group_btn_act").jqxDropDownList('removeItem',arr[i]);
+    						$(".group_btn_act_search").jqxDropDownList('removeItem',arr[i]);
+    					}
+    					$("#groupSet_modal").modal("hide");
+    					alert("그룹 삭제가 되었습니다.");
+    					main();
+    				}else{
+    					alert("사용자가 포함되어 있는 그룹이 있습니다. \n사용자 수정 or 제거후 삭제해주시기 바랍니다.");
+    				}
+    				
+    			}
+    		});
+    	}
 	
 	});
 	

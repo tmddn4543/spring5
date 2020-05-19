@@ -184,7 +184,6 @@ $(document).ready(
                     {
                     	source: dataadapter,
                         width: 100 + "%",
-                        height:  + "%",
                         autoheight: true, 
                         theme: 'material',
                         rowdetails: true,
@@ -273,7 +272,6 @@ $(document).ready(
                     {
                     	source: dataadapter,
                         width: 100 + "%",
-                        height:  + "%",
                         autoheight: true, 
                         theme: 'material',
                         rowdetails: true,
@@ -349,7 +347,7 @@ $(document).ready(
         		return false;
         	}
         	
-        	
+        	$('#window').jqxWindow('close');
         	$('#grid').jqxGrid('updatebounddata');
         });
         

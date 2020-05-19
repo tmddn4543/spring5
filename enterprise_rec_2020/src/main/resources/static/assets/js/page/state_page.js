@@ -86,7 +86,6 @@ $(document).ready(
                     {
                     	source: dataadapter,
                         width: 100 + "%",
-                        height:  + "%",
                         autoheight: true, 
                         theme: 'material',
                         virtualmode: true,
@@ -130,6 +129,7 @@ $(document).ready(
         	if(branch_cd=="전체"){
         		branch_cd = "";
         	}
+        	$('#window').jqxWindow('close');
         	main(res,branch_cd,date,emp_id);
         });
         

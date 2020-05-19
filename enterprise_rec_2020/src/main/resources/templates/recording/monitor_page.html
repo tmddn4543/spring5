@@ -8,16 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Recording</title>
 	
-	<script type="text/javascript" th:src="@{/resource/assets/jqwidgets/jqxwindow.js}"></script>
-	<script src="/webjars/stomp-websocket/stomp.min.js"></script>
-    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+	<script th:src="@{/webjars/stomp-websocket/stomp.min.js}"></script>
+    <script th:src="@{/webjars/sockjs-client/sockjs.min.js}"></script>
 <script type="text/javascript" th:inline="javascript" th:src="@{/resource/assets/js/util/app.js}"></script>
 <script type="text/javascript" th:inline="javascript" th:src="@{/resource/assets/js/page/monitor_page.js}"></script>
 </head>
 <body class="monitering">
 <div id="wrapper">
     <a class="hide_darkbg"></a>
-    
     <div class="wrapper gray-bg" id="page-wrapper">
         <div class="row border-bottom">
         	<div th:replace="fragments/navbar :: navbarFragment"></div>
@@ -30,6 +28,7 @@
                     </h2>
                 </div>                  
             </div>
+            <button id="connect" class="btn btn-default" type="submit">Connect</button>
             <div class="ibox-content">
                 <div class="monitering_wrap">
                     <div class="row">

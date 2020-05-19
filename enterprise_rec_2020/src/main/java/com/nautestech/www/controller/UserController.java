@@ -145,6 +145,7 @@ public class UserController {
 		param.put("tel_no", arr);
 		user_logger.info("user_delete -> "+authentication.getName()+" : "+param.toString());
 		uService.setDelete(param);
+		uService.setDeleteMrecordUser(param);
 	}
 	
 	
@@ -211,7 +212,7 @@ public class UserController {
 		param.put("pagesize", pagesize);
 		param.put("pagestart", recordstartindex);
 		param.put("tel_no", tel_no);
-		
+		param.put("branch_cd", branch_cd);
 		if(user.getAuth_cd().equals("12")) {
 			param.put("branch_cd", user.getBranch_cd());
 		}else if(user.getAuth_cd().equals("13")) {
@@ -238,30 +239,30 @@ public class UserController {
     }
 	
 	
-	//user_idCheck
-	@Secured({"ROLE_ADMIN"})
-	@RequestMapping(value = "/user_Check", method= {RequestMethod.GET, RequestMethod.POST})
-	@ResponseBody
-	public String user_idCheck(
-			@RequestParam(value="emp_id", required=false, defaultValue="")String emp_id,
-			@RequestParam(value="tel_no", required=false, defaultValue="")String tel_no,
-			@RequestParam(value="tel_no_070", required=false, defaultValue="")String tel_no_070,
-			Authentication authentication
-			) throws JsonProcessingException{
-		HashMap<String, Object> param = new HashMap<>();
-		param.put("emp_id", emp_id);
-		param.put("tel_no", tel_no);
-		param.put("tel_no_070", tel_no_070);
-		param.put("pagesize", 100);
-		param.put("pagestart", 0);
-		user_logger.info("user_Check -> "+authentication.getName()+" : "+param.toString());
-		List<Users> user = uService.getView(param);
-		if(user.size()==0) {
-			return "true";
-		}else {
-			return "false";
-		}
-    }
+//	//user_idCheck
+//	@Secured({"ROLE_ADMIN"})
+//	@RequestMapping(value = "/user_Check", method= {RequestMethod.GET, RequestMethod.POST})
+//	@ResponseBody
+//	public String user_idCheck(
+//			@RequestParam(value="emp_id", required=false, defaultValue="")String emp_id,
+//			@RequestParam(value="tel_no", required=false, defaultValue="")String tel_no,
+//			@RequestParam(value="tel_no_070", required=false, defaultValue="")String tel_no_070,
+//			Authentication authentication
+//			) throws JsonProcessingException{
+//		HashMap<String, Object> param = new HashMap<>();
+//		param.put("emp_id", emp_id);
+//		param.put("tel_no", tel_no);
+//		param.put("tel_no_070", tel_no_070);
+//		param.put("pagesize", 100);
+//		param.put("pagestart", 0);
+//		user_logger.info("user_Check -> "+authentication.getName()+" : "+param.toString());
+//		List<Users> user = uService.getView(param);
+//		if(user.size()==0) {
+//			return "true";
+//		}else {
+//			return "false";
+//		}
+//    }
 	
 	
 	
@@ -281,6 +282,33 @@ public class UserController {
 			Authentication authentication
 			) throws JsonProcessingException{
 		
+		HashMap<String, Object> param = new HashMap<>();
+		param.put("emp_id", emp_id);
+		param.put("pagesize", 10);
+		param.put("pagestart", 0);
+		List<Users> user = uService.getView(param);
+		if(user.size()>0) {
+			return "return 1";
+		}
+		
+		param = new HashMap<>();
+		param.put("tel_no", tel_no);
+		param.put("pagesize", 10);
+		param.put("pagestart", 0);
+		user = uService.getView(param);
+		if(user.size()>0) {
+			return "return 2";
+		}
+		
+		param = new HashMap<>();
+		param.put("tel_no_070", tel_no_070);
+		param.put("pagesize", 10);
+		param.put("pagestart", 0);
+		user = uService.getView(param);
+		if(user.size()>0) {
+			return "return 3";
+		}
+		
 		
 		if(!rec_type.equals("N") && auth_cd.equals("13")) {
 			HashMap<String, Object> param1 = new HashMap<>();
@@ -295,7 +323,7 @@ public class UserController {
 				}
 			}
 			if(count1>=RecCount) {
-				return "false";
+				return "return 4";
 			}
 		}
 		if(auth_cd.equals("15")) {
@@ -305,7 +333,7 @@ public class UserController {
 			param1.put("auth_cd", "15");
 			List<Users> users = uService.getView(param1);
 			if(users.size()>=2) {
-				return "false";
+				return "return 4";
 			}
 		}
 		
@@ -314,7 +342,8 @@ public class UserController {
 		
 		
 		String rec_regdate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.KOREA).format(new Date());
-		HashMap<String, Object> param = new HashMap<>();
+		param = new HashMap<>();
+		HashMap<String, Object> param1 = new HashMap<>();
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		param.put("emp_id", emp_id);
 		param.put("tel_no", tel_no);
@@ -326,8 +355,35 @@ public class UserController {
 		param.put("rec_type", rec_type);
 		param.put("down_type", down_type);
 		param.put("rec_regdate", rec_regdate);
+		
+		
+		String u_level = "3";
+		String u_subid = "";
+		if (auth_cd.equals("00")) {
+			u_level = "1";
+			u_subid = "root";
+		} else if (auth_cd.equals("13")) {
+			u_level = "3";
+			u_subid = branch_cd;
+		} else if (auth_cd.equals("11") || auth_cd.equals("12")) {
+			u_level = "2";
+			u_subid = "admin";
+		}
+		
+		//String data = "data" + rs.getString("servercode").substring(rs.getString("servercode").length() - 1, rs.getString("servercode").length());
+		//data1 
+		param1.put("u_id", tel_no_070);
+		param1.put("u_subid", u_subid);
+		param1.put("u_level", u_level);
+		param1.put("u_name", emp_nm);
+		param1.put("u_tel1", tel_no);
+		param1.put("u_email", "/data"+"1"+"/"+branch_cd+"/");
+		param1.put("u_pwd", pass);
+		param1.put("u_flag", rec_type);
+		
 		user_logger.info("user_Insert ->"+authentication.getName()+" : "+param.toString());
 		uService.setInsert(param);
+		uService.setInsertMrecordUser(param1);
 		return "true";
     }
 	
@@ -425,6 +481,39 @@ public class UserController {
 		param.put("down_type", down_type);
 		param.put("rec_type_regdate", rec_type_regdate);
 		user_logger.info("user_update -> "+authentication.getName()+" : "+param.toString());
+		
+		
+		
+		
+		String u_level = "3";
+		String u_subid = "";
+		if (auth_cd.equals("00")) {
+			u_level = "1";
+			u_subid = "root";
+		} else if (auth_cd.equals("13")) {
+			u_level = "3";
+			u_subid = branch_cd;
+		} else if (auth_cd.equals("11") || auth_cd.equals("12")) {
+			u_level = "2";
+			u_subid = "admin";
+		}
+		
+		//String data = "data" + rs.getString("servercode").substring(rs.getString("servercode").length() - 1, rs.getString("servercode").length());
+		//data1 
+		HashMap<String, Object> param1 = new HashMap<>();
+		param1.put("u_id", tel_no_070);
+		param1.put("u_subid", u_subid);
+		param1.put("u_level", u_level);
+		param1.put("u_name", emp_nm);
+		param1.put("u_tel1", tel_no);
+		param1.put("u_email", "/data"+"1"+"/"+branch_cd+"/");
+		param1.put("u_pwd", pass);
+		param1.put("u_flag", rec_type);
+		
+		
+		
+		uService.setInsertMrecordUser(param1);
+		
 		uService.setUpdate(param);
 		return "true";
     }

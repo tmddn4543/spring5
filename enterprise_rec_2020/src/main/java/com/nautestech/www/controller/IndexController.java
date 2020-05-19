@@ -8,7 +8,10 @@ import java.util.Map;
 
 
 import org.apache.poi.util.IOUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationContext;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -27,6 +30,8 @@ public class IndexController {
 	@Value("${webLoginLogo}")
 	String webLoginLogo;
 	
+	@Autowired
+	ApplicationContext loa;
 	
 	
 	@RequestMapping(value = "/", method= {RequestMethod.GET, RequestMethod.POST})
@@ -40,11 +45,15 @@ public class IndexController {
 	public ResponseEntity<byte[]> displayFile()throws Exception{
 		InputStream in = null;
 		ResponseEntity<byte[]> entity = null;
+		Resource res = loa.getResource("classpath:resources/assets/img/nautes_logo.png");
+		System.out.println(res.toString());
+//		webLoginLogo = "classpath:resources/assets/img/nautes_logo.png";
 		//logger.info("FILE NAME : " + fileName);
 		try {
 			String formatName = webLoginLogo.substring(webLoginLogo.lastIndexOf(".")+1);
 			MediaType mType = getMediaType(formatName);
 			HttpHeaders headers = new HttpHeaders();
+			
 			in = new FileInputStream(webLoginLogo);
 			
 			//step: change HttpHeader ContentType

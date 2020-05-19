@@ -54,9 +54,17 @@
 
 
 
-
+<!-- setDeleteMrecordUser -->
 	<delete id="setDelete" parameterType="hashmap">
 		delete from `web_recording`.`users` where tel_no in
+		<foreach collection="tel_no" item="tel_no" open="(" close=")" separator="," index="index">
+			#{tel_no}
+		</foreach>
+	</delete>
+	
+	
+	<delete id="setDeleteMrecordUser" parameterType="hashmap">
+		delete from `m_recording`.`users` where u_tel1 in
 		<foreach collection="tel_no" item="tel_no" open="(" close=")" separator="," index="index">
 			#{tel_no}
 		</foreach>
@@ -211,9 +219,36 @@
 		#{down_type},
 		'')<!--group_id  -->
 	</insert>
-	
-	
-	
+
+	<insert id="setInsertMrecordUser" parameterType="hashmap">
+		insert into `m_recording`.`users`(
+		u_id,
+		u_subid, 
+		u_level, 
+		u_name, 
+		u_tel1, 
+		u_tel2, 
+		u_email, 
+		u_address, 
+		u_pwd, 
+		u_regtime, 
+		u_flag
+		) values(
+		#{u_id},
+		#{u_subid},
+		#{u_level},
+		#{u_name},
+		#{u_tel1},
+		'',
+		#{u_email},
+		'',
+		#{u_pwd},
+		now(),
+		#{u_flag}
+		)
+		on duplicate key update
+		u_subid=#{u_subid}, u_level=#{u_level}, u_name=#{u_name}, u_tel1=#{u_tel1}, u_pwd=#{u_pwd}, u_flag=#{u_flag}, u_email=#{u_email}
+	</insert>
 	
 	
 	<sql id="where">

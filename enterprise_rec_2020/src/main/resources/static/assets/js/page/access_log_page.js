@@ -52,7 +52,6 @@ $(document).ready(function(){
                 {
                 	source: dataadapter,
                     width: 100 + "%",
-                    height:  + "%",
                     autoheight: true, 
                     theme: 'material',
                     virtualmode: true,
@@ -75,6 +74,7 @@ $(document).ready(function(){
     
     $("#access_log_bt").click(function(){
     	user_id = $("#log_user_id").val();
+    	$('#window').jqxWindow('close');
     	main(user_id);
     });
 

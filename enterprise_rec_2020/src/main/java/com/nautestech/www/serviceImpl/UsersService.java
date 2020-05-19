@@ -94,4 +94,14 @@ public class UsersService implements IInsert,ISelect<Users>,IDelete,IUpdate{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public void setInsertMrecordUser(HashMap<String, Object> param) {
+		mapper.setInsertMrecordUser(param);
+	}
+
+	@Override
+	public void setDeleteMrecordUser(HashMap<String, Object> param) {
+		mapper.setDeleteMrecordUser(param);
+	}
 }

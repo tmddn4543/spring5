@@ -29,6 +29,7 @@
 	
 	<select id="getView" resultMap="getSelectMap" parameterType="hashmap">
 		select * from `m_recording`.`monitoring`
+		where status = '1'
 	</select>
 	
 	
