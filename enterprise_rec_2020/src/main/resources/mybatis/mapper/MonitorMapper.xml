@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.nautestech.www.mapper.MonitorMapper">	
+	<resultMap type="monitor" id="getSelectMap">
+		<result property="c_id" column="c_id"/>
+		<result property="u_id" column="u_id"/>
+		<result property="status" column="status"/>
+		<result property="status_er" column="status_er"/>
+		<result property="status_ed" column="status_ed"/>
+		<result property="caller" column="caller"/>
+		<result property="called" column="called"/>
+		<result property="callid" column="callid"/>
+		<result property="stime" column="stime"/>
+		<result property="sltime" column="sltime"/>
+		<result property="rtime" column="rtime"/>
+		<result property="rltime" column="rltime"/>
+		<result property="rtime_er" column="rtime_er"/>
+		<result property="rltime_er" column="rltime_er"/>
+		<result property="rtime_ed" column="rtime_ed"/>
+		<result property="rltime_ed" column="rltime_ed"/>
+		<result property="fname" column="fname"/>
+		<result property="rtp1" column="rtp1"/>
+		<result property="rtp2" column="rtp2"/>
+	</resultMap>
+	
+	
+	<select id="getView" resultMap="getSelectMap" parameterType="hashmap">
+		select * from `m_recording`.`monitoring`
+	</select>
+	
+	
+	
+<!-- 	<sql id="where"> -->
+<!-- 		<where> -->
+<!-- 			<if test='emp_id !=null and !emp_id.equals("")'> -->
+<!-- 				emp_id = #{emp_id} -->
+<!-- 			</if> -->
+<!-- 		</where> -->
+<!-- 	</sql> -->
+	
+</mapper>

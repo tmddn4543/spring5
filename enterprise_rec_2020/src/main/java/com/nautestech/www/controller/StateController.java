@@ -117,13 +117,7 @@ public class StateController {
 		if(!date.equals("")) {
 			day = dateFormat(date);
 			param.put("bday", day[0]);
-			if(res.equals("D")) {
-				param.put("eday", day[1]+"23");
-			}else if(res.equals("H")) {
-				param.put("eday", day[1]+"23");
-			}else {
-				param.put("eday", day[1]);
-			}
+			param.put("eday", day[1]+"23");
 		}
 		param.put("xlsx","false");
 		param.put("pagesize", pagesize);

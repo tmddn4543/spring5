@@ -9,4 +9,5 @@ $(document).ready(function(){
             $('body').addClass('mini-navbar');
         }
     }).resize();
+    
 });
