@@ -48,13 +48,13 @@
 		</if>
 			emp_id
 		<if test='res.equals("H")'>
-		order by left(s_date,10)
+		order by left(s_date,10) desc
 		</if>
 		<if test='res.equals("D")'>
-		order by left(s_date,8)
+		order by left(s_date,8) desc
 		</if>
 		<if test='res.equals("M")'>
-		order by left(s_date,6)
+		order by left(s_date,6) desc
 		</if>
 		<if test='xlsx.equals("false")'>
 		limit ${pagestart},${pagesize}

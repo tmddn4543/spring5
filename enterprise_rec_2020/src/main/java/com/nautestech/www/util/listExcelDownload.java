@@ -207,7 +207,7 @@ public class listExcelDownload extends AbstractXlsxView {
 			
 			
 		}else if(option.equals("state")) {
-			excelName = "State_"+sCurTime+".xlsx";
+			excelName = "Statistics_"+sCurTime+".xlsx";
 			List<Stat> listExcel = (List) modelMap.get("list");
 			
 			
@@ -258,17 +258,22 @@ public class listExcelDownload extends AbstractXlsxView {
 				}else if(i==4) {
 					cell.setCellValue("발신");
 				}else if(i==5) {
-					cell.setCellValue("합계");
+					cell.setCellValue("착발신 합계");
 				}else if(i==6) {
 					cell.setCellValue("착신 통화시간");
 				}else if(i==7) {
 					cell.setCellValue("발신 통화시간");
 				}else if(i==8) {
-					cell.setCellValue("통화시간 소계");
+					cell.setCellValue("착발신시간 합계");
 				}
 			}
 			int rowIndex = 4;
-
+			int total1 = 0;
+			int total2 = 0;
+			int total3 = 0;
+			int total4 = 0;
+			int total5 = 0;
+			int total6 = 0;
 			// 각 해당하는 셀에 값과 스타일을 넣음
 			for (Stat stat : listExcel) {
 				row = worksheet.createRow(rowIndex);
@@ -281,9 +286,24 @@ public class listExcelDownload extends AbstractXlsxView {
 				row.createCell(6).setCellValue(stat.getS_called_time());
 				row.createCell(7).setCellValue(stat.getS_caller_time());
 				row.createCell(8).setCellValue(stat.getS_call_time_total());
+				total1 += stat.getS_called_cnt();
+				total2 += stat.getS_caller_cnt();
+				total3 += stat.getS_call_cnt_total();
+				total4 += stat.getS_called_time();
+				total5 += stat.getS_caller_time();
+				total6 += stat.getS_call_time_total();
 				rowIndex++;
 			}
-
+			row = worksheet.createRow(rowIndex+1);
+			row.createCell(0).setCellValue("총소계");
+			
+			row.createCell(3).setCellValue(total1);
+			row.createCell(4).setCellValue(total2);
+			row.createCell(5).setCellValue(total3);
+			row.createCell(6).setCellValue(total4);
+			row.createCell(7).setCellValue(total5);
+			row.createCell(8).setCellValue(total6);
+			
 			worksheet.createFreezePane(1, 4);
 			
 			

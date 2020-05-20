@@ -418,8 +418,8 @@ public class CallController {
 		if(branch_cd.equals("전체")) {
 			branch_cd = "";
 		}
-		
-		
+		String bday_h = bday.substring(11,13);
+		String eday_h = eday.substring(11,13);
 		HashMap<String, Object> param = new HashMap<>();
 		param.put("xlsx", "false");
 		param.put("emp_id", emp);
@@ -429,7 +429,12 @@ public class CallController {
 		}else if(user.getAuth_cd().equals("13")) {
 			param.put("emp_id", user.getEmp_id());
 			param.put("branch_cd", user.getBranch_cd());
+		}else if(user.getAuth_cd().equals("00")){
+			param.put("branch_cd",branch_cd);
+		}else {
+			param.put("branch_cd",branch_cd);
 		}
+		
 		param.put("bday", bday);
 		param.put("eday", eday);
 		param.put("startYYYYMM",startYYYYMM);
@@ -439,6 +444,8 @@ public class CallController {
 		param.put("caller_attr", caller_attr);
 		param.put("called_attr", called_attr);
 		param.put("rec_type", rec_type);
+		param.put("bday_h", bday_h);
+		param.put("eday_h", eday_h);
 		param.put("start_talk_time", start_talk_time);
 		param.put("end_talk_time", end_talk_time);
 		param.put("pagesize", pagesize);

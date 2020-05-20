@@ -245,6 +245,10 @@
 				</otherwise>
 			</choose>
 			</if>
+			<if test='bday_h !=null and !bday_h.equals("")'>
+				and date_format(btime, '%H') between #{bday_h} and #{eday_h}
+			</if>
+			
 			<if test='bday !=null and !bday.equals("") and eday !=null and !eday.equals("")'>
 				and btime between #{bday} and #{eday}
 			</if>

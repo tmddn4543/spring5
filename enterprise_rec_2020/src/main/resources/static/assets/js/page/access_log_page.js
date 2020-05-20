@@ -18,6 +18,14 @@ $(document).ready(function(){
         }
     );
     
+    $(".jqxcalendar_act").jqxDateTimeInput({ width: 98 + "%", height: 32,  selectionMode: "range", formatString: "yyyy/MM/dd", theme: "bootstrap" });
+    $(".jqxcalendar_act").on("jqxcalendar", function (event) {
+        var selection = $("#jqxWidget").jqxDateTimeInput("getRange");
+        if (selection.from != null) {
+            $("#selection").html("<div>From: " + selection.from.toLocaleDateString() + " <br/>To: " + selection.to.toLocaleDateString() + "</div>");
+        }
+    });
+    
     
     main(null);
     

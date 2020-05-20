@@ -163,7 +163,6 @@ $(document).ready(
 			beforeprocessing: function(data)
 			{		
 				recordstartindex = data.recordstartindex;
-				console.log(recordstartindex);
 				source.totalrecords = data.total;
 			}
         };		
@@ -177,9 +176,19 @@ $(document).ready(
 	        details.html("<div class='information'><audio controls><source src='/call/media/"+datarecord.YYYYMM+"/"+datarecord.c_id+"' type='audio/wav'></audio></div>");
 	    }
 	    
+	    var grid_check = "";
+	    if(u_auth_cd!="13"){
+	    	if(u_down_type=="Y" || u_down_type==""){
+	    		grid_check="true";
+	    	}
+	    }else{
+	    	if(u_down_type=="Y"){
+	    		grid_check="true";
+	    	}
+	    }
 	    
-	    
-	    if(u_auth_cd!="13" && (u_down_type=="Y" || u_down_type=="")){
+	    //u_auth_cd!="13" && (u_down_type=="Y" || u_down_type=="")
+	    if(grid_check=="true"){
 	    	$("#grid").jqxGrid(//킵
                     {
                     	source: dataadapter,
@@ -316,6 +325,8 @@ $(document).ready(
         	source.data.emp = $("#emp2").val();
         	source.data.end_talk_time = $("#end_talk_time2").val();
         	source.data.start_talk_time = $("#start_talk_time2").val();
+        	source.data.called_attr = called_attr;
+        	source.data.caller_attr = caller_attr;
         	
         	
         	

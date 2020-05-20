@@ -76,6 +76,18 @@ public class StateController {
 		param.put("emp_id", emp_id);
 		List<Stat> stat = sService.getView(param);
 		for(int i=0; i<stat.size(); i++) {
+			StringBuffer s_date = new StringBuffer(stat.get(i).getS_date());
+			if(stat.get(i).getS_date().length()>8) {//시간
+				s_date.insert(8, ":");
+				s_date.insert(6, "-");
+				s_date.insert(4, "-");
+			}else if(stat.get(i).getS_date().length()>6){//일
+				s_date.insert(6, "-");
+				s_date.insert(4, "-");
+			}else if(stat.get(i).getS_date().length()>4){//월
+				s_date.insert(4, "-");
+			}
+			stat.get(i).setS_date(String.valueOf(s_date));
 			stat.get(i).setS_call_cnt_total(stat.get(i).getS_called_cnt()+stat.get(i).getS_caller_cnt());
 			stat.get(i).setS_call_time_total(stat.get(i).getS_called_time()+stat.get(i).getS_caller_time());
 		}
@@ -137,7 +149,19 @@ public class StateController {
 			List<Stat> stat1 = sService.getListStateCount(param);
 			param1.put("total", stat1.size());
 			for(int i=0; i<stat.size(); i++) {
-				stat.get(i).setNum(recordstartindex+i+1);
+				StringBuffer s_date = new StringBuffer(stat.get(i).getS_date());
+				if(stat.get(i).getS_date().length()>8) {//시간
+					s_date.insert(8, ":");
+					s_date.insert(6, "-");
+					s_date.insert(4, "-");
+				}else if(stat.get(i).getS_date().length()>6){//일
+					s_date.insert(6, "-");
+					s_date.insert(4, "-");
+				}else if(stat.get(i).getS_date().length()>4){//월
+					s_date.insert(4, "-");
+				}
+				stat.get(i).setS_date(String.valueOf(s_date));
+				stat.get(i).setNum(stat1.size()-i-recordstartindex);
 				stat.get(i).setS_call_cnt_total(stat.get(i).getS_called_cnt()+stat.get(i).getS_caller_cnt());
 				stat.get(i).setS_call_time_total(stat.get(i).getS_called_time()+stat.get(i).getS_caller_time());
 			}

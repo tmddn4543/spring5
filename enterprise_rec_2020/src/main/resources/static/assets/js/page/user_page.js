@@ -191,15 +191,7 @@ $(document).ready(function(){
 					$(".authority_num").jqxDropDownList({disabled: true,  source: [ "전체","시스템관리자","운용사용자","그룹관리자","상담원"], selectedIndex: 1, width: 100 + "%", height: 34, autoItemsHeight: true, theme: "bootstrap", autoDropDownHeight: true});
 					
 					
-					//rec_type = $("input[name=inlineRadioOptions]:checked").val();
-					//down_type = $("input[name=download]:checked").val();
-					
-//					if(rec_type=="B"){
-//						$("input:radio[name='download']").prop("disabled",false);
-//					}else if(rec_type=="N"){
-//						$("#down_inlineRadio1").prop("checked",true);
-//						$("input:radio[name='download']").prop("disabled",true);
-//					}
+
 					
 					if(result.user_result.rec_type=="B"){
 						$("#rec_inlineRadio1").prop("checked","checked");

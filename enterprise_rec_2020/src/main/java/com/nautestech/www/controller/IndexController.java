@@ -1,7 +1,7 @@
 package com.nautestech.www.controller;
 
 import java.io.InputStream;
-
+import java.io.File;
 import java.io.FileInputStream;
 import java.util.HashMap;
 import java.util.Map;
@@ -45,10 +45,11 @@ public class IndexController {
 	public ResponseEntity<byte[]> displayFile()throws Exception{
 		InputStream in = null;
 		ResponseEntity<byte[]> entity = null;
-		Resource res = loa.getResource("classpath:resources/assets/img/nautes_logo.png");
-		System.out.println(res.toString());
-//		webLoginLogo = "classpath:resources/assets/img/nautes_logo.png";
-		//logger.info("FILE NAME : " + fileName);
+		File path = new File(webLoginLogo);
+		if(!path.exists()) {
+			path = new File("");
+			webLoginLogo = path.getAbsolutePath()+"/src/main/resources/static/assets/img/nautes_logo.png";
+		}
 		try {
 			String formatName = webLoginLogo.substring(webLoginLogo.lastIndexOf(".")+1);
 			MediaType mType = getMediaType(formatName);

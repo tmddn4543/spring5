@@ -90,6 +90,20 @@ $(document).ready(
                         theme: 'material',
                         virtualmode: true,
                         pageable: true,
+                        showtoolbar: true,
+                        rendertoolbar: function (statusbar) {
+                            // appends buttons to the status bar.
+                            var container = $("<div style='overflow: hidden; position: relative; margin: 5px;'></div>");
+                            var xlsButton = $("<div style='float: right; margin-left: 5px;'><img style='position: relative; margin-top: 2px;' ><span style='margin-left: -2px; position: relative; top: 1px;'>엑셀다운</span></div>");
+                            
+                            container.append(xlsButton);
+                            statusbar.append(container);
+                            xlsButton.jqxButton({  width: 60, height: 28 });
+                            // add new row.
+                            xlsButton.click(function (event) {
+                            	xls();
+                            });
+                        },
                         rendergridrows: function(obj)
         				{
         					  return obj.data;     
@@ -101,10 +115,10 @@ $(document).ready(
         	                { text: "사용자", datafield: "emp_id", width: 10 + "%", minwidth: 105.099999999 },
         	                { text: "착신", datafield: "s_called_cnt", width: 10 + "%", minwidth: 105.099999999 },
         	                { text: "발신", datafield: "s_caller_cnt", width: 10 + "%", minwidth: 105.099999999 },
-        	                { text: "합계", datafield: "s_call_cnt_total", width: 10 + "%", minwidth: 105.099999999 },
+        	                { text: "착발신 합계", datafield: "s_call_cnt_total", width: 10 + "%", minwidth: 105.099999999 },
         	                { text: "착신 통화시간", datafield: "s_called_time", width: 10 + "%", minwidth: 105.099999999 },
         	                { text: "발신 통화시간", datafield: "s_caller_time", width: 10 + "%", minwidth: 105.099999999 },
-        	                { text: "통화시간 소계", datafield: "s_call_time_total", width: 10 + "%", minwidth: 105.099999999 }
+        	                { text: "착발신시간 합계", datafield: "s_call_time_total", width: 10 + "%", minwidth: 105.099999999 }
         	            ]
                 });
         }
@@ -231,8 +245,8 @@ $(document).ready(
 
         
         
-        $("#down_bt").click(function(){
+        function xls(){
         	location.href="/state/xlsxDownload?res="+res+"&branch_cd="+branch_cd+"&date="+date+"&emp_id="+emp_id;
-        });
+        }
 
 });
