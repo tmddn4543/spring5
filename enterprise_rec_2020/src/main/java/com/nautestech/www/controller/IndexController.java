@@ -11,7 +11,7 @@ import org.apache.poi.util.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
-import org.springframework.core.io.Resource;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -43,19 +43,24 @@ public class IndexController {
 	//ResponseEntity<byte[]>
 	@RequestMapping(value = "/logo", method= {RequestMethod.GET, RequestMethod.POST})
 	public ResponseEntity<byte[]> displayFile()throws Exception{
+		
+		
+		ClassPathResource cpr = new ClassPathResource("static/assets/img/nautes_logo.png");
+
+		
+		
 		InputStream in = null;
 		ResponseEntity<byte[]> entity = null;
 		File path = new File(webLoginLogo);
-		if(!path.exists()) {
-			path = new File("");
-			webLoginLogo = path.getAbsolutePath()+"/src/main/resources/static/assets/img/nautes_logo.png";
-		}
 		try {
 			String formatName = webLoginLogo.substring(webLoginLogo.lastIndexOf(".")+1);
 			MediaType mType = getMediaType(formatName);
 			HttpHeaders headers = new HttpHeaders();
-			
-			in = new FileInputStream(webLoginLogo);
+			if(!path.exists()) {
+				in = cpr.getInputStream();
+			}else {
+				in = new FileInputStream(path);
+			}
 			
 			//step: change HttpHeader ContentType
 			if(mType != null) {

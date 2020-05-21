@@ -26,15 +26,15 @@ $(document).ready(function(){
         }
     });
     
+    main(null,null);
     
-    main(null);
-    
-    function main(user_id){
+    function main(user_id,a_day){
     	var source =
         {
              datatype: "json",
              data : {
-            	 user_id :user_id
+            	 user_id :user_id,
+            	 a_day :a_day
              },
              datafields: [
     			 { name: 'num'},
@@ -79,11 +79,12 @@ $(document).ready(function(){
     }
 
     var user_id = "";
-    
+    var a_day = "";
     $("#access_log_bt").click(function(){
     	user_id = $("#log_user_id").val();
+    	a_day = $(".jqxcalendar_act").val();
     	$('#window').jqxWindow('close');
-    	main(user_id);
+    	main(user_id, a_day);
     });
 
     

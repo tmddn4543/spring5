@@ -250,16 +250,16 @@ $(document).ready(
         				},
         				initrowdetails: initrowdetails,
         				columns: [
-                            { text: "순번", datafield: "num", width: 5 + "%", minwidth: 50.9},
-                            { text: "그룹", datafield: "branch_cd", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "사용자ID", datafield: "emp_id", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "이름", datafield: "emp_nm", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "발신번호", datafield: "caller", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "수신번호", datafield: "called", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "통화일자", datafield: "call_date", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "통화시각", datafield: "call_hour", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "통화시간", datafield: "call_time", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "유형", datafield: "rec_type", width: 9.090909 + "%", minwidth: 91.7333},
+        					 { text: "순번", datafield: "num", width: 5 + "%", minwidth: 50.9},
+                             { text: "그룹", datafield: "branch_cd", width: 9.5  + "%", minwidth: 96.71},
+                             { text: "사용자ID", datafield: "emp_id", width: 9.5  + "%", minwidth: 96.71},
+                             { text: "이름", datafield: "emp_nm", width: 9.5  + "%", minwidth: 96.71},
+                             { text: "발신번호", datafield: "caller", width: 9.5  + "%", minwidth: 96.71},
+                             { text: "수신번호", datafield: "called", width: 9.5  + "%", minwidth: 96.71},
+                             { text: "통화일자", datafield: "call_date", width: 9.5  + "%", minwidth: 96.71},
+                             { text: "통화시각", datafield: "call_hour", width: 9.5  + "%", minwidth: 96.71},
+                             { text: "통화시간", datafield: "call_time", width: 9.5  + "%", minwidth: 96.71},
+                             { text: "유형", datafield: "rec_type", width: 9.5  + "%", minwidth: 96.71},
                             //"<button class='btn btn-default' id='zipDown_bt'>받기</button>"
                             { text: "알집다운", datafield: "dirname", cellsalign: 'center', width: 9.090909 + "%", minwidth: 91.7333,
                             	
@@ -297,17 +297,17 @@ $(document).ready(
         				initrowdetails: initrowdetails,
                         columns: [
                             { text: "순번", datafield: "num", width: 5 + "%", minwidth: 50.9},
-                            { text: "그룹", datafield: "branch_cd", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "사용자ID", datafield: "emp_id", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "이름", datafield: "emp_nm", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "발신번호", datafield: "caller", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "수신번호", datafield: "called", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "통화일자", datafield: "call_date", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "통화시각", datafield: "call_hour", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "통화시간", datafield: "call_time", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "유형", datafield: "rec_type", width: 9.090909 + "%", minwidth: 91.7333},//"+call[i].dirname+""+call[i].fname+"
-                            
+                            { text: "그룹", datafield: "branch_cd", width: 10.5555 + "%", minwidth: 107.45499 },
+                            { text: "사용자ID", datafield: "emp_id", width: 10.5555 + "%", minwidth: 107.45499 },
+                            { text: "이름", datafield: "emp_nm", width: 10.5555 + "%", minwidth: 107.45499 },
+                            { text: "발신번호", datafield: "caller", width: 10.5555 + "%", minwidth: 107.45499 },
+                            { text: "수신번호", datafield: "called", width: 10.5555 + "%", minwidth: 107.45499 },
+                            { text: "통화일자", datafield: "call_date", width: 10.5555 + "%", minwidth: 107.45499 },
+                            { text: "통화시각", datafield: "call_hour", width: 10.5555 + "%", minwidth: 107.45499 },
+                            { text: "통화시간", datafield: "call_time", width: 10.5555 + "%", minwidth: 107.45499 },
+                            { text: "유형", datafield: "rec_type", width: 10.5555 + "%", minwidth: 107.45499 },//"+call[i].dirname+""+call[i].fname+"
                         ]
+
             });
 	    }
         

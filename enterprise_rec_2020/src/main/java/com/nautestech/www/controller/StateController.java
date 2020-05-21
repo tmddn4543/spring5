@@ -1,7 +1,10 @@
 package com.nautestech.www.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -49,7 +52,7 @@ public class StateController {
 	
 	@Secured({"ROLE_ADMIN","ROLE_ENDUSER","ROLE_OPERATIONADMIN","ROLE_GROUPADMIN","ROLE_LISTENUSER","ROLE_SMSUSER"})
 	@RequestMapping(value = "/xlsxDownload", method= {RequestMethod.GET, RequestMethod.POST})
-	public View down(@RequestParam(value="res", required=false, defaultValue="M")String res,
+	public View down(@RequestParam(value="res", required=false, defaultValue="H")String res,
 			@RequestParam(value="branch_cd", required=false, defaultValue="")String branch_cd,
 			@RequestParam(value="date", required=false, defaultValue="")String date,
 			@RequestParam(value="emp_id", required=false, defaultValue="")String emp_id,Model model,
@@ -61,7 +64,6 @@ public class StateController {
 		param1.put("emp_id", authentication.getName());
 		param1.put("result", "s_xlsx");
 		uService.setInsertListen_log(param1);
-		
 		
 		HashMap<String, Object> param = new HashMap<>();
 		String[] day = null;
@@ -130,6 +132,10 @@ public class StateController {
 			day = dateFormat(date);
 			param.put("bday", day[0]);
 			param.put("eday", day[1]+"23");
+		}else {
+			String days = new SimpleDateFormat("yyyyMMdd", Locale.KOREA).format(new Date());
+			param.put("bday", days);
+			param.put("eday", days+"23");
 		}
 		param.put("xlsx","false");
 		param.put("pagesize", pagesize);

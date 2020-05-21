@@ -96,18 +96,18 @@ $(document).ready(function(){
         				{
         					  return obj.data;     
         				},
-                        columns: [
-                        	{ text: "선택", datafield: "user_checkbox", width: 5 + "%", minwidth: 50.9},
+                        columns:  [
+                           { text: "선택", datafield: "user_checkbox", width: 5 + "%", minwidth: 50.9},
                             { text: "순번", datafield: "num", width: 5 + "%", minwidth: 50.9},
-                            { text: "그룹", datafield: "branch_cd", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "권한등급", datafield: "auth_cd", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "사용자ID", datafield: "emp_id", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "전화번호", datafield: "tel_no", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "녹취 등록일", datafield: "rec_regdate", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "녹취 변경일", datafield: "rec_type_regdate", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "녹취 유형", datafield: "rec_type", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "작업자", datafield: "work_emp_id", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "상세보기", datafield: "user_detail", width: 9.090909 + "%", minwidth: 91.7333}
+                            { text: "그룹", datafield: "branch_cd", width: 10 + "%", minwidth: 101.8},
+                            { text: "권한등급", datafield: "auth_cd", width: 10 + "%", minwidth: 101.8},
+                            { text: "사용자ID", datafield: "emp_id", width: 10 + "%", minwidth: 101.8},
+                            { text: "전화번호", datafield: "tel_no", width: 10 + "%", minwidth: 101.8},
+                            { text: "녹취 등록일", datafield: "rec_regdate", width: 10 + "%", minwidth: 101.8},
+                            { text: "녹취 변경일", datafield: "rec_type_regdate", width: 10 + "%", minwidth: 101.8},
+                            { text: "녹취 유형", datafield: "rec_type", width: 10 + "%", minwidth: 101.8},
+                            { text: "작업자", datafield: "work_emp_id", width: 10 + "%", minwidth: 101.8},
+                            { text: "상세보기", datafield: "user_detail", width: 10 + "%", minwidth: 101.8}
                         ]
                 });
         }else{
@@ -123,17 +123,18 @@ $(document).ready(function(){
         				{
         					  return obj.data;     
         				},
-                        columns: [
+                        columns:  [
                             { text: "순번", datafield: "num", width: 5 + "%", minwidth: 50.9},
-                            { text: "그룹", datafield: "branch_cd", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "권한등급", datafield: "auth_cd", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "사용자ID", datafield: "emp_id", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "전화번호", datafield: "tel_no", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "녹취 등록일", datafield: "rec_regdate", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "녹취 변경일", datafield: "rec_type_regdate", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "녹취 유형", datafield: "rec_type", width: 9.090909 + "%", minwidth: 91.7333},
-                            { text: "작업자", datafield: "work_emp_id", width: 9.090909 + "%", minwidth: 91.7333}
+                            { text: "그룹", datafield: "branch_cd", width: 11.875  + "%", minwidth: 120.8875 },
+                            { text: "권한등급", datafield: "auth_cd", width: 11.875  + "%", minwidth: 120.8875 },
+                            { text: "사용자ID", datafield: "emp_id", width: 11.875  + "%", minwidth: 120.8875 },
+                            { text: "전화번호", datafield: "tel_no", width: 11.875  + "%", minwidth: 120.8875 },
+                            { text: "녹취 등록일", datafield: "rec_regdate", width: 11.875  + "%", minwidth: 120.8875 },
+                            { text: "녹취 변경일", datafield: "rec_type_regdate", width: 11.875  + "%", minwidth: 120.8875 },
+                            { text: "녹취 유형", datafield: "rec_type", width: 11.875  + "%", minwidth: 120.8875 },
+                            { text: "작업자", datafield: "work_emp_id", width: 11.875  + "%", minwidth: 120.8875 }
                         ]
+
                 });
         }
         

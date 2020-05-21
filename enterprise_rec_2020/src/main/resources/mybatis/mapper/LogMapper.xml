@@ -23,9 +23,7 @@
 		logtime,
 		operation
 		from `web_recording`.`callhistory_listen_log`
-		<if test='user_id !=null and !user_id.equals("")'>
-			where user_id = #{user_id}
-		</if>
+		<include refid="where"/>
 		order by log_id desc
 		limit ${pagestart},${pagesize}
 	</select>
@@ -33,9 +31,19 @@
 	<select id="getListCount" resultType="int" parameterType="hashmap">
 		select count(*)
 		from `web_recording`.`callhistory_listen_log`
-		<if test='user_id !=null and !user_id.equals("")'>
-			where user_id = #{user_id}
-		</if>
+		<include refid="where"/>
+		order by logtime desc
 	</select>
 	
+	
+	<sql id="where">
+		<where>
+			<if test='user_id !=null and !user_id.equals("")'>
+				user_id = #{user_id}
+			</if>
+			<if test='bday !=null and !bday.equals("") and eday !=null and !eday.equals("")'>
+				and date(logtime) between #{bday} and #{eday}
+			</if>
+		</where>
+	</sql>
 </mapper>

@@ -1,7 +1,10 @@
 package com.nautestech.www.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -43,6 +46,7 @@ public class Access_logController {
 	@ResponseBody
 	public HashMap<String, Object> user_page_ajax(Model model,
 			@RequestParam(value="user_id", required=false, defaultValue="")String user_id,
+			@RequestParam(value="a_day", required=false, defaultValue="")String a_day,
     		@RequestParam(value="pagenum", required=false, defaultValue="")int pagenum,
     		@RequestParam(value="pagesize", required=false, defaultValue="")int pagesize,
     		@RequestParam(value="recordstartindex", required=false, defaultValue="")int recordstartindex,
@@ -52,6 +56,17 @@ public class Access_logController {
 		model.addAttribute("access_log_active", active);
 		HashMap<String, Object> param = new HashMap<>();
 		HashMap<String, Object> param1 = new HashMap<>();
+		if(!a_day.equals("")) {
+			String[] s_day = dateFormat(a_day);
+			param.put("bday", s_day[0].replaceAll("/", "-"));
+			param.put("eday", s_day[1].replaceAll("/", "-"));
+			System.out.println(s_day[1]);
+		}else {
+			String day = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA).format(new Date());
+			param.put("bday", day);
+			param.put("eday", day);
+		}
+		
 		param.put("user_id", user_id);
 		param.put("pagesize", pagesize);
 		param.put("pagestart", recordstartindex);
@@ -68,5 +83,12 @@ public class Access_logController {
 		return param1;
 	}
 	
-	
+	public String[] dateFormat(String date) {
+		String bday = date.substring(0, 10);
+		String eday = date.substring(13, 23);
+		bday = bday.replaceAll(":", "");
+		eday = eday.replaceAll(":",	"");
+		String day[] = {bday,eday};
+		return day;
+	}
 }

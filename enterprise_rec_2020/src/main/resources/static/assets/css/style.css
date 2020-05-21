@@ -1,4 +1,9 @@
 @charset "utf-8";
+#grid .jqx-checkbox-default {
+	float: unset;
+	margin: 6px auto !important;
+	width: 19px;
+}
 .modal-backdrop.in.fade.bg-z{
 	z-index: 300000001 !important;
 }
