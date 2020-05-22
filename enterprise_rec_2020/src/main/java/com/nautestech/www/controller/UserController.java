@@ -1,6 +1,5 @@
 package com.nautestech.www.controller;
 
-import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -13,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nautestech.www.model.Batch;
 import com.nautestech.www.model.Session;
 import com.nautestech.www.model.Users;
@@ -239,30 +236,6 @@ public class UserController {
     }
 	
 	
-//	//user_idCheck
-//	@Secured({"ROLE_ADMIN"})
-//	@RequestMapping(value = "/user_Check", method= {RequestMethod.GET, RequestMethod.POST})
-//	@ResponseBody
-//	public String user_idCheck(
-//			@RequestParam(value="emp_id", required=false, defaultValue="")String emp_id,
-//			@RequestParam(value="tel_no", required=false, defaultValue="")String tel_no,
-//			@RequestParam(value="tel_no_070", required=false, defaultValue="")String tel_no_070,
-//			Authentication authentication
-//			) throws JsonProcessingException{
-//		HashMap<String, Object> param = new HashMap<>();
-//		param.put("emp_id", emp_id);
-//		param.put("tel_no", tel_no);
-//		param.put("tel_no_070", tel_no_070);
-//		param.put("pagesize", 100);
-//		param.put("pagestart", 0);
-//		user_logger.info("user_Check -> "+authentication.getName()+" : "+param.toString());
-//		List<Users> user = uService.getView(param);
-//		if(user.size()==0) {
-//			return "true";
-//		}else {
-//			return "false";
-//		}
-//    }
 	
 	
 	
@@ -370,8 +343,6 @@ public class UserController {
 			u_subid = "admin";
 		}
 		
-		//String data = "data" + rs.getString("servercode").substring(rs.getString("servercode").length() - 1, rs.getString("servercode").length());
-		//data1 
 		param1.put("u_id", tel_no_070);
 		param1.put("u_subid", u_subid);
 		param1.put("u_level", u_level);
@@ -498,8 +469,6 @@ public class UserController {
 			u_subid = "admin";
 		}
 		
-		//String data = "data" + rs.getString("servercode").substring(rs.getString("servercode").length() - 1, rs.getString("servercode").length());
-		//data1 
 		HashMap<String, Object> param1 = new HashMap<>();
 		param1.put("u_id", tel_no_070);
 		param1.put("u_subid", u_subid);

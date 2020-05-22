@@ -8,7 +8,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.RandomAccessFile;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -337,7 +336,6 @@ public class CallController {
 		param1.put("dirname", call.get(0).getDirname());
 		param1.put("filename", call.get(0).getFname().replace("mxx", isMxxMode));
 		uService.setInsertListen_log(param1);
-		
 		
 		RandomAccessFile randomFile = new RandomAccessFile(file, "r");
 		long rangeStart = 0; //요청 범위의 시작 위치 

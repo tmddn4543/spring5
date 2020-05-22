@@ -40,7 +40,6 @@ public class IndexController {
     }
 	
 
-	//ResponseEntity<byte[]>
 	@RequestMapping(value = "/logo", method= {RequestMethod.GET, RequestMethod.POST})
 	public ResponseEntity<byte[]> displayFile()throws Exception{
 		
