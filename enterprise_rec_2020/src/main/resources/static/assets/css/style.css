@@ -1,9 +1,4 @@
 @charset "utf-8";
-#grid .jqx-checkbox-default {
-	float: unset;
-	margin: 6px auto !important;
-	width: 19px;
-}
 .modal-backdrop.in.fade.bg-z{
 	z-index: 300000001 !important;
 }
@@ -251,6 +246,9 @@ float: right;
 height: 38px;
 font-size: 15px;
 width: 72px;
+}
+.monitering .ibox-title button{
+width: auto;
 }
 
 .popover{
@@ -1164,7 +1162,7 @@ float: left;
 	float: right;
 }
 .navbar-top-links li:last-child{
-	right: 65.5px;
+	/*! right: 65.5px; */
 }
 
 #search_filter::after{

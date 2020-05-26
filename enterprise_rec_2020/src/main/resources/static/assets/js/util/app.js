@@ -11,30 +11,31 @@ function setConnected(connected) {
 }
 
 function connect() {
+	$("#connect").prop("disabled",true);
 	//connect to stomp where stomp endpoint is exposed
 	var socket = new WebSocket("ws://localhost:8090/ws");
 	ws = Stomp.over(socket);
 
 	ws.connect({}, function(frame) {
 		ws.subscribe("/user/queue/errors", function(message) {
-			alert("Error " + message.body);
+			alert("err");
 		});
 
 		ws.subscribe("/user/queue/reply", function(message) {
-			showGreeting(message.body);
 		});
 		
 		ws.subscribe("/topic/errors", function(message) {
-			alert("Error " + message.body);
+			alert("err");
 		});
 
 		ws.subscribe("/topic/reply", function(message) {
-//			console.log(message.body);
-//			showGreeting(message.body);
+			showGreeting(message);
 		});
 	}, function(error) {
-		alert("STOMP error " + error);
+		$("#connect").attr("disabled", false);
+		alert("실시간 모니터링 연결이 끊겼습니다.");
 	});
+	alert("실시간 모니터링을 시작합니다.");
 }
 
 function disconnect() {
@@ -45,15 +46,37 @@ function disconnect() {
 	console.log("Disconnected");
 }
 
-function sendName() {
-	var data = JSON.stringify({
-		'name' : $("#name").val()
-	})
-	ws.send("/app/message", {}, data);
-}
 
 function showGreeting(message) {
-	$("#greetings").html("<tr><td> " + message + "</td></tr>");
+//	var obj = jQuery.parseJSON(message.body);
+//	console.log(obj.monitor);
+//	var str = "";
+//	for(var i=0; i<obj.count; i++){
+//		str +="<div class='thumbnail ready'>";
+//		str +="<div class='caption_head'>";
+//		str +="<h3>No.1</h3>";
+//		str +="</div>";
+//		str +="<div class='caption'>";
+//		str +="<div class='caption_con1'>";
+//		str +="<p id='greetings_u_id'>"+obj.u_id+(i)+"</p>";
+//		str +="<p id='greetings_stime'>"+obj.stime+i+"</p>";
+//		str +="</div>";
+//		str +="<div class='caption_con2'>";
+//		str +="<p id='greetings_caller'>"+obj.caller+i+"</p>";
+//		str +="<i class='fa fa-arrow-down' aria-hidden='true'></i>";
+//		str +="<p id='greetings_called'>"+obj.called+i+"</p>";
+//		str +="</div>";
+//		str +="</div>";
+//		str +="<div class='caption_bottom'>";
+//		str +="<button href='#' class='btn btn-primary' role='button' disabled='disabled'>";
+//		str +="<i class='fa fa-spinner' aria-hidden='true'></i>";
+//		str +="청취준비";
+//		str +="</button>";
+//		str +="</div>";
+//		str +="</div>";
+//	}
+	
+	$("#append_id").html(message.body);
 }
 
 $(function() {

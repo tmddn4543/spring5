@@ -8,8 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Recording</title>
 	
-	<script th:src="@{/webjars/stomp-websocket/stomp.min.js}"></script>
-    <script th:src="@{/webjars/sockjs-client/sockjs.min.js}"></script>
+<!-- 	<script src="/webjars/jquery/jquery.min.js"></script> -->
+    <script src="/webjars/sockjs-client/1.0.2/sockjs.min.js?v=1.0.2"></script>
+	<script src="/webjars/stomp-websocket/2.3.3/stomp.min.js?v=2.3.3"></script>
 <script type="text/javascript" th:inline="javascript" th:src="@{/resource/assets/js/util/app.js}"></script>
 <script type="text/javascript" th:inline="javascript" th:src="@{/resource/assets/js/page/monitor_page.js}"></script>
 </head>
@@ -26,108 +27,114 @@
                     <h2>
                         <img src="/logo" alt="company_logo"> <span>모니터링</span>
                     </h2>
-                </div>                  
+                </div> 
+                <button type="button" id="connect" class="btn btn-primary btn-lg">
+					    <span>실시간 모니터링 연결</span> <i class="fa fa-play-circle" aria-hidden="true"></i> 
+				</button>                 
             </div>
-            <button id="connect" class="btn btn-default" type="submit">Connect</button>
             <div class="ibox-content">
                 <div class="monitering_wrap">
-                    <div class="row">
-                        
-                        <div class="thumbnail ready">
-                            <div class="caption_head">
-                                <h3>No.1</h3>
-                            </div>
-                            <div class="caption">
-                                <div class="caption_con1">
-                                    <p>동희</p>
-                                    <p>01:22:14</p>
-                                </div>
-                                <div class="caption_con2">
-                                    <p>010-5111-1234</p>
-                                    <i class="fa fa-arrow-down" aria-hidden="true"></i>
-                                    <p>010-1153-6974</p>
-                                </div>
-                            </div>
-                            <div class="caption_bottom">
-                                <button href="#" class="btn btn-primary" role="button" disabled="disabled">
-                                    <i class="fa fa-spinner" aria-hidden="true"></i>
-                                    청취준비
-                                </button>
+                    <div class="row" >
+                        <div id="append_id"></div>
+<!--                         <div class="thumbnail ready"> -->
+<!--                             <div class="caption_head"> -->
+<!--                                 <h3>No.1</h3> -->
+<!--                             </div> -->
+<!--                             <div class="caption"> -->
+<!--                                 <div class="caption_con1"> -->
+<!--                                     <p id="greetings_u_id"></p> -->
+<!--                                     <p id="greetings_stime"></p> -->
+<!--                                 </div> -->
+<!--                                 <div class="caption_con2"> -->
+<!--                                     <p id="greetings_caller"></p> -->
+<!--                                     <i class="fa fa-arrow-down" aria-hidden="true"></i> -->
+<!--                                     <p id="greetings_called"></p> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                             <div class="caption_bottom"> -->
+<!--                                 <button href="#" class="btn btn-primary" role="button" disabled="disabled"> -->
+<!--                                     <i class="fa fa-spinner" aria-hidden="true"></i> -->
+<!--                                     청취준비 -->
+<!--                                 </button> -->
                                 
-                            </div>
-                        </div>
-<!--          ================================================================== 		-->
-                        <div class="thumbnail standBy">
-                            <div class="caption_head">
-                                <h3>No.1</h3>
-                            </div>
-                            <div class="caption">
-                                <div class="caption_con1">
-                                    <p>동희</p>
-                                    <p>01:22:14</p>
-                                </div>
-                                <div class="caption_con2">
-                                    <p>010-5111-1234</p>
-                                    <i class="fa fa-arrow-down" aria-hidden="true"></i>
-                                    <p>010-1153-6974</p>
-                                </div>
-                            </div>
-                            <div class="caption_bottom">
-                                <button href="#" class="btn btn-primary" role="button">
-                                    <i class="fa fa-volume-off" aria-hidden="true"></i>
-                                    청취가능
-                                </button>
-                            </div>
-                        </div>
+<!--                             </div> -->
+<!--                         </div> -->
+                        
+                        
+                        
+                        
+<!--                         <div class="thumbnail ready"> -->
+<!--                             <div class="caption_head"> -->
+<!--                                 <h3>No.1</h3> -->
+<!--                             </div> -->
+<!--                             <div class="caption"> -->
+<!--                                 <div class="caption_con1"> -->
+<!--                                     <p>동희</p> -->
+<!--                                     <p>01:22:14</p> -->
+<!--                                 </div> -->
+<!--                                 <div class="caption_con2"> -->
+<!--                                     <p>010-5111-1234</p> -->
+<!--                                     <i class="fa fa-arrow-down" aria-hidden="true"></i> -->
+<!--                                     <p>010-1153-6974</p> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                             <div class="caption_bottom"> -->
+<!--                                 <button href="#" class="btn btn-primary" role="button" disabled="disabled"> -->
+<!--                                     <i class="fa fa-spinner" aria-hidden="true"></i> -->
+<!--                                     청취준비 -->
+<!--                                 </button> -->
+                                
+<!--                             </div> -->
+<!--                         </div> -->
+<!-- <!--          ================================================================== 		-->
+<!--                         <div class="thumbnail standBy"> -->
+<!--                             <div class="caption_head"> -->
+<!--                                 <h3>No.1</h3> -->
+<!--                             </div> -->
+<!--                             <div class="caption"> -->
+<!--                                 <div class="caption_con1"> -->
+<!--                                     <p>동희</p> -->
+<!--                                     <p>01:22:14</p> -->
+<!--                                 </div> -->
+<!--                                 <div class="caption_con2"> -->
+<!--                                     <p>010-5111-1234</p> -->
+<!--                                     <i class="fa fa-arrow-down" aria-hidden="true"></i> -->
+<!--                                     <p>010-1153-6974</p> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                             <div class="caption_bottom"> -->
+<!--                                 <button href="#" class="btn btn-primary" role="button"> -->
+<!--                                     <i class="fa fa-volume-off" aria-hidden="true"></i> -->
+<!--                                     청취가능 -->
+<!--                                 </button> -->
+<!--                             </div> -->
+<!--                         </div> -->
 
-                        <div class="thumbnail doing">
-                            <div class="caption_head">
-                                <h3>No.1</h3>
-                            </div>
-                            <div class="caption">
-                                <div class="caption_con1">
-                                    <p>동희</p>
-                                    <p>01:22:14</p>
-                                </div>
-                                <div class="caption_con2">
-                                    <p>010-5111-1234</p>
-                                    <i class="fa fa-arrow-down" aria-hidden="true"></i>
-                                    <p>010-1153-6974</p>
-                                </div>
-                            </div>
-                            <div class="caption_bottom">
-                                <button href="#" class="btn btn-primary" role="button">
-                                    <i class="fa fa-volume-up" aria-hidden="true"></i>
-                                    청취진행중
-                                </button>
-                            </div>
-                        </div>
+<!--                         <div class="thumbnail doing"> -->
+<!--                             <div class="caption_head"> -->
+<!--                                 <h3>No.1</h3> -->
+<!--                             </div> -->
+<!--                             <div class="caption"> -->
+<!--                                 <div class="caption_con1"> -->
+<!--                                     <p>동희</p> -->
+<!--                                     <p>01:22:14</p> -->
+<!--                                 </div> -->
+<!--                                 <div class="caption_con2"> -->
+<!--                                     <p>010-5111-1234</p> -->
+<!--                                     <i class="fa fa-arrow-down" aria-hidden="true"></i> -->
+<!--                                     <p>010-1153-6974</p> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                             <div class="caption_bottom"> -->
+<!--                                 <button href="#" class="btn btn-primary" role="button"> -->
+<!--                                     <i class="fa fa-volume-up" aria-hidden="true"></i> -->
+<!--                                     청취진행중 -->
+<!--                                 </button> -->
+<!--                             </div> -->
+<!--                         </div> -->
                         
                         
                         
-                        <div class="thumbnail ready">
-                            <div class="caption_head">
-                                <h3>No.1</h3>
-                            </div>
-                            <div class="caption">
-                                <div class="caption_con1">
-                                    <p id="greetings">a</p>
-                                    <p>01:22:14</p>
-                                </div>
-                                <div class="caption_con2">
-                                    <p>010-5111-1234</p>
-                                    <i class="fa fa-arrow-down" aria-hidden="true"></i>
-                                    <p>010-1153-6974</p>
-                                </div>
-                            </div>
-                            <div class="caption_bottom">
-                                <button href="#" class="btn btn-primary" role="button" disabled="disabled">
-                                    <i class="fa fa-spinner" aria-hidden="true"></i>
-                                    청취준비
-                                </button>
-                                
-                            </div>
-                        </div>
                         
                         
                         
