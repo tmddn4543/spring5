@@ -163,7 +163,7 @@
 		<dependency><!-- 제이슨웅앵웅.. -->
 		    <groupId>com.fasterxml.jackson.core</groupId>
 		    <artifactId>jackson-databind</artifactId>
-		    <version>2.9.8</version>
+		    <version>2.10.0.pr1</version>
 		</dependency>
 		
 		
