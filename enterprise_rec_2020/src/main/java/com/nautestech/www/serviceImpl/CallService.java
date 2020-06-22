@@ -58,5 +58,11 @@ public class CallService implements ISelect<Call>{
 	public List<CallJoin> setSelect(HashMap<String, Object> param) {
 		return mapper.setSelect(param);
 	}
+
+	@Override
+	public List<?> getHddInfo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

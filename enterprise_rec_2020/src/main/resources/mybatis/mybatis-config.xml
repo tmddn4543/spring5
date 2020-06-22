@@ -20,6 +20,7 @@
 		<typeAlias alias="batch" type="com.nautestech.www.model.Batch"/>
 		<typeAlias alias="log" type="com.nautestech.www.model.Callhistory_log"/>
 		<typeAlias alias="stat" type="com.nautestech.www.model.Stat"/>
+		<typeAlias alias="hdds" type="com.nautestech.www.model.HddInfo"/>
 	</typeAliases>
 
 </configuration>

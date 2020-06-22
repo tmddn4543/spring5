@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.nautestech.www.mapper2.MuMapper">
+	<resultMap type="hdds" id="getSelectMap">
+		<result property="s_id" column="s_id"/>
+		<result property="s_totalhdd" column="s_totalhdd"/>
+		<result property="s_usage" column="s_usage"/>
+	</resultMap>	
+	
+	
+	
+	
+	<delete id="setDeleteMrecordUser" parameterType="hashmap">
+		delete from `m_recording`.`users` where u_tel1 in
+		<foreach collection="tel_no" item="tel_no" open="(" close=")" separator="," index="index">
+			#{tel_no}
+		</foreach>
+	</delete>
+	<select id="getHddInfo" resultMap="getSelectMap">
+		SELECT s_id , s_totalhdd , s_usage FROM `web_recording`.`hdd_info`
+	</select>
+	<insert id="setInsertMrecordUser" parameterType="hashmap">
+		insert into `m_recording`.`users`(
+		u_id,
+		u_subid, 
+		u_level, 
+		u_name, 
+		u_tel1, 
+		u_tel2, 
+		u_email, 
+		u_address, 
+		u_pwd, 
+		u_regtime, 
+		u_flag
+		) values(
+		#{u_id},
+		#{u_subid},
+		#{u_level},
+		#{u_name},
+		#{u_tel1},
+		'',
+		#{u_email},
+		'',
+		#{u_pwd},
+		now(),
+		#{u_flag}
+		)
+		on duplicate key update
+		u_subid=#{u_subid}, u_level=#{u_level}, u_name=#{u_name}, u_tel1=#{u_tel1}, u_pwd=#{u_pwd}, u_flag=#{u_flag}, u_email=#{u_email}
+	</insert>
+</mapper>

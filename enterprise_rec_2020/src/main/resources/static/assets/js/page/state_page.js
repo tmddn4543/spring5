@@ -48,6 +48,7 @@ $(document).ready(
         
         main(null,null,null,null);
         
+        
         function main(res,branch_cd,date,emp_id){
         	var source =
             {
@@ -82,19 +83,27 @@ $(document).ready(
 
             // initialize jqxGrid
             
+            var getLocalization = function () {
+    	    	var localizationobject = {};
+    	    	localizationobject.emptydatastring = "통계 검색 결과가 없습니다.";
+    	    	$("#state").jqxGrid('localizestrings', localizationobject);
+    	    	return localizationobject;
+    	    }
+            
             $("#state").jqxGrid(
                     {
                     	source: dataadapter,
                         width: 100 + "%",
-                        autoheight: true, 
+                        autoheight: false, 
                         theme: 'material',
                         virtualmode: true,
+                        localization: getLocalization(),
                         pageable: true,
                         showtoolbar: true,
                         rendertoolbar: function (statusbar) {
                             // appends buttons to the status bar.
                             var container = $("<div style='overflow: hidden; position: relative; margin: 5px;'></div>");
-                            var xlsButton = $("<div style='float: right; margin-left: 5px;'><img style='position: relative; margin-top: 2px;' ><span style='margin-left: -2px; position: relative; top: 1px;'>엑셀다운</span></div>");
+                            var xlsButton = $("<div style='float: right; margin-left: 5px;'><img style='position: relative; margin-top: 2px;' ><span style='margin-left: -2px; position: relative; top: -3px;'>엑셀다운</span></div>");
                             
                             container.append(xlsButton);
                             statusbar.append(container);
@@ -227,7 +236,7 @@ $(document).ready(
             "상담원"
         ];
         // Create a jqxDropDownList
-        $(".authority_num").jqxDropDownList({ source: source, selectedIndex: 1, width: 100 + "%", height: 34, autoItemsHeight: true, theme: "bootstrap", autoDropDownHeight: true});
+        $(".authority_num").jqxDropDownList({ source: source, selectedIndex: 0, width: 100 + "%", height: 34, autoItemsHeight: true, theme: "bootstrap", autoDropDownHeight: true});
 
 
 

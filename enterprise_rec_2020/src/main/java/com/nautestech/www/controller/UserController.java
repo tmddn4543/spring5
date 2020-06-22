@@ -24,6 +24,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.nautestech.www.model.Batch;
 import com.nautestech.www.model.Session;
 import com.nautestech.www.model.Users;
+import com.nautestech.www.serviceImpl.MuService;
 import com.nautestech.www.serviceImpl.UsersService;
 import com.nautestech.www.util.listExcelDownload;
 
@@ -38,6 +39,8 @@ public class UserController {
 	@Autowired
 	UsersService uService;
 	
+	@Autowired
+	MuService muService;
 	
 	@Value("${RecCount}")
 	int RecCount;
@@ -142,7 +145,7 @@ public class UserController {
 		param.put("tel_no", arr);
 		user_logger.info("user_delete -> "+authentication.getName()+" : "+param.toString());
 		uService.setDelete(param);
-		uService.setDeleteMrecordUser(param);
+		muService.setDeleteMrecordUser(param);
 	}
 	
 	
@@ -161,6 +164,7 @@ public class UserController {
 		param.put("pagestart", 0);
 		List<Users> users = uService.getView(param);
 		Session user = (Session) authentication.getDetails();
+		user_logger.info("user_edit_get -> "+authentication.getName()+" : "+param.toString());
 		param = new HashMap<>();
 		
 		if(user.getAuth_cd().equals("12") || user.getAuth_cd().equals("13")) {
@@ -171,7 +175,6 @@ public class UserController {
 		Users u = users.get(0);
 		param1.put("user_result", u);
 		param1.put("batch", batch);
-		user_logger.info("user_edit_get -> "+authentication.getName()+" : "+param.toString());
 		return param1;
 	}
 	
@@ -208,7 +211,7 @@ public class UserController {
 		HashMap<String, Object> param1 = new HashMap<>();
 		param.put("pagesize", pagesize);
 		param.put("pagestart", recordstartindex);
-		param.put("tel_no", tel_no);
+		param.put("tel_no_chk", tel_no);
 		param.put("branch_cd", branch_cd);
 		if(user.getAuth_cd().equals("12")) {
 			param.put("branch_cd", user.getBranch_cd());
@@ -224,7 +227,7 @@ public class UserController {
 			int total = uService.getListCount(param);
 			param1.put("total", total);
 			for(int i=0; i<users.size(); i++) {
-				users.get(i).setNum(recordstartindex+i+1);
+				users.get(i).setNum(total-i-recordstartindex);
 				users.get(i).setUser_detail("<button type='button' class= 'btn btn-default' data-toggle= 'modal' data-target='#user_add' name='"+users.get(i).getTel_no()+"' value='user_view'>상세보기</button>");
 				users.get(i).setRec_type(format.recFormat(users.get(i).getRec_type()));
 				users.get(i).setUser_checkbox("<input type='checkbox' class='user_checkbox' value='"+users.get(i).getTel_no()+"'>");
@@ -354,7 +357,7 @@ public class UserController {
 		
 		user_logger.info("user_Insert ->"+authentication.getName()+" : "+param.toString());
 		uService.setInsert(param);
-		uService.setInsertMrecordUser(param1);
+		muService.setInsertMrecordUser(param1);
 		return "true";
     }
 	
@@ -481,7 +484,7 @@ public class UserController {
 		
 		
 		
-		uService.setInsertMrecordUser(param1);
+		muService.setInsertMrecordUser(param1);
 		
 		uService.setUpdate(param);
 		return "true";

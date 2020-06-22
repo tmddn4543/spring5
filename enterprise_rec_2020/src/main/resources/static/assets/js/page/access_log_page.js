@@ -56,14 +56,22 @@ $(document).ready(function(){
 
         // initialize jqxGrid
         
+        var getLocalization = function () {
+	    	var localizationobject = {};
+	    	localizationobject.emptydatastring = "로그 검색 결과가 없습니다.";
+	    	$("#access_grid").jqxGrid('localizestrings', localizationobject);
+	    	return localizationobject;
+	    }
+        
         $("#access_grid").jqxGrid(
                 {
                 	source: dataadapter,
                     width: 100 + "%",
-                    autoheight: true, 
+                    autoheight: false, 
                     theme: 'material',
                     virtualmode: true,
                     pageable: true,
+                    localization: getLocalization(),
                     rendergridrows: function(obj)
     				{
     					  return obj.data;     

@@ -55,7 +55,7 @@ public class Scheduler {
 		createQry+="		  `emp_id` varchar(20) DEFAULT NULL,                   ";
 		createQry+="		  `branch_cd` varchar(10) DEFAULT NULL,                ";
 		createQry+="		  `emp_nm` varchar(42) DEFAULT NULL,                   ";
-		createQry+="		  `system_id` varchar(6) DEFAULT NULL,                 ";
+		createQry+="		  `system_id` varchar(20) DEFAULT NULL,                 ";
 		createQry+="		  `is_statistics` char(1) DEFAULT 'N',                 ";
 		createQry+="		  `auth_cd` varchar(10) DEFAULT NULL,                  ";
 		createQry+="		  `rbtime` varchar(19) DEFAULT NULL,                   ";

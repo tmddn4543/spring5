@@ -18,7 +18,7 @@ import com.nautestech.www.serviceImpl.MonitorService;
 
 @Component
 public class AutoController {
-
+ 
 	@Autowired
 	private SimpMessagingTemplate messagingTemplate;
 	
@@ -31,38 +31,14 @@ public class AutoController {
 		HashMap<String,Object> param = new HashMap<>();
 		List<Monitor> monitor = mService.getView(param);
 		
-//		String message = "";
-//		int count = 0;
-//		message += "{";
-//		for(int i=0; i<monitor.size(); i++) {
-//			count ++;
-////			message += "\"c_id"+i+"\":\""+monitor.get(i).getC_id()+"\",";
-////			message += "\"u_id"+i+"\":\""+monitor.get(i).getU_id()+"\",";
-////			message += "\"status"+i+"\":\""+monitor.get(i).getStatus()+"\",";
-////			message += "\"caller"+i+"\":\""+monitor.get(i).getCaller()+"\",";
-////			message += "\"called"+i+"\":\""+monitor.get(i).getCalled()+"\",";
-////			message += "\"fname"+i+"\":\""+monitor.get(i).getFname()+"\",";
-////			message += "\"stime"+i+"\":\""+monitor.get(i).getStime()+"\",";
-//			message += "\"c_id"+i+"\":\"asd\",";
-//			message += "\"u_id"+i+"\":\"asd\",";
-//			message += "\"status"+i+"\":\"asd\",";
-//			message += "\"caller"+i+"\":\"asd\",";
-//			message += "\"called"+i+"\":\"asd\",";
-//			message += "\"fname"+i+"\":\"asd\",";
-//			message += "\"stime"+i+"\":\"asd\",";
-//			if(i+1==monitor.size()) {
-//				message += "\"count\":\""+count+"\"";
-//			}
-//		}
-//		message	+= "}";
 		
 		
 		
 		String str ="";
 		for(int i=0; i<monitor.size(); i++) {
-			str +="<div class='thumbnail ready'>";
+			str +="<div class='thumbnail standBy'>";
 			str +="<div class='caption_head'>";
-			str +="<h3>No."+i+1+"</h3>";
+			str +="<h3>No."+(i+1)+"</h3>";
 			str +="</div>";
 			str +="<div class='caption'>";
 			str +="<div class='caption_con1'>";
@@ -75,18 +51,20 @@ public class AutoController {
 			str +="<p id='greetings_called'>"+monitor.get(i).getCalled()+"</p>";
 			str +="</div>";
 			str +="</div>";
-			str +="<div class='caption_bottom'>";
-			str +="<button href='#' class='btn btn-primary' role='button'>";
-			str +="<i class='fa fa-volume-off' aria-hidden='true'></i>";
-			str +="청취가능";
-			str +="</button>";
-			str +="</div>";
+//			str +="<div class='caption_bottom'>";
+//			str +="<button href='#' class='btn btn-primary' role='button'>";
+//			str +="<i class='fa fa-volume-off' aria-hidden='true'></i>";
+//			str +="청취가능";
+//			str +="</button>";
+//			str +="</div>";
 			str +="</div>";
 		}
 		if(monitor.size()==0) {
-			str = "연결된 모니터링이 없습니다.";
+			str +="<div style='position: absolute;left: 50%;top: 50%;transform: translate(-50%, -50%); text-align: center;'>";
+			str +="<img src='/resource/assets/img/monitoring_fail.png' style='text-align: center; max-width: 100%;'>";
+			str += "<p style='font-size: 23px;'>연결된 모니터링이 없습니다.</p>";
+			str +="</div>";
 		}
-//		Map name = new Gson().fromJson(message, Map.class);
 		messagingTemplate.convertAndSend("/topic/reply", str);
 	}
 

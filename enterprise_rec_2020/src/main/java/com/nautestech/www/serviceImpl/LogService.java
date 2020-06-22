@@ -58,6 +58,12 @@ public class LogService implements ISelect<Callhistory_log>{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<?> getHddInfo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 }

@@ -13,21 +13,17 @@ function setConnected(connected) {
 function connect() {
 	$("#connect").prop("disabled",true);
 	//connect to stomp where stomp endpoint is exposed
-	var socket = new WebSocket("ws://localhost:8090/ws");
+	var socket = new WebSocket("ws://"+window.location.hostname+":"+window.location.port+"/ws");
 	ws = Stomp.over(socket);
-
 	ws.connect({}, function(frame) {
 		ws.subscribe("/user/queue/errors", function(message) {
 			alert("err");
 		});
-
 		ws.subscribe("/user/queue/reply", function(message) {
 		});
-		
 		ws.subscribe("/topic/errors", function(message) {
 			alert("err");
 		});
-
 		ws.subscribe("/topic/reply", function(message) {
 			showGreeting(message);
 		});

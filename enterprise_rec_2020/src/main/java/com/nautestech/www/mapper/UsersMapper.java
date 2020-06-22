@@ -8,7 +8,6 @@ import org.apache.ibatis.annotations.Mapper;
 import com.nautestech.www.model.Batch;
 import com.nautestech.www.model.Users;
 
-@Mapper
 public interface UsersMapper {
 	public List<Users> getView(HashMap<String, Object> param);
 	public void setInsert(HashMap<String, Object> param);
@@ -19,6 +18,4 @@ public interface UsersMapper {
 	public void setDelete(HashMap<String, Object>param);
 	public void setUpdate(HashMap<String, Object>param);
 	public void setInsertListen_log(HashMap<String, Object>param);
-	public void setInsertMrecordUser(HashMap<String, Object>param);
-	public void setDeleteMrecordUser(HashMap<String, Object>param);
 }

@@ -57,4 +57,10 @@ public class MonitorService implements ISelect<Monitor>{
 		return 0;
 	}
 
+	@Override
+	public List<?> getHddInfo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

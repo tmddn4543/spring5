@@ -58,4 +58,10 @@ public class StatService implements ISelect<Stat>{
 		return null;
 	}
 
+	@Override
+	public List<?> getHddInfo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

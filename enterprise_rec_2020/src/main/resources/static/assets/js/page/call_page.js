@@ -46,6 +46,15 @@ $(document).ready(
         
         
         
+        var source = [
+            "포함",
+            "정확"
+        ];
+        // Create a jqxDropDownList
+        $(".search_option1").jqxDropDownList({ source: source, selectedIndex: 0, width: 100 + "%", height: 32, autoItemsHeight: true, theme: "bootstrap", autoDropDownHeight: true});
+        $(".search_option2").jqxDropDownList({ source: source, selectedIndex: 0, width: 100 + "%", height: 32, autoItemsHeight: true, theme: "bootstrap", autoDropDownHeight: true});
+
+        
         
         /* 소스 */
         
@@ -187,15 +196,23 @@ $(document).ready(
 	    	}
 	    }
 	    
+	    
+	    var getLocalization = function () {
+	    	var localizationobject = {};
+	    	localizationobject.emptydatastring = "이력 검색 결과가 없습니다.";
+	    	$("#grid").jqxGrid('localizestrings', localizationobject);
+	    	return localizationobject;
+	    }
 	    //u_auth_cd!="13" && (u_down_type=="Y" || u_down_type=="")
 	    if(grid_check=="true"){
 	    	$("#grid").jqxGrid(//킵
                     {
                     	source: dataadapter,
                         width: 100 + "%",
-                        autoheight: true, 
+                        autoheight: false, 
                         theme: 'material',
                         rowdetails: true,
+                        localization: getLocalization(),
                         rowdetailstemplate: {
                             rowdetails: "<div style='margin: 20px !important;'>Row Details</div>",
                             rowdetailsheight: 100
@@ -203,8 +220,8 @@ $(document).ready(
                         showtoolbar: true,
                         rendertoolbar: function (statusbar) {
                             // appends buttons to the status bar.
-                            var container = $("<div style='overflow: hidden; position: relative; margin: 5px;'></div>");
-                            var addButton = $("<div style='float: right; margin-left: 5px;'><img style='position: relative; margin-top: 2px;' ><span style='margin-left: 4px; position: relative; top: -3px;'>받기</span></div>");
+                            var container = $("<div style='overflow: hidden; position: relative; margin: 6px;'></div>");
+                            var addButton = $("<div style='float: right; margin-left: 10px;'><img style='position: relative; margin-top: 2px;' ><span style='margin-left: 4px; position: relative; top: -3px;'>받기</span></div>");
                             var xlsButton = $("<div style='float: right; margin-left: 5px;'><img style='position: relative; margin-top: 2px;' ><span style='margin-left: -2px; position: relative; top: -3px;'>엑셀다운</span></div>");
                             
                             container.append(addButton);
@@ -281,9 +298,10 @@ $(document).ready(
                     {
                     	source: dataadapter,
                         width: 100 + "%",
-                        autoheight: true, 
+                        autoheight: false, 
                         theme: 'material',
                         rowdetails: true,
+                        localization: getLocalization(),
                         rowdetailstemplate: {
                             rowdetails: "<div style='margin: 20px !important;'>Row Details</div>",
                             rowdetailsheight: 100
@@ -313,6 +331,22 @@ $(document).ready(
         
         
         $("#next_action2").click(function(){
+        	$('#grid').jqxGrid('gotopage', 0);
+        	
+        	if($(".search_option1").val()=="포함"){
+        		called_attr = "like";
+        	}else if($(".search_option1").val()=="정확"){
+        		called_attr = "eq";
+        	}
+        	
+        	if($(".search_option2").val()=="포함"){
+        		caller_attr = "like";
+        	}else if($(".search_option2").val()=="정확"){
+        		caller_attr = "eq";
+        	}
+        	
+        	
+        	
         	source.data.branch_cd = $("#group_btn_act2").val();
         	source.data.caller = $("#caller2").val();
         	source.data.called = $("#called2").val();
@@ -344,7 +378,6 @@ $(document).ready(
         	end_talk_time = $("#end_talk_time2").val();
         	start_talk_time = $("#start_talk_time2").val();
         	
-        	
         	if($("#caller2_bt").text()=="선택 " && caller!=""){
         		alert("선택여부 확인해주세요.");
         		return false;
@@ -359,6 +392,7 @@ $(document).ready(
         	}
         	
         	$('#window').jqxWindow('close');
+        	
         	$('#grid').jqxGrid('updatebounddata');
         });
         
@@ -455,49 +489,34 @@ $(document).ready(
         	$("#user_search").modal("show");
         });
         
-       
-        $("#called1_ul").on("click", "li", function(){
-        	var res = $(this).text();
-        	$("#called1_bt").html(res+" <span class='caret'></span>");
-        	$("#called2_bt").html(res+" <span class='caret'></span>");
-        	if(res=="정확"){
-        		called_attr = "eq";
-        	}else if(res=="포함"){
-        		called_attr = "like";
-        	}
+        
+        
+//        $("#called2_ul").on("click", "li", function(){
+//        	var res = $(this).text();
+//        	$("#called2_bt").html(res+" <span class='caret'></span>");
+//        	if(res=="정확"){
+//        		called_attr = "eq";
+//        	}else if(res=="포함"){
+//        		called_attr = "like";
+//        	}
+//        });
+//        
+//        
+//        $("#caller2_ul").on("click", "li", function(){
+//        	var res = $(this).text();
+//        	$("#caller2_bt").html(res+" <span class='caret'></span>");
+//        	if(res=="정확"){
+//        		caller_attr = "eq";
+//        	}else if(res=="포함"){
+//        		caller_attr = "like";
+//        	}
+//        });
+        
+        
+        
+        $('.user_search_grid').on('rowclick', function (event) {
+        	$("#emp2").val(event.args.row.bounddata.userid);
+        	$("#user_search").modal("hide");
         });
-        
-        $("#called2_ul").on("click", "li", function(){
-        	var res = $(this).text();
-        	$("#called2_bt").html(res+" <span class='caret'></span>");
-        	if(res=="정확"){
-        		called_attr = "eq";
-        	}else if(res=="포함"){
-        		called_attr = "like";
-        	}
-        });
-        
-        
-        $("#caller1_ul").on("click", "li", function(){
-        	var res = $(this).text();
-        	$("#caller1_bt").html(res+" <span class='caret'></span>");
-        	$("#caller2_bt").html(res+" <span class='caret'></span>");
-        	if(res=="정확"){
-        		caller_attr = "eq";
-        	}else if(res=="포함"){
-        		caller_attr = "like";
-        	}
-        });
-        
-        $("#caller2_ul").on("click", "li", function(){
-        	var res = $(this).text();
-        	$("#caller2_bt").html(res+" <span class='caret'></span>");
-        	if(res=="정확"){
-        		caller_attr = "eq";
-        	}else if(res=="포함"){
-        		caller_attr = "like";
-        	}
-        });
-        
         
 });

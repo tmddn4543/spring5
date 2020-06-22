@@ -11,34 +11,30 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@MapperScan(basePackages = "com.nautestech.www.mapper", sqlSessionFactoryRef="db1SqlSessionFactory")
+@MapperScan(basePackages = "com.nautestech.www.mapper2", sqlSessionFactoryRef="db2SqlSessionFactory")
 @EnableTransactionManagement
-public class DatabaseConfig {
-	@Bean(name = "dbDataSource1")
-    @Primary
-    @ConfigurationProperties(prefix = "spring.datasource.hikari.db1")
-    public DataSource db1DataSource() {
+public class DatabaseConfig2 {
+	@Bean(name = "dbDataSource2")
+    @ConfigurationProperties(prefix = "spring.datasource.hikari.db2")
+    public DataSource db2DataSource() {
         return DataSourceBuilder.create().build();
     }
 	
-	@Bean(name = "db1SqlSessionFactory")
-	@Primary
-	public SqlSessionFactory sqlSessionFactory(@Qualifier("dbDataSource1")DataSource dataSource) throws Exception {
+	@Bean(name ="db2SqlSessionFactory")
+	public SqlSessionFactory sqlSessionFactory(@Qualifier("dbDataSource2")DataSource dataSource) throws Exception {
 		final SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource);
 		PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
 		sessionFactory.setConfigLocation(resolver.getResource("classpath:mybatis/mybatis-config.xml"));
-		sessionFactory.setMapperLocations(resolver.getResources("classpath:mybatis/mapper/*.xml"));
+		sessionFactory.setMapperLocations(resolver.getResources("classpath:mybatis/mapper2/*.xml"));
 		return sessionFactory.getObject();
 	}
 	
-	@Bean(name = "db1SqlSessionTemplate")
-	@Primary
+	@Bean(name ="db2SqlSessionTemplate")
 	public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) throws Exception {
 		final SqlSessionTemplate sqlSessionTemplate = new SqlSessionTemplate(sqlSessionFactory);
 		return sqlSessionTemplate;

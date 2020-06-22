@@ -23,4 +23,8 @@ public class Session implements UserDetails {
     private String tel_no;
     private String down_type;
     private String branch_cd;
+    
+    private int s_id;
+    private String s_totalhdd;
+    private String s_usage;
 }

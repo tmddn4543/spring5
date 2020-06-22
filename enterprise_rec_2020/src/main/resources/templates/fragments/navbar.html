@@ -7,8 +7,12 @@
                 <div class="navbar-header">
                     <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
                     <div role="search" class="navbar-form-custom" action="search_results.html">
-                        <div class="disk">
-                            HDD REC #1 <span>356G [USE:2%]</span>
+                        <div class="disk" th:if="${#authentication.details.auth_cd eq'00'}">
+                            HDD REC #<span th:text="${#authentication.details.s_id}"></span>
+                            <span th:text="${#authentication.details.s_totalhdd}"></span>
+                            <span>[USE:</span>
+                            <span th:text="${#authentication.details.s_usage}"></span>
+                            <span>%]</span>
                         </div>
                     </div>
                 </div>

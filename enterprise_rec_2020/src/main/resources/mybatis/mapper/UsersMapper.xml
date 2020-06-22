@@ -101,37 +101,37 @@
 			#{emp_id},
 			now(),
 			<if test="result.equals('login')">
-		    'Log_INSuccess',
+		    '로그인',
 		    '',
 		    ''
 		    </if>
 		    <if test="result.equals('logout')">
-		    'Log_OUT',
+		    '로그아웃',
 		    '',
 		    ''
 		    </if>
 		    <if test="result.equals('fail')">
-		    'Log_INFail',
+		    '로그인 실패',
 		    '',
 		    ''
 		    </if>
 		    <if test="result.equals('xlsx')">
-		    'Log_XlsxDown',
+		    '청취이력 엑셀 다운',
 		    '',
 		    ''
 		    </if>
 		    <if test="result.equals('s_xlsx')">
-		    'Log_State_XlsxDown',
+		    '통계이력 엑셀 다운',
 		    '',
 		    ''
 		    </if>
 		    <if test="result.equals('zip')">
-		    'Log_ZipDown',
+		    '청취이력 파일 다운',
 		    '',
 		    ''
 		    </if>
 		    <if test="result.equals('listen')">
-		    'Log_Listen',
+		    '청취이력 듣기',
 		    #{dirname},
 		    #{filename}
 		    </if>
@@ -272,10 +272,19 @@
 				and branch_cd = #{branch_cd}
 			</if>
 			<if test='tel_no_070 !=null and !tel_no_070.equals("")'>
-				and tel_no = #{tel_no_070}
+				and tel_no_070 = #{tel_no_070}
 			</if>
 			<if test='tel_no !=null and !tel_no.equals("")'>
 				and tel_no = #{tel_no}
+			</if>
+			<if test='emp_id_get !=null and !emp_id_get.equals("")'>
+				and emp_id like concat(concat('%', #{emp_id_get}), '%')
+			</if>
+			<if test='emp_nm_get !=null and !emp_nm_get.equals("")'>
+				and emp_nm like concat(concat('%', #{emp_nm_get}), '%')
+			</if>
+			<if test='tel_no_chk !=null and !tel_no_chk.equals("")'>
+				and tel_no like concat(concat('%', #{tel_no_chk}), '%')
 			</if>
 		</where>
 	</sql>

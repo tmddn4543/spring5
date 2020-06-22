@@ -14,4 +14,5 @@ public interface ISelect<T1> {
 	public List<?> setSelect(HashMap<String, Object>param);
 	public List<?>getListStateCount(HashMap<String, Object>param);
 	public int getListCountYYYYMM(HashMap<String, Object>param);
+	public List<?> getHddInfo();
 }

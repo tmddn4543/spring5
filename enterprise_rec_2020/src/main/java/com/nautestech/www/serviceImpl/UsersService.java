@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.nautestech.www.mapper.UsersMapper;
@@ -97,11 +98,15 @@ public class UsersService implements IInsert,ISelect<Users>,IDelete,IUpdate{
 
 	@Override
 	public void setInsertMrecordUser(HashMap<String, Object> param) {
-		mapper.setInsertMrecordUser(param);
 	}
 
 	@Override
 	public void setDeleteMrecordUser(HashMap<String, Object> param) {
-		mapper.setDeleteMrecordUser(param);
+	}
+
+	@Override
+	public List<?> getHddInfo() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

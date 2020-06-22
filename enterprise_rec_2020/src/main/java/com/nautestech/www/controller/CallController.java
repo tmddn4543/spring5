@@ -261,8 +261,8 @@ public class CallController {
 		}
 		auth_cd = Utils.authFormat(auth_cd);
 		HashMap<String, Object> param = new HashMap<>();
-		param.put("emp_id", emp);
-		param.put("emp_nm", emp);
+		param.put("emp_id_get", emp);
+		param.put("emp_nm_get", emp);
 		param.put("branch_cd", branch_cd);
 		param.put("auth_cd", auth_cd);
 		param.put("pagesize", 100);
@@ -302,7 +302,7 @@ public class CallController {
 		param.put("rec_type", "");
 		param.put("start_talk_time", "");
 		param.put("end_talk_time", "");
-		//call_logger.info("media/{YYYYMM}/{c_id} -> "+authentication.getName()+" : "+param.toString());
+		call_logger.info("media/{YYYYMM}/{c_id} -> "+authentication.getName()+" : "+param.toString());
 		List<Call> call = null;
 		if(YYYYMM.equals(null)) {
 			call = cService.getView(param);
@@ -331,7 +331,7 @@ public class CallController {
 		
 		//듣기로그 넣기
 		HashMap<String, Object>param1 = new HashMap<>();
-		//param1.put("emp_id", authentication.getName());
+		param1.put("emp_id", authentication.getName());
 		param1.put("result", "listen");
 		param1.put("dirname", call.get(0).getDirname());
 		param1.put("filename", call.get(0).getFname().replace("mxx", isMxxMode));
@@ -461,7 +461,13 @@ public class CallController {
 		call_logger.info("callSearch_YYYYMMDD ->"+authentication.getName()+" : "+param.toString());
 		listExcelDownload format = new listExcelDownload();
 		if(call.size()!=0) {//"+call.get(i).getDirname()+""+call.get(i).getFname()+"
-			int total = cService.getListCountYYYYMM(param);
+			int total = 0;
+			if(callhistoryYMD) {
+				total = cService.getListCountYYYYMM(param);
+			}else {
+				total = cService.getListCount(param);
+			}
+			
 			param1.put("total", total);
 			for(int i=0; i<call.size(); i++) {
 				call.get(i).setYYYYMM(startYYYYMM);

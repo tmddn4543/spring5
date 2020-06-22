@@ -306,10 +306,6 @@ public class listExcelDownload extends AbstractXlsxView {
 			
 			worksheet.createFreezePane(1, 4);
 			
-			
-			
-			
-			
 		}
 			
 		try {

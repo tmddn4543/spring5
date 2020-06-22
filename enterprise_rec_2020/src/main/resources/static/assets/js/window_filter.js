@@ -25,12 +25,13 @@ var basicDemo = (function () {
         var jqxWidget = $('#jqxWidget');
         var offset = jqxWidget.offset();
         $('#window').jqxWindow({
-            position: { x: offset.left + 50, y: offset.top + 50} ,
+            position: { x: 270 , y: 145} ,
             showCollapseButton: true, maxHeight: 270, maxWidth: 1600, minHeight: 116.683, minWidth: 250, height: 263, width: 'auto',
             resizable: false,
             autoOpen: false,
             showCollapseButton: false,
             showCloseButton: false,
+            draggable: true,
             initContent: function () {
                 $('#window').jqxWindow('focus');
             }

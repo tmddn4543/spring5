@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import com.nautestech.www.mapper.UsersMapper;
 import com.nautestech.www.model.Users;
 import com.nautestech.www.model.Constant;
+import com.nautestech.www.model.HddInfo;
 import com.nautestech.www.model.Session;
 
 @Service
@@ -22,6 +23,10 @@ public class UsersDetailsService implements UserDetailsService{
 
 	@Autowired
 	UsersMapper mapper;
+	
+	@Autowired
+	MuService mService;
+	
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -38,7 +43,12 @@ public class UsersDetailsService implements UserDetailsService{
 			mapper.setInsertListen_log(param1);
         	throw new UsernameNotFoundException("USER NOT FOUND OR NOT MATCH PASSWORD");
         }
+		List<HddInfo> hdd = mService.getHddInfo();
+		System.out.println(hdd.get(0).toString());
 		Session session = new Session();
+		session.setS_id(hdd.get(0).getS_id());
+		session.setS_totalhdd(hdd.get(0).getS_totalhdd());
+		session.setS_usage(hdd.get(0).getS_usage());
 		session.setUsername(username);
 		session.setAuth_cd(users.get(0).getAuth_cd());
 		session.setEmp_id(users.get(0).getEmp_id());

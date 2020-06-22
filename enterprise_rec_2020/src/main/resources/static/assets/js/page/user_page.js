@@ -83,14 +83,22 @@ $(document).ready(function(){
         // initialize jqxGrid
         
         
+        var getLocalization = function () {
+	    	var localizationobject = {};
+	    	localizationobject.emptydatastring = "유저 검색 결과가 없습니다.";
+	    	$("#user_grid").jqxGrid('localizestrings', localizationobject);
+	    	return localizationobject;
+	    }
+        
         if(u_auth_cd=="00" || u_auth_cd=="12" || u_auth_cd=="13"){
         	$("#user_grid").jqxGrid(
                     {
                     	source: dataadapter,
                         width: 100 + "%",
-                        autoheight: true, 
+                        autoheight: false, 
                         theme: 'material',
                         virtualmode: true,
+                        localization: getLocalization(),
                         pageable: true,
                         rendergridrows: function(obj)
         				{
@@ -115,9 +123,10 @@ $(document).ready(function(){
                     {
                     	source: dataadapter,
                         width: 100 + "%",
-                        autoheight: true, 
+                        autoheight: false, 
                         theme: 'material',
                         virtualmode: true,
+                        localization: getLocalization(),
                         pageable: true,
                         rendergridrows: function(obj)
         				{
@@ -196,11 +205,8 @@ $(document).ready(function(){
 					
 					if(result.user_result.rec_type=="B"){
 						$("#rec_inlineRadio1").prop("checked","checked");
-						$("input:radio[name='download']").prop("disabled",false);
 					}else if(result.user_result.rec_type=="N"){
 						$("#rec_inlineRadio2").prop("checked","checked");
-						$("#down_inlineRadio1").prop("checked",true);
-						$("input:radio[name='download']").prop("disabled",true);
 					}
 					
 					if(result.user_result.down_type=="N"){
@@ -229,13 +235,6 @@ $(document).ready(function(){
 			});
 			
 			
-			$.ajax({
-				type : "POST",
-				url : "/user/user_rec_Check",
-				success : function(result) {
-					results = result;
-				}
-			});
 			
 			
 		}else if(res.context.value=="user_insert"){
@@ -258,7 +257,6 @@ $(document).ready(function(){
 		    
 		    
 		    $("#down_inlineRadio1").prop("checked",true);
-		    $("input:radio[name=download]").prop("disabled",true);
 			$('#myModalLabel1').html("사용자 등록");
 			$("#modal_ajax").html("등록");
 			emp_id = $("#emp_id").val("");
@@ -472,14 +470,14 @@ $(document).ready(function(){
 	});
 	
 	
-	$("input:radio[name=inlineRadioOptions]").click(function(){
-		if($(this).val()=="B"){
-			$("input:radio[name='download']").prop("disabled",false);
-		}else if($(this).val()=="N"){
-			$("#down_inlineRadio1").prop("checked",true);
-			$("input:radio[name='download']").prop("disabled",true);
-		}
-	});
+//	$("input:radio[name=inlineRadioOptions]").click(function(){
+//		if($(this).val()=="B"){
+//			$("input:radio[name='download']").prop("disabled",false);
+//		}else if($(this).val()=="N"){
+//			$("#down_inlineRadio1").prop("checked",true);
+//			$("input:radio[name='download']").prop("disabled",true);
+//		}
+//	});
 	
 	$("#user_delete").click(function(){
 		var count = 0;
