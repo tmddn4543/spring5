@@ -12,7 +12,6 @@ $(document).ready(
     	
     	var date = "";
     	
-    	
     	/* 반응형 메뉴 */
         $(window).resize(function(){
         var width = parseInt($(this).width()); //parseint는 정수로 하기 위함

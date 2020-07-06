@@ -1,7 +1,6 @@
 $(document).ready(function(){
 	
 	
-	
 	var emp_id = "";
 	var emp_nm = "";
 	var tel_no = "";

@@ -19,8 +19,9 @@ $(document).ready(
     	var pageSize = "";
     	var recordstartindex = 0;
     	var arr_batch = new Array();
-    	
-    	
+    	if (event.keyCode == 505) { 
+    	    alert(document.body.onBeforeUnload);
+    	}
     	
     	
     	var label ="";

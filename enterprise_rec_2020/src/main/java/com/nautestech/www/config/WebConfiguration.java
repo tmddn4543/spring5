@@ -2,6 +2,8 @@ package com.nautestech.www.config;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSessionListener;
+
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,6 +30,11 @@ public class WebConfiguration implements WebMvcConfigurer {
 	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
 		// TODO Auto-generated method stub
 		WebMvcConfigurer.super.configureMessageConverters(converters);
+	}
+	
+	@Bean
+	public HttpSessionListener httpSessionListener(){
+	   return new SessionListener();
 	}
 	
 	@Override

@@ -61,6 +61,7 @@ public class UsersDetailsService implements UserDetailsService{
 		session.setAccountNonLocked(true);
 		session.setCredentialsNonExpired(true);
 		session.setEnabled(true);
+		
 		List<GrantedAuthority> grantedAuthorityList = new ArrayList<>();
 		if(users.get(0).getAuth_cd().equals("00")) {
 			grantedAuthorityList.add(new SimpleGrantedAuthority(Constant.ROLE_TYPE.ROLE_ADMIN.toString()));

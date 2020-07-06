@@ -25,8 +25,11 @@
 
 	<script>
 	$(document).ready(function() {
-		$("input[name=param1]").focus();
+
 		
+		
+		
+		$("input[name=param1]").focus();
 		
 		$("#id").keydown(function(key) {
             if (key.keyCode == 13) {
@@ -78,11 +81,15 @@
 				}
 			});
 		}
+		
+		function close(){
+			opener.document.location.reload();
+		}
 	});
 	</script>
 </head>
 
-<body class="login-img3-body">
+<body class="login-img3-body" onunload="close();">
 
   <div class="container">
 

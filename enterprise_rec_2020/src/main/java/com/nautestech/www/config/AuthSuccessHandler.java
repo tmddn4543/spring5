@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
@@ -23,6 +24,8 @@ public class AuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
     response.setStatus(HttpServletResponse.SC_OK);
     response.getWriter().print(om.writeValueAsString(ResultDto.success()));
     response.getWriter().flush();
+    HttpSession session = request.getSession();
+    session.setAttribute("session_id", authentication.getName());
   }
 
 }

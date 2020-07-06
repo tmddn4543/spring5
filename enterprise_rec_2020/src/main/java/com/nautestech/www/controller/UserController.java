@@ -71,6 +71,17 @@ public class UserController {
 		return "redirect:/logout";
     }
 	
+	@Secured({"ROLE_ADMIN","ROLE_OPERATIONADMIN","ROLE_GROUPADMIN","ROLE_LISTENUSER","ROLE_SMSUSER","ROLE_ENDUSER"})
+	@RequestMapping(value = "/user_logout_ajax", method= {RequestMethod.GET, RequestMethod.POST})
+	@ResponseBody
+	public void user_logout_ajax(Authentication authentication) throws JsonProcessingException{
+		HashMap<String, Object> param = new HashMap<>();
+		param.put("emp_id", authentication.getName());
+		param.put("result", "logout");
+		user_logger.info("user_logout -> "+authentication.getName()+" : "+param.toString());
+		uService.setInsertListen_log(param);
+    }
+	
 	
 	@Secured({"ROLE_ADMIN","ROLE_OPERATIONADMIN","ROLE_GROUPADMIN","ROLE_LISTENUSER","ROLE_SMSUSER","ROLE_ENDUSER"})
 	@RequestMapping(value = "/user_branch_get", method= {RequestMethod.GET, RequestMethod.POST})
