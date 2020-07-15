@@ -1,5 +1,11 @@
 @charset "utf-8";
-
+#side-menu > li.manual{
+text-align: center;
+margin-top: 20px;
+}
+#side-menu > li.manual i{
+display: none;
+}
 .list_table .jqx-grid-toolbar-material.jqx-widget-header-material .jqx-fill-state-normal{
     width: 90px !important;
     height: 25px !important;
@@ -1018,6 +1024,19 @@ color: #FFFFFF;
 }
 /* 반응형 */
 @media (max-width: 1464px){
+#side-menu > li.manual{
+margin-top: 0;
+}
+#side-menu > li.manual button{
+width: 80%;
+margin-top: 10px;
+}
+#side-menu > li.manual span{
+display: none;
+}
+#side-menu > li.manual i{
+display: block;
+}
 #search_filter{
 	left: 120px;
 }
@@ -1240,6 +1259,13 @@ body.state_wrap #window .list_search .form-group .checkbox label input, body.sta
 }
 }
 @media (max-width: 550px){
+#side-menu > 1 li.manual i{
+display: none;
+}
+#side-menu > li.manual span{
+display: inline-block;
+}
+
 	#user_add.modal .modal-body .form-group, #user_more.modal .modal-body .form-group {
 		height: auto;
 	}

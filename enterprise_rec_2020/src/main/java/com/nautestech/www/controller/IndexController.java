@@ -1,11 +1,15 @@
 package com.nautestech.www.controller;
 
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.poi.util.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,11 +37,17 @@ public class IndexController {
 	@Autowired
 	ApplicationContext loa;
 	
+	HttpServletRequest request;
+	HttpServletResponse response;
 	
 	@RequestMapping(value = "/", method= {RequestMethod.GET, RequestMethod.POST})
-    public String loginPage(Model model){
+    public String loginPage(Model model,HttpServletRequest request,
+			HttpServletResponse response){
+		this.request = request;
+		this.response = response;
 		return "recording/login";
     }
+	
 	
 
 	@RequestMapping(value = "/logo", method= {RequestMethod.GET, RequestMethod.POST})

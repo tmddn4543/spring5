@@ -13,8 +13,8 @@
                             <img alt="image" class="img-circle" src="/resource/assets/img/admin.png" />
                         </span>
                         <a href="#">
-                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold" th:text="${#authentication.details.emp_nm}"></strong>
-                             </span> <span class="text-muted text-xs block" th:text="${#authentication.details.emp_id}"></span> </span> </a>
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold" th:text="${#authentication.details.emp_id}"></strong> 님
+                             </span></span> </a>
                         
                     </div>
                     <div class="logo-element">
@@ -35,6 +35,9 @@
                 </li>
                 <li th:class="${#strings.startsWith(#httpServletRequest.requestURI, '/state/state_page')}?'active page_open':''" th:if="!${#authentication.details.auth_cd eq'13'}">
                     <a href="/state/state_page"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">통계</span><span class="nav-label"></span></a>
+                </li>
+                <li class="manual">
+                    <button class="btn btn-primary"><i class="fa fa-book" aria-hidden="true"></i><span>매뉴얼 다운로드</span></button>
                 </li>
             </ul>
         </div>

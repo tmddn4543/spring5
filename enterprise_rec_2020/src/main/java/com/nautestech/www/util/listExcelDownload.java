@@ -96,12 +96,17 @@ public class listExcelDownload extends AbstractXlsxView {
 		
 		CellStyle style = workbook.createCellStyle(); // 셀 스타일을 위한 변수
 		CellStyle style1 = workbook.createCellStyle();
+		CellStyle style2 = workbook.createCellStyle();
 		Font font = workbook.createFont();
 		Font font1 = workbook.createFont();
 		
 		
 		style.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
 		style.setAlignment(CellStyle.ALIGN_CENTER);
+		style2.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
+		style2.setAlignment(CellStyle.ALIGN_CENTER);
+		style1.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
+		style1.setAlignment(CellStyle.ALIGN_CENTER);
 		style1.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
 		style1.setFillPattern(CellStyle.SOLID_FOREGROUND);
 		
@@ -140,7 +145,7 @@ public class listExcelDownload extends AbstractXlsxView {
 				} else if (columnIndex == 4) {
 					worksheet.setColumnWidth(columnIndex, 4000);
 				} else if (columnIndex == 5) {
-					worksheet.setColumnWidth(columnIndex, 3000);
+					worksheet.setColumnWidth(columnIndex, 5000);
 				} else if (columnIndex == 6) {
 					worksheet.setColumnWidth(columnIndex, 5000);
 				} else if (columnIndex == 7) {
@@ -155,8 +160,14 @@ public class listExcelDownload extends AbstractXlsxView {
 			cell = row.createCell(2);
 			worksheet.addMergedRegion( new CellRangeAddress(0, 2, 2, 6));
 			cell.setCellStyle(style);
-			cell.setCellValue("[녹취 이력 : "+sCurTime+"]");
+			cell.setCellValue("[ 녹취 이력 ]");
 			
+			row = worksheet.createRow(2);
+			cell = row.createCell(0);
+//			worksheet.addMergedRegion( new CellRangeAddress(2, 2, 0, 1));
+			cell.setCellValue("생성일자");
+			cell = row.createCell(1);
+			cell.setCellValue(sCurTime);
 			// 헤더 설정
 			row = worksheet.createRow(3);
 			for(int i=0; i<9; i++) {
@@ -187,15 +198,43 @@ public class listExcelDownload extends AbstractXlsxView {
 			// 각 해당하는 셀에 값과 스타일을 넣음
 			for (Call call : listExcel) {
 				row = worksheet.createRow(rowIndex);
-				row.createCell(0).setCellValue(call.getBranch_cd());
-				row.createCell(1).setCellValue(call.getEmp_id());
-				row.createCell(2).setCellValue(call.getEmp_nm());
-				row.createCell(3).setCellValue(call.getCaller());
-				row.createCell(4).setCellValue(call.getCalled());
-				row.createCell(5).setCellValue(dateFormat(call.getBtime()));
-				row.createCell(6).setCellValue(hourFormat(call.getBtime(), call.getEtime()));
-				row.createCell(7).setCellValue(timeFormat(call.getBtime(), call.getEtime()));
-				row.createCell(8).setCellValue(recFormat(call.getRec_type()));
+//				setCellStyle(style)
+				cell = row.createCell(0);
+				cell.setCellStyle(style2);
+				cell.setCellValue(call.getBranch_cd());
+				
+				cell = row.createCell(1);
+				cell.setCellStyle(style2);
+				cell.setCellValue(call.getEmp_id());
+				
+				cell = row.createCell(2);
+				cell.setCellStyle(style2);
+				cell.setCellValue(call.getEmp_nm());
+				
+				cell = row.createCell(3);
+				cell.setCellStyle(style2);
+				cell.setCellValue(call.getCaller());
+				
+				cell = row.createCell(4);
+				cell.setCellStyle(style2);
+				cell.setCellValue(call.getCalled());
+				
+				cell = row.createCell(5);
+				cell.setCellStyle(style2);
+				cell.setCellValue(call.getBtime());
+				
+				cell = row.createCell(6);
+				cell.setCellStyle(style2);
+				cell.setCellValue(hourFormat(call.getBtime(), call.getEtime()));
+				
+				cell = row.createCell(7);
+				cell.setCellStyle(style2);
+				cell.setCellValue(timeFormat(call.getBtime(), call.getEtime()));
+				
+				cell = row.createCell(8);
+				cell.setCellStyle(style2);
+				cell.setCellValue(recFormat(call.getRec_type()));
+				
 				rowIndex++;
 			}
 
@@ -215,9 +254,9 @@ public class listExcelDownload extends AbstractXlsxView {
 			int columnIndex = 0;
 			while (columnIndex < 9) {
 				if (columnIndex == 0) {
-					worksheet.setColumnWidth(columnIndex, 3000);
-				} else if (columnIndex == 1) {
 					worksheet.setColumnWidth(columnIndex, 4000);
+				} else if (columnIndex == 1) {
+					worksheet.setColumnWidth(columnIndex, 3000);
 				} else if (columnIndex == 2) {
 					worksheet.setColumnWidth(columnIndex, 4000);
 				} else if (columnIndex == 3) {
@@ -227,11 +266,11 @@ public class listExcelDownload extends AbstractXlsxView {
 				} else if (columnIndex == 5) {
 					worksheet.setColumnWidth(columnIndex, 3000);
 				} else if (columnIndex == 6) {
-					worksheet.setColumnWidth(columnIndex, 5000);
+					worksheet.setColumnWidth(columnIndex, 4000);
 				} else if (columnIndex == 7) {
-					worksheet.setColumnWidth(columnIndex, 5000);
+					worksheet.setColumnWidth(columnIndex, 4000);
 				} else if (columnIndex == 8) {
-					worksheet.setColumnWidth(columnIndex, 5000);
+					worksheet.setColumnWidth(columnIndex, 4500);
 				}
 				columnIndex++;
 			}
@@ -240,7 +279,14 @@ public class listExcelDownload extends AbstractXlsxView {
 			cell = row.createCell(2);
 			worksheet.addMergedRegion( new CellRangeAddress(0, 2, 2, 6));
 			cell.setCellStyle(style);
-			cell.setCellValue("[통계 이력 : "+sCurTime+"]");
+			cell.setCellValue("[ 통계 이력 ]");
+			
+			row = worksheet.createRow(2);
+			cell = row.createCell(0);
+//			worksheet.addMergedRegion( new CellRangeAddress(2, 2, 0, 1));
+			cell.setCellValue("생성일자");
+			cell = row.createCell(1);
+			cell.setCellValue(sCurTime);
 			
 			// 헤더 설정
 			row = worksheet.createRow(3);
@@ -260,11 +306,11 @@ public class listExcelDownload extends AbstractXlsxView {
 				}else if(i==5) {
 					cell.setCellValue("착발신 합계");
 				}else if(i==6) {
-					cell.setCellValue("착신 통화시간");
+					cell.setCellValue("착신 통화시간 (초)");
 				}else if(i==7) {
-					cell.setCellValue("발신 통화시간");
+					cell.setCellValue("발신 통화시간 (초)");
 				}else if(i==8) {
-					cell.setCellValue("착발신시간 합계");
+					cell.setCellValue("착발신시간 합계 (초)");
 				}
 			}
 			int rowIndex = 4;
@@ -277,15 +323,43 @@ public class listExcelDownload extends AbstractXlsxView {
 			// 각 해당하는 셀에 값과 스타일을 넣음
 			for (Stat stat : listExcel) {
 				row = worksheet.createRow(rowIndex);
-				row.createCell(0).setCellValue(stat.getS_date());
-				row.createCell(1).setCellValue(stat.getBranch_cd());
-				row.createCell(2).setCellValue(stat.getEmp_id());
-				row.createCell(3).setCellValue(stat.getS_called_cnt());
-				row.createCell(4).setCellValue(stat.getS_caller_cnt());
-				row.createCell(5).setCellValue(stat.getS_call_cnt_total());
-				row.createCell(6).setCellValue(stat.getS_called_time());
-				row.createCell(7).setCellValue(stat.getS_caller_time());
-				row.createCell(8).setCellValue(stat.getS_call_time_total());
+				
+				cell = row.createCell(0);
+				cell.setCellStyle(style2);
+				cell.setCellValue(stat.getS_date());
+				
+				cell = row.createCell(1);
+				cell.setCellStyle(style2);
+				cell.setCellValue(stat.getBranch_cd());
+				
+				cell = row.createCell(2);
+				cell.setCellStyle(style2);
+				cell.setCellValue(stat.getEmp_id());
+				
+				cell = row.createCell(3);
+				cell.setCellStyle(style2);
+				cell.setCellValue(stat.getS_called_cnt());
+				
+				cell = row.createCell(4);
+				cell.setCellStyle(style2);
+				cell.setCellValue(stat.getS_caller_cnt());
+				
+				cell = row.createCell(5);
+				cell.setCellStyle(style2);
+				cell.setCellValue(stat.getS_call_cnt_total());
+				
+				cell = row.createCell(6);
+				cell.setCellStyle(style2);
+				cell.setCellValue(stat.getS_called_time());
+				
+				cell = row.createCell(7);
+				cell.setCellStyle(style2);
+				cell.setCellValue(stat.getS_caller_time());
+				
+				cell = row.createCell(8);
+				cell.setCellStyle(style2);
+				cell.setCellValue(stat.getS_call_time_total());
+				
 				total1 += stat.getS_called_cnt();
 				total2 += stat.getS_caller_cnt();
 				total3 += stat.getS_call_cnt_total();
@@ -295,14 +369,35 @@ public class listExcelDownload extends AbstractXlsxView {
 				rowIndex++;
 			}
 			row = worksheet.createRow(rowIndex+1);
-			row.createCell(0).setCellValue("총소계");
 			
-			row.createCell(3).setCellValue(total1);
-			row.createCell(4).setCellValue(total2);
-			row.createCell(5).setCellValue(total3);
-			row.createCell(6).setCellValue(total4);
-			row.createCell(7).setCellValue(total5);
-			row.createCell(8).setCellValue(total6);
+			cell = row.createCell(0);
+			cell.setCellStyle(style2);
+			cell.setCellValue("총소계");
+			
+			cell = row.createCell(3);
+			cell.setCellStyle(style2);
+			cell.setCellValue(total1);
+			
+			cell = row.createCell(4);
+			cell.setCellStyle(style2);
+			cell.setCellValue(total2);
+			
+			cell = row.createCell(5);
+			cell.setCellStyle(style2);
+			cell.setCellValue(total3);
+			
+			cell = row.createCell(6);
+			cell.setCellStyle(style2);
+			cell.setCellValue(total4);
+			
+			cell = row.createCell(7);
+			cell.setCellStyle(style2);
+			cell.setCellValue(total5);
+			
+			cell = row.createCell(8);
+			cell.setCellStyle(style2);
+			cell.setCellValue(total6);
+			
 			
 			worksheet.createFreezePane(1, 4);
 			

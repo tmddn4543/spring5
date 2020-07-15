@@ -73,14 +73,13 @@ $(document).ready(
     			$(".group_btn_act1").jqxDropDownList({ source: arr_batch, selectedIndex: 0, width: 100 + "%", height: 34, autoItemsHeight: true, theme: "bootstrap", autoDropDownHeight: true});
     		}
     	});
-        var source = [
-            "전체",
-            "전수녹취",
-            "인증녹취",
-            "녹취정지"
-        ];
+//        var source = [
+//            "전체",
+//            "전수녹취",
+//            "녹취정지"
+//        ];
         // Create a jqxDropDownList
-        $(".record_type").jqxDropDownList({ source: source, selectedIndex: 1, width: 100 + "%", height: 34, autoItemsHeight: true, theme: "bootstrap", autoDropDownHeight: true});
+//        $(".record_type").jqxDropDownList({ source: source, selectedIndex: 1, width: 100 + "%", height: 34, autoItemsHeight: true, theme: "bootstrap", autoDropDownHeight: true});
 
 
         var source = [
@@ -107,8 +106,7 @@ $(document).ready(
         var cal_date = new Date();
         
         $(".jqxcalendar_act").jqxDateTimeInput("setRange", cal_date, cal_date);
-        
-
+        $(".jqxcalendar_act").jqxDateTimeInput({ formatString: "yyyy.MM.dd"});
 
         /* time select box */
         var Html = []; //배열로 담을 변수 선언
@@ -210,7 +208,9 @@ $(document).ready(
                     {
                     	source: dataadapter,
                         width: 100 + "%",
-                        autoheight: false, 
+                        autoheight: true, 
+                        pagesizeoptions: ['15', '30', '50'],
+                        pagesize: 15,
                         theme: 'material',
                         rowdetails: true,
                         localization: getLocalization(),
@@ -222,15 +222,18 @@ $(document).ready(
                         rendertoolbar: function (statusbar) {
                             // appends buttons to the status bar.
                             var container = $("<div style='overflow: hidden; position: relative; margin: 6px;'></div>");
-                            var addButton = $("<div style='float: right; margin-left: 10px;'><img style='position: relative; margin-top: 2px;' ><span style='margin-left: 4px; position: relative; top: -3px;'>받기</span></div>");
-                            var xlsButton = $("<div style='float: right; margin-left: 5px;'><img style='position: relative; margin-top: 2px;' ><span style='margin-left: -2px; position: relative; top: -3px;'>엑셀다운</span></div>");
+                            var addButton = $("<div style='float: right; margin-left: 10px;'><img style='position: relative; margin-top: 2px;' ><span style='margin-left: 4px; position: relative; top: -3px;'>파일 다운</span></div>");
+                            var xlsButton = $("<div style='float: right; margin-left: 5px;'><img style='position: relative; margin-top: 2px;' ><span style='margin-left: -2px; position: relative; top: -3px;'>목록 다운</span></div>");
+                            var checkButton = $("<div style='float: right; margin-left: 5px;'><img style='position: relative; margin-top: 2px;' ><span style='margin-left: -2px; position: relative; top: -3px;'>전체 선택</span></div>");
                             
                             container.append(addButton);
                             container.append(xlsButton);
+                            container.append(checkButton);
                             
                             statusbar.append(container);
                             addButton.jqxButton({  width: 60, height: 20 });
                             xlsButton.jqxButton({  width: 60, height: 20 });
+                            checkButton.jqxButton({  width: 60, height: 20 });
                             // add new row.
                             addButton.click(function (event) {
                             	var count = 0;
@@ -251,13 +254,16 @@ $(document).ready(
                             	});
                             	$("#hidden_arr").val(arr);
                             	if(count==0){
-                            		alert("알집다운 체크를 해주시기 바랍니다.");
+                            		alert("체크를 해주시기 바랍니다.");
                             		return false;
                             	}
                             	form_arr.submit();
                             });
                             xlsButton.click(function (event) {
                             	location.href="/call/xlsxDownload?emp="+emp+"&branch_cd="+branch_cd+"&auth_cd="+auth_cd+"&bday="+bday+"&eday="+eday+"&caller="+caller+"&called="+called+"&rec_type="+rec_type+"&end_talk_time="+end_talk_time+"&start_talk_time="+start_talk_time+"&called_attr="+called_attr+"&caller_attr="+caller_attr;
+                            });
+                            checkButton.click(function (event) {
+                            	$(".check_label").jqxCheckBox('check');
                             });
                         },
                         virtualmode: true,
@@ -278,8 +284,7 @@ $(document).ready(
                              { text: "통화시각", datafield: "call_hour", width: 9.5  + "%", minwidth: 96.71},
                              { text: "통화시간", datafield: "call_time", width: 9.5  + "%", minwidth: 96.71},
                              { text: "유형", datafield: "rec_type", width: 9.5  + "%", minwidth: 96.71},
-                            //"<button class='btn btn-default' id='zipDown_bt'>받기</button>"
-                            { text: "알집다운", datafield: "dirname", cellsalign: 'center', width: 9.090909 + "%", minwidth: 91.7333,
+                            { text: "선택", datafield: "dirname", cellsalign: 'center', width: 9.090909 + "%", minwidth: 91.7333,
                             	
                                createwidget : function (row, column, value, cellElement){
                             	   label = $("<label class='check_label'></label>");
@@ -299,7 +304,9 @@ $(document).ready(
                     {
                     	source: dataadapter,
                         width: 100 + "%",
-                        autoheight: false, 
+                        pagesizeoptions: ['15', '30', '50'],
+                        pagesize: 15,
+                        autoheight: true, 
                         theme: 'material',
                         rowdetails: true,
                         localization: getLocalization(),
@@ -462,7 +469,8 @@ $(document).ready(
 		            alert("사용자를 검색했습니다.");
 				},
 				error : function() {
-					alert("알수없는 오류가 발생하였습니다.");
+					alert("알수없는 오류가 발생하였습니다. \n로그인을 다시 해주시기 바랍니다.");
+					location.href="/";
 				},
 				complete : function() {
 				}
@@ -489,30 +497,6 @@ $(document).ready(
         	usersSearch();
         	$("#user_search").modal("show");
         });
-        
-        
-        
-//        $("#called2_ul").on("click", "li", function(){
-//        	var res = $(this).text();
-//        	$("#called2_bt").html(res+" <span class='caret'></span>");
-//        	if(res=="정확"){
-//        		called_attr = "eq";
-//        	}else if(res=="포함"){
-//        		called_attr = "like";
-//        	}
-//        });
-//        
-//        
-//        $("#caller2_ul").on("click", "li", function(){
-//        	var res = $(this).text();
-//        	$("#caller2_bt").html(res+" <span class='caret'></span>");
-//        	if(res=="정확"){
-//        		caller_attr = "eq";
-//        	}else if(res=="포함"){
-//        		caller_attr = "like";
-//        	}
-//        });
-        
         
         
         $('.user_search_grid').on('rowclick', function (event) {

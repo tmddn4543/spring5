@@ -52,7 +52,7 @@ public class StateController {
 	
 	@Secured({"ROLE_ADMIN","ROLE_ENDUSER","ROLE_OPERATIONADMIN","ROLE_GROUPADMIN","ROLE_LISTENUSER","ROLE_SMSUSER"})
 	@RequestMapping(value = "/xlsxDownload", method= {RequestMethod.GET, RequestMethod.POST})
-	public View down(@RequestParam(value="res", required=false, defaultValue="H")String res,
+	public View down(@RequestParam(value="res", required=false, defaultValue="M")String res,
 			@RequestParam(value="branch_cd", required=false, defaultValue="")String branch_cd,
 			@RequestParam(value="date", required=false, defaultValue="")String date,
 			@RequestParam(value="emp_id", required=false, defaultValue="")String emp_id,Model model,
@@ -180,8 +180,8 @@ public class StateController {
 	public String[] dateFormat(String date) {
 		String bday = date.substring(0, 10);
 		String eday = date.substring(13, 23);
-		bday = bday.replaceAll(":", "");
-		eday = eday.replaceAll(":",	"");
+		bday = bday.replaceAll("/", "");
+		eday = eday.replaceAll("/",	"");
 		String day[] = {bday,eday};
 		return day;
 	}

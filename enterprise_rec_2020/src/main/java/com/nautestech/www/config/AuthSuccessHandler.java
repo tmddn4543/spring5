@@ -25,6 +25,7 @@ public class AuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
     response.getWriter().print(om.writeValueAsString(ResultDto.success()));
     response.getWriter().flush();
     HttpSession session = request.getSession();
+//    session.setMaxInactiveInterval(5);
     session.setAttribute("session_id", authentication.getName());
   }
 

@@ -7,12 +7,16 @@ import javax.servlet.http.HttpSessionListener;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.nautestech.www.controller.IndexController;
 import com.nautestech.www.serviceImpl.UsersService;
 
 public class SessionListener implements HttpSessionListener {
 
 	@Autowired
 	UsersService uService;
+	
+	@Autowired
+	IndexController indexController;
 	
 	@Override
 	public void sessionDestroyed(HttpSessionEvent se) {
@@ -21,5 +25,6 @@ public class SessionListener implements HttpSessionListener {
 		param.put("result", "logout");
 		System.out.println("logout");
 		uService.setInsertListen_log(param);
+//		indexController.test();
 	}
 }

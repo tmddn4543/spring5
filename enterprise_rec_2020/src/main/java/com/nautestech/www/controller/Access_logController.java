@@ -53,7 +53,6 @@ public class Access_logController {
     		@RequestParam(value="recordendindex", required=false, defaultValue="")int recordendindex,
     		Authentication authentication) throws JsonProcessingException{
 		String active = "active page_open";
-		model.addAttribute("access_log_active", active);
 		HashMap<String, Object> param = new HashMap<>();
 		HashMap<String, Object> param1 = new HashMap<>();
 		if(!a_day.equals("")) {

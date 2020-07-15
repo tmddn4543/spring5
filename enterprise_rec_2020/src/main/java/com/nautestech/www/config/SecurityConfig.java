@@ -41,6 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	   		.antMatchers("/access_log/**").hasAnyRole("ADMIN","SMSUSER","LISTENUSER","GROUPADMIN","OPERATIONADMIN")
 	   		.antMatchers("/**").permitAll()
 	   		.anyRequest().authenticated()
+	   	.and().exceptionHandling().authenticationEntryPoint(new AjaxAwareAuthenticationEntryPoint("/"))
 		.and()
 			.formLogin()
 			.loginPage("/")
@@ -55,6 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.invalidateHttpSession(true)
 		.and()
 			.csrf().disable();
+			
 	}
 	
 	

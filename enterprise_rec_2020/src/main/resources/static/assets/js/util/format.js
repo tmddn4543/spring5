@@ -27,16 +27,43 @@ function authFormat2(auth_cd){
 
 
 function YYYYMM(bday, eday){
-	bday = bday.substr(0,7);
-	eday = eday.substr(0,7);
-	bday = bday.replace(":", "");
-	eday = eday.replace(":", "");
-	var result = eday - bday;
-	if(result>1 && result != 89){
-		return 'false';
+	var byyyy = bday.substr(0,4);
+	var eyyyy = eday.substr(0,4);
+	
+	var yyyy_result = eyyyy-byyyy;
+	
+	
+	var bdd = bday.substr(8,2);
+	var edd = eday.substr(8,2);
+	
+	var dd_result = edd - bdd;
+	
+	if(yyyy_result==0){
+		var bmm = bday.substr(5,2);
+		var emm = eday.substr(5,2);
+		var mm_result = emm - bmm;
+		if(mm_result>1){
+			if(dd_result>=0){
+				return 'false';
+			}
+		}
 	}else{
-		return 'true';
+		var bmm = bday.substr(5,2);
+		var emm = eday.substr(5,2);
+		
+		var mm_result = bmm - emm;
+		if(mm_result==10){
+			if(dd_result>=0){
+				return 'false';
+			}
+		}else if(mm_result<10){
+			return 'false';
+		}
 	}
+	
+	
+	return 'true';
+	
 };
 function bdayFormat(selectday,selectstime){
 	selectday = selectday.substr(0,10);

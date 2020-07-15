@@ -268,7 +268,7 @@ public class UserController {
 			@RequestParam(value="down_type", required=false, defaultValue="")String down_type,
 			Authentication authentication
 			) throws JsonProcessingException{
-		
+		 
 		HashMap<String, Object> param = new HashMap<>();
 		param.put("emp_id", emp_id);
 		param.put("pagesize", 10);
@@ -362,7 +362,7 @@ public class UserController {
 		param1.put("u_level", u_level);
 		param1.put("u_name", emp_nm);
 		param1.put("u_tel1", tel_no);
-		param1.put("u_email", "/data"+"1"+"/"+branch_cd+"/");
+		param1.put("u_email", "/data"+"1"+"/nr_"+branch_cd+"/");
 		param1.put("u_pwd", pass);
 		param1.put("u_flag", rec_type);
 		

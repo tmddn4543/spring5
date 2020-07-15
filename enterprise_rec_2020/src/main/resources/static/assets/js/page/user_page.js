@@ -28,6 +28,10 @@ $(document).ready(function(){
 				arr_batch[i+1] = batch[i].branch_cd;
 			}
 			$(".group_btn_act_search").jqxDropDownList({ source: arr_batch, selectedIndex: 0, width: 100 + "%", height: 34, autoItemsHeight: true, theme: "bootstrap", autoDropDownHeight: true});
+		},
+		error : function() {
+			alert("알수없는 오류가 발생하였습니다. \n로그인을 다시 해주시기 바랍니다.");
+			location.href="/";
 		}
 	});
     
@@ -94,7 +98,7 @@ $(document).ready(function(){
                     {
                     	source: dataadapter,
                         width: 100 + "%",
-                        autoheight: false, 
+                        autoheight: true, 
                         theme: 'material',
                         virtualmode: true,
                         localization: getLocalization(),
@@ -122,7 +126,7 @@ $(document).ready(function(){
                     {
                     	source: dataadapter,
                         width: 100 + "%",
-                        autoheight: false, 
+                        autoheight: true, 
                         theme: 'material',
                         virtualmode: true,
                         localization: getLocalization(),
@@ -248,6 +252,10 @@ $(document).ready(function(){
 						
 					}
 					$(".group_btn_act").jqxDropDownList({source: arr_batch1, selectedIndex: 0, width: 100 + "%", height: 34, autoItemsHeight: true, theme: "bootstrap", autoDropDownHeight: true});
+				},
+				error : function() {
+					alert("알수없는 오류가 발생하였습니다. \n로그인을 다시 해주시기 바랍니다.");
+					location.href="/";
 				}
 			});
 			
@@ -306,7 +314,7 @@ $(document).ready(function(){
 				$("#tel_no").focus();
 				return false;
 			}else if(tel_no_070==null || tel_no_070==""){
-				alert("070 녹취번호를 입력해주세요.");
+				alert("표시 번호를 입력해주세요.");
 				$("#tel_no_070").focus();
 				return false;
 			}else if(pass==null || pass==""){
@@ -369,13 +377,13 @@ $(document).ready(function(){
 						alert("녹취번호가 중복 되었습니다.");
 						return false;
 					}else if(result=="return 3"){
-						alert("070녹취번호가 중복 되었습니다.")
+						alert("표시번호가 중복 되었습니다.")
 						return false;
 					}
 				},
 				error : function() {
-					alert("알수없는 오류가 발생하였습니다.");
-					$("#user_add").modal("hide");
+					alert("알수없는 오류가 발생하였습니다. \n로그인을 다시 해주시기 바랍니다.");
+					location.href="/";
 				},
 				complete : function() {
 				}
@@ -418,7 +426,7 @@ $(document).ready(function(){
 				$("#tel_no").focus();
 				return false;
 			}else if(tel_no_070==null || tel_no_070==""){
-				alert("070 녹취번호를 입력해주세요.");
+				alert("표시 번호를 입력해주세요.");
 				$("#tel_no_070").focus();
 				return false;
 			}else if(auth_cd=="전체"){
@@ -459,8 +467,8 @@ $(document).ready(function(){
 					
 				},
 				error : function() {
-					alert("알수없는 오류가 발생하였습니다.");
-					$("#user_add").modal("hide");
+					alert("알수없는 오류가 발생하였습니다. \n로그인을 다시 해주시기 바랍니다.");
+					location.href="/";
 				},
 				complete : function() {
 				}
@@ -505,7 +513,11 @@ $(document).ready(function(){
     			success : function() {
     				alert("유저가 삭제가 되었습니다.");
     				main();
-    			}
+    			},
+    			error : function() {
+					alert("알수없는 오류가 발생하였습니다. \n로그인을 다시 해주시기 바랍니다.");
+					location.href="/";
+				}
     		});
     	}
 	});
@@ -577,9 +589,11 @@ $(document).ready(function(){
 					
 				},
 				error : function() {
-					alert("알수없는 오류가 발생하였습니다.");
+					alert("알수없는 오류가 발생하였습니다. \n로그인을 다시 해주시기 바랍니다.");
+					location.href="/";
 				},
 				complete : function() {
+					
 				}
 			});
 	    	
@@ -592,7 +606,7 @@ $(document).ready(function(){
 	        }, 300);
 	});
 	
-	 
+	//show 모달이랑 hide
 	$("#groupSet_modal").click(
 	    function(){
 	        setTimeout(function(){
@@ -622,6 +636,10 @@ $(document).ready(function(){
 				success : function() {
 					alert("그룹이 등록 되었습니다.");
 					$("#groupSet_modal").modal("hide");
+				},
+				error : function() {
+					alert("알수없는 오류가 발생하였습니다. \n로그인을 다시 해주시기 바랍니다.");
+					location.href="/";
 				}
 			});
 			//branch_cd
@@ -644,6 +662,10 @@ $(document).ready(function(){
 					alert("이미 사용중인 그룹 코드 입니다.");
 					return false;
 				}
+			},
+			error : function() {
+				alert("알수없는 오류가 발생하였습니다. \n로그인을 다시 해주시기 바랍니다.");
+				location.href="/";
 			}
 		});
 		
@@ -694,7 +716,11 @@ $(document).ready(function(){
     					alert("사용자가 포함되어 있는 그룹이 있습니다. \n사용자 수정 or 제거후 삭제해주시기 바랍니다.");
     				}
     				
-    			}
+    			},
+    			error : function() {
+					alert("알수없는 오류가 발생하였습니다. \n로그인을 다시 해주시기 바랍니다.");
+					location.href="/";
+				}
     		});
     	}
 	

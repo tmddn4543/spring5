@@ -67,7 +67,7 @@ $(document).ready(function(){
                 {
                 	source: dataadapter,
                     width: 100 + "%",
-                    autoheight: false, 
+                    autoheight: true, 
                     theme: 'material',
                     virtualmode: true,
                     pageable: true,

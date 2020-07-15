@@ -205,6 +205,8 @@ public class CallController {
 		if(branch_cd.equals("전체")) {
 			branch_cd = "";
 		}
+		bday = bday.replace(".", ":");
+		eday = eday.replace(".", ":");
 		HashMap<String, Object> param1 = new HashMap<>();
 		param1.put("emp_id", authentication.getName());
 		param1.put("result", "xlsx");
@@ -304,7 +306,8 @@ public class CallController {
 		param.put("end_talk_time", "");
 		call_logger.info("media/{YYYYMM}/{c_id} -> "+authentication.getName()+" : "+param.toString());
 		List<Call> call = null;
-		if(YYYYMM.equals(null)) {
+		System.out.println(YYYYMM+"ㅇㅇ");
+		if(!callhistoryYMD) {
 			call = cService.getView(param);
 		}else {
 			param.put("startYYYYMM", YYYYMM);
@@ -407,6 +410,8 @@ public class CallController {
     		@RequestParam(value="recordstartindex", required=false, defaultValue="")int recordstartindex,
     		@RequestParam(value="recordendindex", required=false, defaultValue="")int recordendindex,
     		Authentication authentication) throws Exception{ 
+		bday = bday.replace(".", ":");
+		eday = eday.replace(".", ":");
 		Session user = (Session) authentication.getDetails();
 		String startYYYYMM = bday.substring(0,7);
 		String endYYYYMM = eday.substring(0,7);
@@ -432,7 +437,6 @@ public class CallController {
 		}else {
 			param.put("branch_cd",branch_cd);
 		}
-		
 		param.put("bday", bday);
 		param.put("eday", eday);
 		param.put("startYYYYMM",startYYYYMM);

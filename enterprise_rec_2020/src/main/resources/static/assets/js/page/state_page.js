@@ -41,6 +41,10 @@ $(document).ready(
     			}
     			$(".group_btn_act").jqxDropDownList({ source: arr_batch, selectedIndex: 0, width: 100 + "%", height: 34, autoItemsHeight: true, theme: "bootstrap", autoDropDownHeight: true});
     			$(".group_btn_act1").jqxDropDownList({ source: arr_batch, selectedIndex: 0, width: 100 + "%", height: 34, autoItemsHeight: true, theme: "bootstrap", autoDropDownHeight: true});
+    		},
+    		error : function() {
+    			alert("알수없는 오류가 발생하였습니다. \n로그인을 다시 해주시기 바랍니다.");
+    			location.href="/";
     		}
     	});
         
@@ -93,7 +97,7 @@ $(document).ready(
                     {
                     	source: dataadapter,
                         width: 100 + "%",
-                        autoheight: false, 
+                        autoheight: true, 
                         theme: 'material',
                         virtualmode: true,
                         localization: getLocalization(),
@@ -219,7 +223,8 @@ $(document).ready(
 		            alert("사용자를 검색했습니다.");
 				},
 				error : function() {
-					alert("알수없는 오류가 발생하였습니다.");
+					alert("알수없는 오류가 발생하였습니다. \n로그인을 다시 해주시기 바랍니다.");
+					location.href="/";
 				},
 				complete : function() {
 				}
@@ -240,7 +245,7 @@ $(document).ready(
 
 
         // create jqxcalendar.
-        $(".jqxcalendar_act").jqxDateTimeInput({ width: 98 + "%", height: 32,  selectionMode: "range", formatString: "yyyy:MM:dd", theme: "bootstrap" });
+        $(".jqxcalendar_act").jqxDateTimeInput({ width: 98 + "%", height: 32,  selectionMode: "range", formatString: "yyyy/MM/dd", theme: "bootstrap" });
         $(".jqxcalendar_act").on("jqxcalendar", function (event) {
             var selection = $("#jqxWidget").jqxDateTimeInput("getRange");
             if (selection.from != null) {
@@ -251,7 +256,10 @@ $(document).ready(
         var cal_date = new Date();
         $(".jqxcalendar_act").jqxDateTimeInput("setRange", cal_date, cal_date);
 
-        
+        $('.user_search_grid').on('rowclick', function (event) {
+        	$("#emp_id").val(event.args.row.bounddata.userid);
+        	$("#user_search").modal("hide");
+        });
         
         function xls(){
         	location.href="/state/xlsxDownload?res="+res+"&branch_cd="+branch_cd+"&date="+date+"&emp_id="+emp_id;
