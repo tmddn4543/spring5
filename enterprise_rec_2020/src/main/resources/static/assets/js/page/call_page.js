@@ -222,9 +222,9 @@ $(document).ready(
                         rendertoolbar: function (statusbar) {
                             // appends buttons to the status bar.
                             var container = $("<div style='overflow: hidden; position: relative; margin: 6px;'></div>");
-                            var addButton = $("<div style='float: right; margin-left: 10px;'><img style='position: relative; margin-top: 2px;' ><span style='margin-left: 4px; position: relative; top: -3px;'>파일 다운</span></div>");
-                            var xlsButton = $("<div style='float: right; margin-left: 5px;'><img style='position: relative; margin-top: 2px;' ><span style='margin-left: -2px; position: relative; top: -3px;'>목록 다운</span></div>");
-                            var checkButton = $("<div style='float: right; margin-left: 5px;'><img style='position: relative; margin-top: 2px;' ><span style='margin-left: -2px; position: relative; top: -3px;'>전체 선택</span></div>");
+                            var addButton = $("<div style='float: right; margin-left: 10px;'><span style='margin-left: 4px; position: relative; top: -3px;'>파일 다운</span></div>");
+                            var xlsButton = $("<div style='float: right; margin-left: 5px;'><span style='margin-left: -2px; position: relative; top: -3px;'>목록 다운</span></div>");
+                            var checkButton = $("<div style='float: right; margin-left: 5px;'><span style='margin-left: -2px; position: relative; top: -3px;'>전체 선택</span></div>");
                             
                             container.append(addButton);
                             container.append(xlsButton);

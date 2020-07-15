@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.http.CacheControl;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -24,6 +26,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @Controller
@@ -37,71 +40,37 @@ public class IndexController {
 	@Autowired
 	ApplicationContext loa;
 	
-	HttpServletRequest request;
-	HttpServletResponse response;
 	
 	@RequestMapping(value = "/", method= {RequestMethod.GET, RequestMethod.POST})
     public String loginPage(Model model,HttpServletRequest request,
 			HttpServletResponse response){
-		this.request = request;
-		this.response = response;
 		return "recording/login";
     }
 	
 	
-
 	@RequestMapping(value = "/logo", method= {RequestMethod.GET, RequestMethod.POST})
-	public ResponseEntity<byte[]> displayFile()throws Exception{
-		
-		
+	public ResponseEntity<byte[]> displayFile(HttpServletResponse response)throws Exception{
 		ClassPathResource cpr = new ClassPathResource("static/assets/img/nautes_logo.png");
-
-		
-		
+		File path = new File(webLoginLogo); //C:\\home\\recording\\img\\nautes_logo.png
+		String formatName = webLoginLogo.substring(webLoginLogo.lastIndexOf(".")+1);
+		HttpHeaders headers = new HttpHeaders();
 		InputStream in = null;
-		ResponseEntity<byte[]> entity = null;
-		File path = new File(webLoginLogo);
-		try {
-			String formatName = webLoginLogo.substring(webLoginLogo.lastIndexOf(".")+1);
-			MediaType mType = getMediaType(formatName);
-			HttpHeaders headers = new HttpHeaders();
-			if(!path.exists()) {
-				in = cpr.getInputStream();
-			}else {
-				in = new FileInputStream(path);
+		if(!path.exists()) {
+			in = cpr.getInputStream();
+			headers.setContentType(MediaType.IMAGE_PNG);
+		}else {
+			in = new FileInputStream(path);
+			if(formatName.equals("png")) {
+				headers.setContentType(MediaType.IMAGE_PNG);
+			}else if(formatName.equals("jpg") || formatName.equals("jpeg")) {
+				headers.setContentType(MediaType.IMAGE_JPEG);
+			}else if(formatName.equals("gif")) {
+				headers.setContentType(MediaType.IMAGE_GIF);
 			}
-			
-			//step: change HttpHeader ContentType
-			if(mType != null) {
-				//image file(show image)
-				headers.setContentType(mType);
-			}else {
-				//another format file(download file)
-				headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-				headers.add("Content-Disposition", "attachment; filename=\"" + new String("nautes_logo.png".getBytes("UTF-8"), "ISO-8859-1")+"\""); 
-			}
-			
-			entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.CREATED);
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-			entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
-		}finally {
-			in.close();
 		}
-			return entity;
-	}
-	
-	
-	public MediaType getMediaType(String type){
-		Map<String, MediaType> mediaMap = new HashMap<String, MediaType>();
-		if(type.equals("jpg")) {
-			mediaMap.put("JPG", MediaType.IMAGE_JPEG);
-		}else if(type.equals("gif")) {
-			mediaMap.put("GIF", MediaType.IMAGE_GIF);
-		}else if(type.equals("png")) {
-			mediaMap.put("PNG", MediaType.IMAGE_PNG);
-		}
-		return mediaMap.get(type.toUpperCase());
+		byte[] media = IOUtils.toByteArray(in);
+	    headers.setCacheControl(CacheControl.noCache().getHeaderValue());
+	    ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
+	    return responseEntity;
 	}
 }

@@ -1,5 +1,6 @@
 package com.nautestech.www.util;
 
+import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -21,13 +22,13 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.util.CellRangeAddress;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.servlet.view.document.AbstractXlsxView;
 
 import com.nautestech.www.model.Call;
 import com.nautestech.www.model.Stat;
 
 public class listExcelDownload extends AbstractXlsxView {
-
 	
 	public String authFormat(String auth_cd) {
 		if(auth_cd.equals("00")) {
