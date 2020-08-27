@@ -46,8 +46,7 @@
 <body class="user_manage">
 <div id="wrapper">
     <a class="hide_darkbg"></a>
-    
-    
+    <input type="hidden" th:value="${#authentication.details.emp_id}" id="login_id">
     <input type="hidden" th:value="${#authentication.details.auth_cd}" id="u_auth_cd">
     <div class="wrapper gray-bg" id="page-wrapper">
         <div class="row border-bottom">

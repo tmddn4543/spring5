@@ -110,6 +110,12 @@ public class MuService implements IInsert, IDelete, ISelect<HddInfo>{
 	public List<HddInfo> getHddInfo() {
 		return mapper.getHddInfo();
 	}
+
+	@Override
+	public void setDelete2(HashMap<String, Object> param) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 }

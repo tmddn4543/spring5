@@ -69,14 +69,10 @@ public class CallController {
 	@Value("${isMxxMode}")
 	String isMxxMode;
 	
-	@Value("${RecCount}")
-	int RecCount;
-	
 	
 	
 	private static Logger main_logger = LogManager.getLogger(CallController.class);
 	private static Logger call_logger = LogManager.getLogger("call_log");
-	
 	
 	
 	
@@ -92,19 +88,24 @@ public class CallController {
 		call_logger.info("zip ->"+authentication.getName()+" : "+param1.toString());
 		String arr = request.getParameter("arr");
 		String[] sp_arr = arr.split(",");
-		String active = "active page_open";
-		request.setAttribute("callhistoryYMD", callhistoryYMD);
-		request.setAttribute("call_active", active);
+		
+		File zipfolder = new File("/home/zip");
+		
 		
 		File checkF = null;
 		File f_mxx = null;
 		Command cmd = new Command();
+		if(!zipfolder.exists()){
+			cmd.chkFolder("/home/zip");
+		}
 		String dirname = "";
 		String[] fname = null;
 		if(sp_arr.length>0) {
 			for(int i=0; i<sp_arr.length; i++) {
 				sp_arr[i] = sp_arr[i].replace("mxx", isMxxMode);
-				dirname = sp_arr[i].substring(0,33);
+				dirname = sp_arr[i].substring(0,36);
+				System.out.println(sp_arr[i]+"| download");
+				System.out.println(dirname+"|dirname");
 				checkF = new File(dirname);
 				f_mxx = new File(sp_arr[i]);
 				if(!checkF.exists()){
@@ -112,14 +113,14 @@ public class CallController {
 				}
 				if(!f_mxx.exists()) {
 					fname = sp_arr[i].split("/");
+					System.out.println(fname[5]+"| file make");
+					System.out.println(dirname+"| dirname make");
 					cmd.CopyMXX(fname[5], dirname);
 					cmd.ConvertMXX(fname[5], dirname,isMxxMode);
 					cmd.dencMp3(fname[5], dirname,isMxxMode);
 				}
 			}
-			
 			String day = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA).format(new Date());
-			
 			//다운받을위치
 			String zipFile = "/home/zip/call_history_"+day+".zip";
 			String downloadFileName = "call_history_"+day;
@@ -320,6 +321,7 @@ public class CallController {
 		//폴더 존재여부를 먼저 체크한다.
 		checkF = new File(call.get(0).getDirname());
 		f_mxx = new File(call.get(0).getDirname()+call.get(0).getFname());
+		System.out.println(call.get(0).getDirname()+"|dirname");
 		if(!checkF.exists()){
 			cmd.chkFolder(call.get(0).getDirname());
 		}

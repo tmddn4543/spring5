@@ -1,6 +1,9 @@
 $(document).ready(function(){
 	
 	
+  	var login_id = $("#login_id").val();
+	
+	
 	var emp_id = "";
 	var emp_nm = "";
 	var tel_no = "";
@@ -490,6 +493,7 @@ $(document).ready(function(){
 		var count = 0;
     	var arr = new Array();
     	var admin_check = "false";
+    	var login_check = "false";
     	$(".user_checkbox").each(function(){  // .each()는 forEach를 뜻한다.
 			if($(this).is(":checked")){
 				var res = $(this).val();
@@ -498,10 +502,17 @@ $(document).ready(function(){
 				if(res=="0000000000"){
 					admin_check = "true";
 				}
+				if(res==login_id){
+					login_check = "true";
+				}
 			}  
     	});
     	if(admin_check=="true"){
     		alert("관리자는 삭제하실수 없습니다.");
+    		return false;
+    	}
+    	if(login_check=="true"){
+    		alert("자기 자신은 삭제하실수 없습니다.");
     		return false;
     	}
     	var check = confirm("정말 삭제 하시겠습니까?");

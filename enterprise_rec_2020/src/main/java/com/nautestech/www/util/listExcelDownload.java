@@ -72,7 +72,6 @@ public class listExcelDownload extends AbstractXlsxView {
 		btime = btime.substring(11, 19);
 		etime = etime.substring(11, 19);
 
-		Calendar cal = Calendar.getInstance();
 		
 		SimpleDateFormat f = new SimpleDateFormat("HH:mm:ss", Locale.KOREA);
 		Date d1 = f.parse(etime);

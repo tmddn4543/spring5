@@ -13,7 +13,9 @@ import org.springframework.stereotype.Component;
 
 import com.nautestech.www.model.Call;
 import com.nautestech.www.model.CallJoin;
+import com.nautestech.www.model.CallStatus;
 import com.nautestech.www.serviceImpl.CallService;
+import com.nautestech.www.serviceImpl.CallStatusService;
 
 @Component
 public class Scheduler {
@@ -21,12 +23,17 @@ public class Scheduler {
 	@Autowired
 	CallService cService;
 
+	@Autowired
+	CallStatusService csService;
 	
 	@Value("${statisticsLimit}")
 	int statisticsLimit;
 	
 	@Value("${callhistoryYMD}")
 	Boolean callhistoryYMD;
+	
+	
+	
 	
 	//(cron="0 1 0 * * *")
 	//매월 매일  0시 1분 실행되는 메서드
@@ -63,6 +70,7 @@ public class Scheduler {
 		createQry+="		  `duple_flag` char(1) DEFAULT 'N',                    ";
 		createQry+="		  `rec_type` char(1) DEFAULT NULL,                     ";
 		createQry+="		  `group_id` varchar(20) DEFAULT NULL,                 ";
+		createQry+="		  `serialkey` char(100) NOT NULL DEFAULT '0',          ";
 		createQry+="		  PRIMARY KEY (`c_id`),                                ";
 		createQry+="		  KEY `emp_id` (`emp_id`),                             ";
 		createQry+="		  KEY `emp_nm` (`emp_nm`),                             ";
@@ -128,6 +136,38 @@ public class Scheduler {
 			createQry+= " emp_nm='"+call.get(i).getEmp_nm()+"', branch_cd='"+call.get(i).getBranch_cd()+"', tel_no='"+call.get(i).getTel_no()+"', s_caller_cnt=s_caller_cnt+"+s_caller_cnt+", s_called_cnt=s_called_cnt+"+s_called_cnt+", s_caller_time=s_caller_time+"+s_caller_time+", s_called_time=s_called_time+"+s_called_time+" ";
 			param.put("createQry", createQry);
 			cService.setCreate(param);
+		}
+	}
+	
+	@Scheduled(fixedRate=200)
+	public void call_status() {
+		HashMap<String, Object> param = new HashMap<>();
+		
+		//데이터삭제1번
+		String delete_query = "delete from call_status where delete_date <= date_format(SYSDATE(), '%Y-%m-%d %H:%i:%s')";
+		param.put("delete_query", delete_query);
+		csService.setDelete(param);
+		
+		//데이터삭제2번
+		param = new HashMap<>();
+		String delete_query2 = "delete from call_status where called = 0";
+		param.put("delete_query2", delete_query2);
+		csService.setDelete2(param);
+		
+		//데이터가져오기
+		param = new HashMap<>();
+		String query = "select * from call_status where p_flag = 0 and called != 0 order by stime asc";
+		param.put("query", query);
+		List<CallStatus> result = csService.setSelect(param);
+		if(result.size()>0) {		//값이있으면 업데이트해줄부분
+			for(int i=0; i<result.size(); i++) {
+				//업데이트
+				param = new HashMap<>();
+				String update_query = "update call_status set p_flag=8, delete_date=date_format(SYSDATE() + interval 10 SECOND, '%Y-%m-%d %H:%i:%s') where callid = '"+result.get(i).getCallid()+"' and serialkey = '"+result.get(i).getSerialkey()+"' and c_flag = '"+result.get(i).getC_flag()+"'";
+				param.put("update_query", update_query);
+				csService.setUpdate(param);
+				
+			}
 		}
 	}
 }

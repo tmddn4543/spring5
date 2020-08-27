@@ -106,7 +106,7 @@ $(document).ready(
                         rendertoolbar: function (statusbar) {
                             // appends buttons to the status bar.
                             var container = $("<div style='overflow: hidden; position: relative; margin: 5px;'></div>");
-                            var xlsButton = $("<div style='float: right; margin-left: 5px;'><img style='position: relative; margin-top: 2px;' ><span style='margin-left: -2px; position: relative; top: -3px;'>엑셀다운</span></div>");
+                            var xlsButton = $("<div style='float: right; margin-left: 5px;'><img style='position: relative; margin-top: 2px;' ><span style='margin-left: -2px; position: relative; top: -3px;'>목록 받기</span></div>");
                             
                             container.append(xlsButton);
                             statusbar.append(container);

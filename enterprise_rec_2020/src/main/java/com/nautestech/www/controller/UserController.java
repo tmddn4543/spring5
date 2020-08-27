@@ -113,6 +113,10 @@ public class UserController {
 		HashMap<String, Object> param = new HashMap<>();
 		param.put("branch_cd", branch_cd);
 		param.put("branch_nm", branch_nm);
+		HashMap<String, Object> param1 = new HashMap<>();
+		param1.put("emp_id", authentication.getName());
+		param1.put("result", "branch_insert");
+		uService.setInsertListen_log(param1);
 		user_logger.info("user_branch_insert -> "+authentication.getName()+" : "+param.toString());
 		uService.setInsertBranch(param);
     }
@@ -141,6 +145,10 @@ public class UserController {
 		param.put("branch_cd", arr);
 		user_logger.info("user_branch_delete -> "+authentication.getName()+" : "+param.toString());
 		uService.setBranchDelete(param);
+		HashMap<String, Object> param1 = new HashMap<>();
+		param1.put("emp_id", authentication.getName());
+		param1.put("result", "branch_delete");
+		uService.setInsertListen_log(param1);
 		return "true";
 	}
 	
@@ -157,6 +165,10 @@ public class UserController {
 		user_logger.info("user_delete -> "+authentication.getName()+" : "+param.toString());
 		uService.setDelete(param);
 		muService.setDeleteMrecordUser(param);
+		HashMap<String, Object> param1 = new HashMap<>();
+		param1.put("emp_id", authentication.getName());
+		param1.put("result", "user_delete");
+		uService.setInsertListen_log(param1);
 	}
 	
 	
@@ -234,11 +246,22 @@ public class UserController {
 		param.put("auth_cd", auth_cd);
 		user_logger.info("user_page_ajax -> "+authentication.getName()+" : "+param.toString());
 		List<Users> users = uService.getView(param);
-		if(users.size()!=0) {
+		if(users.size()!=0) { 
 			int total = uService.getListCount(param);
-			param1.put("total", total);
+			if(user.getAuth_cd().equals("12")) {
+				param1.put("total", total-1);
+			}else {
+				param1.put("total", total);
+			}
 			for(int i=0; i<users.size(); i++) {
-				users.get(i).setNum(total-i-recordstartindex);
+				if(user.getAuth_cd().equals("12") && users.get(i).getEmp_id().equals("admin")) {
+					users.remove(i);
+				}
+				if(user.getAuth_cd().equals("12")) {
+					users.get(i).setNum(total-i-recordstartindex-1);
+				}else {
+					users.get(i).setNum(total-i-recordstartindex);
+				}
 				users.get(i).setUser_detail("<button type='button' class= 'btn btn-default' data-toggle= 'modal' data-target='#user_add' name='"+users.get(i).getTel_no()+"' value='user_view'>상세보기</button>");
 				users.get(i).setRec_type(format.recFormat(users.get(i).getRec_type()));
 				users.get(i).setUser_checkbox("<input type='checkbox' class='user_checkbox' value='"+users.get(i).getTel_no()+"'>");
@@ -369,6 +392,11 @@ public class UserController {
 		user_logger.info("user_Insert ->"+authentication.getName()+" : "+param.toString());
 		uService.setInsert(param);
 		muService.setInsertMrecordUser(param1);
+		
+		HashMap<String, Object> param2 = new HashMap<>();
+		param2.put("emp_id", authentication.getName());
+		param2.put("result", "user_Insert");
+		uService.setInsertListen_log(param2);
 		return "true";
     }
 	
@@ -498,6 +526,12 @@ public class UserController {
 		muService.setInsertMrecordUser(param1);
 		
 		uService.setUpdate(param);
+		
+		HashMap<String, Object> param2 = new HashMap<>();
+		param2.put("emp_id", authentication.getName());
+		param2.put("result", "user_update");
+		uService.setInsertListen_log(param2);
+		
 		return "true";
     }
 	

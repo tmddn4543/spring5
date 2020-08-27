@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.nautestech.www.mapper.CallStatusMapper">	
+	<resultMap type="CallStatus" id="getSelectMap">
+		<result property="uid" column="uid"/>
+		<result property="callid" column="callid"/>
+		<result property="serialkey" column="serialkey"/>
+		<result property="c_flag" column="c_flag"/>
+	</resultMap>
+	
+	<select id="setSelect" resultMap="getSelectMap" parameterType="hashmap">
+		${query}
+	</select>
+	
+	<select id="setDelete" parameterType="hashmap">
+		${delete_query}
+	</select>
+	
+	<select id="setDelete2" parameterType="hashmap">
+		${delete_query2}
+	</select>
+	
+	<select id="setUpdate" parameterType="hashmap">
+		${update_query}
+	</select>
+</mapper>

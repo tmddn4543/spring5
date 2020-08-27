@@ -21,6 +21,7 @@
 		<typeAlias alias="log" type="com.nautestech.www.model.Callhistory_log"/>
 		<typeAlias alias="stat" type="com.nautestech.www.model.Stat"/>
 		<typeAlias alias="hdds" type="com.nautestech.www.model.HddInfo"/>
+		<typeAlias alias="CallStatus" type="com.nautestech.www.model.CallStatus"/>
 	</typeAliases>
 
 </configuration>

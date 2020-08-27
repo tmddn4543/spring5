@@ -4,13 +4,52 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.security.Key;
+import java.util.Base64;
+
+import javax.crypto.Cipher;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
 
 import org.springframework.beans.factory.annotation.Value;
 
 
 
 public class Command {
+
 	
+	
+	public static Key getAESKey() throws Exception {
+        String iv;
+        Key keySpec;
+ 
+        String key = "@Nautes123@!@#$@";
+        iv = key.substring(0, 16);
+        byte[] keyBytes = new byte[16];
+        byte[] b = key.getBytes("UTF-8");
+ 
+        int len = b.length;
+        if (len > keyBytes.length) {
+           len = keyBytes.length;
+        }
+ 
+        System.arraycopy(b, 0, keyBytes, 0, len);
+        keySpec = new SecretKeySpec(keyBytes, "AES");
+ 
+        return keySpec;
+    }
+	
+	// 복호화
+	public String decAES(String enStr) throws Exception {
+		Key keySpec = getAESKey();
+		String iv = "@Nautes123@!@#$@";
+		Cipher c = Cipher.getInstance("AES/CBC/PKCS5Padding");
+		c.init(Cipher.DECRYPT_MODE, keySpec, new IvParameterSpec(iv.getBytes("UTF-8")));
+		byte[] byteStr = Base64.getDecoder().decode(enStr.getBytes("UTF-8"));
+		String decStr = new String(c.doFinal(byteStr), "UTF-8");
+		
+		return decStr;
+	}
 	
 	public void chkFolder(String dirName) {
 		File checkF = new File(dirName);
@@ -21,6 +60,11 @@ public class Command {
 			runCommand(createCommand);
 		}
 	}
+	
+	
+	
+	
+	
 	
 	public void CopyMXX(String FileName, String dirName) throws Exception 
 	{

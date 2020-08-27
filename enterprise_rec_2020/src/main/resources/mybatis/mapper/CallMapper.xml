@@ -162,6 +162,12 @@
 			<if test='emp_nm !=null and !emp_nm.equals("")'>
 				and emp_nm = #{emp_nm}
 			</if>
+			<if test='serialkey !=null and !serialkey.equals("")'>
+				and serialkey = #{serialkey}
+			</if>
+			<if test='callid !=null and !callid.equals("")'>
+				and callid = #{callid}
+			</if>
 			<if test='group_id !=null and !group_id.equals("")'>
 				and group_id = #{group_id}
 			</if>

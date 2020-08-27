@@ -26,6 +26,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 
@@ -47,6 +48,34 @@ public class IndexController {
 		return "recording/login";
     }
 	
+	@RequestMapping(value = "/test", method= {RequestMethod.GET, RequestMethod.POST})
+	@ResponseBody
+    public HashMap<String,Object> test(@RequestParam(value="CID", required=false, defaultValue="")String CID,
+    		@RequestParam(value="SERVICE", required=false, defaultValue="")String SERVICE,
+    		@RequestParam(value="METHOD", required=false, defaultValue="")String METHOD){
+		System.out.println(CID + " = CID");
+		System.out.println(SERVICE+" = Service");
+		System.out.println(METHOD+" = Method");
+		HashMap<String, Object> param = new HashMap<>();
+		HashMap<String, Object> param1 = new HashMap<>();
+		HashMap<String, Object> main = new HashMap<>();
+		param1.put("CID", "01022223333");
+		param1.put("USER_TYPE", "VIP");
+		param.put("MESSAGE", "정상적으로 조회 완료 하였습니다.");
+		param.put("resultFind", param1);
+		main.put("payload", param);
+		return main;
+//		{"payload":{"MESSAGE":"정상적으로 조회 완료 하였습니다.","resultFind":{"USER_TYPE":"VIP","CID":"01022223333"}}}
+    }
+	
+	@RequestMapping(value = "/test2", method= {RequestMethod.GET, RequestMethod.POST})
+	@ResponseBody
+    public boolean test2(@RequestParam(value="CID", required=false, defaultValue="")String CID,
+    		@RequestParam(value="LMS", required=false, defaultValue="")String LMS){
+		System.out.println(CID + " = CID");
+		System.out.println(LMS + " = LMS");
+		return true;
+    }
 	
 	@RequestMapping(value = "/logo", method= {RequestMethod.GET, RequestMethod.POST})
 	public ResponseEntity<byte[]> displayFile(HttpServletResponse response)throws Exception{

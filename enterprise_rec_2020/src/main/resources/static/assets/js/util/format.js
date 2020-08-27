@@ -27,6 +27,7 @@ function authFormat2(auth_cd){
 
 
 function YYYYMM(bday, eday){
+	alert(bday+" ~ "+ eday);
 	var byyyy = bday.substr(0,4);
 	var eyyyy = eday.substr(0,4);
 	

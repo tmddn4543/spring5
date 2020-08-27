@@ -109,4 +109,10 @@ public class UsersService implements IInsert,ISelect<Users>,IDelete,IUpdate{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public void setDelete2(HashMap<String, Object> param) {
+		// TODO Auto-generated method stub
+		
+	}
 }

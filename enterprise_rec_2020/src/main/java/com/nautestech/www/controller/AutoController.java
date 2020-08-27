@@ -30,10 +30,6 @@ public class AutoController {
 	public void job() {
 		HashMap<String,Object> param = new HashMap<>();
 		List<Monitor> monitor = mService.getView(param);
-		
-		
-		
-		
 		String str ="";
 		for(int i=0; i<monitor.size(); i++) {
 			str +="<div class='thumbnail standBy'>";

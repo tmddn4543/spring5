@@ -12,8 +12,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public final class ResultDto {
 
-    private Map<String, Object> attribute = new HashMap<>();
-
     private boolean result;
     private Object obj;
     private String failMsg;

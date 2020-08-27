@@ -110,6 +110,31 @@
 		    '',
 		    ''
 		    </if>
+		    <if test="result.equals('branch_insert')">
+		    '그룹추가',
+		    '',
+		    ''
+		    </if>
+		    <if test="result.equals('branch_delete')">
+		    '그룹삭제',
+		    '',
+		    ''
+		    </if>
+		    <if test="result.equals('user_delete')">
+		    '유저삭제',
+		    '',
+		    ''
+		    </if>
+		    <if test="result.equals('user_Insert')">
+		    '유저추가',
+		    '',
+		    ''
+		    </if>
+		    <if test="result.equals('user_update')">
+		    '유저수정',
+		    '',
+		    ''
+		    </if>
 		    <if test="result.equals('fail')">
 		    '로그인 실패',
 		    '',
